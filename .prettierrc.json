@@ -1,11 +1,20 @@
 {
-  "printWidth": 120,
+  "semi": false,
   "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 120,
+  "trailingComma": "es5",
+  "jsxBracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "plugins": ["@shopify/prettier-plugin-liquid"],
   "overrides": [
     {
-      "files": "*.liquid",
+      "files": ["*.liquid"],
       "options": {
-        "singleQuote": false
+        "singleQuote": false,
+        "tabWidth": 2
       }
     }
   ]
