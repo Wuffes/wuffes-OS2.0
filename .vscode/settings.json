@@ -14,7 +14,7 @@
 		"editor.tabSize": 2
 	},
 	"[liquid]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.defaultFormatter": "Shopify.theme-check-vscode",
 		"editor.formatOnSave": true,
 		"editor.insertSpaces": true,
 		"editor.tabSize": 2
