@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "featured_collection_nHemEP": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop joint care & more",
+        "heading_size": "h1",
+        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "supplements-for-dogs",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_collection_nHemEP"
+  ]
+}
