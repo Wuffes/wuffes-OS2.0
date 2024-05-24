@@ -3357,6 +3357,15 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "marquee": {
+      "name": "Marquee",
+      "blocks": {
+        "name": "slide"
+      },
+      "presets" : {
+        "name": "Marquee"
+      }
     }
   }
 }
