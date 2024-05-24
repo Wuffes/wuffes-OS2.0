@@ -116,6 +116,18 @@
   },
   "settings": [
     {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Image with text heading",
+      "label": "t:sections.image-with-text.settings.heading.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "default": "Image with text subheading",
+      "label": "t:sections.image-with-text.settings.subheading.label"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label"
@@ -409,7 +421,7 @@
     {
       "type": "text",
       "name": "t:sections.image-with-text.blocks.text.name",
-      "limit": 1,
+      "limit": 2,
       "settings": [
         {
           "type": "richtext",
@@ -457,6 +469,30 @@
           "id": "button_style_secondary",
           "default": false,
           "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+        }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "t:sections.image-with-text.blocks.collapsible.name",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Collapsible item title",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "inner_text",
+          "default": "<p>Collapsible item inner text</p>",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.inner_text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.image.label"
         }
       ]
     }
