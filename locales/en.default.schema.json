@@ -1336,6 +1336,10 @@
           "options__4": {
             "label": "Large"
           },
+
+          "options__5": {
+            "label": "Original"
+          },
           "label": "Image height"
         },
         "desktop_image_width": {
@@ -2956,6 +2960,58 @@
       },
       "presets": {
         "name": "Rich text"
+      }
+    },
+    "rich-text-carousel": {
+      "name": "Rich text carousel",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "desktop_content_position": {
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "label": "Desktop content position",
+          "info": "Position is automatically optimized for mobile."
+        },
+        "content_alignment": {
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "label": "Content alignment"
+        },
+        "full_width": {
+          "label": "Make section full width"
+        }
+      },
+      "blocks": {
+        "slide": {
+          "name": "Slide",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "logo": {
+              "label": "Logo"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Rich text carousel"
       }
     },
     "video": {

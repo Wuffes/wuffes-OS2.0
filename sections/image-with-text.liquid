@@ -98,6 +98,41 @@
                       {{ block.settings.button_label | escape }}
                     </a>
                   {%- endif -%}
+                {%- when 'collapsible' -%}
+                  <div class="image-with-text__collapsible">
+                    <div
+                      class="accordion"
+                      {{ block.shopify_attributes }}
+                    >
+                      <details
+                        id="Details-{{ block.id }}-{{ section.id }}"
+                        {% if block.settings.open_by_default %}
+                          open
+                        {% endif %}
+                      >
+                        <summary id="Summary-{{ block.id }}-{{ section.id }}">
+                          {% comment %} {% render 'icon-accordion', icon: block.settings.icon %} {% endcomment %}
+                          <h3 class="accordion__title inline-richtext h4">
+                            {{ block.settings.title | escape }}
+                          </h3>
+                          {% render 'icon-caret' %}
+                        </summary>
+                        <div
+                          class="accordion__content rte"
+                          id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
+                          role="region"
+                          aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
+                        >
+                          {{ block.settings.inner_text }}
+                          {{
+                            block.settings.image
+                            | image_url: width: 1500
+                            | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
+                          }}
+                        </div>
+                      </details>
+                    </div>
+                  </div>
               {%- endcase -%}
             {%- endfor -%}
           </div>
@@ -151,6 +186,10 @@
         {
           "value": "large",
           "label": "t:sections.image-with-text.settings.height.options__4.label"
+        },
+        {
+          "value": "original",
+          "label": "t:sections.image-with-text.settings.height.options__5.label"
         }
       ],
       "default": "adapt",

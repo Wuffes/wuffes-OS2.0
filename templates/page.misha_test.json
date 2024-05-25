@@ -78,7 +78,7 @@
         "heading": "Image with text heading",
         "subheading": "Image with text subheading",
         "image": "shopify:\/\/shop_images\/homepage_subscribe_and_save_2023.png",
-        "height": "small",
+        "height": "original",
         "desktop_image_width": "medium",
         "layout": "image_first",
         "desktop_content_position": "top",
@@ -127,7 +127,7 @@
         "heading": "Image with text heading",
         "subheading": "Image with text subheading",
         "image": "shopify:\/\/shop_images\/homepage_2023_about_us_img.png",
-        "height": "small",
+        "height": "original",
         "desktop_image_width": "medium",
         "layout": "text_first",
         "desktop_content_position": "top",
@@ -183,7 +183,7 @@
         "heading": "Image with text heading",
         "subheading": "Image with text subheading",
         "image": "shopify:\/\/shop_images\/new_pdp_hero_laser_7.png",
-        "height": "adapt",
+        "height": "original",
         "desktop_image_width": "medium",
         "layout": "image_first",
         "desktop_content_position": "top",
@@ -239,7 +239,7 @@
         "heading": "Image with text heading",
         "subheading": "Image with text subheading",
         "image": "shopify:\/\/shop_images\/new_pdp_hero_laser_8.png",
-        "height": "adapt",
+        "height": "original",
         "desktop_image_width": "medium",
         "layout": "text_first",
         "desktop_content_position": "top",
@@ -304,7 +304,7 @@
         "heading": "Made with the finest, sustainably sourced ingredient",
         "subheading": "Hand picked by pet scientists to keep your furry friends happy and healthy",
         "image": "shopify:\/\/shop_images\/salmon_oil_lander__ingredients_main_img.png",
-        "height": "adapt",
+        "height": "original",
         "desktop_image_width": "medium",
         "layout": "image_first",
         "desktop_content_position": "top",
@@ -317,6 +317,54 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "rich_text_carousel_wKxYhU": {
+      "type": "rich-text-carousel",
+      "blocks": {
+        "slide_4C788H": {
+          "type": "slide",
+          "settings": {
+            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”<\/p>",
+            "image": "shopify:\/\/shop_images\/daily-mail-logo.svg"
+          }
+        },
+        "slide_XQ3Mrk": {
+          "type": "slide",
+          "settings": {
+            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"<\/p>",
+            "image": "shopify:\/\/shop_images\/the-sun-com-logo.svg"
+          }
+        },
+        "slide_NXhCYn": {
+          "type": "slide",
+          "settings": {
+            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"<\/p>",
+            "image": "shopify:\/\/shop_images\/yahoo-logo.svg"
+          }
+        },
+        "slide_3KqUdG": {
+          "type": "slide",
+          "settings": {
+            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"<\/p>",
+            "image": "shopify:\/\/shop_images\/woof-logo.svg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4C788H",
+        "slide_XQ3Mrk",
+        "slide_NXhCYn",
+        "slide_3KqUdG"
+      ],
+      "settings": {
+        "heading": "Loved by the world’s best",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -326,6 +374,7 @@
     "image_with_text_YKXX7q",
     "image_with_text_qV3fCF",
     "image_with_text_Hdggna",
-    "image_with_text_B6C947"
+    "image_with_text_B6C947",
+    "rich_text_carousel_wKxYhU"
   ]
 }
