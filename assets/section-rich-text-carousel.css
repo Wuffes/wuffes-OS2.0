@@ -1,1 +1,18 @@
+.rich-text-carousel__heading {
+  text-align: center;
+}
 
+.rich-text-carousel__wrapper {
+  flex-direction: column;
+}
+
+.rich-text-carousel__slide {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.rich-text-carousel__slide img {
+  max-width: 160px;
+  max-height: 42px;
+}

@@ -1,4 +1,4 @@
-{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'section-rich-text.css' | asset_url | stylesheet_tag }} {% endcomment %}
 {{ 'section-rich-text-carousel.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
@@ -16,32 +16,48 @@
   }
 {%- endstyle -%}
 
+{%- assign widths = '165' -%}
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) 160px,
+  (min-width: 750px) 160px
+{%- endcapture -%}
+
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
-    <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
+  <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text-carousel--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+    <div class="rich-text-carousel__wrapper rich-text-carousel__wrapper rich-text-carousel__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <h2
-        class="rich-text__heading rte inline-richtext {{ section.settings.heading_size }}"
+        class="rich-text-carousel__heading rte inline-richtext {{ section.settings.heading_size }}"
       >
         {{ section.settings.heading }}
       </h2>
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+      <div
+        class="grid grid--1-col slider slider--everywhere"
+        id="Slider-{{ section.id }}"
+        data-autoplay="{{ section.settings.auto_rotate }}"
+        data-speed="{{ section.settings.change_slides_speed }}"
+      >
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'slide' -%}
               <div
-                class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text-carousel__slide rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} slider__slide"
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.text }}
-                {{
-                  block.settings.image
-                  | image_url: width: 500
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
-                }}
+                {% if block.settings.text.size > 0 %}
+                  {{ block.settings.text }}
+                {% endif %}
+                {% if block.settings.image %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 160
+                    | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
+                  }}
+                {% endif %}
               </div>
           {%- endcase -%}
         {%- endfor -%}
@@ -64,6 +80,22 @@
       "id": "heading",
       "default": "Talk about your brand",
       "label": "t:sections.rich-text-carousel.settings.heading.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
     },
     {
       "type": "select",

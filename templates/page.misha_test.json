@@ -16,18 +16,18 @@
         "show_description": false,
         "description_style": "body",
         "collection": "supplements-for-dogs",
-        "products_to_show": 8,
+        "products_to_show": 6,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
@@ -358,12 +358,67 @@
       ],
       "settings": {
         "heading": "Loved by the world’s best",
+        "auto_rotate": true,
+        "change_slides_speed": 4,
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "slideshow_MXDnmE": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_BwccgP": {
+          "type": "slide",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_MFatM8": {
+          "type": "slide",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_BwccgP",
+        "slide_MFatM8"
+      ],
+      "settings": {
+        "layout": "grid",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     }
   },
@@ -375,6 +430,7 @@
     "image_with_text_qV3fCF",
     "image_with_text_Hdggna",
     "image_with_text_B6C947",
-    "rich_text_carousel_wKxYhU"
+    "rich_text_carousel_wKxYhU",
+    "slideshow_MXDnmE"
   ]
 }
