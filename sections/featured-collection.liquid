@@ -151,14 +151,23 @@
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
+            style="display: none;"
           >
             {% render 'icon-caret' %}
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
+          <div class="slider-counter slider-counter--dots">
+            <div class="slideshow__control-wrapper">
+              {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+                <button
+                  type="button"
+                  class="slider-counter__link slider-counter__link--dots link"
+                  aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                  aria-controls="Slider-{{ section.id }}"
+                >
+                  <span class="dot"></span>
+                </button>
+              {%- endfor -%}
+            </div>
           </div>
           <button
             type="button"
@@ -166,6 +175,7 @@
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
+            style="display: none;"
           >
             {% render 'icon-caret' %}
           </button>

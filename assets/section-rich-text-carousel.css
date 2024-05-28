@@ -12,7 +12,16 @@
   text-align: center;
 }
 
+.rich-text-carousel__slide p {
+  max-width: 525px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .rich-text-carousel__slide img {
-  max-width: 160px;
+  max-width: 180px;
   max-height: 42px;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
 }
