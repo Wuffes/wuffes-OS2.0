@@ -11,8 +11,8 @@
   }
 
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -21,8 +21,8 @@
     }
 
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top_desktop | plus: 10 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop | plus: 10 | round: 0 }}px;
     }
   }
 {%- endstyle -%}
@@ -49,7 +49,7 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width">
+      <div class="footer__content footer__content-top page-width">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
@@ -68,7 +68,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if block.settings.mobile_half_width %}grid__item_half{% endif  %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'text' %} footer-block--text{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.mobile_half_width %} grid__item_half{% endif  %}{% if block.settings.alignment %} {{ block.settings.alignment }}{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -76,14 +76,49 @@
                 {% endif %}
               >
                 {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                  <h2 class="footer-block__heading inline-richtext">
+                    {%- if block.settings.icon == 'email' -%}
+                      {% render 'icon-email' %}
+                    {%- endif -%}
+
+                    {{- block.settings.heading -}}
+                  </h2>
                 {%- endif -%}
 
                 {%- case block.type -%}
                   {%- when '@app' -%}
                     {% render block %}
                   {% when 'logo' %}
-                    <div class="">Sanity</div>
+                    <div class="footer-block__details-content logo">
+                      <a href="{{ routes.root_url }}">
+                        {%- if settings.logo != blank -%}
+                          <div class="footer__footer-logo-wrapper">
+                            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+                            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+                            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                            {{
+                              settings.logo
+                              | image_url: width: 600
+                              | image_tag:
+                                class: 'footer__footer-logo motion-reduce',
+                                widths: widths,
+                                height: logo_height,
+                                width: settings.logo_width,
+                                alt: logo_alt,
+                                sizes: sizes,
+                                preload: true
+                            }}
+                          </div>
+                        {%- else -%}
+                          <span class="h2">{{ shop.name }}</span>
+                        {%- endif -%}
+                      </a>
+
+                      {% if block.settings.show_social %}
+                        {%- render 'social-icons', class: 'footer__list-social' -%}
+                      {% endif %}
+                    </div>
                   {%- when 'text' -%}
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
@@ -250,7 +285,7 @@
   {%- endif -%}
 
   <div
-    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    class="footer__content footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.show_border %} footer__content-bottom--border{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
     {% endif %}
@@ -296,26 +331,54 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
-      <div class="footer__copyright caption">
-        <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
-          <ul class="policies list-unstyled">
-            {%- for policy in shop.policies -%}
-              {%- if policy != blank -%}
+
+    <div class="footer__content-bottom-wrapper page-width">
+      {%- if section.settings.bottom_footer_text != blank- %}
+        <div class="footer__content-bottom-col rte scroll-trigger animate--slide-in">
+          {{- section.settings.bottom_footer_text -}}
+        </div>
+
+        {%- if section.settings.policy_menu != blank -%}
+          <div class="footer__content-bottom-col scroll-trigger animate--slide-in">
+            <ul class="list-unstyled">
+              {%- for link in section.settings.policy_menu.links -%}
                 <li>
-                  <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title }}</a></small
+                  <a
+                    href="{{ link.url }}"
+                    class="link link--text list-menu__item-policy {% if link.active %} list-menu__item--active{% endif %}"
                   >
+                    {{ link.title }}
+                  </a>
                 </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
+              {%- endfor -%}
+            </ul>
+          </div>
         {%- endif -%}
-      </div>
+      {%- endif -%}
+    </div>
+
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+      {%- if section.settings.show_copyright -%}
+        <div class="footer__copyright caption">
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          </small>
+          <small class="copyright__content">{{ powered_by_link }}</small>
+          {%- if section.settings.show_policy -%}
+            <ul class="policies list-unstyled">
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}
+                  <li>
+                    <small class="copyright__content"
+                      ><a href="{{ policy.url }}">{{ policy.title }}</a></small
+                    >
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </footer>
@@ -336,6 +399,26 @@
           "id": "show_social",
           "label": "Show socials",
           "default": true
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "footer-block__alignment--left",
+              "label": "left"
+            },
+            {
+              "value": "footer-block__alignment--center",
+              "label": "Center"
+            },
+            {
+              "value": "footer-block__alignment--right",
+              "label": "Right"
+            }
+          ],
+          "default": "footer-block__alignment--center"
         }
       ]
     },
@@ -343,6 +426,26 @@
       "type": "link_list",
       "name": "t:sections.footer.blocks.link_list.name",
       "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "footer-block__alignment--left",
+              "label": "left"
+            },
+            {
+              "value": "footer-block__alignment--center",
+              "label": "Center"
+            },
+            {
+              "value": "footer-block__alignment--right",
+              "label": "Right"
+            }
+          ],
+          "default": "footer-block__alignment--left"
+        },
         {
           "type": "checkbox",
           "id": "mobile_half_width",
@@ -390,6 +493,26 @@
       "name": "t:sections.footer.blocks.text.name",
       "settings": [
         {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "footer-block__alignment--left",
+              "label": "left"
+            },
+            {
+              "value": "footer-block__alignment--center",
+              "label": "Center"
+            },
+            {
+              "value": "footer-block__alignment--right",
+              "label": "Right"
+            }
+          ],
+          "default": "footer-block__alignment--center"
+        },
+        {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Heading",
@@ -400,6 +523,12 @@
           "id": "subtext",
           "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "email"
         }
       ]
     },
@@ -497,12 +626,6 @@
       "info": "t:sections.footer.settings.header__4.info"
     },
     {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.footer.settings.enable_country_selector.label"
-    },
-    {
       "type": "header",
       "content": "t:sections.footer.settings.header__5.content",
       "info": "t:sections.footer.settings.header__6.info"
@@ -518,21 +641,9 @@
       "content": "t:sections.footer.settings.header__7.content"
     },
     {
-      "type": "checkbox",
-      "id": "payment_enable",
-      "default": true,
-      "label": "t:sections.footer.settings.payment_enable.label"
-    },
-    {
       "type": "header",
       "content": "t:sections.footer.settings.header__8.content",
       "info": "t:sections.footer.settings.header__8.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_policy",
-      "default": false,
-      "label": "t:sections.footer.settings.show_policy.label"
     },
     {
       "type": "header",
@@ -553,24 +664,96 @@
       "content": "t:sections.all.padding.section_padding_heading"
     },
     {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "type": "header",
+      "content": "Mobile"
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "padding_top_mobile",
       "min": 0,
       "max": 100,
-      "step": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 95
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Bottom section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "default": true,
+      "label": "Show border"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_footer_text",
+      "label": "Bottom text"
+    },
+    {
+      "type": "link_list",
+      "id": "policy_menu",
+      "label": "Policy menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": false,
+      "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "Show copyright",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": false,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": false,
+      "label": "t:sections.footer.settings.payment_enable.label"
     }
   ],
   "default": {

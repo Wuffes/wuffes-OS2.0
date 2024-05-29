@@ -5,8 +5,9 @@
     "favicon": "shopify:\/\/shop_images\/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
+    "type_header_font_custom_weight": "700",
     "heading_scale": 100,
-    "type_body_font": "inter_n3",
+    "type_body_font": "inter_n4",
     "body_scale": 115,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -199,6 +200,28 @@
           "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
           "shadow": "#ffffff"
+        }
+      },
+      "scheme-8e688a55-f361-4706-96c3-c37ebb88b2eb": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-8e577348-7902-4431-a614-442eecc36d3c": {
+        "settings": {
+          "background": "{{ shop.brand.colors.primary[0].background }}",
+          "background_gradient": "",
+          "text": "#fff",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
         }
       }
     }
