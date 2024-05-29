@@ -51,6 +51,51 @@
         "show_text_below": false
       }
     },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "slide_g9c4Xq": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Made in USA*"
+          }
+        },
+        "slide_zjxGkr": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Backed by science"
+          }
+        },
+        "slide_3GzYbE": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Formulated by pet scientists"
+          }
+        },
+        "slide_YebJh7": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Subscribe & save"
+          }
+        },
+        "slide_Y3qCMM": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Hand-selected ingredients"
+          }
+        }
+      },
+      "block_order": [
+        "slide_g9c4Xq",
+        "slide_zjxGkr",
+        "slide_3GzYbE",
+        "slide_YebJh7",
+        "slide_Y3qCMM"
+      ],
+      "settings": {
+        "background_color": "#105750"
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -228,9 +273,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "marquee": {
-      "type": "marquee"
     }
   },
   "order": [

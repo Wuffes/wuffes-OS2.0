@@ -68,7 +68,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% if block.settings.mobile_half_width %}grid__item_half{% endif  %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -82,6 +82,8 @@
                 {%- case block.type -%}
                   {%- when '@app' -%}
                     {% render block %}
+                  {% when 'logo' %}
+                    <div class="">Sanity</div>
                   {%- when 'text' -%}
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
@@ -326,9 +328,27 @@
       "type": "@app"
     },
     {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show socials",
+          "default": true
+        }
+      ]
+    },
+    {
       "type": "link_list",
       "name": "t:sections.footer.blocks.link_list.name",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "mobile_half_width",
+          "label": "Half width on mobile",
+          "default": true
+        },
         {
           "type": "inline_richtext",
           "id": "heading",
@@ -555,6 +575,9 @@
   ],
   "default": {
     "blocks": [
+      {
+        "type": "logo"
+      },
       {
         "type": "link_list"
       },

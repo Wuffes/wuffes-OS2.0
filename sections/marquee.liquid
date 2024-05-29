@@ -6,23 +6,25 @@
   }
 {%- endstyle -%}
 
-<div class="marquee__container">
-  <div class="marquee__wrap scroll-trigger animate--slide-in">
-    {%- for index in (1..2) -%}
-      <div class="marquee__content scroll">
-        {%- for block in section.blocks -%}
-          {%- if block.settings.marquee_text != blank -%}
-            <div class="marquee__blocks_slide">
-              <p class="marquee__blocks_text">
-                {{- block.settings.marquee_text -}}
-              </p>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endfor -%}
+{%- if section.blocks.size > 0 -%}
+  <div class="marquee__container">
+    <div class="marquee__wrap scroll-trigger animate--slide-in">
+      {%- for index in (1..2) -%}
+        <div class="marquee__content scroll">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.marquee_text != blank -%}
+              <div class="marquee__blocks_slide">
+                <p class="marquee__blocks_text">
+                  {{- block.settings.marquee_text -}}
+                </p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
   </div>
-</div>
+{%- endif -%}
 
 {% schema %}
 {
