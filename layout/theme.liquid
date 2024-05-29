@@ -64,8 +64,8 @@
     %}
 
     {% style %}
-      {% if settings.type_body_font_custom != 'None' %}
-        {% if settings.type_body_font_custom contains "Variable" %}
+      {%- if settings.type_body_font_custom != 'None' -%}
+        {%- if settings.type_body_font_custom contains "Variable" -%}
           {% comment %}
             Made for Variable fonts only (fonts containing a few weights in one file. Bold, Regular, Etc)
             Functionality for other font types wasn't needed when this code was created.
@@ -86,8 +86,8 @@
             font-style: italic;
             font-display: swap;
           }
-        {% endif %}
-      {% else %}
+        {%- endif -%}
+      {%- else -%}
         {{ settings.type_body_font
           | font_face: font_display: 'swap' }}
         {{ settings.type_body_font
@@ -100,10 +100,10 @@
           | font_modify: 'weight', 'bold'
           | font_modify: 'style', 'italic'
           | font_face: font_display: 'swap' }}
-      {% endif %}
+      {%- endif -%}
 
-      {% if settings.type_header_font_custom != 'None' %}
-        {% if settings.type_header_font_custom contains "Variable" %}
+      {%- if settings.type_header_font_custom != 'None' -%}
+        {%- if settings.type_header_font_custom contains "Variable" -%}
           {% comment %}
             Made for Variable fonts only (fonts containing a few weights in one file. Bold, Regular, Etc)
             Functionality for other font types wasn't needed when this code was created.
@@ -116,11 +116,11 @@
             font-style: normal;
             font-display: swap;
           }
-        {% endif %}
-      {% else %}
+        {%- endif -%}
+      {%- else -%}
         {{ settings.type_header_font
           | font_face: font_display: 'swap' }}
-      {% endif %}
+      {%- endif -%}
 
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
@@ -325,18 +325,18 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
-    {%- unless settings.type_body_font.system? or settings.type_body_font_custom != 'None' -%}
+    {%- if settings.type_body_font.system != true and settings.type_body_font_custom == 'None' -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
-    {%- unless settings.type_header_font.system? or settings.type_body_font_custom != 'None' -%}
+    {%- endif -%}
+    {%- if settings.type_header_font.system != true and settings.type_header_font_custom == 'None' -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
+    {%- endif -%}
 
-    {% if settings.type_body_font_custom != 'None' and settings.type_body_font_custom contains 'Variable' %}
+    {%- if settings.type_body_font_custom != 'None' and settings.type_body_font_custom contains 'Variable' -%}
       {% comment %}
         Made for Variable fonts only (fonts containing a few weights in one file. Bold, Regular, Etc)
         Functionality for other font types wasn't needed when this code was created.
@@ -351,9 +351,9 @@
         crossorigin
       >
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {% endif %}
+    {%- endif -%}
 
-    {% if settings.type_header_font_custom != 'None' and settings.type_header_font_custom contains 'Variable' %}
+    {%- if settings.type_header_font_custom != 'None' and settings.type_header_font_custom contains 'Variable' -%}
       {% comment %}
         Made for Variable fonts only (fonts containing a few weights in one file. Bold, Regular, Etc)
         Functionality for other font types wasn't needed when this code was created.
@@ -368,7 +368,7 @@
         crossorigin
       >
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {% endif %}
+    {%- endif -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
