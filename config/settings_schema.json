@@ -116,6 +116,43 @@
         "info": "t:settings_schema.typography.settings.type_header_font.info"
       },
       {
+        "type": "select",
+        "id": "type_header_font_custom",
+        "options": [
+          {
+            "value": "None",
+            "label": "None"
+          },
+          {
+            "value": "Satoshi-Variable",
+            "label": "Satoshi Variable"
+          }
+        ],
+        "default": "None",
+        "label": "Custom font",
+        "info": "If custom font is selected - others are ignored"
+      },
+      {
+        "type": "select",
+        "id": "type_header_font_custom_weight",
+        "options": [
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          }
+        ],
+        "default": "700",
+        "label": "Custom font weight"
+      },
+      {
         "type": "range",
         "id": "heading_scale",
         "min": 100,
@@ -135,6 +172,43 @@
         "default": "assistant_n4",
         "label": "t:settings_schema.typography.settings.type_body_font.label",
         "info": "t:settings_schema.typography.settings.type_body_font.info"
+      },
+      {
+        "type": "select",
+        "id": "type_body_font_custom",
+        "options": [
+          {
+            "value": "None",
+            "label": "None"
+          },
+          {
+            "value": "satoshi-variable",
+            "label": "Satoshi Variable"
+          }
+        ],
+        "default": "None",
+        "label": "Custom font",
+        "info": "If custom font is selected - others are ignored"
+      },
+      {
+        "type": "select",
+        "id": "type_body_font_custom_weight",
+        "options": [
+          {
+            "value": "400",
+            "label": "Regular"
+          },
+          {
+            "value": "500",
+            "label": "Medium"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          }
+        ],
+        "default": "400",
+        "label": "Custom font weight"
       },
       {
         "type": "range",
