@@ -1,0 +1,18 @@
+.featured-collection--slider-buttons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  z-index: -1;
+}
+
+@media screen and (min-width: 990px) {
+  .featured-collection--slider--desktop.grid--4-col-desktop .grid__item {
+    width: 25%;
+  }
+
+  .featured-collection--slider--desktop .slider__slide:first-child {
+    margin-left: 0;
+  }
+}
