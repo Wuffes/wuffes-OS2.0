@@ -93,7 +93,11 @@
                 class="header__active-menu-item"
               {% endif %}
             >
-              {{- link.title | escape -}}
+              {%- if link.title contains '[' -%}
+                {{- link.title | split: '[' | first -}}
+              {%- else -%}
+                {{- link.title | escape -}}
+              {%- endif -%}
             </span>
           </a>
         {%- endif -%}

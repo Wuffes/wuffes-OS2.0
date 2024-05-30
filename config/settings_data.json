@@ -8,6 +8,7 @@
     "type_header_font_custom_weight": "700",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
+    "type_body_font_custom": "None",
     "body_scale": 115,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -217,7 +218,7 @@
         "settings": {
           "background": "{{ shop.brand.colors.primary[0].background }}",
           "background_gradient": "",
-          "text": "#fff",
+          "text": "#ffffff",
           "button": "{{ shop.brand.colors.primary[0].foreground }}",
           "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
