@@ -8,7 +8,7 @@
         "logo_RxCK7w": {
           "type": "logo",
           "settings": {
-            "show_social": false,
+            "show_social": true,
             "alignment": "footer-block__alignment--center"
           }
         },
@@ -16,7 +16,6 @@
           "type": "link_list",
           "settings": {
             "alignment": "footer-block__alignment--left",
-            "mobile_half_width": true,
             "heading": "Company",
             "menu": "company"
           }
@@ -25,7 +24,6 @@
           "type": "link_list",
           "settings": {
             "alignment": "footer-block__alignment--left",
-            "mobile_half_width": true,
             "heading": "Shop",
             "menu": "shop"
           }
@@ -64,6 +62,7 @@
         "show_border": true,
         "bottom_footer_text": "<p>© 2024 Statements on <a href=\"https:\/\/wuffes.com\" title=\"https:\/\/wuffes.com\">wuffes.com<\/a> have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent disease.<\/p>\n<p>*With globally sourced ingredients<br>\n**Results may vary<\/p>",
         "policy_menu": "full-price-copyright-links",
+        "links_mobile_half_width": true,
         "show_policy": false,
         "show_copyright": false,
         "enable_country_selector": false,

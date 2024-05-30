@@ -67,8 +67,11 @@
             {% endif %}
           >
             {%- for block in section.blocks -%}
+              {% assign next_block_index = forloop.index0 | plus: 1 %}
+              {% assign prev_block_index = forloop.index0 | minus: 1 %}
+
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'text' %} footer-block--text{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.mobile_half_width %} grid__item_half{% endif  %}{% if block.settings.alignment %} {{ block.settings.alignment }}{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'text' %} footer-block--text{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.alignment %} {{ block.settings.alignment }}{% endif %}{% if section.settings.links_mobile_half_width and block.type == 'link_list' and section.blocks[next_block_index].type == 'link_list' or section.blocks[prev_block_index].type == 'link_list' %} grid__item_half{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -447,12 +450,6 @@
           "default": "footer-block__alignment--left"
         },
         {
-          "type": "checkbox",
-          "id": "mobile_half_width",
-          "label": "Half width on mobile",
-          "default": true
-        },
-        {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Quick links",
@@ -730,6 +727,12 @@
       "type": "link_list",
       "id": "policy_menu",
       "label": "Policy menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "links_mobile_half_width",
+      "label": "Menu: Half width on mobile",
+      "default": true
     },
     {
       "type": "checkbox",

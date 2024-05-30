@@ -521,6 +521,10 @@
 }
 
 @media screen and (min-width: 750px) {
+  .footer-block__details-content .list-menu__item--link {
+    padding: 0.35rem 0;
+  }
+
   .footer-block__details-content .list-menu__item--link:hover,
   .copyright__content a:hover {
     color: rgb(var(--color-button));
