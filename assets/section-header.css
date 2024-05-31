@@ -17,10 +17,6 @@
   justify-content: space-between; */
 }
 
-.header__heading-logo {
-  max-width: 110px;
-}
-
 .header--col_left {
   display: flex;
 }
@@ -69,6 +65,10 @@
 @media screen and (max-width: 989px) {
   .header--wrapper {
     height: 50px;
+  }
+
+  .header__heading-logo {
+    max-width: 110px;
   }
 }
 
