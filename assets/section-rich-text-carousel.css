@@ -1,9 +1,19 @@
+.rich-text-carousel__slider.slider--everywhere {
+  margin-bottom: 2rem;
+}
+
 .rich-text-carousel__heading {
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 3rem;
 }
 
 .rich-text-carousel__wrapper {
   flex-direction: column;
+}
+
+.rich-text-carousel__slider {
+  align-items: center;
 }
 
 .rich-text-carousel__slide {
@@ -16,6 +26,7 @@
   max-width: 525px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
 }
 
 .rich-text-carousel__slide img {
@@ -25,3 +36,8 @@
   height: auto;
   border-radius: 0;
 }
+
+.rich-text-carousel__slider .slider-counter__link--dots .dot {
+  cursor: auto;
+}
+

@@ -1,3 +1,7 @@
+.featured-collection__title {
+  text-align: center;
+}
+
 .featured-collection--slider-buttons {
   position: absolute;
   top: 50%;

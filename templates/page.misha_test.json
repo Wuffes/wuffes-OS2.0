@@ -61,7 +61,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Shop joint care & more",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
         "show_description": false,
         "description_style": "body",
@@ -92,7 +92,7 @@
           "type": "heading",
           "settings": {
             "heading": "Subscribe & save",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_MNkXWk": {
@@ -105,7 +105,7 @@
         "text_tF3VPn": {
           "type": "text",
           "settings": {
-            "text": "<ul><li>Save up to 40%<\/li><li>From just over $1\/day<\/li><li>Pause, skip or cancel anytime<\/li><li>Join 300k+ happy pet parents<\/li><\/ul>",
+            "text": "<ul><li><strong>Save up to 40%<\/strong><\/li><li><strong>From just over $1\/day<\/strong><\/li><li><strong>Pause, skip or cancel anytime<\/strong><\/li><li><strong>Join 300k+ happy pet parents<\/strong><\/li><\/ul>",
             "text_style": "body"
           }
         },
@@ -135,9 +135,10 @@
         "desktop_content_alignment": "left",
         "content_layout": "no-overlap",
         "section_color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
+        "image_border_radius": 20,
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -149,13 +150,13 @@
           "type": "heading",
           "settings": {
             "heading": "A little bit about us",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_WLKztE": {
           "type": "text",
           "settings": {
-            "text": "<p>As Pet-Super Parents, we &lt;s&gt;think&lt;\/s&gt;<br\/> know our pets are the absolute best. And we know how important our <br\/>fluffy family members are to us, which is why we built a company who’s <br\/>sole focus is to ensure they can live their best lives for as long as <br\/>physically possible.<\/p>",
+            "text": "<p>As Pet-Super Parents, we <em>think<\/em><br\/> know our pets are the absolute best. And we know how important our <br\/>fluffy family members are to us, which is why we built a company who’s <br\/>sole focus is to ensure they can live their best lives for as long as <br\/>physically possible.<\/p>",
             "text_style": "body"
           }
         },
@@ -163,7 +164,7 @@
           "type": "button",
           "settings": {
             "button_label": "Find out more",
-            "button_link": "",
+            "button_link": "shopify:\/\/pages\/about-us",
             "button_style_secondary": false
           }
         }
@@ -184,9 +185,10 @@
         "desktop_content_alignment": "left",
         "content_layout": "no-overlap",
         "section_color_scheme": "scheme-5",
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
+        "image_border_radius": 20,
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -198,7 +200,7 @@
           "type": "heading",
           "settings": {
             "heading": "650nm Red Laser",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_ixPY3p": {
@@ -243,6 +245,7 @@
         "color_scheme": "scheme-5",
         "image_behavior": "none",
         "mobile_content_alignment": "left",
+        "image_border_radius": 20,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -254,7 +257,7 @@
           "type": "heading",
           "settings": {
             "heading": "808nm Infrared Laser",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_6dC8mY": {
@@ -299,6 +302,7 @@
         "color_scheme": "scheme-5",
         "image_behavior": "none",
         "mobile_content_alignment": "left",
+        "image_border_radius": 20,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -310,7 +314,7 @@
           "type": "heading",
           "settings": {
             "heading": "Wild Alaskan Salmon",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_UwpiPi": {
@@ -364,6 +368,7 @@
         "color_scheme": "scheme-5",
         "image_behavior": "none",
         "mobile_content_alignment": "left",
+        "image_border_radius": 20,
         "padding_top": 36,
         "padding_bottom": 36
       }
