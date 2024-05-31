@@ -34,7 +34,7 @@
         "menu": "new-main-menu",
         "secondary-menu": "new-secondary-menu",
         "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
+        "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
         "menu_color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
