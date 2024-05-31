@@ -43,9 +43,10 @@
   margin: 0;
 
   font-size: 16px;
+  font-family: var(--font-heading-family);
   text-align: center;
   line-height: normal;
-  color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
 
   position: relative;
 }

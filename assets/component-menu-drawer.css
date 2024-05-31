@@ -28,12 +28,9 @@ menu-drawer > details[open] > summary::before {
 .menu-drawer {
   position: absolute;
   transform: translateX(-100%);
-  /* visibility: hidden; */
   z-index: 3;
   left: 0;
-  /* top: 100%; */
   top: 0;
-  /* width: 100%; */
   width: 80vw;
   padding: 0;
   background-color: rgb(var(--color-background));
@@ -45,8 +42,6 @@ menu-drawer > details[open] > summary::before {
 }
 
 .js .menu-drawer {
-  /* height: calc(100vh - 100%);
-  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))); */
   height: 100vh;
 
   transition: transform .4s ease-in-out;
@@ -55,8 +50,6 @@ menu-drawer > details[open] > summary::before {
 
 .js details[open] > .menu-drawer,
 .js details[open] > .menu-drawer__submenu {
-  /* transition: transform var(--duration-default) ease, visibility var(--duration-default) ease; */
-
   transition: transform .4s ease-in-out;
   transition-timing-function: cubic-bezier(.57,.14,.03,1);
 }
@@ -94,7 +87,6 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__navigation {
-  /* padding: 3rem 0; */
   padding: 44px;
   overflow-x: hidden;
 }
@@ -105,22 +97,19 @@ details[open].menu-opening > .menu-drawer__submenu {
   overflow-y: auto;
 }
 
-.js .menu-drawer__menu li {
-  /* margin-bottom: 0.2rem; */
-}
-
 .menu-drawer__menu-item {
-  /* padding: 1.1rem 3rem; original*/
-  padding: 1.3rem 0 0;
-  /* padding: 15px 0 0; */
+  padding: 1.55rem 0 0;
   text-decoration: none;
-  /* font-size: 1.8rem; */
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-family: var(--font-body-family);
   position: relative;
   text-wrap: nowrap;
   line-height: 1;
   letter-spacing: 0;
+}
+
+.menu-drawer__menu > li:first-child .menu-drawer__menu-item {
+  padding-top: 0;
 }
 
 .menu-drawer__menu-item--flag {
@@ -130,8 +119,8 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-left: 10px;
   line-height: 28px;
   white-space: nowrap;
-  font-size: 18px;
-  font-family: Inconsolata, monospace;
+  font-size: 16px;
+  font-family: var(--font-heading-family);
   font-weight: 700;
   color: rgb(33, 36, 39);
   background: rgb(var(--color-button));
@@ -148,12 +137,11 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__menu-item:hover,
 .menu-drawer__close-button:hover {
   color: rgb(var(--color-button));
-  text-decoration: underline;
-  /* background-color: rgba(var(--color-foreground), 0.04); */
+  transition: .2s color ease-in-out;
 }
 
-.menu-drawer__menu-item--active:hover {
-  background-color: rgba(var(--color-foreground), 0.08);
+.menu-drawer__menu-item--active {
+  text-decoration: underline;
 }
 
 .js .menu-drawer__menu-item .icon-caret {
@@ -172,12 +160,8 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__menu-item-secondary {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
-
-/* .menu-drawer__menu-secondary > li:not(:first-child) .menu-drawer__menu-item-secondary {
-  padding-top: 10px;
-} */
 
 .menu-drawer__navigation .menu-drawer__account {
   margin-top: 2.65rem;
@@ -187,8 +171,9 @@ details[open].menu-opening > .menu-drawer__submenu {
   justify-content: flex-start;
   width: 100%;
   height: auto;
+  font-size: 1.6rem;
   text-decoration: none;
-  line-height: 1;
+  letter-spacing: 0;
 }
 
 .js .menu-drawer__submenu {
@@ -245,6 +230,25 @@ details[open].menu-opening > .menu-drawer__submenu {
 @media screen and (max-width: 989px) {
   .header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
     padding: 2rem 3rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .menu-drawer__menu .menu-drawer__menu-item {
+    font-size: 2.4rem;
+  }
+
+  .menu-drawer__menu-secondary.list-menu {
+    margin-top: 3rem;
+  }
+
+  .menu-drawer__menu-item-secondary {
+    padding: 1.95rem 0 0;
+  }
+
+  .menu-drawer__menu-item--flag {
+    height: 32px;
+    line-height: 32px;
   }
 }
 

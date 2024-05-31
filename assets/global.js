@@ -438,7 +438,6 @@ class MenuDrawer extends HTMLElement {
 
   closeMenuDrawer(event, elementToFocus = false) {
 
-    console.log(elementToFocus)
     if (event === undefined) return;
 
     this.mainDetailsToggle.classList.remove('menu-opening');

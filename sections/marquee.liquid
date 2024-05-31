@@ -1,13 +1,7 @@
 {{- 'section-marquee.css' | asset_url | stylesheet_tag -}}
 
-{%- style -%}
-  .marquee__container {
-    background: {{- section.settings.background_color -}}
-  }
-{%- endstyle -%}
-
 {%- if section.blocks.size > 0 -%}
-  <div class="marquee__container">
+  <div class="marquee__container color-{{ section.settings.color_scheme }} gradient">
     <div class="marquee__wrap scroll-trigger animate--slide-in">
       {%- for index in (1..2) -%}
         <div class="marquee__content scroll">
@@ -31,12 +25,13 @@
   "name": "t:sections.marquee.name",
   "tag": "section",
   "class": "section",
+  "max_blocks": 5,
   "settings": [
     {
-      "type": "color",
-      "label": "Background color",
-      "id": "background_color",
-      "default": "#105750"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
     }
   ],
   "blocks": [

@@ -16,7 +16,6 @@
 }
 
 .footer__content-top {
-  /* padding-bottom: 5rem; */
   display: block;
 }
 
@@ -96,7 +95,6 @@
 .footer__content-bottom-col.rte > p {
   color: rgb(var(--color-foreground));
   letter-spacing: 0;
-  font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
@@ -148,6 +146,7 @@
   .footer__content-bottom-col.rte > p,
   .footer__content-bottom-col li {
     text-align: center;
+    font-size: 1.4rem;
   }
 
 }
@@ -167,7 +166,8 @@
 
   .footer__content-bottom-col.rte > p,
   .footer__content-bottom-col .list-menu__item-policy {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
   }
 
   .footer__content-bottom-col li {
@@ -546,7 +546,7 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content .list-menu__item--link {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .footer-block__details-content > :first-child .list-menu__item--link {
