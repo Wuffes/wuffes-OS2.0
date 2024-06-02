@@ -96,35 +96,6 @@
         "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "title": "Shop joint care & more",
-        "heading_size": "h2",
-        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "os2-featured-collection",
-        "products_to_show": 8,
-        "columns_desktop": 3,
-        "full_width": false,
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "enable_desktop_slider": true,
-        "color_scheme": "scheme-5",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 28,
-        "padding_bottom": 36
-      }
-    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
@@ -284,6 +255,39 @@
         "show_border": false
       }
     },
+    "custom_1_EnrLFc": {
+      "type": "custom-1",
+      "blocks": {
+        "heading_LanTLW": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>A joint chew tailor made for [underline]BIG dogs[\/underline] <\/strong>",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LanTLW"
+      ],
+      "settings": {
+        "show_border": true,
+        "image": "shopify:\/\/shop_images\/JC_LB_large_img_desktop_1.svg",
+        "image_mobile": "shopify:\/\/shop_images\/JC_LB_large_img_mobile_1.svg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "padding_top": 38,
+        "padding_bottom": 56,
+        "custom_liquid": "<div class=custom-section-1--custom_content-wrap><div class=custom_content-list-item><svg fill=none height=68 viewBox=\"0 0 69 68\"width=69 xmlns=http:\/\/www.w3.org\/2000\/svg><g clip-path=url(#clip0_272_1993)><path d=\"M67.9893 34C67.9893 52.2254 53.2147 67 34.9893 67C16.7639 67 1.98932 52.2254 1.98932 34C1.98932 15.7746 16.7639 1 34.9893 1C53.2147 1 67.9893 15.7746 67.9893 34Z\"stroke=#17443D stroke-width=2 fill=white><\/path><path d=\"M15.3449 34.1511L20.0293 51.9822C21.2382 56.3644 30.3049 57.7244 40.4293 55.0044C50.5538 52.2844 57.8071 46.5422 56.7493 42.16L52.0649 24.3289C51.1582 20.7022 44.6604 19.1911 36.6515 20.2489C36.5004 22.2133 35.1404 24.0267 33.176 24.7822C32.8738 24.7822 32.7226 24.9333 32.4204 24.9333C31.9671 26.5956 30.7582 27.9556 29.096 28.56C27.8871 29.0133 26.5271 28.8622 25.4693 28.4089C24.8649 29.0133 24.1093 29.6178 23.2026 29.92C21.2382 30.5244 19.2738 29.92 17.9138 28.56C15.9493 30.3733 15.0426 32.3378 15.3449 34.1511Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M48.5893 31.1288C45.7182 33.5466 41.1849 35.8133 35.896 37.1733C30.6071 38.5333 25.6204 38.8355 21.8427 38.2311\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M17.6115 17.8311C15.1938 16.0178 16.5538 14.6578 17.6115 14.0533C18.5182 12.5422 18.8204 13.4489 20.6338 13.4489C22.4471 13.4489 22.7493 15.2622 20.6338 16.9244C18.5182 18.4356 20.4827 19.9467 17.6115 17.8311Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M28.0382 10.7289C28.9449 8.4622 30.456 9.36887 31.0604 10.1244C32.4204 10.5778 31.816 11.0311 32.1182 12.5422C32.4204 14.0533 31.0604 14.6578 29.3982 13.1466C27.736 11.6355 26.8293 13.6 28.0382 10.7289Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M24.7138 21.9111C23.0515 20.8533 24.2604 19.4933 25.1671 18.8888C25.6204 17.5288 27.1315 17.8311 27.8871 18.1333C29.3982 17.5288 29.2471 19.1911 28.9449 20.2488C29.5493 21.76 28.0382 22.6666 26.9804 22.8177C25.3182 23.7244 24.7138 22.6666 24.7138 21.9111Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><\/g><defs><clipPath id=clip0_272_1993><rect fill=white height=68 transform=translate(0.989319) width=68><\/rect><\/clipPath><\/defs><\/svg><p class=custom_content-list-item-text><b>Powerful<\/b> active ingredient panel<\/div><div class=custom_content-list-item><svg fill=none height=68 viewBox=\"0 0 69 68\"width=69 xmlns=http:\/\/www.w3.org\/2000\/svg><g clip-path=url(#clip0_272_2003)><path d=\"M67.9893 34C67.9893 52.2254 53.2147 67 34.9893 67C16.7639 67 1.98932 52.2254 1.98932 34C1.98932 15.7746 16.7639 1 34.9893 1C53.2147 1 67.9893 15.7746 67.9893 34Z\"stroke=#17443D stroke-width=2 fill=white><\/path><path d=\"M55.6915 25.5378C55.9419 25.5378 56.1448 25.3348 56.1448 25.0844C56.1448 24.8341 55.9419 24.6311 55.6915 24.6311C55.4411 24.6311 55.2382 24.8341 55.2382 25.0844C55.2382 25.3348 55.4411 25.5378 55.6915 25.5378Z\"fill=#17443D><\/path><path d=\"M54.6338 22.3645C54.936 20.7022 54.4827 19.04 53.7271 17.68C52.9715 16.32 51.6115 15.4133 50.2515 14.96C49.7982 14.8089 49.3449 14.8089 49.0427 14.96C48.5893 15.1111 48.2871 15.4133 48.136 16.0178C47.9849 16.6222 48.2871 17.3778 48.7404 17.8311C49.1938 18.2845 49.7982 18.4356 50.2515 18.7378C51.4604 19.4933 52.216 21.0045 52.3671 22.6667C52.3671 22.5156 52.3671 22.5156 52.3671 22.3645\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M30.4559 34.7556C30.607 34.7556 33.4782 36.2667 35.2915 41.8578C35.5937 43.0667 35.5937 44.2756 35.1404 45.3333C34.8382 46.0889 34.3848 47.1467 33.7804 48.3556\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M32.7226 51.3778C31.6648 54.2489 30.6071 57.2711 31.5137 60.4445C31.816 61.6534 32.4204 62.7111 33.4782 63.4667C34.0826 63.92 35.1404 64.3734 35.5937 63.7689C35.896 63.4667 35.7448 63.1645 35.5937 62.7111C35.4426 62.56 35.2915 62.2578 35.1404 62.1067C32.5715 58.7822 34.3848 53.7956 36.0471 50.6223\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M37.8604 47.4489C39.3715 45.7867 41.1849 44.4267 42.2426 42.3111\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M61.8871 25.9911C61.4338 26.1423 60.9804 26.1422 60.5271 25.84\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M61.4338 24.1778C61.736 24.48 62.1893 24.6312 62.4915 24.6312C62.6427 24.6312 62.7938 24.48 62.9449 24.48C62.9449 24.3289 63.096 24.3289 63.096 24.1778C63.096 23.7245 62.9449 23.2712 62.6427 23.12C62.3404 22.9689 61.736 22.8178 61.4338 23.12C61.1315 23.2712 61.2827 23.8756 61.4338 24.1778Z\"fill=#17443D><\/path><path d=\"M41.1849 47.7511C47.0782 42.3111 49.1937 37.6267 50.4026 35.36C51.6115 33.0933 52.5182 30.6756 54.936 29.6178C55.8426 29.1645 56.9004 29.0133 57.9582 28.7111C59.9226 28.2578 61.4337 27.6533 61.8871 25.9911C61.8871 25.9911 63.2471 24.7822 62.9449 23.5733C62.7937 23.2711 62.6426 23.12 62.3404 23.12H62.1893C61.4337 23.2711 60.8293 23.4222 60.2249 23.7245C59.3182 23.8756 58.2604 24.1778 57.5049 23.8756C56.7493 23.7245 55.763 23.0739 55.2382 22.9689C55.1933 22.9599 54.6337 22.6667 54.936 22.8178C54.6337 22.6667 51.9137 22.8178 51.3093 24.0267C49.7982 22.5156 47.5315 21.6089 45.416 21.6089C44.3582 21.6089 43.4515 21.9111 42.696 22.5156C41.9404 23.12 41.4871 24.1778 41.7893 25.2356C42.0915 26.1422 43.1493 26.8978 44.056 26.5956C44.8115 26.2933 45.1137 25.6889 45.8693 25.2356C46.4737 24.9333 47.0782 24.9333 47.6826 25.2356C48.4382 25.6889 48.7404 26.7467 48.136 27.5022C46.9271 29.0133 44.2071 32.1867 41.7893 30.3733C40.7315 29.6178 39.8249 28.4089 38.9182 27.5022C37.5582 25.9911 36.1982 24.6311 34.6871 23.4222C30.456 19.9467 24.1093 18.5867 18.8204 21.0045C16.5537 20.0978 15.1937 17.3778 15.6471 15.1111C15.7982 14.6578 15.9493 14.0533 15.9493 13.6C15.9493 13.1467 15.496 12.5422 15.0426 12.5422C14.4382 12.5422 14.136 13.1467 13.9849 13.6C13.0782 14.2045 13.0782 15.2622 13.0782 16.32C13.2293 18.7378 14.7404 20.8533 16.7049 22.0622C15.3449 23.5733 14.5893 25.6889 15.3449 27.8045C16.2515 30.6756 18.8204 32.7911 21.0871 34.3022C21.2382 34.4533 21.3893 34.4533 21.5404 34.6045C23.656 35.9645 25.1671 37.7778 26.0737 40.0445C26.6782 41.7067 26.9804 43.52 26.9804 45.3333C26.9804 46.3911 26.8293 47.6 26.9804 48.6578C27.1315 49.2622 27.2826 49.7156 27.736 50.0178C28.7937 50.9245 30.6071 51.0756 32.4204 51.0756C35.1404 50.9245 37.7093 50.32 40.2782 49.5645C41.4871 49.2622 42.0915 48.3556 41.1849 47.7511ZM41.1849 47.7511C40.8826 47.4489 40.5804 47.4489 40.2782 47.2978C38.0115 46.8445 35.896 48.5067 33.7804 48.5067C32.4204 48.5067 31.0604 48.0533 30.456 46.8445C29.3982 44.7289 30.456 42.0089 30.6071 39.7422C30.7582 38.08 30.7582 36.4178 30.456 34.9067C30.3049 34 30.1537 33.0933 29.8515 32.1867C28.7937 28.7111 26.376 25.3867 22.9004 24.0267\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M26.8622 48.0534C26.6782 47.6001 26.0738 46.8445 26.0738 46.8445C26.0738 46.8445 25.1671 46.24 24.7138 46.5423C24.2604 46.8445 24.2604 47.4489 24.2604 48.0534C24.8649 51.2267 29.096 53.1911 31.9671 53.04\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M34.9893 52.8889C36.6515 52.2845 38.3138 51.2267 39.6738 49.7156\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><\/g><defs><clipPath id=clip0_272_2003><rect fill=white height=68 transform=translate(0.989319) width=68><\/rect><\/clipPath><\/defs><\/svg><p class=custom_content-list-item-text><b>Scientifically-formulated<\/b> for larger pups<\/div><p class=custom_content-bottom-text>*Compared to our small & medium breed formula<\/div>"
+      }
+    },
     "rich_text_XbVUH6": {
       "type": "rich-text",
       "blocks": {
@@ -398,11 +402,11 @@
   "order": [
     "image_banner",
     "marquee",
-    "featured_collection",
     "rich_text",
     "rich_text_PCUBiK",
     "rich_text_M3CRGd",
     "rich_text_Ejgiff",
+    "custom_1_EnrLFc",
     "rich_text_XbVUH6",
     "rich_text_RmfXy9"
   ]
