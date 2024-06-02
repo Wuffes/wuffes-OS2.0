@@ -11,6 +11,10 @@
   z-index: -1;
 }
 
+.featured-collection_slider-button--next svg {
+  transform: rotate(180deg);
+}
+
 @media screen and (min-width: 990px) {
   .featured-collection--slider--desktop.grid--4-col-desktop .grid__item {
     width: 25%;

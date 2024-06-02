@@ -150,12 +150,12 @@
         <div class="slider-buttons featured-collection--slider-buttons">
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="slider-button slider-button--prev featured-collection_slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
           >
-            {% render 'icon-caret' %}
+            {% render 'icon-slider-arrow' %}
           </button>
           <div
             class="slider-counter slider-counter--dots"
@@ -176,12 +176,12 @@
           </div>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="slider-button slider-button--next featured-collection_slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
             aria-controls="Slider-{{ section.id }}"
           >
-            {% render 'icon-caret' %}
+            {% render 'icon-slider-arrow' %}
           </button>
         </div>
       {%- endif -%}
