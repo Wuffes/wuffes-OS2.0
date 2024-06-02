@@ -142,17 +142,19 @@
 
     <div class="header--wrapper">
       <div class="header--wrapper--inner">
-        <div class="header--col_left">
-          {%- liquid
-          if section.settings.menu != blank
-            render 'header-drawer'
-          endif
+        {%- unless section.settings.hide_menu -%}
+          <div class="header--col_left">
+            {%- liquid
+            if section.settings.menu != blank
+              render 'header-drawer'
+            endif
 
-          if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-            render 'header-search', input_id: 'Search-In-Modal-1'
-          endif
-        -%}
-        </div>
+            if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+              render 'header-search', input_id: 'Search-In-Modal-1'
+            endif
+          -%}
+          </div>
+        {%- endunless -%}
 
         {%- if section.settings.logo_position != 'middle-center' -%}
           {%- if request.page_type == 'index' -%}
@@ -214,79 +216,83 @@
           {%- endif -%}
         {%- endif -%}
 
-        <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-          <div class="desktop-localization-wrapper">
-            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-              <localization-form class="small-hide medium-hide" data-prevent-hide>
-                {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
-                  <div>
-                    <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                    {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
-                  </div>
-                {%- endform -%}
-              </localization-form>
-            {% endif %}
+        {%- unless section.settings.hide_right_icons -%}
+          <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+            <div class="desktop-localization-wrapper">
+              {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+                <localization-form class="small-hide medium-hide" data-prevent-hide>
+                  {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+                    <div>
+                      <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                      {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+                    </div>
+                  {%- endform -%}
+                </localization-form>
+              {% endif %}
 
-            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-              <localization-form class="small-hide medium-hide" data-prevent-hide>
-                {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
-                  <div>
-                    <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                    {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
-                  </div>
-                {%- endform -%}
-              </localization-form>
+              {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+                <localization-form class="small-hide medium-hide" data-prevent-hide>
+                  {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+                    <div>
+                      <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                      {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+                    </div>
+                  {%- endform -%}
+                </localization-form>
+              {%- endif -%}
+            </div>
+
+            {%- if section.settings.show_account -%}
+              <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
+                <account-icon>
+                  {%- if customer and customer.has_avatar? -%}
+                    {{ customer | avatar }}
+                  {%- else -%}
+                    {% render 'icon-account' %}
+                  {%- endif -%}
+                </account-icon>
+                <span class="visually-hidden">
+                  {%- liquid
+                    if customer
+                      echo 'customer.account_fallback' | t
+                    else
+                      echo 'customer.log_in' | t
+                    endif
+                  -%}
+                </span>
+              </a>
             {%- endif -%}
-          </div>
 
-          {%- if section.settings.show_account -%}
-            <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
-              <account-icon>
-                {%- if customer and customer.has_avatar? -%}
-                  {{ customer | avatar }}
-                {%- else -%}
-                  {% render 'icon-account' %}
-                {%- endif -%}
-              </account-icon>
-              <span class="visually-hidden">
-                {%- liquid
-                  if customer
-                    echo 'customer.account_fallback' | t
-                  else
-                    echo 'customer.log_in' | t
-                  endif
-                -%}
-              </span>
+
+            <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+              {%- render 'icon-cart' %}
+
+              <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+              {%- if cart != empty -%}
+                <div class="cart-count-bubble">
+                  {%- if cart.item_count < 100 -%}
+                    <span aria-hidden="true">{{ cart.item_count }}</span>
+                  {%- endif -%}
+                  <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                </div>
+              {%- endif -%}
             </a>
-          {%- endif -%}
-
-
-          <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-            {%- render 'icon-cart' %}
-
-            <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-            {%- if cart != empty -%}
-              <div class="cart-count-bubble">
-                {%- if cart.item_count < 100 -%}
-                  <span aria-hidden="true">{{ cart.item_count }}</span>
-                {%- endif -%}
-                <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-              </div>
-            {%- endif -%}
-          </a>
-        </div>
+          </div>
+        {%- endunless -%}
       </div>
     </div>
 
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
+    {%- unless section.settings.hide_header_nav -%}
+      {%- liquid
+        if section.settings.menu != blank
+          if section.settings.menu_type_desktop == 'dropdown'
+            render 'header-dropdown-menu'
+          elsif section.settings.menu_type_desktop != 'drawer'
+            render 'header-mega-menu'
+          endif
         endif
-      endif
-    %}
+      %}
+    {%- endunless -%}
 
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
@@ -460,6 +466,24 @@
   "name": "t:sections.header.name",
   "class": "section-header",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_menu",
+      "label": "Hide menu",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_right_icons",
+      "label": "Hide right icons",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_header_nav",
+      "label": "Hide header nav",
+      "default": false
+    },
     {
       "type": "select",
       "id": "logo_position",

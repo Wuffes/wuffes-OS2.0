@@ -54,7 +54,7 @@
         "enable_follow_on_shop": false,
         "show_social": false,
         "enable_language_selector": false,
-        "margin_top": 48,
+        "margin_top": 0,
         "padding_top_mobile": 50,
         "padding_bottom_mobile": 95,
         "padding_top_desktop": 100,

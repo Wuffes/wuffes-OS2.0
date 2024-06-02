@@ -30,6 +30,9 @@
     "header": {
       "type": "header",
       "settings": {
+        "hide_menu": false,
+        "hide_right_icons": false,
+        "hide_header_nav": false,
         "logo_position": "top-center",
         "menu": "new-main-menu",
         "secondary-menu": "new-secondary-menu",

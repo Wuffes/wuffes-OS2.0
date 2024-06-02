@@ -200,7 +200,7 @@
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button_label": "#ffffff",
-          "secondary_button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
           "shadow": "#ffffff"
         }
       },

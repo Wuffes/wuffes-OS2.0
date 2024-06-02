@@ -93,11 +93,12 @@
         "slide_Y3qCMM"
       ],
       "settings": {
-        "background_color": "#105750"
+        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c"
       }
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "title": "Shop joint care & more",
         "heading_size": "h2",
@@ -124,87 +125,20 @@
         "padding_bottom": 36
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/daily-mail-logo.svg",
-            "title": "",
-            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/the-sun-com-logo.svg",
-            "title": "",
-            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/yahoo-logo.svg",
-            "title": "",
-            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_BXx3tf": {
-          "type": "column",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/woof-logo.svg",
-            "title": "",
-            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3",
-        "column_BXx3tf"
-      ],
-      "settings": {
-        "title": "Loved by the world’s best",
-        "heading_size": "h2",
-        "image_width": "half",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "rich_text": {
       "type": "rich-text",
       "blocks": {
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "heading": "Why 90 days?",
+            "heading_size": "h2"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "text": "<p>The health and wellbeing of our furry friends is our top priority, so we understand the desire to see immediate results. But just like with us humans, health supplements can take a full 90 days to work their magic (though many customers see significant improvements in as little as 3 weeks!).<\/p><p>Here are some of the great results your pup can look forward to:<\/p>"
           }
         }
       },
@@ -212,66 +146,235 @@
         "heading",
         "text"
       ],
+      "custom_css": [
+        "@media screen and (min-width: 990px) {.rich-text__blocks > * + * {margin-top: 4rem; }}"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
         "full_width": true,
+        "lineheight": 1,
         "padding_top": 40,
-        "padding_bottom": 0
+        "padding_bottom": 40,
+        "show_border": false
       }
     },
-    "collage": {
-      "type": "collage",
+    "rich_text_PCUBiK": {
+      "type": "rich-text",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "heading_aYVN4z": {
+          "type": "heading",
           "settings": {
-            "collection": ""
+            "heading": "A little bit about us",
+            "heading_size": "h2"
           }
         },
-        "product": {
-          "type": "product",
+        "text_JbACr8": {
+          "type": "text",
           "settings": {
-            "product": "",
-            "second_image": false
-          }
-        },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
+            "text": "<p>As Pet-Super Parents, we [line-through]think[\/line-through] know our pets are the absolute best. And we know how important our fluffy family members are to us, which is why we built a company who’s sole focus is to ensure they can live their best lives for as long as physically possible.<\/p>"
           }
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "heading_aYVN4z",
+        "text_JbACr8"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.rich-text {padding: 60px; } .rich-text__text > p {line-height: 3.5rem; font-size: 2rem; }}"
       ],
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
+        "background": "shopify:\/\/shop_images\/homepage_icons_bg.png",
+        "full_width": true,
+        "lineheight": 1,
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "show_border": false
       }
     },
-    "video": {
-      "type": "video",
+    "rich_text_M3CRGd": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BwzJMj": {
+          "type": "heading",
+          "settings": {
+            "heading": "How it works",
+            "heading_size": "h2"
+          }
+        },
+        "text_eecUFN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made with the finest, scientifically-backed ingredients, our powerful joint chews help decrease joint pain and improve mobility.<\/p>"
+          }
+        },
+        "image_Ha8iUK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_Illustration_Desktop.svg",
+            "image_max_width": 750,
+            "image_mobile": "shopify:\/\/shop_images\/JC_Illustration_Desktop_picker_tabs.svg",
+            "image_mobile_max_width": 350,
+            "image_behavior": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BwzJMj",
+        "text_eecUFN",
+        "image_Ha8iUK"
+      ],
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "full_width": true,
+        "lineheight": 1,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "show_border": false
+      }
+    },
+    "rich_text_Ejgiff": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dMWQBD": {
+          "type": "heading",
+          "settings": {
+            "heading": "Benefits",
+            "heading_size": "h2"
+          }
+        },
+        "image_gqCHDD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/new_pdp_infographic_img_desktop.svg",
+            "image_max_width": 1000,
+            "image_mobile": "shopify:\/\/shop_images\/new_pdp_infographic_img_mobile.svg",
+            "image_mobile_max_width": 200,
+            "image_behavior": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dMWQBD",
+        "image_gqCHDD"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+        "full_width": true,
+        "lineheight": 1,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "show_border": false
+      }
+    },
+    "rich_text_XbVUH6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_C6LP3k": {
+          "type": "heading",
+          "settings": {
+            "heading": "How it Works",
+            "heading_size": "h2"
+          }
+        },
+        "text_g9YhGL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>[bold]Harness the healing power of light to help soothe pain, inflammation and injuries.[\/bold]<\/p>"
+          }
+        },
+        "image_HWyTem": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/new_pdp_hero_laser_6.png",
+            "image_max_width": 600,
+            "image_mobile": "shopify:\/\/shop_images\/new_pdp_hero_laser_6.png",
+            "image_mobile_max_width": 500,
+            "image_behavior": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_C6LP3k",
+        "text_g9YhGL",
+        "image_HWyTem"
+      ],
+      "custom_css": [
+        ".rich-text__image {margin-top: 5.5rem;}"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+        "full_width": true,
+        "lineheight": 1,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "show_border": false
+      }
+    },
+    "rich_text_RmfXy9": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_VNG4bT": {
+          "type": "heading",
+          "settings": {
+            "heading": "How can we help?",
+            "heading_size": "h2"
+          }
+        },
+        "list_E6fLdj": {
+          "type": "list",
+          "settings": {
+            "list_heading": "My dog won’t eat the product",
+            "list_content": "<p>We pride ourselves in making the tastiest of supplement treats but if your dog isn’t convinced, we suggest breaking the chews into their food or wrapping them in a piece of meat or cheese. If that doesn’t work, get in touch and we’ll find the best solution for you and your furry bestie.<\/p>",
+            "alignment": "left"
+          }
+        },
+        "list_UqC6Y8": {
+          "type": "list",
+          "settings": {
+            "list_heading": "I don’t think it’s working",
+            "list_content": "<p>Please make sure you give each product a full 90 days, as it takes up to 3 months for wellbeing supplements to show their full effects. If you have any questions, our customer service team is on hand and always happy to chat.<\/p>",
+            "alignment": "left"
+          }
+        },
+        "list_wrpLTE": {
+          "type": "list",
+          "settings": {
+            "list_heading": "My dog had a reaction",
+            "list_content": "<p>If your pup isn’t reacting well to a certain ingredient, please see a vet so they confirm the product is not suitable for them.<\/p>",
+            "alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VNG4bT",
+        "list_E6fLdj",
+        "list_UqC6Y8",
+        "list_wrpLTE"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.rich-text {padding-top: 50px; padding-bottom: 50px; }}",
+        "@media screen and (min-width: 990px) {.rich-text {padding-top: 80px; padding-bottom: 80px; }}"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "full_width": true,
+        "lineheight": 1,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "show_border": true
       }
     }
   },
@@ -279,9 +382,11 @@
     "image_banner",
     "marquee",
     "featured_collection",
-    "multicolumn",
     "rich_text",
-    "collage",
-    "video"
+    "rich_text_PCUBiK",
+    "rich_text_M3CRGd",
+    "rich_text_Ejgiff",
+    "rich_text_XbVUH6",
+    "rich_text_RmfXy9"
   ]
 }
