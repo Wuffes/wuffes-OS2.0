@@ -125,6 +125,15 @@
   </symbol>
 </svg>
 
+{% liquid
+  if section.settings.hide_menu and section.settings.hide_right_icons
+    assign col_class = 'header--wrapper--inner-col-2'
+  else
+    assign col_class = 'header--wrapper--inner-col-3'
+  endif
+%}
+
+
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
@@ -138,21 +147,33 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}{% if section.settings.show_timer %} header--has-timer{%endif%}">
 
     <div class="header--wrapper">
-      <div class="header--wrapper--inner">
+      <div class="header--wrapper--inner {{ col_class }}">
         {%- unless section.settings.hide_menu -%}
           <div class="header--col_left">
             {%- liquid
-            if section.settings.menu != blank
-              render 'header-drawer'
-            endif
+              if section.settings.menu != blank
+                render 'header-drawer'
+              endif
 
-            if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-              render 'header-search', input_id: 'Search-In-Modal-1'
-            endif
-          -%}
+              if section.settings.logo_position == 'top-center' or section.settings.menu == blank
+                render 'header-search', input_id: 'Search-In-Modal-1'
+              endif
+            -%}
+
+            <form action="{{ routes.search_url }}" method="get" role="search" class="header--col_desktop-search">
+              <a class="desktop-search--link" href="#">Search</a>
+              <input class="desktop-search--input" type="search" name="q" placeholder="Search">
+
+              <button class="desktop-search--submit" type="submit">
+                <svg class="desktop-search--submit-icon modal__toggle-open icon icon-search" viewBox="0 0 18.08 18.08" xmlns="http://www.w3.org/2000/svg aria-hidden="true" focusable="false"">
+                <path d="M0,8A7.95,7.95,0,1,1,14.08,13l4,4L17,18.08l-4-4A8,8,0,0,1,0,8ZM8,1.5A6.45,6.45,0,1,0,14.4,8,6.45,6.45,0,0,0,8,1.5Z"></path>
+              </svg>
+              </button>
+
+            </form>
           </div>
         {%- endunless -%}
 
@@ -216,54 +237,65 @@
           {%- endif -%}
         {%- endif -%}
 
-        {%- unless section.settings.hide_right_icons -%}
-          <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-            <div class="desktop-localization-wrapper">
-              {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-                <localization-form class="small-hide medium-hide" data-prevent-hide>
-                  {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
-                    <div>
-                      <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                      {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
-                    </div>
-                  {%- endform -%}
-                </localization-form>
-              {% endif %}
+        <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+          <div class="desktop-localization-wrapper">
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 and section.settings.hide_right_icons == false -%}
+              <localization-form class="small-hide medium-hide" data-prevent-hide>
+                {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                    {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {% endif %}
 
-              {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-                <localization-form class="small-hide medium-hide" data-prevent-hide>
-                  {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
-                    <div>
-                      <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                      {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
-                    </div>
-                  {%- endform -%}
-                </localization-form>
-              {%- endif -%}
-            </div>
-
-            {%- if section.settings.show_account -%}
-              <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
-                <account-icon>
-                  {%- if customer and customer.has_avatar? -%}
-                    {{ customer | avatar }}
-                  {%- else -%}
-                    {% render 'icon-account' %}
-                  {%- endif -%}
-                </account-icon>
-                <span class="visually-hidden">
-                  {%- liquid
-                    if customer
-                      echo 'customer.account_fallback' | t
-                    else
-                      echo 'customer.log_in' | t
-                    endif
-                  -%}
-                </span>
-              </a>
+            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 and section.settings.hide_right_icons == false -%}
+              <localization-form class="small-hide medium-hide" data-prevent-hide>
+                {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
+                  <div>
+                    <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                    {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
             {%- endif -%}
+          </div>
+
+          {%- if section.settings.info != blank and section.settings.hide_right_icons == false -%}
+            <p class="header__icons--info">{{- section.settings.info -}}</p>
+          {%- endif -%}
+
+          {%- if section.settings.show_timer and section.settings.timer_range_hr != blank and section.settings.timer_range_min != blank and section.settings.timer_range_sec != blank -%}
+
+            {%- assign timer_starts_at = section.settings.timer_range_hr | append: ',' |  append: section.settings.timer_range_min | append: ',' | append: section.settings.timer_range_sec -%}
+
+            {%- render 'timer', timer_starts_at: timer_starts_at -%}
+          {%- endif -%}
+
+          {%- if section.settings.show_account and section.settings.hide_right_icons == false -%}
+            <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
+              <account-icon>
+                {%- if customer and customer.has_avatar? -%}
+                  {{ customer | avatar }}
+                {%- else -%}
+                  {% render 'icon-account' %}
+                {%- endif -%}
+              </account-icon>
+              <span class="visually-hidden">
+                {%- liquid
+                  if customer
+                    echo 'customer.account_fallback' | t
+                  else
+                    echo 'customer.log_in' | t
+                  endif
+                -%}
+              </span>
+            </a>
+          {%- endif -%}
 
 
+          {%- if section.settings.hide_right_icons == false -%}
             <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
               {%- render 'icon-cart' %}
 
@@ -277,8 +309,8 @@
                 </div>
               {%- endif -%}
             </a>
-          </div>
-        {%- endunless -%}
+          {%- endif -%}
+        </div>
       </div>
     </div>
 
@@ -305,12 +337,35 @@
   class StickyHeader extends HTMLElement {
     constructor() {
       super();
+
+      this.desktopSearchTrigger = this.querySelector('.desktop-search--link')
+      this.desktopSearchTrigger.addEventListener('click', this.onDesktopSearchTriggerClick.bind(this))
+    }
+
+    onDesktopSearchTriggerClick(e) {
+      e.preventDefault();
+
+      const searchTrigger = e.target;
+      const searchInput = searchTrigger.nextElementSibling;
+      const searchBtn = searchInput.nextElementSibling;
+
+      searchTrigger.style.display = 'none';
+      searchInput.style.display = 'block';
+      searchBtn.style.display = 'block';
+      searchInput.focus();
     }
 
     connectedCallback() {
       this.header = document.querySelector('.section-header');
       this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
       this.headerBounds = {};
+
+      this.headerHasTimer = this.querySelector('.header--has-timer') ? true : false;
+
+      if( this.headerHasTimer ) {
+        const timer = this.querySelector('.header--has-timer');
+        this.initTimer(timer)
+      }
 
       this.setHeaderHeight();
 
@@ -415,6 +470,40 @@
     closeSearchModal() {
       this.searchModal = this.searchModal || this.header.querySelector('details-modal');
       this.searchModal.close(false);
+    }
+
+    initTimer(element) {
+      const timer = element.querySelector('.header-timer');
+
+      let interval = setInterval(function() {
+        let minutes = parseInt(timer.querySelector('.timer_minutes').textContent),
+        seconds = parseInt(timer.querySelector('.timer_seconds').textContent);
+
+        --seconds;
+
+        if (seconds < 0) {
+          minutes = --minutes
+        }
+
+        if (minutes < 0 && seconds < 0) {
+          minutes = 0
+          seconds = 0
+          clearInterval(interval)
+        }
+
+        if (seconds < 0) {
+          seconds = 59
+        } else if (seconds < 10) {
+          seconds = '0' + seconds;
+        }
+
+        if (minutes < 10) {
+          minutes = '0' + minutes;
+        }
+
+        timer.querySelector('.timer_minutes').textContent = minutes;
+        timer.querySelector('.timer_seconds').textContent = seconds;
+      }, 1000);
     }
   }
 
@@ -605,6 +694,11 @@
       "label": "t:sections.header.settings.enable_country_selector.label"
     },
     {
+      "type": "inline_richtext",
+      "id": "info",
+      "label": "Info"
+    },
+    {
       "type": "header",
       "content": "t:sections.header.settings.header__5.content",
       "info": "t:sections.header.settings.header__6.info"
@@ -678,6 +772,46 @@
       "id": "show_utility_links",
       "default": false,
       "label": "Show utility links"
+    },
+    {
+      "type": "header",
+      "content": "Timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timer",
+      "label": "Show timer",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "timer_range_hr",
+      "label": "Hour",
+      "min": 0,
+      "max": 24,
+      "unit": "hr",
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "timer_range_min",
+      "label": "Minutes",
+      "min": 0,
+      "max": 59,
+      "unit": "min",
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "timer_range_sec",
+      "label": "Secpnds",
+      "min": 0,
+      "max": 59,
+      "unit": "sec",
+      "step": 1,
+      "default": 0
     }
   ]
 }

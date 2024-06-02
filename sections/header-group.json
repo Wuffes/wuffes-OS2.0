@@ -43,12 +43,17 @@
         "menu_color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
         "show_account": true,
         "enable_country_selector": false,
+        "info": "Made in USA*",
         "enable_language_selector": false,
         "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 12,
         "padding_bottom": 12,
-        "show_utility_links": false
+        "show_utility_links": false,
+        "show_timer": false,
+        "timer_range_hr": 0,
+        "timer_range_min": 20,
+        "timer_range_sec": 0
       }
     }
   },
