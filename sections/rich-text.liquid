@@ -242,6 +242,22 @@
                   </div>
                 {%- endif -%}
               </div>
+            {% when 'custom' %}
+              {% style %}
+                .rich-text__custom-{{ block.id }} {
+                  max-width: {{- block.settings.max_width -}}px;
+                }
+              {% endstyle %}
+              <div
+                class="rich-text__custom rich-text__custom-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{- block.settings.custom_html -}}
+              </div>
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -598,6 +614,27 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
+    },
+    {
+      "type": "custom",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_html",
+          "label": "Custom liquid"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 500,
+          "max": 1200,
+          "unit": "px",
+          "step": 50,
+          "default": 1150
         }
       ]
     }
