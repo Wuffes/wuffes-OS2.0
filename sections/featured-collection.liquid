@@ -63,7 +63,7 @@
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
   <div
-    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    class="section-featured-collection collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
@@ -113,7 +113,8 @@
               show_rating: section.settings.show_rating,
               section_id: section.id,
               quick_add: section.settings.quick_add,
-              border_color: section.settings.color_scheme.settings.button
+              border_color: section.settings.color_scheme.settings.button,
+              hide_price: section.settings.hide_price
             %}
           </li>
         {%- else -%}
@@ -140,7 +141,8 @@
                 media_aspect_ratio: section.settings.image_ratio,
                 image_shape: section.settings.image_shape,
                 placeholder_image: placeholder_image,
-                border_color: section.settings.color_scheme.settings.button
+                border_color: section.settings.color_scheme.settings.button,
+                hide_price: section.settings.hide_price
               %}
             </li>
           {%- endfor -%}
@@ -496,6 +498,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_price",
+      "default": true,
+      "label": "Hide Price"
     }
   ],
   "presets": [

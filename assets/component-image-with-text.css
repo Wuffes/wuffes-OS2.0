@@ -438,6 +438,17 @@
   margin-bottom: 0;
 }
 
+.image-with-text__heading_above {
+  margin-bottom: 1.5rem;
+}
+
+.image-with-text__media-decorate {
+  display: block !important;
+  width: 100%;
+  height: .5rem;
+  margin: 1.5rem 0;
+}
+
 .image-with-text__text p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -467,6 +478,14 @@
     .image-with-text__content:not(.image-with-text__content--desktop-center) {
     padding-left: 0;
   }
+
+  .image-with-text__heading_above {
+    margin-bottom: 3rem;
+  }
+
+  .image-with-text__media-decorate {
+    margin: 3rem 0 0 0;
+  }
 }
 
 /* check for flexbox gap in older Safari versions */
@@ -495,4 +514,33 @@
 /* collapsible content block */
 .image-with-text__collapsible {
   width: 100%;
+  margin-top: 1.5rem;
+}
+
+.icon-plus {
+  display: inline-block;
+}
+.icon-minus {
+  display: none;
+}
+
+.image-with-text__collapsible details[open] {
+  .icon-plus {
+    display: none;
+  }
+  .icon-minus {
+    display: inline-block;
+  }
+}
+
+.image-with-text__collapsible summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image-with-text__accordion__title {
+  margin: 0;
+  padding: 1rem 0;
+  display: inline-block;
 }
