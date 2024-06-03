@@ -15,7 +15,7 @@
         "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
         "show_description": false,
         "description_style": "body",
-        "collection": "supplements-for-dogs",
+        "collection": "shop-all",
         "products_to_show": 6,
         "columns_desktop": 4,
         "full_width": false,
@@ -32,7 +32,10 @@
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "hide_price": true,
+        "show_product_description": true,
+        "show_product_benefits": true
       }
     },
     "image_with_text_dEg7xF": {
