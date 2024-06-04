@@ -103,7 +103,7 @@
           "type": "heading",
           "settings": {
             "heading": "Why 90 days?",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text": {
@@ -126,8 +126,8 @@
         "custom_XUBFEE"
       ],
       "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text__text > p {font-size: 1.8rem; }}",
-        "@media screen and (min-width: 990px) {.rich-text__blocks > * + * {margin-top: 4rem; }}"
+        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); } .rich-text__text > p {font-size: 1.8rem; }}",
+        "@media screen and (min-width: 990px) {.rich-text__blocks > * + * {margin-top: 4rem; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
       ],
       "settings": {
         "desktop_content_position": "center",
@@ -147,7 +147,7 @@
           "type": "heading",
           "settings": {
             "heading": "A little bit about us",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text_JbACr8": {
@@ -162,7 +162,8 @@
         "text_JbACr8"
       ],
       "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text {padding: 60px; } .rich-text__text > p {line-height: 3.5rem; font-size: 2rem; }}"
+        "@media screen and (min-width: 750px) {.rich-text {padding: 60px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); } .rich-text__text > p {line-height: 3.5rem; font-size: 2rem; }}",
+        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
       ],
       "settings": {
         "desktop_content_position": "center",
@@ -183,7 +184,7 @@
           "type": "heading",
           "settings": {
             "heading": "How it works",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text_eecUFN": {
@@ -208,6 +209,10 @@
         "text_eecUFN",
         "image_Ha8iUK"
       ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
+        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -226,7 +231,7 @@
           "type": "heading",
           "settings": {
             "heading": "Benefits",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "image_gqCHDD": {
@@ -243,6 +248,10 @@
       "block_order": [
         "heading_dMWQBD",
         "image_gqCHDD"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
+        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
       ],
       "settings": {
         "desktop_content_position": "center",
@@ -295,7 +304,7 @@
           "type": "heading",
           "settings": {
             "heading": "How it Works",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "text_g9YhGL": {
@@ -329,7 +338,9 @@
         "custom_qmGDFK"
       ],
       "custom_css": [
-        ".rich-text__image {margin-top: 5.5rem;}"
+        ".rich-text__image {margin-top: 5.5rem;}",
+        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
+        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
       ],
       "settings": {
         "desktop_content_position": "center",
@@ -349,7 +360,7 @@
           "type": "heading",
           "settings": {
             "heading": "How can we help?",
-            "heading_size": "h2"
+            "heading_size": "h1"
           }
         },
         "list_E6fLdj": {
@@ -384,8 +395,8 @@
         "list_wrpLTE"
       ],
       "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text {padding-top: 50px; padding-bottom: 50px; }}",
-        "@media screen and (min-width: 990px) {.rich-text {padding-top: 80px; padding-bottom: 80px; }}"
+        "@media screen and (min-width: 750px) {.rich-text {padding-top: 50px; padding-bottom: 50px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
+        "@media screen and (min-width: 990px) {.rich-text {padding-top: 80px; padding-bottom: 80px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
       ],
       "settings": {
         "desktop_content_position": "center",

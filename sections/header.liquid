@@ -125,14 +125,6 @@
   </symbol>
 </svg>
 
-{% liquid
-  if section.settings.hide_menu and section.settings.hide_right_icons
-    assign col_class = 'header--wrapper--inner-col-2'
-  else
-    assign col_class = 'header--wrapper--inner-col-3'
-  endif
-%}
-
 
 <{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
@@ -150,7 +142,7 @@
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}{% if section.settings.show_timer %} header--has-timer{%endif%}">
 
     <div class="header--wrapper">
-      <div class="header--wrapper--inner {{ col_class }}">
+      <div class="header--wrapper--inner">
         {%- unless section.settings.hide_menu -%}
           <div class="header--col_left">
             {%- liquid
@@ -237,9 +229,9 @@
           {%- endif -%}
         {%- endif -%}
 
-        <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+        <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector or true %} header__icons--localization header-localization{% endif %}">
           <div class="desktop-localization-wrapper">
-            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 and section.settings.hide_right_icons == false -%}
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 and section.settings.hide_right_icons == false and section.settings.show_timer == false -%}
               <localization-form class="small-hide medium-hide" data-prevent-hide>
                 {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
                   <div>
@@ -262,7 +254,7 @@
             {%- endif -%}
           </div>
 
-          {%- if section.settings.info != blank and section.settings.hide_right_icons == false -%}
+          {%- if section.settings.info != blank and section.settings.hide_right_icons == false and section.settings.show_timer == false -%}
             <p class="header__icons--info">{{- section.settings.info -}}</p>
           {%- endif -%}
 
@@ -273,7 +265,7 @@
             {%- render 'timer', timer_starts_at: timer_starts_at -%}
           {%- endif -%}
 
-          {%- if section.settings.show_account and section.settings.hide_right_icons == false -%}
+          {%- if section.settings.show_account and section.settings.hide_right_icons == false and section.settings.show_timer == false -%}
             <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset">
               <account-icon>
                 {%- if customer and customer.has_avatar? -%}
@@ -295,7 +287,7 @@
           {%- endif -%}
 
 
-          {%- if section.settings.hide_right_icons == false -%}
+          {%- if section.settings.hide_right_icons == false and section.settings.show_timer == false -%}
             <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
               {%- render 'icon-cart' %}
 
@@ -781,7 +773,8 @@
       "type": "checkbox",
       "id": "show_timer",
       "label": "Show timer",
-      "default": true
+      "default": true,
+      "info": "This also hides right icons"
     },
     {
       "type": "range",

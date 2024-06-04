@@ -10,9 +10,14 @@
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
 
-  .section-{{ section.id }}-padding {
+  .section-{{ section.id }}-padding .footer__content-top {
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .section-{{ section.id }}-padding .footer__content-bottom {
+    padding-top: {{ section.settings.bottom_padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.bottom_padding_bottom_mobile }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -20,9 +25,14 @@
       margin-top: {{ section.settings.margin_top }}px;
     }
 
-    .section-{{ section.id }}-padding {
+    .section-{{ section.id }}-padding .footer__content-top {
       padding-top: {{ section.settings.padding_top_desktop | plus: 10 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom_desktop | plus: 10 | round: 0 }}px;
+    }
+
+    .section-{{ section.id }}-padding .footer__content-bottom {
+      padding-top: {{ section.settings.bottom_padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.bottom_padding_bottom_desktop | plus: 10 | round: 0 }}px;
     }
   }
 {%- endstyle -%}
@@ -71,7 +81,7 @@
               {% assign prev_block_index = forloop.index0 | minus: 1 %}
 
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'text' %} footer-block--text{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.alignment %} {{ block.settings.alignment }}{% endif %}{% if section.settings.links_mobile_half_width and block.type == 'link_list' and section.blocks[next_block_index].type == 'link_list' or section.blocks[prev_block_index].type == 'link_list' %} grid__item_half{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.type == 'text' %} footer-block--text{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.alignment %} {{ block.settings.alignment }}{% endif %}{% if block.settings.alignment_mobile %} {{ block.settings.alignment_mobile }}{% endif %}{% if section.settings.links_mobile_half_width and block.type == 'link_list' and section.blocks[next_block_index].type == 'link_list' or section.blocks[prev_block_index].type == 'link_list' %} grid__item_half{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -422,6 +432,26 @@
             }
           ],
           "default": "footer-block__alignment--center"
+        },
+        {
+          "type": "select",
+          "id": "alignment_mobile",
+          "label": "Mobile alignment",
+          "options": [
+            {
+              "value": "footer-block__mobile-alignment--left",
+              "label": "left"
+            },
+            {
+              "value": "footer-block__mobile-alignment--center",
+              "label": "Center"
+            },
+            {
+              "value": "footer-block__mobile-alignment--right",
+              "label": "Right"
+            }
+          ],
+          "default": "footer-block__mobile-alignment--center"
         }
       ]
     },
@@ -757,6 +787,54 @@
       "id": "payment_enable",
       "default": false,
       "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 95
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
     }
   ],
   "default": {

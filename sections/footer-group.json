@@ -9,7 +9,8 @@
           "type": "logo",
           "settings": {
             "show_social": true,
-            "alignment": "footer-block__alignment--center"
+            "alignment": "footer-block__alignment--left",
+            "alignment_mobile": "footer-block__mobile-alignment--center"
           }
         },
         "footer-0": {
@@ -56,9 +57,9 @@
         "enable_language_selector": false,
         "margin_top": 0,
         "padding_top_mobile": 50,
-        "padding_bottom_mobile": 95,
+        "padding_bottom_mobile": 30,
         "padding_top_desktop": 100,
-        "padding_bottom_desktop": 100,
+        "padding_bottom_desktop": 35,
         "show_border": true,
         "bottom_footer_text": "<p>© 2024 Statements on <a href=\"https:\/\/wuffes.com\" title=\"https:\/\/wuffes.com\">wuffes.com<\/a> have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent disease.<\/p>\n<p>*With globally sourced ingredients<br>\n**Results may vary<\/p>",
         "policy_menu": "full-price-copyright-links",
