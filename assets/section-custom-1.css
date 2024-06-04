@@ -22,7 +22,7 @@
 
 
 @media screen and (max-width: 749px) {
-  .custom_section-1 .image-with-text__heading {
+  .custom_section-1 .custom.image-with-text__heading {
     font-size: 1.5rem;
   }
 
@@ -41,11 +41,11 @@
 }
 
 @media screen and (min-width: 750px) {
-  .custom_section-1 .image-with-text__heading {
+  .custom_section-1 .custom.image-with-text__heading {
     font-size: 3.2rem;
   }
 
-  .custom_section-1 .image-with-text__heading u {
+  .custom_section-1 .custom.image-with-text__heading u {
     font-size: 3.4rem;
   }
 
@@ -59,11 +59,11 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .custom_section-1 .image-with-text__heading {
+  .custom_section-1 .custom.image-with-text__heading {
     font-size: 5.1rem;
   }
 
-  .custom_section-1 .image-with-text__heading u {
+  .custom_section-1 .custom.image-with-text__heading u {
     font-size: 6.6rem;
   }
 }

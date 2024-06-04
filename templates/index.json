@@ -271,7 +271,7 @@
           "type": "heading",
           "settings": {
             "heading": "<strong>A joint chew tailor made for [underline]BIG dogs[\/underline] <\/strong>",
-            "heading_size": "h1"
+            "heading_size": "custom"
           }
         }
       },
@@ -285,7 +285,7 @@
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
-        "desktop_content_position": "top",
+        "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "content_layout": "no-overlap",
         "section_color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
