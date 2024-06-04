@@ -6,7 +6,16 @@
   position: relative;
 }
 
+
+.image-with-text__mobile--reverse {
+  flex-direction: column-reverse;
+}
+
 @media screen and (min-width: 750px) {
+
+  .image-with-text__mobile--reverse {
+    flex-direction: inherit;
+  }
   .image-with-text__grid--reverse {
     flex-direction: row-reverse;
   }
@@ -404,6 +413,7 @@
 .image-with-text__text {
   ul {
     padding-left: 0;
+    text-align: left;
   }
 
   li {
@@ -466,6 +476,7 @@
   }
 }
 
+
 @media screen and (min-width: 750px) {
   .collapse-padding
     .image-with-text__grid:not(.image-with-text__grid--reverse)
@@ -484,7 +495,11 @@
   }
 
   .image-with-text__media-decorate {
-    margin: 3rem 0 0 0;
+    margin: 3rem 0;
+  }
+
+  .image-with-text__grid {
+    align-items: start;
   }
 }
 

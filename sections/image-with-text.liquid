@@ -24,30 +24,38 @@
   endif
 -%}
 
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+<div
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}"
+  {% if section.settings.border_top_width > 0 or section.settings.border_bottom_width > 0 %}
+    style="{% if section.settings.border_top_width > 0 %}border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.color_scheme.settings.button }};{% endif %}{% if section.settings.border_bottom_width > 0 %}border-bottom: {{ section.settings.border_bottom_width }}px solid {{ section.settings.color_scheme.settings.button }};{% endif %}"
+  {% endif %}
+>
   <div class="page-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
+      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}{% if section.settings.mobile_reversed %} image-with-text__mobile--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
           {%- for block in section.blocks -%}
             {%- if block.type == 'heading' and block.settings.left_heading -%}
-              <h2
-                class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }}"
-                {% if block.settings.no_margins %}
-                  style="margin: 0;"
-                {% endif %}
-                {{ block.shopify_attributes }}
+              <div
+                class="image-with-text__decoration"
+                id="ImageWithText--decoration--{{ section.id }}"
               >
-                {{ block.settings.heading }}
-              </h2>
+                <h2
+                  class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }}"
+                  {% if block.settings.no_margins %}
+                    style="margin: 0;"
+                  {% endif %}
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.heading }}
+                </h2>
+                <div
+                  class="image-with-text__media-decorate"
+                  style="background: {{ section.settings.color_scheme.settings.button }};"
+                ></div>
+              </div>
             {%- endif -%}
           {%- endfor -%}
-          {% if section.settings.decorate_image %}
-            <div
-              class="image-with-text__media-decorate"
-              style="background: {{ section.settings.color_scheme.settings.button }};"
-            ></div>
-          {% endif %}
           <div
             class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
             {% if section.settings.height == 'adapt' and section.settings.image != blank %}
@@ -89,7 +97,10 @@
             {%- endif -%}
           </div>
         </div>
-        <div class="image-with-text__text-item grid__item">
+        <div
+          class="image-with-text__text-item grid__item"
+          id="ImageWithText--grid__item--{{ section.id }}"
+        >
           <div
             id="ImageWithText--{{ section.id }}"
             class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
@@ -163,12 +174,17 @@
                           role="region"
                           aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
                         >
-                          {{ block.settings.inner_text }}
-                          {{
-                            block.settings.image
-                            | image_url: width: 1500
-                            | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
-                          }}
+                          {% if block.settings.inner_text.size > 0 %}
+                            {{ block.settings.inner_text }}
+                          {% endif %}
+
+                          {% if block.settings.image %}
+                            {{
+                              block.settings.image
+                              | image_url: width: 1500
+                              | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
+                            }}
+                          {% endif %}
                         </div>
                       </details>
                     </div>
@@ -181,6 +197,27 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the element to check
+    var blockToCheck = document.getElementById('ImageWithText--decoration--{{ section.id }}')
+
+    // Check if the block exists
+    if (blockToCheck) {
+      // Get the height of the block
+      var blockHeight = blockToCheck.offsetHeight
+
+      // Get the target element
+      var targetElement = document.getElementById('ImageWithText--grid__item--{{ section.id }}')
+
+      // Set the padding-top of the target element
+      targetElement.style.paddingTop = blockHeight + 'px'
+
+      console.log('ImageWithText--grid__item--{{ section.id }}')
+    }
+  })
+</script>
 
 {% schema %}
 {
@@ -209,9 +246,9 @@
     },
     {
       "type": "checkbox",
-      "id": "decorate_image",
+      "id": "mobile_reversed",
       "default": false,
-      "label": "Decorate image"
+      "label": "Reversed layout on mobile"
     },
     {
       "type": "select",
@@ -428,6 +465,26 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Top border width",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom border width",
+      "default": 0
     }
   ],
   "blocks": [
