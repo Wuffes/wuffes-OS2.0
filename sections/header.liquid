@@ -143,7 +143,7 @@
 
     <div class="header--wrapper">
       <div class="header--wrapper--inner">
-        {%- unless section.settings.hide_menu -%}
+        {%- unless section.settings.hide_menu or section.settings.show_timer -%}
           <div class="header--col_left">
             {%- liquid
               if section.settings.menu != blank
@@ -774,7 +774,7 @@
       "id": "show_timer",
       "label": "Show timer",
       "default": true,
-      "info": "This also hides right icons"
+      "info": "This also hides menus and right icons"
     },
     {
       "type": "range",

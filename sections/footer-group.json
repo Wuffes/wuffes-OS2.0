@@ -67,7 +67,11 @@
         "show_policy": false,
         "show_copyright": false,
         "enable_country_selector": false,
-        "payment_enable": false
+        "payment_enable": false,
+        "bottom_padding_top_mobile": 20,
+        "bottom_padding_bottom_mobile": 95,
+        "bottom_padding_top_desktop": 35,
+        "bottom_padding_bottom_desktop": 100
       }
     }
   },

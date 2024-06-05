@@ -76,6 +76,10 @@
   .footer-block__mobile-alignment--center .footer-block__details-content {
     align-items: center;
   }
+
+  .footer-block__mobile-alignment--right .footer-block__details-content {
+    align-items: flex-end;
+  }
 }
 
 @media screen and (min-width: 750px) {
