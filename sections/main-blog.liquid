@@ -17,12 +17,16 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ blog.title | escape }}
+  <div class="main-blog page-width section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_alignment }}">
+      {%- if section.settings.heading != blank -%}
+        {{- section.settings.heading -}}
+      {%- else -%}
+        {{- blog.title | escape -}}
+      {%- endif -%}
     </h1>
 
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+    <div class="blog-articles{% if section.settings.layout == 'collage' %} blog-articles--collage{% endif %}{% if section.settings.layout == 'grid' %} blog-articles--grid-{{ section.settings.grid_col }}{% endif %}">
       {%- for article in blog.articles -%}
         <div
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -61,6 +65,12 @@
       "content": "t:sections.main-blog.settings.header.content"
     },
     {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
       "type": "select",
       "id": "layout",
       "options": [
@@ -76,6 +86,45 @@
       "default": "collage",
       "label": "t:sections.main-blog.settings.layout.label",
       "info": "t:sections.main-blog.settings.layout.info"
+    },
+    {
+      "type": "select",
+      "id": "grid_col",
+      "options": [
+        {
+          "value": "two",
+          "label": "Two columns"
+        },
+        {
+          "value": "three",
+          "label": "3 columns"
+        }
+      ],
+      "default": "three",
+      "label": "Column per row on desktop",
+      "info": "Only works with grid layout"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Latest posts",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Heading alignment"
     },
     {
       "type": "checkbox",
