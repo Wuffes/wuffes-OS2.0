@@ -35,6 +35,7 @@
   width: 100%;
   height: auto;
   border-radius: 0;
+  margin: 0 auto;
 }
 
 .rich-text-carousel__slider .slider-counter__link--dots .dot {

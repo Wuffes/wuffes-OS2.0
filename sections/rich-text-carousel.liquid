@@ -35,7 +35,7 @@
         {{ section.settings.heading }}
       </h2>
       <slideshow-component
-        class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
+        class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}"
         role="region"
         aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
         aria-label="{{ section.settings.accessibility_info | escape }}"
@@ -50,7 +50,7 @@
         >
           {%- for block in section.blocks -%}
             <div
-              class="rich-text-carousel__slide grid__item grid--1-col slider__slide"
+              class="slideshow__slide rich-text-carousel__slide grid__item grid--1-col slider__slide"
               id="Slide-{{ section.id }}-{{ forloop.index }}"
               {{ block.shopify_attributes }}
               role="group"
@@ -73,7 +73,7 @@
         </div>
 
         {%- if section.settings.auto_rotate and section.blocks.size > 1 -%}
-          <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+          <div class="slider-buttons">
             <button
               type="button"
               class="slider-button slider-button--prev"
@@ -84,7 +84,7 @@
             >
               {% render 'icon-caret' %}
             </button>
-            <div class="slider-counter slider-counter--dots{">
+            <div class="slider-counter slider-counter--dots">
               <div class="slideshow__control-wrapper">
                 {%- for block in section.blocks -%}
                   <button
