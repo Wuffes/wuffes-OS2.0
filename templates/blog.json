@@ -1,19 +1,48 @@
 {
   "sections": {
+    "featured_blog_Rkdh8k": {
+      "type": "featured-blog",
+      "settings": {
+        "layout_type": "static",
+        "heading": "Our top picks",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "blog": "news",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
+        "show_image": true,
+        "show_date": false,
+        "card_can_click": false,
+        "show_author": false,
+        "show_view_all": false,
+        "truncate_paragraph": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "show_border": true
+      }
+    },
     "main": {
       "type": "main-blog",
       "settings": {
-        "layout": "collage",
+        "color_scheme": "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac",
+        "layout": "grid",
+        "grid_col": "three",
+        "heading": "Latest posts",
+        "heading_alignment": "center",
         "show_image": true,
-        "image_height": "medium",
-        "show_date": true,
+        "image_height": "auto",
+        "show_date": false,
+        "card_can_click": false,
         "show_author": false,
+        "truncate_paragraph": true,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 0
       }
     }
   },
   "order": [
+    "featured_blog_Rkdh8k",
     "main"
   ]
 }

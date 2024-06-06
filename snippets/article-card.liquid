@@ -16,6 +16,19 @@
   {% render 'article-card' blog: blog, article: article, show_image: section.settings.show_image %}
 {% endcomment %}
 
+{%- capture article_btn -%}
+  {%- assign estimated_time_read = article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 -%}
+
+  <div class="article-card__btn">
+    <a href="{{ article.url }}" class="button button--primary">
+      {{ estimated_time_read }} min read
+      <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+      <path d="M10.6875 3.5625L16.625 9.5M16.625 9.5L10.6875 15.4375M16.625 9.5H2.375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    </a>
+  </div>
+{%- endcapture -%}
+
 {%- if article and article != empty -%}
   {%- liquid
     assign ratio = 1
@@ -23,7 +36,7 @@
       assign ratio = media_aspect_ratio
     endif
   -%}
-  <div class="article-card-wrapper card-wrapper underline-links-hover">
+  <div class="article-card-wrapper card-wrapper{% if section.settings.card_can_click %} underline-links-hover {% endif %}">
     {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
     <div
       class="
@@ -33,17 +46,26 @@
         {% if article.image and show_image %} card--media{% else %} card--text{% endif %}
         {% if settings.blog_card_style == 'card' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}
         {% if settings.blog_card_style == 'card' and media_height == nil and article.image == empty or show_image == false %} ratio{% endif %}
+        {% unless section.settings.card_can_click %} article-card--disable_click{% endunless %}
       "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% if section.settings.image_height == 'auto' %}
+        style="--ratio-percent: 60%;"
+      {% else %}
+        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      {% endif %}
     >
       <div
         class="card__inner {% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}{% if article.image and show_image or settings.blog_card_style == 'standard' %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+        {% if section.settings.image_height == 'auto' %}
+          style="--ratio-percent: 60%;"
+        {% else %}
+          style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+        {% endif %}
       >
         {%- if show_image == true and article.image -%}
           <div class="article-card__image-wrapper card__media">
             <div
-              class="article-card__image media media--hover-effect"
+              class="article-card__image media"
               {% if section.settings.media_height == 'adapt' %}
                 style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
               {% endif %}
@@ -98,6 +120,9 @@
                   {%- endif -%}
                 </p>
               {%- endif -%}
+              {%- unless section.settings.card_can_click -%}
+                {{- article_btn -}}
+              {%- endunless -%}
               <div class="article-card__footer">
                 {%- if article.comments_count > 0 and blog.comments_enabled? -%}
                   <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
@@ -114,7 +139,7 @@
       </div>
       <div class="card__content card__content--bottom">
         <div class="card__information">
-          <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
+          <h3 class="card__heading{% if show_excerpt %} h2{% endif %} {% if section.settings.truncate_paragraph %} card__heading--truncate{% endif %}">
             <a href="{{ article.url }}" class="full-unstyled-link">
               {{ article.title | truncate: 50 | escape }}
             </a>
@@ -129,7 +154,7 @@
           </div>
           {%- if show_excerpt -%}
             {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-              <p class="article-card__excerpt rte-width">
+              <p class="article-card__excerpt{% if section.settings.truncate_paragraph %} article-card__excerpt--truncate{% endif %} rte-width">
                 {%- if article.excerpt.size > 0 -%}
                   {{ article.excerpt | strip_html | truncatewords: 30 }}
                 {%- else -%}
@@ -137,6 +162,9 @@
                 {%- endif -%}
               </p>
             {%- endif -%}
+            {%- unless section.settings.card_can_click -%}
+              {{- article_btn -}}
+            {%- endunless -%}
             <div class="article-card__footer">
               {%- if article.comments_count > 0 and blog.comments_enabled? -%}
                 <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>

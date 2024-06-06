@@ -17,37 +17,38 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_alignment }}">
-      {%- if section.settings.heading != blank -%}
-        {{- section.settings.heading -}}
-      {%- else -%}
-        {{- blog.title | escape -}}
-      {%- endif -%}
-    </h1>
+  <div class="main-blog section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+      <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {{ section.settings.heading_alignment }}">
+        {%- if section.settings.heading != blank -%}
+          {{- section.settings.heading -}}
+        {%- else -%}
+          {{- blog.title | escape -}}
+        {%- endif -%}
+      </h1>
 
-    <div class="blog-articles{% if section.settings.layout == 'collage' %} blog-articles--collage{% endif %}{% if section.settings.layout == 'grid' %} blog-articles--grid-{{ section.settings.grid_col }}{% endif %}">
-      {%- for article in blog.articles -%}
-        <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {%- render 'article-card',
-            article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: true
-          -%}
-        </div>
-      {%- endfor -%}
+      <div class="blog-articles{% if section.settings.layout == 'collage' %} blog-articles--collage{% endif %}{% if section.settings.layout == 'grid' %} blog-articles--grid-{{ section.settings.grid_col }}{% endif %}">
+        {%- for article in blog.articles -%}
+          <div
+            class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {%- render 'article-card',
+              article: article,
+              media_height: section.settings.image_height,
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              show_author: section.settings.show_author,
+              show_excerpt: true
+            -%}
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
-
     {%- if paginate.pages > 1 -%}
       {%- render 'pagination', paginate: paginate -%}
     {%- endif -%}
@@ -137,6 +138,10 @@
       "id": "image_height",
       "options": [
         {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
           "value": "adapt",
           "label": "t:sections.main-blog.settings.image_height.options__1.label"
         },
@@ -153,7 +158,7 @@
           "label": "t:sections.main-blog.settings.image_height.options__4.label"
         }
       ],
-      "default": "medium",
+      "default": "auto",
       "label": "t:sections.main-blog.settings.image_height.label",
       "info": "t:sections.main-blog.settings.image_height.info"
     },
@@ -165,6 +170,13 @@
     },
     {
       "type": "checkbox",
+      "id": "card_can_click",
+      "default": false,
+      "label": "Click on card",
+      "info": "Turn off to disable click on the whole card"
+    },
+    {
+      "type": "checkbox",
       "id": "show_author",
       "default": false,
       "label": "t:sections.main-blog.settings.show_author.label"
@@ -172,6 +184,12 @@
     {
       "type": "paragraph",
       "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "truncate_paragraph",
+      "default": true,
+      "label": "Truncate parapgraph"
     },
     {
       "type": "header",
