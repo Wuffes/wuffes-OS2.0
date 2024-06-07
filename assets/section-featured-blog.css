@@ -8,6 +8,10 @@
   }
 }
 
+.blog .title-wrapper-with-link {
+  margin-bottom: 2rem;
+}
+
 .blog__title {
   margin: 0;
   width: 100%;
@@ -47,6 +51,14 @@
 }
 
 @media screen and (min-width: 750px) {
+  .blog .title-wrapper-with-link {
+    margin-bottom: 4rem;
+  }
+
+  .blog__title {
+    font-size: 2.8rem;
+  }
+
   .blog__posts.articles-wrapper.static .article {
     width: calc((100% / 2) - var(--grid-desktop-horizontal-spacing) * 2 / 3);
     max-width: calc((100% / 2) - 3rem);
@@ -54,6 +66,10 @@
 }
 
 @media screen and (min-width: 990px) {
+  .blog__title {
+    font-size: 4rem;
+  }
+
   .blog__posts.articles-wrapper {
     margin-bottom: 0;
   }

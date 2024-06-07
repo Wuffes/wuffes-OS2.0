@@ -16,6 +16,20 @@
   {% render 'article-card' blog: blog, article: article, show_image: section.settings.show_image %}
 {% endcomment %}
 
+{%- liquid
+  assign article_tag = article.metafields.article.tag | downcase
+
+  if article_tag == ''
+    for tag in article.tags
+      assign current_tag = tag | downcase
+      if current_tag == 'joint health' or current_tag == 'skin' or current_tag == 'nutrition' or current_tag == 'exercise' or current_tag == 'pet tips'
+        assign article_tag = current_tag
+        break
+      endif
+    endfor
+  endif
+-%}
+
 {%- capture article_btn -%}
   {%- assign estimated_time_read = article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 -%}
 
@@ -64,6 +78,33 @@
       >
         {%- if show_image == true and article.image -%}
           <div class="article-card__image-wrapper card__media">
+            {% liquid
+              if article_tag != blank
+                case article_tag
+                  when 'nutrition'
+                    assign article_tag_class = 'article-card__tag__green'
+
+                  when 'joint health'
+                    assign article_tag_class = 'article-card__tag__dark_green'
+
+                  when 'skin'
+                    assign article_tag_class = 'article-card__tag__peach'
+
+                  when 'health'
+                    assign article_tag_class = 'article-card__tag__purple'
+
+                  else
+                    assign article_tag_class = ''
+                endcase
+              endif
+            %}
+
+            {% unless article_tag == blank %}
+              <div class="article-card__tag {{ article_tag_class }}">
+                {{- article_tag -}}
+              </div>
+            {% endunless %}
+
             <div
               class="article-card__image media"
               {% if section.settings.media_height == 'adapt' %}

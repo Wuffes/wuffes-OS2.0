@@ -186,3 +186,53 @@
 .article-card__btn .button > svg {
   margin-left: 1.5rem;
 }
+
+.article-card__tag {
+  padding: 7px 30px;
+  color: rgb(var(--color-foreground));
+  border: 1px solid rgb(var(--color-foreground));
+  background: rgb(255, 255, 255);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: 700;
+  font-family: var(--font-heading-family);
+  letter-spacing: 0.36px;
+  position: absolute;
+  right: 26px;
+  top: 26px;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.article-card__tag__dark_green {
+  background: rgb(197, 250, 84);
+  color: rgb(var(--color-foreground));
+}
+
+.article-card__tag__peach {
+  background: rgb(245, 129, 50);
+  color: rgb(255, 255, 255);
+}
+
+.article-card__tag__purple {
+  background: rgb(62, 25, 129);
+  color: rgb(255, 255, 255);
+}
+
+@media screen and (min-width: 750px) {
+  .article-card__tag {
+    padding: 8px 30px;
+    font-size: 1.4rem;
+    right: 15px;
+    top: 15px;
+    border-radius: 17px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .article-card__tag {
+    padding: 9px 42px;
+    font-size: 1.6rem;
+  }
+}
