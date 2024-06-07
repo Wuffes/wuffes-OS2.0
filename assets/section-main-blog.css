@@ -119,6 +119,10 @@
   background: rgb(241, 241, 241);
 }
 
+.main-blog .pagination__list > li .pagination__item:hover:after {
+  display: none;
+}
+
 .main-blog .pagination__list > li .pagination__item.pagination__item--current {
   background: rgb(var(--color-button));
   color: rgb(var(--color-button-text));
@@ -133,6 +137,10 @@
   transform: none;
   width: 2rem;
   height: 2rem;
+}
+
+.main-blog .pagination__list > li .pagination__item--next  > .icon {
+  transform: rotate(180deg)
 }
 
 
