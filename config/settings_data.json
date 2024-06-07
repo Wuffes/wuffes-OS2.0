@@ -218,8 +218,19 @@
           "background_gradient": "",
           "text": "#212427",
           "button": "#17443d",
-          "button_label": "#FFFFFF",
+          "button_label": "#ffffff",
           "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-fd1c0ed7-df5f-4bd3-9c5e-9316911adf64": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
         }
       }

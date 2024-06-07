@@ -4,6 +4,7 @@
       "type": "blog-nav",
       "settings": {
         "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
+        "heading": "Blog menu",
         "link": "blog-menu",
         "padding_top": 12,
         "padding_bottom": 12,
@@ -47,7 +48,9 @@
         "show_author": false,
         "truncate_paragraph": true,
         "padding_top": 36,
-        "padding_bottom": 0
+        "padding_bottom": 40,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
       }
     }
   },
