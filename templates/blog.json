@@ -1,5 +1,15 @@
 {
   "sections": {
+    "blog_nav_hMMTdq": {
+      "type": "blog-nav",
+      "settings": {
+        "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
+        "link": "blog-menu",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "show_border": true
+      }
+    },
     "featured_blog_Rkdh8k": {
       "type": "featured-blog",
       "settings": {
@@ -42,6 +52,7 @@
     }
   },
   "order": [
+    "blog_nav_hMMTdq",
     "featured_blog_Rkdh8k",
     "main"
   ]
