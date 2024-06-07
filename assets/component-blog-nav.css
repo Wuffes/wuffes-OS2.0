@@ -1,0 +1,129 @@
+blog-nav {
+  display: block;
+}
+
+.blog-nav--border {
+  border-bottom: 1px solid rgb(var(--color-button));
+}
+
+.blog-nav--heading {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: rgb(var(--color-foreground));
+  background: rgb(var(--color-background));
+  text-decoration: none;
+}
+
+.blog-nav--list {
+  margin-top: 10px;
+}
+
+input.blog-nav--input {
+  display: none;
+}
+
+.blog-nav--list-link {
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.blog-nav--list-link-active {
+  font-weight: 600;
+  color: rgb(0, 108, 91);
+}
+
+@media screen and (max-width: 749px) {
+  .blog-nav--wrap {
+    padding: 0 3.2rem 0 4.2rem;
+  }
+
+  .blog-nav--heading {
+    position: relative;
+    z-index: 1;
+    padding: 1.3rem 0;
+    overflow: hidden;
+  }
+
+  .blog-nav--lists {
+    max-height: 1px;
+    overflow: hidden;
+    margin-top: -1.3rem;
+    padding-bottom: 1.3rem;
+    position: relative;
+    top: -100px;
+    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .blog-nav--heading > svg {
+    width: 10px;
+    height: auto;
+    margin-left: 9px;
+    position: absolute;
+    top: 50%;
+    will-change: transform;
+    transform: translateY(-50%) translateZ(0);
+    backface-visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  .blog-nav--heading > svg > path {
+    fill: rgb(var(--color-foreground));
+  }
+
+  input.blog-nav--input:checked ~ .blog-nav--lists {
+    max-height: 285px;
+    opacity: 1;
+    top: 0;
+  }
+
+  input.blog-nav--input:checked ~ .blog-nav--heading > svg {
+    transform: rotate(180deg);
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .blog-nav--wrap {
+    padding: 2rem 0;
+  }
+
+  .blog-nav--heading {
+    display: none;
+  }
+
+  .blog-nav--lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.2rem;
+    align-items: center;
+  }
+
+  .blog-nav--list {
+    margin-top: 0;
+  }
+
+  .blog-nav--list-link {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .blog-nav--wrap {
+    padding: 2.8rem 0;
+  }
+
+  .blog-nav--lists {
+    gap: 4rem;
+  }
+
+  .blog-nav--list-link {
+    font-size: 2.4rem;
+  }
+}

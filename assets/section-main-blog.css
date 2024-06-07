@@ -77,7 +77,6 @@
   }
 }
 
-
 /* CARDS */
 .blog-articles__article .article-card__image > img {
   border-left: 1px solid rgb(var(--color-button));
@@ -139,10 +138,9 @@
   height: 2rem;
 }
 
-.main-blog .pagination__list > li .pagination__item--next  > .icon {
-  transform: rotate(180deg)
+.main-blog .pagination__list > li .pagination__item--next > .icon {
+  transform: rotate(180deg);
 }
-
 
 @media screen and (min-width: 990px) {
   .main-blog .pagination-wrapper {
