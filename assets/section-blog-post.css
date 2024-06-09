@@ -304,6 +304,10 @@
 }
 
 @media screen and (min-width: 750px) {
+  .article-template__content {
+    margin-bottom: 4rem;
+  }
+
   .article-breadcrumbs {
     padding-bottom: 35px;
   }
