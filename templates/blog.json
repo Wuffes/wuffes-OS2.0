@@ -13,6 +13,31 @@
     },
     "featured_blog_Rkdh8k": {
       "type": "featured-blog",
+      "blocks": {
+        "featured_article_akyPfa": {
+          "type": "featured_article",
+          "settings": {
+            "article": "news\/what-are-the-benefits-of-double-dosing"
+          }
+        },
+        "featured_article_NBeQKg": {
+          "type": "featured_article",
+          "settings": {
+            "article": "news\/zinc-deficiency-dogs"
+          }
+        },
+        "featured_article_xE7cVD": {
+          "type": "featured_article",
+          "settings": {
+            "article": "news\/which-human-foods-healthy-dogs"
+          }
+        }
+      },
+      "block_order": [
+        "featured_article_akyPfa",
+        "featured_article_NBeQKg",
+        "featured_article_xE7cVD"
+      ],
       "settings": {
         "layout_type": "static",
         "heading": "Our top picks",
@@ -30,6 +55,8 @@
         "truncate_paragraph": true,
         "padding_top": 36,
         "padding_bottom": 36,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
         "show_border": true
       }
     },
