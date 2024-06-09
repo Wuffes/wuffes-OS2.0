@@ -23,11 +23,28 @@
       </a>
     {%- endif -%}
     <ul class="blog-nav--lists list-unstyled" closed>
+      {% liquid
+        if template.name == 'article'
+          assign article_tag = article.metafields.article.tag | downcase
+
+          if article_tag == ''
+            for tag in article.tags
+              assign current_tag = tag | downcase
+              if current_tag == 'joint health' or current_tag == 'skin' or current_tag == 'nutrition' or current_tag == 'exercise' or current_tag == 'pet tips'
+                assign article_tag = current_tag | handleize
+                break
+              endif
+            endfor
+          endif
+          assign article_tag_handleize = article_tag | handleize
+        endif
+      %}
+
       {%- for link in section.settings.link.links -%}
         <li class="blog-nav--list">
           <a
             href="{{ link.url }}"
-            class="blog-nav--list-link {% if link.current %} blog-nav--list-link-active{% endif %}"
+            class="blog-nav--list-link {% if link.current or template.name == 'article' and article_tag_handleize == link.handle %} blog-nav--list-link-active{% endif %}"
           >
             {{- link.title -}}
           </a>

@@ -51,22 +51,79 @@
           class="page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           {{ block.shopify_attributes }}
         >
+          {%- if block.settings.show_breadcrumb -%}
+            {% liquid
+              assign article_tag = article.metafields.article.tag
+              if article_tag != ''
+                for tag in article.tags
+                  assign current_tag = tag | downcase
+                  if current_tag == 'joint health' or current_tag == 'skin' or current_tag == 'nutrition' or current_tag == 'exercise' or current_tag == 'pet tips'
+                    assign article_tag = tag
+                    break
+                  endif
+                endfor
+
+                assign tag_link_handle = article_tag | handleize
+              endif
+            %}
+
+            <div class="article-breadcrumbs">
+              <a class="article-breadcrumbs--link" href="{{ blog.url }}" title="All posts">All posts </a>
+
+              {%- if article_tag != blank -%}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="11"
+                  height="11"
+                  viewBox="0 0 11 11"
+                  fill="none"
+                  class="article-breadcrumbs--arrow"
+                >
+                  <path d="M6.1875 8.9375L9.625 5.5M9.625 5.5L6.1875 2.0625M9.625 5.5H1.375" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                {{
+                  article_tag
+                  | capitalize
+                  | link_to_tag: tag_link_handle
+                  | replace: '<a', '<a class="article-breadcrumbs--link"'
+                }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
           <h1
             class="article-template__title h2"
             itemprop="headline"
           >
             {{ article.title | escape }}
           </h1>
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">By {{ article.author }}</span>
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
+
+          <div class="article-details--wrap">
+            {%- if block.settings.blog_show_author -%}
+              <span
+                class="article-details-item--author caption-with-letter-spacing"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+              >
+                <span itemprop="name">By {{ article.author }}</span>
+              </span>
+            {%- endif -%}
+            {%- if block.settings.blog_show_date -%}
+              <span
+                class="article-details-item--date caption-with-letter-spacing"
+                itemprop="dateCreated pubdate datePublished"
+              >
+                {{- article.published_at | time_tag: format: 'date' -}}
+              </span>
+            {%- endif -%}
+
+            {%- if block.settings.blog_show_estimated_read -%}
+              <span class="article-details-item--estimated-time line-divider caption-with-letter-spacing">
+                {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 }} Min Read
+              </span>
+            {%- endif -%}
+          </div>
         </header>
 
       {%- when 'content' -%}
@@ -85,6 +142,25 @@
         >
           {% assign share_url = request.origin | append: article.url %}
           {% render 'share-button', block: block, share_link: share_url %}
+        </div>
+
+      {%- when 'socials' -%}
+        <div class="page-width article--socials {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <p class="article--socials-heading {{ block.settings.socials_alignment }}">{{- block.settings.heading -}}</p>
+
+          <div class="article--socials-icons article--socials-icons--{{ block.settings.socials_alignment }}">
+            {%- if block.settings.show_facebook -%}
+              <a href="{{ settings.social_facebook_link }}">
+                {%- render 'icon-facebook' -%}
+              </a>
+            {%- endif -%}
+
+            {%- if block.settings.show_instagram -%}
+              <a href="{{ settings.social_instagram_link }}">
+                {%- render 'icon-instagram' -%}
+              </a>
+            {%- endif -%}
+          </div>
         </div>
     {%- endcase -%}
   {%- endfor -%}
@@ -386,6 +462,18 @@
           "id": "blog_show_author",
           "default": false,
           "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_estimated_read",
+          "default": true,
+          "label": "Show estimated read time"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_breadcrumb",
+          "default": true,
+          "label": "Show breadcrumbs"
         }
       ]
     },
@@ -412,6 +500,47 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    },
+    {
+      "type": "socials",
+      "name": "Socials",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "label": "Heading",
+          "id": "heading",
+          "default": "Share"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_facebook",
+          "default": true,
+          "label": "Facebook"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_instagram",
+          "default": true,
+          "label": "Instagram"
+        },
+        {
+          "type": "select",
+          "id": "socials_alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "center"
         }
       ]
     }
