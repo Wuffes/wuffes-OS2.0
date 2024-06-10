@@ -45,7 +45,6 @@ input.blog-nav--input {
   .blog-nav--heading {
     position: relative;
     z-index: 1;
-    padding: 1.3rem 0;
     overflow: hidden;
   }
 
@@ -89,10 +88,6 @@ input.blog-nav--input {
 }
 
 @media screen and (min-width: 750px) {
-  .blog-nav--wrap {
-    padding: 2rem 0;
-  }
-
   .blog-nav--heading {
     display: none;
   }

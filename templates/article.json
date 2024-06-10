@@ -8,6 +8,8 @@
         "link": "blog-menu",
         "padding_top": 36,
         "padding_bottom": 36,
+        "padding_top_mobile": 13,
+        "padding_bottom_mobile": 13,
         "show_border": false
       }
     },

@@ -6,8 +6,10 @@
         "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
         "heading": "Blog menu",
         "link": "blog-menu",
-        "padding_top": 12,
-        "padding_bottom": 12,
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "padding_top_mobile": 13,
+        "padding_bottom_mobile": 13,
         "show_border": true
       }
     },
@@ -41,7 +43,7 @@
       "settings": {
         "layout_type": "static",
         "heading": "Our top picks",
-        "heading_size": "h2",
+        "heading_size": "custom",
         "heading_alignment": "center",
         "blog": "news",
         "post_limit": 3,

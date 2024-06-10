@@ -1,13 +1,27 @@
 {{ 'component-blog-nav.css' | asset_url | stylesheet_tag }}
 
-<div class="blog-nav section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.show_border %} blog-nav--border{% endif %}">
+{%- style -%}
+  .label-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nav-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="blog-nav color-{{ section.settings.color_scheme }} {% if section.settings.show_border %} blog-nav--border{% endif %}">
   <nav
     role="nav"
-    class="page-width blog-nav--wrap"
+    class="page-width blog-nav--wrap nav-{{ section.id }}-padding"
   >
     {% if section.settings.heading != blank %}
       <input class="blog-nav--input" id="nav-input-trigger" type="checkbox">
-      <label for="nav-input-trigger" href="#" class="blog-nav--heading">
+      <label for="nav-input-trigger" href="#" class="blog-nav--heading label-{{ section.id }}-padding">
         {{- section.settings.heading -}}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,21 +101,41 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 50,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 28
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 50,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 13
     },
     {
       "type": "checkbox",
