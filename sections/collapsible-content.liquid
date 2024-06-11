@@ -28,6 +28,7 @@
               {{ section.settings.caption | escape }}
             </p>
           {% endif %}
+
           {%- if section.settings.heading != blank -%}
             <h2 class="collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
               {{ section.settings.heading }}
@@ -101,6 +102,11 @@
             {%- endfor -%}
           </div>
         </div>
+        {%- if section.settings.collapsible_button_link != blank -%}
+          <a href="{{ section.settings.collapsible_button_link }}" class="button">
+            {{ section.settings.collapsible_button }}
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -274,6 +280,17 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "text",
+      "id": "collapsible_button",
+      "label": "Section Button",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "collapsible_button_link",
+      "label": "Button Link"
     }
   ],
   "blocks": [
