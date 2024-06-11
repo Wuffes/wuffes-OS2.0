@@ -1,0 +1,6 @@
+__additional-scripts/**
+node_modules/**
+.vscode/**
+.prettierrc.json
+package.json
+package-lock.json
