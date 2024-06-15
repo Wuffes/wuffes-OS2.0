@@ -200,6 +200,17 @@
           "secondary_button_label": "#ffffff",
           "shadow": "#ffffff"
         }
+      },
+      "scheme-41fca582-cce1-4737-8930-c52b4cde91f3": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
       }
     }
   },

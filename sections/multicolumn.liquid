@@ -21,6 +21,11 @@
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
+
+  assign show_desktop_slider = false
+  if section.settings.enable_desktop_slider and section.blocks.size > section.settings.columns_desktop
+    assign show_desktop_slider = true
+  endif
 -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
@@ -35,6 +40,16 @@
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
+        {%- if section.settings.subheading != blank -%}
+          <h4>
+            {{- section.settings.subheading -}}
+          </h4>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <p>
+            {{- section.settings.description -}}
+          </p>
+        {%- endif -%}
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
             {{- section.settings.button_label | escape -}}
@@ -204,6 +219,17 @@
       "label": "t:sections.multicolumn.settings.title.label"
     },
     {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "default": "Description",
+      "label": "Description"
+    },
+    {
       "type": "select",
       "id": "heading_size",
       "options": [
@@ -340,6 +366,10 @@
         {
           "value": "2",
           "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
         }
       ],
       "default": "1",
@@ -350,6 +380,12 @@
       "id": "swipe_on_mobile",
       "default": false,
       "label": "t:sections.multicolumn.settings.swipe_on_mobile.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_desktop_slider",
+      "default": false,
+      "label": "Enable swipe on desktop"
     },
     {
       "type": "header",

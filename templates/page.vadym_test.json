@@ -13,36 +13,30 @@
         "collapsible_row_9EVq3Y": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row1",
-            "icon": "check_mark",
-            "row_content": "<p>dsadasdasd<\/p>",
+            "heading": "87% saw improved mobility in 3 months",
+            "icon": "check",
+            "row_content": "<p>Scientifically-formulated to improve joint health, our chews can help your pup move more comfortably and improve range of motion.<\/p>",
+            "author_name": "",
             "page": ""
           }
         },
         "collapsible_row_J8KxFE": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
+            "heading": "78% saw a decrease in pain from joint conditions",
+            "icon": "check",
+            "row_content": "<p>From limping to difficulty standing up, Advanced Hip & Joint Support provides a range of ingredients that are scientifically-proven to reduce joint pain.<\/p>",
+            "author_name": "",
             "page": ""
           }
         },
         "collapsible_row_FewCWj": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_PGwVh8": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
+            "heading": "91% saw increased willingness to exercise",
+            "icon": "check",
+            "row_content": "<p>We know all too well how difficult it is to watch your pet’s energy levels decrease. That’s why we created a supplement that targets painful symptoms of joint disease, helps decrease inflammation and helps prevent future joint degeneration.<\/p>",
+            "author_name": "",
             "page": ""
           }
         }
@@ -50,16 +44,76 @@
       "block_order": [
         "collapsible_row_9EVq3Y",
         "collapsible_row_J8KxFE",
-        "collapsible_row_FewCWj",
-        "collapsible_row_PGwVh8"
+        "collapsible_row_FewCWj"
       ],
       "settings": {
         "caption": "",
-        "heading": "Collapsible content",
-        "heading_size": "h1",
+        "heading": "Easy to use & highly effective",
+        "description": "Here are some of the ways our Advanced Hip & Joint Support chew can benefit your pup after 90 days of regular use**. Data based on an independent survey of 200+ Wuffes customers",
+        "heading_size": "h0",
         "heading_alignment": "center",
         "layout": "none",
-        "color_scheme": "",
+        "include_items_border": false,
+        "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
+        "container_color_scheme": "scheme-3",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_CTkbkH": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gxyNnM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Decrease in pain & better mobility",
+            "icon": "check",
+            "row_content": "<p>Our liquid supplement is packed with a powerful blend of active ingredients that are scientifically-proven to reduce pain, boost mobility, and support joint health for happier, healthier dogs.<\/p>",
+            "img_content": "shopify:\/\/shop_images\/Rebrand_Before_and_After_Multivitamin_2_min.gif",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_3Wr8Qc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Less inflammation",
+            "icon": "check",
+            "row_content": "<p>Our pet scientists hand-selected ingredients that are backed by science to maximize anti-inflammatory and pain-relieving effect.<\/p><p><em>\"Wow! This stuff really works. My dog's pain and swelling went down a lot after using this supplement. It's like magic for my dog's legs!\"<\/em><\/p>",
+            "img_author": "shopify:\/\/shop_images\/new_pdp_benefits_avatar_4.png",
+            "author_name": "<p>-Kasey<\/p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_C7M4PH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Increased energy levels",
+            "icon": "check",
+            "row_content": "<p>Delivering a targeted relief for painful hips & joints can help your pup get back to their usual, chaos-causing, rabbit-chasing self.<\/p>",
+            "img_content": "shopify:\/\/shop_images\/Rebrand---Before-and-After---JL-min.gif",
+            "author_name": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gxyNnM",
+        "collapsible_row_3Wr8Qc",
+        "collapsible_row_C7M4PH"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Easy to use & highly effective",
+        "description": "Here are some of the ways our Premium Joint Liquid may benefit your pup after 90 days of regular use**",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "include_items_border": false,
+        "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
         "container_color_scheme": "",
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
@@ -67,10 +121,839 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "collapsible_content_MnFDHi": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_iPJxK3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How much should I feed my pet?",
+            "icon": "none",
+            "row_content": "<p>Our Premium Joint Liquid should be given directly into your pup’s mouth or on top of food. Please use your pet’s weight to follow the daily recommended feeding guidelines below and don’t forget to shake well before use!<\/p>",
+            "img_content": "shopify:\/\/shop_images\/shopify_2.0_faq_img.png",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_H47bNK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How can it benefit my pet?",
+            "icon": "none",
+            "row_content": "<p>Our liquid supplement was formulated with scientifically-backed ingredients that can help:<\/p><ul><li>Reduce pain<\/li><li>Decrease inflammation<\/li><li>Improve mobility<\/li><li>Improve blood flow<\/li><\/ul>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_pLkTkb": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How should they be stored?",
+            "icon": "none",
+            "row_content": "<p>Our Premium Joint Liquid is made with fresh ingredients so please keep in the fridge and use within 5 months of opening.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_98FHwq": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does it contain any allergens?",
+            "icon": "none",
+            "row_content": "<p>Our product contains 100% Pure Aloe Vera Juice which is toxic to cats.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_MGfKBT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can my pet overdose?",
+            "icon": "none",
+            "row_content": "<p>If your pet consumes the whole bottle, it’s always best to be safe and speak to your vet so they can make recommendations based on your pet’s age, size and any potential pre-existing conditions.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_7rAex8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where is it made?",
+            "icon": "none",
+            "row_content": "<p>Our products are proudly made in the USA from globally sourced ingredients.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_gFBfzc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do pets need joint supplements?",
+            "icon": "none",
+            "row_content": "<p>Yes, 1 in 5 dogs will develop arthritis and painful related conditions throughout their lifetime. Our Premium Joint Liquid can be used preventatively or to help support pets with existing joint conditions.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_CjQkdK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I know if my pet needs a joint supplement?",
+            "icon": "none",
+            "row_content": "<p>Our Premium Joint Liquid is designed to alleviate your pet from the symptoms and pain associated with joint disease. Most pets will display similar symptoms when they experience pain and discomfort related to joint disease. Here is a few list of things to look for if you are unsure if your pet is experiencing joint pain:<\/p><ul><li>Has your pet been less excited to greet you?<\/li><li>Does your pet have difficulty getting in and out of the car, climbing the stairs or jumping into bed?<\/li><li>Has your pet started to exhibit changes in posture? This might include:<\/li><\/ul><p><\/p><ul><li>Hunched or arched back<\/li><li>Shifting weight in an unusual manner when sitting or lying down<\/li><li>Difficulty finding a comfortable position to lie down<\/li><li>Dropped head<\/li><li>Is your pet showing signs of restricted movement? This might include:<\/li><\/ul><p>If your pet is exhibiting one or more of these symptoms, it could be due to joint related issues, so we recommend speaking to your vet to help identify the cause.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_fHEKUQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can it be used with other supplements or prescription medication?",
+            "icon": "none",
+            "row_content": "<p>Yes, our Premium Joint Liquid is safe to use with other supplements and medications. If your pet needs 1 or more prescription medications, it is always recommended to confirm the use of any new supplement with your veterinarian.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_jeEVh6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does it need to be given with food?",
+            "icon": "none",
+            "row_content": "<p>No, we created an easy to swallow supplement that can be given to your pet at any time of the day. However, it can be beneficial to provide supplements with food to help increase absorption.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_zLwTcj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How old does my dog have to be?",
+            "icon": "none",
+            "row_content": "<p>Our Premium Joint Liquid is safe for pups 6 months and older.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_iPJxK3",
+        "collapsible_row_H47bNK",
+        "collapsible_row_pLkTkb",
+        "collapsible_row_98FHwq",
+        "collapsible_row_MGfKBT",
+        "collapsible_row_7rAex8",
+        "collapsible_row_gFBfzc",
+        "collapsible_row_CjQkdK",
+        "collapsible_row_fHEKUQ",
+        "collapsible_row_jeEVh6",
+        "collapsible_row_zLwTcj"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "FAQ's",
+        "description": "",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "include_items_border": true,
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "container_color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "collapsible_content_7Nt6Xc": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_xReGqU": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How can it benefit my pet?",
+            "icon": "none",
+            "row_content": "<p>Advanced Hip & Joint is a groundbreaking blend of powerful ingredients that help support joint health and flexibility. The active ingredients in our formula were hand-picked by pet experts and are scientifically-proven to help promote healthier joints. They help:<\/p><ul><li>Reduce discomfort<\/li><li>Improve flexibility<\/li><li>Promote overall joint health<\/li><\/ul>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_DwmeGd": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How should it be stored?",
+            "icon": "none",
+            "row_content": "<p>To make sure your pup is getting the absolute best, our joint chews do not contain artificial preservatives. Please store in a cool, dry place, out of direct sunlight and heat, and use within 3 months of opening.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_trfjHH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How many should I feed my pet?",
+            "icon": "none",
+            "row_content": "<p>Use your pet’s weight to follow the daily recommended feeding guidelines below. We recommend that you give your pet their joint treat with or after one of their daily meals.<\/p><p><br\/>Please note these chews were tailor-made for pets over 65 lbs. Smaller pup? Head to our <a href=\"https:\/\/wuffes.com\/products\/advanced-hip-joint-support-for-small-medium-breeds\">Advanced Hip Joint Support for Dogs under 65lbs<\/a> page.<\/p>",
+            "img_content": "shopify:\/\/shop_images\/shopify_2.0_faq_img.png",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_Yjnw7i": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does it contain any allergens?",
+            "icon": "none",
+            "row_content": "<p>In order to look out for as many pups as possible, we formulated our chews with allergies in mind. If your pet is particularly sensitive, please note that our Advanced Hip & Joint Support chews include Pork and Fish (Wild Alaskan Salmon Oil).<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_z9An3D": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can my pet overdose?",
+            "icon": "none",
+            "row_content": "<p>If your pet devours an entire tub of Advanced Hip & Joint Support, they’ll be absolutely fine as long as the tub was designed for their weight category. Adverse effects can include diarrhea or gastrointestinal distress. If they’ve eaten more than one tub, contact your vet for guidance.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_xAX6cG": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where is it made?",
+            "icon": "none",
+            "row_content": "<p>Our products are proudly made in the USA from globally sourced ingredients.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_y7apRi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I know if my pet needs a joint supplement?",
+            "icon": "none",
+            "row_content": "<p>Our joint chews help keep joints soft and nimble for pets of all ages. Some breeds are particularly prone to joint conditions, while others can simply start to feel the effect of time due to aging. Some signs of painful joints to look out for include:<\/p><ul><li>Limping<\/li><li>Slow to get up<\/li><li>Shaking leg<\/li><li>Uneven weight bearing\/favoring one side<\/li><li>Tense facial muscles when trying to walk or get up<\/li><li>Heat\/inflammation around joints<\/li><\/ul><p><br\/>Please note that these symptoms are also very common signs of other diseases or disorders. If your pet suffers from any of the symptoms above, it’s always best to speak to your vet.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_nT3f8R": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can it be used with other supplements or prescription medication?",
+            "icon": "none",
+            "row_content": "<p>Absolutely. As long as you follow our dosage guidelines, Advanced Hip & Joint Support should not interfere with other supplements or prescription medications.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_TgNqCz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Does it need to be given with food?",
+            "icon": "none",
+            "row_content": "<p>Our tasty chews can be given to your pet at any time of the day, though we recommend feeding them at mealtimes as it helps increase nutrient absorption.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_XGAfjk": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How old does my dog have to be?",
+            "icon": "none",
+            "row_content": "<p>Our joint chews are suitable for pets over 12 weeks of age.<\/p>",
+            "author_name": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_xReGqU",
+        "collapsible_row_DwmeGd",
+        "collapsible_row_trfjHH",
+        "collapsible_row_Yjnw7i",
+        "collapsible_row_z9An3D",
+        "collapsible_row_xAX6cG",
+        "collapsible_row_y7apRi",
+        "collapsible_row_nT3f8R",
+        "collapsible_row_TgNqCz",
+        "collapsible_row_XGAfjk"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "FAQ's",
+        "description": "",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "include_items_border": true,
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "container_color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_hYBnC3": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_M4nE7x": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon_90_Day.svg",
+            "title": "",
+            "text": "<p>Made in the USA*<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mwdUPk": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon_3rd_party_batch_1b128c8d-168d-48a5-8e73-3c6a4aada7c3.svg",
+            "title": "",
+            "text": "<p>Batch Tested<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_aeeJLE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon_no_artifial.svg",
+            "title": "",
+            "text": "<p>No Artificial Colors or Flavors<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JQKnDw": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon_no_wheat.svg",
+            "title": "",
+            "text": "<p>GMO, Hormone & Antibiotic free<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_UVEkVt": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon__GMP.svg",
+            "title": "",
+            "text": "<p>GMP\/SQF Certified<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_DNe88B": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/multicolumn_icon__FDA.svg",
+            "title": "",
+            "text": "<p>In line with FDA CVM Guidelines<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_M4nE7x",
+        "column_mwdUPk",
+        "column_aeeJLE",
+        "column_JQKnDw",
+        "column_UVEkVt",
+        "column_DNe88B"
+      ],
+      "settings": {
+        "title": "We’re Serious About <em>Quality<\/em>",
+        "subheading": "",
+        "description": "Description",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "enable_desktop_slider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_iqJeKa": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_6gALHc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_90_Day.svg",
+            "title": "",
+            "text": "<p>Made in the USA*<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_X9D6jC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_3rd_party_batch.svg",
+            "title": "",
+            "text": "<p>Batch Tested<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EnRphM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_no_artifial.svg",
+            "title": "",
+            "text": "<p>No Artificial Colors or Flavors<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gDyEMF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_no_wheat.svg",
+            "title": "",
+            "text": "<p>GMO, Hormone & Antibiotic free<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xUxgWb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon__GMP.svg",
+            "title": "",
+            "text": "<p>GMP\/SQF Certified<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_FL3Hm7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon__FDA.svg",
+            "title": "",
+            "text": "<p>In line with FDA CVM Guidelines<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_6gALHc",
+        "column_X9D6jC",
+        "column_EnRphM",
+        "column_gDyEMF",
+        "column_xUxgWb",
+        "column_FL3Hm7"
+      ],
+      "settings": {
+        "title": "We’re serious about quality",
+        "subheading": "",
+        "description": "That’s why we have scientific experts to help guide our product innovation every step of the way",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 6,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "3",
+        "swipe_on_mobile": false,
+        "enable_desktop_slider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_WbAgfa": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_xtqpC7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_2_0_icon_1.svg",
+            "title": "<strong>Scientifically-backed ingredients<\/strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RGGCm7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_2_0_icon_2.svg",
+            "title": "<strong>Made & sourced by our in-house pet scientists<\/strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Fxfdkn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_2_0_icon_3.svg",
+            "title": "<strong>Trusted by over 300k pets<\/strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_L8Am9L": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_2_0_icon_4.svg",
+            "title": "<strong>Tried & tested by fellow pet parents<\/strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_xtqpC7",
+        "column_RGGCm7",
+        "column_Fxfdkn",
+        "column_L8Am9L"
+      ],
+      "settings": {
+        "title": "We're the joint experts",
+        "subheading": "<strong>Our mission is to make pet's lives healthier and happier to keep them by our side for as long as possible<\/strong>",
+        "description": "That's why our team of in-house scientists and pet-loving experts create unbeatable products that keep our furry friends bright-eyed and bushy-tailed, so they can be their awesome, back-seat-farting, rolling-in-what-they-shouldn’t-have selves.",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "enable_desktop_slider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_R9kjpU": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_d9HK9H": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_manufacturing_1_2.png",
+            "title": "<strong>Where science meets love<\/strong>",
+            "text": "<p>We’re proud to work with state of the art facilities and research & development labs, led by vets and expert pet scientists.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3k9ALL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_manufacturing_2_1.png",
+            "title": "<strong>GMP\/SQF Certified<\/strong>",
+            "text": "<p>Our Advanced Hip & Joint Support and 23-in-1 Multivitamin chews are made at a Good Manufacturing Practices certified and SQF audited facility. This means that our products are subjected to rigorous GMP and SQF quality standards to ensure that your pet receives the best possible product.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MjCHAH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/reskin_about_us_slide_01.png",
+            "title": "<strong>In line with FDA CVM Guidelines<\/strong>",
+            "text": "<p>Wuffes complies with all stipulations of the Center for Veterinary Medicine’s national guidelines for pet dietary supplements.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_yTCATa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/reskin_about_us_slide_02.png",
+            "title": "<strong>Quality Control<\/strong>",
+            "text": "<p>All our products go through strict manual safety checks before they’re packaged to make sure our furry friends are getting the absolute best.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_d9HK9H",
+        "column_3k9ALL",
+        "column_MjCHAH",
+        "column_yTCATa"
+      ],
+      "settings": {
+        "title": "Our world-class facilities",
+        "subheading": "",
+        "description": "At the forefront of pet wellness",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "enable_desktop_slider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_WDfAAN": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_JCUxGF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Glucosamine.png",
+            "title": "Glucosamine",
+            "text": "<p>A key natural compound in the body, Glucosamine is crucial for building tendons, ligaments, cartilage, and synovial fluid. As a supplement, it reduces inflammation, preserves healthy synovial fluid, enhances mobility, and <a href=\"#\">Read More<\/a> alleviates discomfort. Particularly vital for dogs with conditions like Osteoarthritis, as decreased natural Glucosamine production can lead to cartilage degeneration over time.<\/p><p><\/p><p><strong>Great for - cartilage, inflammation, mobility<br\/>                <\/strong><br\/>                  <br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nRzzcj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_MSM.png",
+            "title": "MSM",
+            "text": "<p>Methylsulfonylmethane (try say that 3 times in a row!) is a compound that is naturally produced by the body but can also be found in many fresh foods. It helps improve blood flow to the <a href=\"#\">Read More<\/a><\/p><p>affected joints and can reduce pain & inflammation.<\/p><p><\/p><p><strong>Great for - blood flow, pain, inflammation<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_X9e4My": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Green_Lipped.png",
+            "title": "ColumnGreen-Lipped MusselsGreen-Lipped Mussels",
+            "text": "<p>Natural powerhouses, Green-Lipped Mussels are rich in Glucosamine, Chondroitin and Vitamins C & E, as well as antioxidants & minerals like Copper, Zinc & Selenium. They’re not only vital to keep your pup’s <a href=\"#\">Read More<\/a><\/p><p>joints healthy, but also act as a natural anti-inflammatory! Need we say more?<br\/><\/p><p><\/p><p><strong>Great for - pain, inflammation, immune system<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xhhVWa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Chondroitin_Sulfate.png",
+            "title": "Chondroitin",
+            "text": "<p>Naturally produced in the body, supplements with Chondroitin can help reduce inflammation & the destruction of cartilage, as well as stimulate the production of Collagen and Hyaluronic Acid.<\/p><p><\/p><p><strong> Great for - inflammation, cartilage, collagen production<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_BrNE7L": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Hyaluronic_Acid_reskin.png",
+            "title": "Hyaluronic Acid",
+            "text": "<p>Hyaluronic Acid is naturally produced in the joint cavity in order to help lubricate the joints, making it easier to move. Using a supplement with Hyaluronic Acid can <a href=\"#\">Read More<\/a>  help replace lubrication in the joints that is typically lost in degenerative joint disease.<\/p><p><\/p><p><strong>Great for - joint lubrication, mobility, arthritis<\/strong><br\/>                <br\/>                  <br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_R4dxU4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Vit_C.png",
+            "title": "Vitamin C",
+            "text": "<p>Helps with the absorption of Glucosamine, which helps improve its efficacy.<\/p><p><\/p><p><strong>Great for - optimal absorption, immune system<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_WytbU6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Omega_3.png",
+            "title": "Omega 3s",
+            "text": "<p>Derived from pure Wild Alaskan Salmon Oil, Omega 3 fatty acids are important for keeping joints soft & nimble, as well as for overall health <a href=\"#\">Read More<\/a><\/p><p> & wellbeing. They help reduce joint inflammation by supporting the immune system.<\/p><p><\/p><p><strong> Great for - inflammation, immune system, overall health<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MqkCPA": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Yucca_reskin.png",
+            "title": "Yucca Schidigera",
+            "text": "<p>A medicinal plant native to Mexico, Yucca is packed with antioxidants that help reduce <a href=\"#\">Read More<\/a><\/p><p>joint inflammation. It not only relieves symptoms of pain and discomfort.<\/p><p><\/p><p><strong>Great for - pain, inflammation<\/strong><br\/>                <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_JCUxGF",
+        "column_nRzzcj",
+        "column_X9e4My",
+        "column_xhhVWa",
+        "column_BrNE7L",
+        "column_R4dxU4",
+        "column_WytbU6",
+        "column_MqkCPA"
+      ],
+      "settings": {
+        "title": "Made with the finest, scientifically-proven ingredients",
+        "subheading": "",
+        "description": "Hand picked by pet scientists to keep your furry friends happy and healthy",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "enable_desktop_slider": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_W4LTYc": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_hPJQnd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_1_1.png",
+            "title": "Sam & Pogo",
+            "text": "<p><em>Co-Founder\/CEO & Chief Canine Officer<\/em><\/p><p>He's our source of inspiration, the starting point of all ideas, a visionary of the pet space. We’re talking about Pogo, obviously. Sam is pretty cool too.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_aGeUAM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_2_2.png",
+            "title": "Claudia, Chalino & Layla",
+            "text": "<p><em>Customer Services Associate & Lead Food Thieves<\/em><\/p><p>Our customer champion, and the best of listeners who can problem solve in the amount of time it takes Chalino and Layla to hoover a slice of salami. <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_J4pjH8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_4_4.png",
+            "title": "Liz & Darcy",
+            "text": "<p><em>Product Developer & Lead Taste Tester<\/em><\/p><p>From formulating products to dishing out THE BEST training advice,  Liz is the mastermind behind all of our pet wellness products. And Darcy  likes to munch, so you can bet your last Twinkie that she’s the first to try all munchable goodies.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_GR7kFf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_3_3.png",
+            "title": "Misha & Sanson",
+            "text": "<p><em>Lead Developer & Chief Snorer<\/em><\/p><p>Ok we don’t really understand what Misha does. But he makes techy things happen. More importantly, we’re all madly in love with Sanson. And that’s why we keep Misha around.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_i4GnAJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_5_5.png",
+            "title": "Bri, Leo & Maple",
+            "text": "<p><em>Head of Design & Co-Packed Lunch Snatchers<\/em><\/p><p>Bri makes everything pretty, and how could you not with Leo & Maple as inspiration? <\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gnwKri": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_6_6.png",
+            "title": "Oscar & Zucarita",
+            "text": "<p><em>Head of Operations & Resident Wrestler<\/em><\/p><p>Oscar heads up the wonderful team that gets our products to thousands of Wuffes Pack members, but we think Zucarita a little jealous. Not pictured - Zucarita  wrestling Oscar to the ground right after this photo was taken.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MckwdU": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/about_us_team_member_7.png",
+            "title": "Ari & Audrey",
+            "text": "<p><em>Head of Brand & Product & Chief Happiness Officer<\/em><\/p><p>Ari’s responsible for everything you see on this beautiful site (she made us write that), but really she only gets invited to meetings so Audrey will join. Because, have you seen that face?!<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_hPJQnd",
+        "column_aGeUAM",
+        "column_J4pjH8",
+        "column_GR7kFf",
+        "column_i4GnAJ",
+        "column_gnwKri",
+        "column_MckwdU"
+      ],
+      "settings": {
+        "title": "Made by dog people, for dog people",
+        "subheading": "",
+        "description": "Meet a few members of our kick-ass team of pet lovers and experts",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "enable_desktop_slider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
-    "collapsible_content_r69nXR"
+    "collapsible_content_r69nXR",
+    "collapsible_content_CTkbkH",
+    "collapsible_content_MnFDHi",
+    "collapsible_content_7Nt6Xc",
+    "multicolumn_hYBnC3",
+    "multicolumn_iqJeKa",
+    "multicolumn_WbAgfa",
+    "multicolumn_R9kjpU",
+    "multicolumn_WDfAAN",
+    "multicolumn_W4LTYc"
   ]
 }

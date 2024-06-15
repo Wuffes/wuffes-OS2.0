@@ -36,6 +36,15 @@
           {%- else -%}
             <h2 class="visually-hidden">{{ 'accessibility.collapsible_content_title' | t }}</h2>
           {% endif %}
+
+          {%- if section.settings.description != blank -%}
+            <p
+              class="collapsible-content__description"
+              style="color: {{ section.settings.color_scheme.settings.text }}"
+            >
+              {{ section.settings.description }}
+            </p>
+          {% endif %}
         </div>
         <div class="grid grid--1-col grid--2-col-tablet collapsible-content__grid{% if section.settings.desktop_layout == 'image_second' %} collapsible-content__grid--reverse{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {%- if section.settings.image != blank -%}
@@ -72,7 +81,7 @@
           <div class="grid__item">
             {%- for block in section.blocks -%}
               <div
-                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}"
+                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %} {% if section.settings.include_items_border %}accordion_item_border{% endif %}"
                 {{ block.shopify_attributes }}
               >
                 <details
@@ -83,18 +92,59 @@
                 >
                   <summary id="Summary-{{ block.id }}-{{ section.id }}">
                     {% render 'icon-accordion', icon: block.settings.icon %}
-                    <h3 class="accordion__title inline-richtext h4">
-                      {{ block.settings.heading | default: block.settings.page.title | escape }}
-                    </h3>
-                    {% render 'icon-caret' %}
+                    {%- if section.settings.include_items_border -%}
+                      <p
+                        class="inline-richtext inline-richtext_with_border"
+                        style="color: {{ section.settings.color_scheme.settings.text }}"
+                      >
+                        {{ block.settings.heading | default: block.settings.page.title | escape }}
+                      </p>
+                    {%- else -%}
+                      <h3 class="accordion__title inline-richtext h4">
+                        {{ block.settings.heading | default: block.settings.page.title | escape }}
+                      </h3>
+                    {% endif %}
+
+                    {% render 'icon-collapsible-plus' %}
                   </summary>
                   <div
                     class="accordion__content rte"
                     id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
                     role="region"
                     aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
+                    style="color: {{ section.settings.color_scheme.settings.text }}"
                   >
                     {{ block.settings.row_content }}
+                    {%- if section.settings.include_items_border and block.settings.img_content != blank -%}
+                      <img
+                        src="{{ block.settings.img_content | img_url: "600x600" }}"
+                        alt=""
+                        width="600"
+                        height="600"
+                        loading="lazy"
+                      >
+                    {%- elsif block.settings.img_content != blank -%}
+                      <img
+                        src="{{ block.settings.img_content | img_url: "345x345" }}"
+                        alt=""
+                        width="345"
+                        height="345"
+                        loading="lazy"
+                      >
+                    {%- endif -%}
+
+                    {%- if block.settings.img_author != blank -%}
+                      <div class="accordion__content_author">
+                        <img
+                          src="{{ block.settings.img_author | img_url: "54x54" }}"
+                          alt=""
+                          width="54"
+                          height="54"
+                          loading="lazy"
+                        >
+                        <p>{{ block.settings.author_name }}</p>
+                      </div>
+                    {% endif %}
                     {{ block.settings.page.content }}
                   </div>
                 </details>
@@ -102,11 +152,6 @@
             {%- endfor -%}
           </div>
         </div>
-        {%- if section.settings.collapsible_button_link != blank -%}
-          <a href="{{ section.settings.collapsible_button_link }}" class="button">
-            {{ section.settings.collapsible_button }}
-          </a>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -131,6 +176,11 @@
       "id": "heading",
       "label": "t:sections.collapsible_content.settings.heading.label",
       "default": "Collapsible content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description"
     },
     {
       "type": "select",
@@ -191,6 +241,12 @@
         }
       ],
       "default": "none"
+    },
+    {
+      "type": "checkbox",
+      "id": "include_items_border",
+      "default": false,
+      "label": "Items Border"
     },
     {
       "type": "color_scheme",
@@ -280,17 +336,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    },
-    {
-      "type": "text",
-      "id": "collapsible_button",
-      "label": "Section Button",
-      "default": "Shop now"
-    },
-    {
-      "type": "url",
-      "id": "collapsible_button_link",
-      "label": "Button Link"
     }
   ],
   "blocks": [
@@ -484,6 +529,10 @@
             {
               "value": "washing",
               "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.icon.options__44.label"
+            },
+            {
+              "value": "check",
+              "label": "Check Icon"
             }
           ],
           "default": "check_mark",
@@ -493,6 +542,21 @@
           "type": "richtext",
           "id": "row_content",
           "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "img_content",
+          "label": "Content Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "img_author",
+          "label": "Author Image"
+        },
+        {
+          "type": "richtext",
+          "id": "author_name",
+          "label": "Author Name"
         },
         {
           "type": "page",
