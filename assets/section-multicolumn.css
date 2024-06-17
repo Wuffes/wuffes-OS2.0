@@ -2,6 +2,59 @@
   margin: 0;
 }
 
+.multicolumn__title h2,
+.multicolumn__title h4,
+.multicolumn__title p {
+  display: block;
+  width: 100%;
+}
+
+.multicolumn .page-width.full-width {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: 375px) {
+  .multicolumn .page-width.full-width {
+    max-width: 50.4rem
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .multicolumn .page-width.full-width {
+    max-width: 70.2rem
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .multicolumn .page-width.full-width {
+    max-width: 90.6rem
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .multicolumn .page-width.full-width {
+    max-width: 10.2rem
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .multicolumn-list.slider--desktop .slider__slide:first-child {
+    margin-left: 0;
+  }
+
+  .multicolumn-list.slider--desktop:after {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .multicolumn .page-width.full-width {
+    max-width: 160.8rem
+  }
+}
+
 .multicolumn.no-heading .title {
   display: none;
 }
