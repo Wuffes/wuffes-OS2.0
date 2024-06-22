@@ -15,6 +15,9 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+  - product_featured_image: {File} can use the custom value from the metafield "card_product.metafields.os2.listing_image.value"
+  - card_benefits: {JSON} uses the custom value from the metafield card_product.metafields.os2.listing_benefits.value
+  - benefit_icon: {string} Benefit icon name. Value is taken from the "card_benefits" JSON obj
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
