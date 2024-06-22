@@ -38,13 +38,13 @@
             {%- if block.type == 'heading' and block.settings.left_heading -%}
               <div
                 class="image-with-text__decoration"
+                {{ block.shopify_attributes }}
               >
                 <h2
                   class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }}"
                   {% if block.settings.no_margins %}
                     style="margin: 0;"
                   {% endif %}
-                  {{ block.shopify_attributes }}
                 >
                   {{ block.settings.heading }}
                 </h2>
@@ -82,13 +82,22 @@
                 {{
                   section.settings.image
                   | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, style: border_radius
+                  | image_tag:
+                    sizes: sizes,
+                    widths: widths,
+                    fetchpriority: fetch_priority,
+                    style: border_radius,
+                    class: 'image-with-text__media_image'
                 }}
               {% else %}
                 {{
                   section.settings.image
                   | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+                  | image_tag:
+                    sizes: sizes,
+                    widths: widths,
+                    fetchpriority: fetch_priority,
+                    class: 'image-with-text__media_image'
                 }}
               {% endif %}
             {%- else -%}

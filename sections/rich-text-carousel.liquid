@@ -20,7 +20,6 @@
   }
 {%- endstyle -%}
 
-{%- assign widths = '165' -%}
 {%- capture sizes -%}
   (min-width: {{ settings.page_width }}px) 160px,
   (min-width: 750px) 160px
@@ -62,11 +61,7 @@
                 {{ block.settings.text }}
               {% endif %}
               {% if block.settings.image %}
-                {{
-                  block.settings.image
-                  | image_url: width: 160
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
-                }}
+                {{ block.settings.image | image_url: width: 480 | image_tag: sizes: sizes, widths: '160, 320, 480' }}
               {% endif %}
             </div>
           {%- endfor -%}
@@ -91,6 +86,7 @@
                     class="slider-counter__link slider-counter__link--dots link"
                     aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                     aria-controls="Slider-{{ section.id }}"
+                    {{ block.shopify_attributes }}
                   >
                     <span class="dot"></span>
                   </button>

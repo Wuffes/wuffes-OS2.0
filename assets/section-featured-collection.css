@@ -7,8 +7,6 @@
   text-align: center;
 }
 
-
-
 @media screen and (min-width: 990px) {
   .card-decription {
     font-size: 14px;
@@ -89,9 +87,19 @@
 }
 
 .card-benefits__title {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
   margin-top: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .card-benefits__title {
+    font-size: 14px;
+  }
+
+  .contains-card--product {
+    padding-right: 2px;
+  }
 }
 
 .card-benefits__text {

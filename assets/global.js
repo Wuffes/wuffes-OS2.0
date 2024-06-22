@@ -945,7 +945,6 @@ class SlideshowComponent extends SliderComponent {
 
   linkToSlide(event) {
     event.preventDefault();
-    console.log("clicked - " +this.slider)
     const slideScrollPosition =
       this.slider.scrollLeft +
       this.sliderFirstItemNode.clientWidth *
