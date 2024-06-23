@@ -42,13 +42,10 @@
   }
 
   .featured-collection--slider-buttons {
-    position: absolute;
-    top: 50%;
-    left: -3.5rem;
-    right: -3.5rem;
-    justify-content: space-between;
-    z-index: -1;
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
   .featured-collection_slider-button--next svg {
@@ -56,25 +53,39 @@
   }
 }
 
-
-
 @media screen and (min-width: 750px) {
-  .section-featured-collection .featured-collection--slider-buttons {
-    display: flex;
+  .section-featured-collection {
+    .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item {
+      width: calc((100% - var(--grid-mobile-horizontal-spacing) - 3rem) / 2);
+    }
   }
 }
 
 @media screen and (min-width: 990px) {
   .section-featured-collection {
-    .featured-collection--slider--desktop.grid--4-col-desktop .grid__item {
-      /* width: 25% !important; */
-    }
 
     .featured-collection--slider--desktop .slider__slide:first-child {
       margin-left: 0 !important;
     }
 
+    .featured-collection--slider-buttons {
+      position: absolute;
+      top: 50%;
+      left: -0.5rem;
+      right: -0.5rem;
+      justify-content: space-between;
+      z-index: 1;
+      display: flex;
+    }
   }
+}
+
+@media screen and (min-width: 1400px) {
+  .section-featured-collection .featured-collection--slider-buttons {
+      left: -3.5rem;
+      right: -3.5rem;
+      z-index: -1;
+    }
 }
 
 .card-benefits {

@@ -123,7 +123,7 @@
                 {%- when 'heading' -%}
                   {% unless block.settings.left_heading %}
                     <h2
-                      class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
+                      class="image-with-text__heading inline-richtext {{ block.settings.heading_size }} {% if block.settings.mobile_centered %}centered-mobile-only{% endif %}"
                       {% if block.settings.no_margins %}
                         style="margin: 0;"
                       {% endif %}
@@ -175,10 +175,10 @@
                             {{ block.settings.title | escape }}
                           </h3>
                           <span class="icon-plus">
-                            {% render 'icon-plus-circle' %}
+                            {% render 'icon-plus-circle', class: 'image-with-text__accordion-icon' %}
                           </span>
                           <span class="icon-minus">
-                            {% render 'icon-minus-circle' %}
+                            {% render 'icon-minus-circle', class: 'image-with-text__accordion-icon' %}
                           </span>
                         </summary>
                         <div
@@ -490,6 +490,12 @@
           "id": "heading",
           "default": "Image with text",
           "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "mobile_centered",
+          "default": false,
+          "label": "Centered on mobile"
         },
         {
           "type": "select",
