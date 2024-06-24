@@ -9,10 +9,69 @@
   width: 100%;
 }
 
+.slider-counter.caption {
+  display: none;
+}
+
+slider-component.slider-component-desktop {
+  --desktop-margin-left-first-item: 0;
+}
+
+.multicolumn-card--description {
+  max-height: 1px;
+  opacity: 0;
+}
+
+input.multicolumn-card--input {
+  display: none;
+}
+
+input.multicolumn-card--input:checked~.multicolumn-card--description {
+  max-height: 100%;
+  opacity: 1;
+}
+
+.multicolumn-card--heading {
+
+}
+
+.multicolumn-card--heading:hover {
+  cursor: pointer;
+  color: rgb(30,189,154);
+}
+
+input.multicolumn-card--input:checked~.multicolumn-card--heading {
+  display: none;
+}
+
+.multicolumn-card--additional-description {
+  margin-top: 20px;
+}
+
+.multicolumn-card--heading {
+  text-decoration: underline;
+  color: rgb(16,87,80);
+}
+
+.icon-slider-arrow {
+  height: 49px;
+  width: 49px;
+}
+
 .multicolumn .page-width.full-width {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
+}
+.enable_slide_border_radius {
+  border: 1px solid #000000;
+  border-radius: 6px;
+}
+.media_border {
+  border: 1px solid #000000;
+}
+.media_border_radius {
+  border-radius: 6px;
 }
 
 @media screen and (min-width: 375px) {
@@ -31,6 +90,31 @@
   .multicolumn .page-width.full-width {
     max-width: 90.6rem
   }
+
+
+  slider-component {
+    position: relative;
+  }
+
+  .slider-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+  .slider-button--prev {
+    position: absolute;
+    left: -50px;
+  }
+  .slider-button--next {
+    position: absolute;
+    right: -50px;
+  }
+/*
+  .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item {
+    width: calc((100% - var(--grid-mobile-horizontal-spacing) - 3rem) / 3);
+  } */
 }
 
 @media screen and (min-width: 992px) {
@@ -127,8 +211,7 @@
 }
 
 .multicolumn.background-primary .multicolumn-card {
-  background: rgb(var(--color-background))
-    linear-gradient(rgba(var(--color-foreground), 0.04), rgba(var(--color-foreground), 0.04));
+  background: #fff;
 }
 
 .multicolumn-list h3 {

@@ -47,12 +47,12 @@
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.subheading != blank -%}
-          <h4>
+          <h4 style="color: {{ section.settings.color_scheme.settings.text }}">
             {{- section.settings.subheading -}}
           </h4>
         {%- endif -%}
         {%- if section.settings.description != blank -%}
-          <p>
+          <p style="color: {{ section.settings.color_scheme.settings.text }}">
             {{- section.settings.description -}}
           </p>
         {%- endif -%}
@@ -96,7 +96,7 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container">
+            <div class="multicolumn-card content-container {% if section.settings.enable_slide_border_radius %} enable_slide_border_radius {% endif %}">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
@@ -105,13 +105,9 @@
                   class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}"
                 >
                   <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
+                    class="media media--transparent media--{{ section.settings.image_ratio }}{% if section.settings.enable_border_radius %} media_border_radius {% endif %}{% if section.settings.enable_border %} media_border {% endif %}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
-                    {% endif %}
-
-                    {% if section.settings.enable_border_radius %}
-                      style="border-radius: 7px;"
                     {% endif %}
                   >
                     {%- liquid
@@ -147,10 +143,37 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext test-{{ forloop.index }}">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="rte">{{ block.settings.text }}</div>
+                  <div
+                    class="rte test-{{ forloop.index }}"
+                    style="color: {{ section.settings.color_scheme.settings.text }}"
+                  >
+                    {{ block.settings.text }}
+
+                    {%- if block.settings.enable_hidden_description -%}
+                      <input
+                        class="multicolumn-card--input"
+                        id="multicolumn-input-trigger-{{ forloop.index }}"
+                        type="checkbox"
+                      >
+                      <label
+                        for="multicolumn-input-trigger-{{ forloop.index }}"
+                        href="#"
+                        class="multicolumn-card--heading"
+                      >
+                        Read More
+                      </label>
+
+                      <div class="multicolumn-card--description">{{ block.settings.hidden_description }}</div>
+                    {%- endif -%}
+                    {%- if block.settings.additional_description != blank -%}
+                      <div class="multicolumn-card--additional-description">
+                        {{ block.settings.additional_description }}
+                      </div>
+                    {%- endif -%}
+                  </div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
                   <a
@@ -307,6 +330,12 @@
       ],
       "default": "full",
       "label": "t:sections.multicolumn.settings.image_width.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_border_radius",
+      "default": false,
+      "label": "Enable border radius for slide"
     },
     {
       "type": "checkbox",
@@ -508,6 +537,23 @@
           "id": "text",
           "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
           "label": "t:sections.multicolumn.blocks.column.settings.text.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_hidden_description",
+          "default": false,
+          "label": "Enable hidden description"
+        },
+        {
+          "type": "richtext",
+          "id": "hidden_description",
+          "default": "<p>Hidden description</p>",
+          "label": "Hidden description"
+        },
+        {
+          "type": "richtext",
+          "id": "additional_description",
+          "label": "Additional description"
         },
         {
           "type": "text",

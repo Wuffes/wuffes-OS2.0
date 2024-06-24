@@ -13,6 +13,8 @@
   border-bottom: 0;
 }
 
+
+
 .collapsible-content .accordion .icon-accordion {
   width: 2.4rem;
   height: 2.4rem;
@@ -24,6 +26,14 @@
 
 .collapsible-content .accordion__content {
   padding: 1rem 4rem 2.5rem;
+}
+
+.collapsible-content .accordion__content a{
+  color: rgb(23,68,61);
+}
+
+.collapsible-content .accordion__content a:hover{
+  color: rgb(0,108,91);
 }
 
 .accordion_item_border .accordion__content.rte {

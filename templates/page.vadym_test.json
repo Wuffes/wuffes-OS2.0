@@ -410,6 +410,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon_90_Day.svg",
             "title": "",
             "text": "<p>Made in the USA*<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -420,6 +423,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon_3rd_party_batch_1b128c8d-168d-48a5-8e73-3c6a4aada7c3.svg",
             "title": "",
             "text": "<p>Batch Tested<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -430,6 +436,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon_no_artifial.svg",
             "title": "",
             "text": "<p>No Artificial Colors or Flavors<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -440,6 +449,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon_no_wheat.svg",
             "title": "",
             "text": "<p>GMO, Hormone & Antibiotic free<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -450,6 +462,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon__GMP.svg",
             "title": "",
             "text": "<p>GMP\/SQF Certified<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -460,6 +475,9 @@
             "image": "shopify:\/\/shop_images\/multicolumn_icon__FDA.svg",
             "title": "",
             "text": "<p>In line with FDA CVM Guidelines<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -481,6 +499,7 @@
         "heading_size": "h1",
         "full_width": false,
         "image_width": "half",
+        "enable_slide_border_radius": false,
         "enable_border_radius": false,
         "enable_border": false,
         "image_ratio": "adapt",
@@ -507,6 +526,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_90_Day.svg",
             "title": "",
             "text": "<p>Made in the USA*<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -517,6 +539,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_3rd_party_batch.svg",
             "title": "",
             "text": "<p>Batch Tested<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -527,6 +552,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_no_artifial.svg",
             "title": "",
             "text": "<p>No Artificial Colors or Flavors<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -537,6 +565,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon_no_wheat.svg",
             "title": "",
             "text": "<p>GMO, Hormone & Antibiotic free<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -547,6 +578,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon__GMP.svg",
             "title": "",
             "text": "<p>GMP\/SQF Certified<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -557,6 +591,9 @@
             "image": "shopify:\/\/shop_images\/inverted_multicolumn_icon__FDA.svg",
             "title": "",
             "text": "<p>In line with FDA CVM Guidelines<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -578,6 +615,7 @@
         "heading_size": "h0",
         "full_width": false,
         "image_width": "half",
+        "enable_slide_border_radius": false,
         "enable_border_radius": false,
         "enable_border": false,
         "image_ratio": "circle",
@@ -604,6 +642,9 @@
             "image": "shopify:\/\/shop_images\/about_us_2_0_icon_1.svg",
             "title": "<strong>Scientifically-backed ingredients<\/strong>",
             "text": "",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -614,6 +655,9 @@
             "image": "shopify:\/\/shop_images\/about_us_2_0_icon_2.svg",
             "title": "<strong>Made & sourced by our in-house pet scientists<\/strong>",
             "text": "",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -624,6 +668,9 @@
             "image": "shopify:\/\/shop_images\/about_us_2_0_icon_3.svg",
             "title": "<strong>Trusted by over 300k pets<\/strong>",
             "text": "",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -634,6 +681,9 @@
             "image": "shopify:\/\/shop_images\/about_us_2_0_icon_4.svg",
             "title": "<strong>Tried & tested by fellow pet parents<\/strong>",
             "text": "",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -653,6 +703,7 @@
         "heading_size": "h0",
         "full_width": false,
         "image_width": "third",
+        "enable_slide_border_radius": false,
         "enable_border_radius": false,
         "enable_border": false,
         "image_ratio": "adapt",
@@ -679,6 +730,9 @@
             "image": "shopify:\/\/shop_images\/about_manufacturing_1_2.png",
             "title": "<strong>Where science meets love<\/strong>",
             "text": "<p>We’re proud to work with state of the art facilities and research & development labs, led by vets and expert pet scientists.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -689,6 +743,9 @@
             "image": "shopify:\/\/shop_images\/about_manufacturing_2_1.png",
             "title": "<strong>GMP\/SQF Certified<\/strong>",
             "text": "<p>Our Advanced Hip & Joint Support and 23-in-1 Multivitamin chews are made at a Good Manufacturing Practices certified and SQF audited facility. This means that our products are subjected to rigorous GMP and SQF quality standards to ensure that your pet receives the best possible product.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -699,6 +756,9 @@
             "image": "shopify:\/\/shop_images\/reskin_about_us_slide_01.png",
             "title": "<strong>In line with FDA CVM Guidelines<\/strong>",
             "text": "<p>Wuffes complies with all stipulations of the Center for Veterinary Medicine’s national guidelines for pet dietary supplements.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -709,6 +769,9 @@
             "image": "shopify:\/\/shop_images\/reskin_about_us_slide_02.png",
             "title": "<strong>Quality Control<\/strong>",
             "text": "<p>All our products go through strict manual safety checks before they’re packaged to make sure our furry friends are getting the absolute best.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -728,7 +791,8 @@
         "heading_size": "h0",
         "full_width": true,
         "image_width": "full",
-        "enable_border_radius": false,
+        "enable_slide_border_radius": false,
+        "enable_border_radius": true,
         "enable_border": true,
         "image_ratio": "adapt",
         "columns_desktop": 4,
@@ -753,7 +817,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Glucosamine.png",
             "title": "Glucosamine",
-            "text": "<p>A key natural compound in the body, Glucosamine is crucial for building tendons, ligaments, cartilage, and synovial fluid. As a supplement, it reduces inflammation, preserves healthy synovial fluid, enhances mobility, and <a href=\"#\">Read More<\/a> alleviates discomfort. Particularly vital for dogs with conditions like Osteoarthritis, as decreased natural Glucosamine production can lead to cartilage degeneration over time.<\/p><p><\/p><p><strong>Great for - cartilage, inflammation, mobility<br\/>                <\/strong><br\/>                  <br\/>                <\/p>",
+            "text": "<p>A key natural compound in the body, Glucosamine is crucial for building tendons, ligaments, cartilage, and synovial fluid. As a supplement, it reduces inflammation, preserves healthy synovial fluid, enhances mobility, and<\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p>alleviates discomfort. Particularly vital for dogs with conditions like Osteoarthritis, as decreased natural Glucosamine production can lead to cartilage degeneration over time.<\/p>",
+            "additional_description": "<p><strong>Great for - cartilage, inflammation, mobility<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -763,7 +830,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_MSM.png",
             "title": "MSM",
-            "text": "<p>Methylsulfonylmethane (try say that 3 times in a row!) is a compound that is naturally produced by the body but can also be found in many fresh foods. It helps improve blood flow to the <a href=\"#\">Read More<\/a><\/p><p>affected joints and can reduce pain & inflammation.<\/p><p><\/p><p><strong>Great for - blood flow, pain, inflammation<\/strong><br\/>                <\/p>",
+            "text": "<p>Methylsulfonylmethane (try say that 3 times in a row!) is a compound that is naturally produced by the body but can also be found in many fresh foods. It helps improve blood flow to the<\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p>affected joints and can reduce pain & inflammation.<\/p>",
+            "additional_description": "<p><strong>Great for - blood flow, pain, inflammation<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -773,7 +843,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Green_Lipped.png",
             "title": "ColumnGreen-Lipped MusselsGreen-Lipped Mussels",
-            "text": "<p>Natural powerhouses, Green-Lipped Mussels are rich in Glucosamine, Chondroitin and Vitamins C & E, as well as antioxidants & minerals like Copper, Zinc & Selenium. They’re not only vital to keep your pup’s <a href=\"#\">Read More<\/a><\/p><p>joints healthy, but also act as a natural anti-inflammatory! Need we say more?<br\/><\/p><p><\/p><p><strong>Great for - pain, inflammation, immune system<\/strong><br\/>                <\/p>",
+            "text": "<p>Natural powerhouses, Green-Lipped Mussels are rich in Glucosamine, Chondroitin and Vitamins C & E, as well as antioxidants & minerals like Copper, Zinc & Selenium. They’re not only vital to keep your pup’s       <\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p>joints healthy, but also act as a natural anti-inflammatory! Need we say more?<\/p>",
+            "additional_description": "<p><strong>Great for - pain, inflammation, immune system<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -783,7 +856,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Chondroitin_Sulfate.png",
             "title": "Chondroitin",
-            "text": "<p>Naturally produced in the body, supplements with Chondroitin can help reduce inflammation & the destruction of cartilage, as well as stimulate the production of Collagen and Hyaluronic Acid.<\/p><p><\/p><p><strong> Great for - inflammation, cartilage, collagen production<\/strong><br\/>                <\/p>",
+            "text": "<p>Naturally produced in the body, supplements with Chondroitin can help reduce inflammation & the destruction of cartilage, as well as stimulate the production of Collagen and Hyaluronic Acid.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "<p><strong> Great for - inflammation, cartilage, collagen production<\/strong><br\/>                <\/p>",
             "link_label": "",
             "link": ""
           }
@@ -793,7 +869,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Hyaluronic_Acid_reskin.png",
             "title": "Hyaluronic Acid",
-            "text": "<p>Hyaluronic Acid is naturally produced in the joint cavity in order to help lubricate the joints, making it easier to move. Using a supplement with Hyaluronic Acid can <a href=\"#\">Read More<\/a>  help replace lubrication in the joints that is typically lost in degenerative joint disease.<\/p><p><\/p><p><strong>Great for - joint lubrication, mobility, arthritis<\/strong><br\/>                <br\/>                  <br\/>                <\/p>",
+            "text": "<p>Hyaluronic Acid is naturally produced in the joint cavity in order to help lubricate the joints, making it easier to move. Using a supplement with Hyaluronic Acid can<\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p>help replace lubrication in the joints that is typically lost in degenerative joint disease.<\/p><p><\/p>",
+            "additional_description": "<p><strong>Great for - joint lubrication, mobility, arthritis<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -803,7 +882,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Vit_C.png",
             "title": "Vitamin C",
-            "text": "<p>Helps with the absorption of Glucosamine, which helps improve its efficacy.<\/p><p><\/p><p><strong>Great for - optimal absorption, immune system<\/strong><br\/>                <\/p>",
+            "text": "<p>Helps with the absorption of Glucosamine, which helps improve its efficacy.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "<p><strong>Great for - optimal absorption, immune system<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -813,7 +895,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Omega_3.png",
             "title": "Omega 3s",
-            "text": "<p>Derived from pure Wild Alaskan Salmon Oil, Omega 3 fatty acids are important for keeping joints soft & nimble, as well as for overall health <a href=\"#\">Read More<\/a><\/p><p> & wellbeing. They help reduce joint inflammation by supporting the immune system.<\/p><p><\/p><p><strong> Great for - inflammation, immune system, overall health<\/strong><br\/>                <\/p>",
+            "text": "<p>Derived from pure Wild Alaskan Salmon Oil, Omega 3 fatty acids are important for keeping joints soft & nimble, as well as for overall health<\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p> & wellbeing. They help reduce joint inflammation by supporting the immune system.<\/p>",
+            "additional_description": "<p><strong>Great for - inflammation, immune system, overall health<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -823,7 +908,10 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/JC_lb_ingredients_Yucca_reskin.png",
             "title": "Yucca Schidigera",
-            "text": "<p>A medicinal plant native to Mexico, Yucca is packed with antioxidants that help reduce <a href=\"#\">Read More<\/a><\/p><p>joint inflammation. It not only relieves symptoms of pain and discomfort.<\/p><p><\/p><p><strong>Great for - pain, inflammation<\/strong><br\/>                <\/p>",
+            "text": "<p>A medicinal plant native to Mexico, Yucca is packed with antioxidants that help reduce<\/p>",
+            "enable_hidden_description": true,
+            "hidden_description": "<p>joint inflammation. It not only relieves symptoms of pain and discomfort.<\/p>",
+            "additional_description": "<p><strong>Great for - pain, inflammation<\/strong><\/p>",
             "link_label": "",
             "link": ""
           }
@@ -847,6 +935,7 @@
         "heading_size": "h0",
         "full_width": false,
         "image_width": "full",
+        "enable_slide_border_radius": false,
         "enable_border_radius": false,
         "enable_border": false,
         "image_ratio": "adapt",
@@ -859,7 +948,7 @@
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "enable_desktop_slider": true,
-        "icon": "arrow_light_green_bg",
+        "icon": "arrow_without_bg",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -873,6 +962,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_1_1.png",
             "title": "Sam & Pogo",
             "text": "<p><em>Co-Founder\/CEO & Chief Canine Officer<\/em><\/p><p>He's our source of inspiration, the starting point of all ideas, a visionary of the pet space. We’re talking about Pogo, obviously. Sam is pretty cool too.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -883,6 +975,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_2_2.png",
             "title": "Claudia, Chalino & Layla",
             "text": "<p><em>Customer Services Associate & Lead Food Thieves<\/em><\/p><p>Our customer champion, and the best of listeners who can problem solve in the amount of time it takes Chalino and Layla to hoover a slice of salami. <\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -893,6 +988,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_4_4.png",
             "title": "Liz & Darcy",
             "text": "<p><em>Product Developer & Lead Taste Tester<\/em><\/p><p>From formulating products to dishing out THE BEST training advice,  Liz is the mastermind behind all of our pet wellness products. And Darcy  likes to munch, so you can bet your last Twinkie that she’s the first to try all munchable goodies.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -903,6 +1001,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_3_3.png",
             "title": "Misha & Sanson",
             "text": "<p><em>Lead Developer & Chief Snorer<\/em><\/p><p>Ok we don’t really understand what Misha does. But he makes techy things happen. More importantly, we’re all madly in love with Sanson. And that’s why we keep Misha around.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -913,6 +1014,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_5_5.png",
             "title": "Bri, Leo & Maple",
             "text": "<p><em>Head of Design & Co-Packed Lunch Snatchers<\/em><\/p><p>Bri makes everything pretty, and how could you not with Leo & Maple as inspiration? <\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -923,6 +1027,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_6_6.png",
             "title": "Oscar & Zucarita",
             "text": "<p><em>Head of Operations & Resident Wrestler<\/em><\/p><p>Oscar heads up the wonderful team that gets our products to thousands of Wuffes Pack members, but we think Zucarita a little jealous. Not pictured - Zucarita  wrestling Oscar to the ground right after this photo was taken.<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -933,6 +1040,9 @@
             "image": "shopify:\/\/shop_images\/about_us_team_member_7.png",
             "title": "Ari & Audrey",
             "text": "<p><em>Head of Brand & Product & Chief Happiness Officer<\/em><\/p><p>Ari’s responsible for everything you see on this beautiful site (she made us write that), but really she only gets invited to meetings so Audrey will join. Because, have you seen that face?!<\/p>",
+            "enable_hidden_description": false,
+            "hidden_description": "<p>Hidden description<\/p>",
+            "additional_description": "",
             "link_label": "",
             "link": ""
           }
@@ -955,6 +1065,7 @@
         "heading_size": "h0",
         "full_width": false,
         "image_width": "full",
+        "enable_slide_border_radius": true,
         "enable_border_radius": false,
         "enable_border": false,
         "image_ratio": "adapt",
