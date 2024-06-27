@@ -22,7 +22,7 @@
 }
 
 .header--wrapper--inner {
-  max-width: 1200px;
+  max-width: var(--page-width);
   height: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -61,19 +61,19 @@ a.menu-drawer-close {
 }
 
 .header__icon--menu-close {
-  height: 34px;
-  width: 34px;
+  height: 3.4rem;
+  width: 3.4rem;
   border-radius: 50%;
   background: rgb(var(--color-foreground));
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 1rem;
+  top: 1rem;
   z-index: 999;
 }
 
 .header__icon--menu-close .icon-close {
-  width: 14px;
-  height: 14px;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 .header__icon--menu-close .icon-close > path {
@@ -82,7 +82,7 @@ a.menu-drawer-close {
 
 .header__icons--info {
   display: none;
-  margin: 0 15px 0 0;
+  margin: 0 1.5rem 0 0;
 }
 
 @media screen and (max-width: 749px) {
@@ -114,10 +114,9 @@ a.menu-drawer-close {
   }
 }
 
-
 @media screen and (max-width: 989px) {
   .header--wrapper {
-    height: 50px;
+    height: 5rem;
   }
 
   .header--col_desktop-search {
@@ -125,17 +124,17 @@ a.menu-drawer-close {
   }
 
   .header__heading-logo {
-    max-width: 110px;
+    max-width: 11rem;
   }
 
   .header__icon .icon {
-    width: 18px;
-    height: 18px;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .header__icon .icon.icon-account {
-    width: 19px;
-    height: 19px;
+    width: 1.9rem;
+    height: 1.9rem;
   }
 
   .header--col_desktop-search {
@@ -144,14 +143,14 @@ a.menu-drawer-close {
 }
 
 .desktop-search--submit {
-  width: 14px;
-  height: 14px;
+  width: 1.4rem;
+  height: 1.4rem;
   padding: 0;
   display: none;
   background: none;
   border: none;
   position: absolute;
-  right: 1px;
+  right: 0.1rem;
   top: 0;
   appearance: none;
   cursor: pointer;
@@ -165,7 +164,7 @@ a.menu-drawer-close {
 
 @media screen and (min-width: 990px) {
   .header--wrapper {
-    height: 70px;
+    height: 7rem;
   }
 
   .header--top-center .header__search {
@@ -175,7 +174,7 @@ a.menu-drawer-close {
   .header--col_desktop-search {
     display: block;
     width: auto;
-    height: 20px;
+    height: 2rem;
     margin: 0 0 0 1.5rem;
     border-bottom: 2px solid rgb(var(--color-button));
     position: relative;
@@ -183,7 +182,7 @@ a.menu-drawer-close {
 
   .desktop-search--link {
     display: block;
-    font-size: 1.5rem;
+    font-size: calc(var(--font-body-scale) * 1.5rem);
     line-height: 1.2;
     color: rgb(var(--color-foreground));
     text-decoration: none;
@@ -201,7 +200,7 @@ a.menu-drawer-close {
     color: rgb(var(--color-foreground));
     border: none;
     outline: none;
-    font-size: 1.5rem;
+    font-size: calc(var(--font-body-scale) * 1.5rem);
     -webkit-appearance: none;
     appearance: none;
     -webkit-border-radius: 0;
@@ -220,8 +219,8 @@ a.menu-drawer-close {
   }
 
   .header__icon .icon:not(.icon-close) {
-    width: 22px;
-    height: 22px;
+    width: 2.2rem;
+    height: 2.2rem;
   }
 
   .header__icons--info {

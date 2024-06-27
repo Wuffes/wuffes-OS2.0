@@ -1,7 +1,7 @@
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 .footer:not(.color-scheme-1) {
@@ -9,7 +9,7 @@
 }
 
 .footer__content {
-  max-width: 1200px;
+  max-width: var(--page-width);
 
   margin: 0 auto;
   padding: 0;
@@ -49,10 +49,9 @@
     margin-bottom: 0;
   }
 
-
   .footer-block.grid__item {
     padding: 0;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     width: 100%;
   }
 
@@ -62,15 +61,15 @@
 
   .footer-block.grid__item:last-child {
     margin-bottom: 0;
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
   .footer__content-top {
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
     padding-left: calc(5rem / var(--font-body-scale));
     padding-right: calc(5rem / var(--font-body-scale));
-    margin-right: -15px;
-    margin-left: -15px;
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
   }
 
   .footer-block__mobile-alignment--center .footer-block__details-content {
@@ -128,7 +127,6 @@
   color: rgb(var(--color-foreground));
 }
 
-
 @media screen and (max-width: 749px) {
   .footer__content-bottom {
     flex-wrap: wrap;
@@ -153,9 +151,8 @@
   .footer__content-bottom-col.rte > p,
   .footer__content-bottom-col li {
     text-align: center;
-    font-size: 1.4rem;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
   }
-
 }
 
 @media screen and (min-width: 750px) {
@@ -173,7 +170,7 @@
 
   .footer__content-bottom-col.rte > p,
   .footer__content-bottom-col .list-menu__item-policy {
-    font-size: 1.8rem;
+    font-size: calc(var(--font-body-scale) * 1.8rem);
     line-height: 2.5rem;
   }
 
@@ -182,7 +179,7 @@
   }
 
   .footer__content-bottom-col li:not(:first-child) {
-    padding-top: 3px;
+    padding-top: 0.3rem;
   }
 }
 
@@ -275,16 +272,15 @@
 }
 
 .footer-block__heading > .icon {
-  width: 18px;
+  width: 1.8rem;
   height: auto;
-  margin-right: 5px;
-
-  fill: rgb(var(--color-button));
+  margin-right: 0.5rem;
+  color: rgb(var(--color-button));
 }
 
 .footer-block__heading > a {
   text-decoration: none;
-  transition: .2s color ease-in-out;
+  transition: 0.2s color ease-in-out;
 }
 
 .footer-block__heading > a:hover {
@@ -292,7 +288,7 @@
 }
 
 .footer-block__heading.inline-richtext {
-  line-height: calc(1 + .3/max(1,var(--font-heading-scale)));
+  line-height: calc(1 + 0.3 / max (1, var(--font-heading-scale)));
 }
 
 @media screen and (min-width: 990px) {
@@ -467,11 +463,12 @@
 }
 
 .footer-block__details-content.logo > .list-social {
-  gap: 20px;
+  gap: 2rem;
 }
 
 .footer-block__details-content.logo .list-social__link {
   padding: 6px;
+  color: rgb(241, 253, 240);
 }
 
 .footer-block__details-content.logo .list-social__link:hover > .icon {
@@ -480,16 +477,14 @@
 
 .footer-block__details-content.logo .list-social__link:hover > .icon > path {
   fill: rgb(var(--color-button));
-  transition: .2s fill ease-in-out;
+  transition: 0.2s fill ease-in-out;
 }
-
 
 @media screen and (max-width: 749px) {
   .footer__footer-logo {
-    width: 110px
+    width: 11rem;
   }
 }
-
 
 @media screen and (min-width: 750px) {
   .footer-block__details-content {
@@ -513,15 +508,13 @@
   .footer-block__details-content > li:not(:last-child) {
     margin-right: 1.5rem;
   }
-
-
 }
 
 .footer-block__details-content .list-menu__item--link,
 .copyright__content a {
   color: rgb(var(--color-foreground));
   letter-spacing: 0px;
-  transition: .2s color ease-in-out;
+  transition: 0.2s color ease-in-out;
 }
 
 .footer-block__details-content .list-menu__item--active {
@@ -546,7 +539,7 @@
 
 @media screen and (max-width: 989px) {
   .footer-block__details-content .list-menu__item--link {
-    padding-top: 15px;
+    padding-top: 1.5rem;
     padding-bottom: 0;
     line-height: 1.4;
   }
@@ -555,7 +548,7 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content .list-menu__item--link {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 
   .footer-block__details-content > :first-child .list-menu__item--link {
@@ -632,8 +625,6 @@
 .footer-block.footer-block__alignment--right .list-social {
   justify-content: flex-end;
 }
-
-
 
 .footer-block__brand-info .footer__list-social.list-social {
   justify-content: flex-start;

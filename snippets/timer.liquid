@@ -1,41 +1,49 @@
 {{- 'component-timer.css' | asset_url | stylesheet_tag -}}
 
-{%- assign timer = timer_starts_at | split: ',' -%}
-
-{%- assign hours = timer[0] | times: 1 | round -%}
-{%- assign minutes = timer[1] | times: 1 | round -%}
-{%- assign seconds = timer[2] | times: 1 | round -%}
+{%- liquid
+  assign timer = timer_starts_at | split: ','
+  assign hours = timer[0] | times: 1 | round
+  assign minutes = timer[1] | times: 1 | round
+  assign seconds = timer[2] | times: 1 | round
+-%}
 
 <div class="js__product_scroll_btn header-timer">
   <div class="header-timer--wrap">
-    <p class="header-timer--heading">UNLOCK UP TO 58% OFF</p>
+    {%- if section.settings.timer_text -%}
+      <p class="header-timer--heading">
+        {{- section.settings.timer_text -}}
+      </p>
+    {%- endif -%}
 
     <div class="header-timer--counter js__timer_wrap">
       <span class="timer_hours">
-        {%- if hours < 10 -%}
-          0
-          {{- hours -}}
-        {%- else -%}
-          {{- hours -}}
-        {%- endif -%}
+        {%- liquid
+          if hours < 10
+            echo 0 | append: hours
+          else
+            echo hours
+          endif
+        -%}
       </span>
       :
       <span class="timer_minutes">
-        {%- if minutes < 10 -%}
-          0
-          {{- minutes -}}
-        {%- else -%}
-          {{- minutes -}}
-        {%- endif -%}
+        {%- liquid
+          if minutes < 10
+            echo 0 | append: minutes
+          else
+            echo minutes
+          endif
+        -%}
       </span>
       :
       <span class="timer_seconds">
-        {%- if seconds < 10 -%}
-          0
-          {{- seconds -}}
-        {%- else -%}
-          {{- seconds -}}
-        {%- endif -%}
+        {%- liquid
+          if seconds < 10
+            echo 0 | append: seconds
+          else
+            echo seconds
+          endif
+        -%}
       </span>
     </div>
   </div>

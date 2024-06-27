@@ -56,28 +56,21 @@
                 style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
               {% endif %}
             >
-              {%- if section.settings.image != blank -%}
-                {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
-                  {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                  {%- capture sizes -%}
-            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-            (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-          {%- endcapture -%}
-                {%- else -%}
-                  {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                  {%- capture sizes -%}
-            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-            (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-          {%- endcapture -%}
-                {%- endif -%}
-                {{
-                  section.settings.image
-                  | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
-                }}
-              {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
+              {%- liquid
+                if section.settings.image != blank
+                  if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in'
+                    assign widths = '198, 432, 642, 900, 1284, 1800'
+                    assign sizes = '(min-width: ' | append: settings.page_width | append: 'px) ' | append: settings.page_width | minus: 100 | divided_by: 1.6667 | append: 'px, ' | append: '(min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)'
+                  else
+                    assign widths = '165, 360, 535, 750, 1070, 1500'
+                    assign sizes = '(min-width: ' | append: settings.page_width | append: 'px) ' | append: settings.page_width | minus: 100 | divided_by: 2 | append: 'px, ' | append: '(min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)'
+                  endif
+
+                  echo section.settings.image | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+                else
+                  echo 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg'
+                endif
+              -%}
             </div>
 
             <div
@@ -86,28 +79,21 @@
                 style="padding-bottom: {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%;"
               {% endif %}
             >
-              {%- if section.settings.image_mobile != blank -%}
-                {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
-                  {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                  {%- capture sizes -%}
-        (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-        (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-      {%- endcapture -%}
-                {%- else -%}
-                  {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                  {%- capture sizes -%}
-        (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-        (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-      {%- endcapture -%}
-                {%- endif -%}
-                {{
-                  section.settings.image_mobile
-                  | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
-                }}
-              {%- else -%}
-                {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
+              {%- liquid
+                if section.settings.image_mobile != blank
+                  if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in'
+                    assign widths = '198, 432, 642, 900, 1284, 1800'
+                    assign sizes = '(min-width: ' | append: settings.page_width | append: 'px) ' | append: settings.page_width | minus: 100 | divided_by: 1.6667 | append: 'px,' | append: '(min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)'
+                  else
+                    assign widths = '165, 360, 535, 750, 1070, 1500'
+                    assign sizes = '(min-width: ' | append: settings.page_width | append: 'px) ' | append: settings.page_width | minus: 100 | divided_by: 2 | append: 'px,' | append: '(min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)'
+                  endif
+
+                  echo section.settings.image_mobile | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+                else
+                  echo 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg'
+                endif
+              -%}
             </div>
           </div>
 

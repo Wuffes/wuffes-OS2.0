@@ -16,13 +16,17 @@
   opacity: 0;
   visibility: hidden;
   z-index: 2;
-  transition: opacity 0s, visibility 0s;
+  transition:
+    opacity 0s,
+    visibility 0s;
 }
 
 menu-drawer > details[open] > summary::before {
   visibility: visible;
   opacity: 1;
-  transition: opacity var(--duration-default) ease, visibility var(--duration-default) ease;
+  transition:
+    opacity var(--duration-default) ease,
+    visibility var(--duration-default) ease;
 }
 
 .menu-drawer {
@@ -44,14 +48,14 @@ menu-drawer > details[open] > summary::before {
 .js .menu-drawer {
   height: 100vh;
 
-  transition: transform .4s ease-in-out;
-  transition-timing-function: cubic-bezier(.57,.14,.03,1);
+  transition: transform 0.4s ease-in-out;
+  transition-timing-function: cubic-bezier(0.57, 0.14, 0.03, 1);
 }
 
 .js details[open] > .menu-drawer,
 .js details[open] > .menu-drawer__submenu {
-  transition: transform .4s ease-in-out;
-  transition-timing-function: cubic-bezier(.57,.14,.03,1);
+  transition: transform 0.4s ease-in-out;
+  transition-timing-function: cubic-bezier(0.57, 0.14, 0.03, 1);
 }
 
 .js details[open].menu-opening > .menu-drawer,
@@ -87,7 +91,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__navigation {
-  padding: 44px;
+  padding: 4.4rem;
   overflow-x: hidden;
 }
 
@@ -113,16 +117,16 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__menu-item--flag {
-  height: 28px;
+  height: 2.8rem;
   display: inline-block;
   padding: 0 10px;
-  margin-left: 10px;
-  line-height: 28px;
+  margin-left: 1rem;
+  line-height: 2.8rem;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-family: var(--font-heading-family);
-  font-weight: 700;
-  color: rgb(33, 36, 39);
+  font-weight: var(--font-body-weight-bold);
+  color: rgb(var(--color-button-text));
   background: rgb(var(--color-button));
   border-radius: 4px;
 }
@@ -137,7 +141,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__menu-item:hover,
 .menu-drawer__close-button:hover {
   color: rgb(var(--color-button));
-  transition: .2s color ease-in-out;
+  transition: 0.2s color ease-in-out;
 }
 
 .menu-drawer__menu-item--active {
@@ -235,7 +239,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 
 @media screen and (min-width: 990px) {
   .menu-drawer__menu .menu-drawer__menu-item {
-    font-size: 2.4rem;
+    font-size: calc(var(--font-body-scale) * 2.4rem);
   }
 
   .menu-drawer__menu-secondary.list-menu {
@@ -247,8 +251,8 @@ details[open].menu-opening > .menu-drawer__submenu {
   }
 
   .menu-drawer__menu-item--flag {
-    height: 32px;
-    line-height: 32px;
+    height: 3.2rem;
+    line-height: 3.2rem;
   }
 }
 

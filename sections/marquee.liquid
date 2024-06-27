@@ -1,5 +1,15 @@
 {{- 'section-marquee.css' | asset_url | stylesheet_tag -}}
 
+{% comment %}
+  {%- if section.settings.marquee_icon != blank -%}
+    {%- style -%}
+      .marquee__blocks_icon {
+        width: {{- section.settings.icon_width -}}px;
+      }
+    {%- endstyle -%}
+  {%- endif -%}
+{% endcomment %}
+
 {%- if section.blocks.size > 0 -%}
   <div class="marquee__container color-{{ section.settings.color_scheme }} gradient">
     <div class="marquee__wrap scroll-trigger animate--slide-in">
@@ -7,7 +17,16 @@
         <div class="marquee__content scroll">
           {%- for block in section.blocks -%}
             {%- if block.settings.marquee_text != blank -%}
-              <div class="marquee__blocks_slide">
+              <div class="marquee__blocks_slide" {{ block.shopify_attributes }}>
+                {%- if section.settings.marquee_icon -%}
+                  <img
+                    src="{{ section.settings.marquee_icon | image_url }}"
+                    width="{{ section.settings.icon_width }}"
+                    height=""
+                    class="marquee__blocks_icon"
+                  >
+                {%- endif -%}
+
                 <p class="marquee__blocks_text">
                   {{- block.settings.marquee_text -}}
                 </p>
@@ -25,13 +44,27 @@
   "name": "t:sections.marquee.name",
   "tag": "section",
   "class": "section",
-  "max_blocks": 5,
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "label": "Icon image",
+      "id": "marquee_icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "Icon width",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
     }
   ],
   "blocks": [
@@ -42,14 +75,26 @@
         {
           "type": "text",
           "label": "Text",
-          "id": "marquee_text"
+          "id": "marquee_text",
+          "default": "Add text here"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.marquee.presets.name"
+      "name": "t:sections.marquee.presets.name",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
     }
   ]
 }

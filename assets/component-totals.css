@@ -33,13 +33,13 @@
   fill: rgb(var(--color-link));
   position: absolute;
   top: 50%;
-  right: -17px;
+  right: -1.7rem;
   transform: translateY(-50%);
 }
 
 .totals__total-value {
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: var(--font-body-weight-bold);
   color: rgb(var(--color-foreground));
 }
 
@@ -54,6 +54,6 @@
 
   .totals > h2.totals__total,
   .totals__total-value {
-    font-size: 2rem;
+    font-size: calc(var(--font-heading-scale) * 2rem);
   }
 }

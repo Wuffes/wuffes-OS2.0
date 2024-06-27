@@ -93,7 +93,9 @@
         "slide_Y3qCMM"
       ],
       "settings": {
-        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c"
+        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
+        "marquee_icon": "shopify:\/\/shop_images\/icon__green_check.svg",
+        "icon_width": 15
       }
     },
     "rich_text": {

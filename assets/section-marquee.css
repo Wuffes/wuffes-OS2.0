@@ -1,24 +1,23 @@
 @keyframes scroll {
   from {
-    transform: translateX(0)
+    transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-100% - 140px))
+    transform: translateX(calc(-100% - 140px));
   }
 }
 
 .marquee__container {
   width: 100%;
-  height: 40px;
+  height: 4rem;
 
-  padding: 10px 0;
+  padding: 1rem 0;
   overflow: visible;
 }
 
-
 .marquee__wrap {
   display: flex;
-  gap: 140px;
+  gap: 14rem;
 
   overflow: hidden;
 
@@ -33,16 +32,22 @@
   flex-shrink: 0;
   display: flex;
   justify-content: space-around;
-  gap: 140px;
+  gap: 14rem;
 
   -webkit-animation: scroll 40s linear infinite;
   animation: scroll 40s linear infinite;
 }
 
+.marquee__blocks_slide {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .marquee__blocks_text {
   margin: 0;
 
-  font-size: 16px;
+  font-size: 1.6rem;
   font-family: var(--font-heading-family);
   text-align: center;
   line-height: normal;
@@ -51,36 +56,19 @@
   position: relative;
 }
 
-.marquee__blocks_text:before {
-  content: "";
-    width: 15px;
-    height: 12px;
-
-    display: inline-block;
-
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="19" height="15" viewBox="0 0 19 15" fill="none"><path d="M2 7.35366L7.86957 13.5L17 1.5" stroke="%23C3EEC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    position: absolute;
-    left: -20px;
-    top: 50%;
-
-    will-change: transform;
-    -webkit-transform: translateY(-50%) translateZ(0);
-    transform: translateY(-50%) translateZ(0);
+.marquee__blocks_icon {
+  height: auto;
 }
-
 
 @media screen and (min-width: 576px) {
   .marquee__blocks_text {
-    font-size: 18px;
+    font-size: calc(var(--font-body-scale) * 1.8rem);
   }
 }
 
 @media screen and (min-width: 768px) {
   .marquee__wrap {
-    column-gap: 230px;
+    column-gap: 23rem;
   }
 
   .marquee__content {
@@ -88,15 +76,14 @@
   }
 
   .marquee__blocks_text {
-    font-size: 16px;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }
 
 @media screen and (min-width: 1200px) {
   .marquee__container {
-    height: 55px;
+    height: 5.5rem;
 
-    padding: 18px 0;
+    padding: 1.8rem 0;
   }
-
 }

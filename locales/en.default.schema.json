@@ -3361,9 +3361,9 @@
     "marquee": {
       "name": "Marquee",
       "blocks": {
-        "name": "slide"
+        "name": "Slide"
       },
-      "presets" : {
+      "presets": {
         "name": "Marquee"
       }
     }

@@ -106,10 +106,6 @@
 {%- endif -%}
 
 <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
-  {% comment %} <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
-  </symbol> {% endcomment %}
-
   <symbol id="icon-search" viewBox="0 0 18.08 18.08">
     <path d="M0,8A7.95,7.95,0,1,1,14.08,13l4,4L17,18.08l-4-4A8,8,0,0,1,0,8ZM8,1.5A6.45,6.45,0,1,0,14.4,8,6.45,6.45,0,0,0,8,1.5Z" fill="currentColor"></path>
   </symbol>
@@ -178,8 +174,9 @@
                   <div class="header__heading-logo-wrapper">
                     {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                     {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                    {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-                    {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                    {% capture sizes %}(min-width: 990px) {{ settings.logo_width }}px, 110px{% endcapture %}
+                    {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}, {{ settings.logo_width | times: 3 }}, 110, 220, 330{% endcapture %}
+
                     {{ settings.logo | image_url: width: 600 | image_tag:
                       class: 'header__heading-logo motion-reduce',
                       widths: widths,
@@ -208,8 +205,8 @@
                   <div class="header__heading-logo-wrapper">
                     {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                     {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                    {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-                    {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+                    {% capture sizes %}(min-width: 990px) {{ settings.logo_width }}px, 110px{% endcapture %}
+                    {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}, {{ settings.logo_width | times: 3 }}, 110, 220, 330{% endcapture %}
                     {{ settings.logo | image_url: width: 600 | image_tag:
                       class: 'header__heading-logo',
                       widths: widths,
@@ -331,7 +328,9 @@
       super();
 
       this.desktopSearchTrigger = this.querySelector('.desktop-search--link')
-      this.desktopSearchTrigger.addEventListener('click', this.onDesktopSearchTriggerClick.bind(this))
+      if( this.desktopSearchTrigger != null ) {
+        this.desktopSearchTrigger.addEventListener('click', this.onDesktopSearchTriggerClick.bind(this))
+      }
     }
 
     onDesktopSearchTriggerClick(e) {
@@ -467,6 +466,8 @@
     initTimer(element) {
       const timer = element.querySelector('.header-timer');
 
+      console.log('ok')
+
       let interval = setInterval(function() {
         let minutes = parseInt(timer.querySelector('.timer_minutes').textContent),
         seconds = parseInt(timer.querySelector('.timer_seconds').textContent);
@@ -474,7 +475,7 @@
         --seconds;
 
         if (seconds < 0) {
-          minutes = --minutes
+          minutes--
         }
 
         if (minutes < 0 && seconds < 0) {
@@ -799,12 +800,18 @@
     {
       "type": "range",
       "id": "timer_range_sec",
-      "label": "Secpnds",
+      "label": "Seconds",
       "min": 0,
       "max": 59,
       "unit": "sec",
       "step": 1,
       "default": 0
+    },
+    {
+      "type": "inline_richtext",
+      "id": "timer_text",
+      "label": "Timer heading",
+      "default": "UNLOCK UP TO 58% OFF"
     }
   ]
 }
