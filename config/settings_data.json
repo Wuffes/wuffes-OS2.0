@@ -10,8 +10,8 @@
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
-    "spacing_grid_horizontal": 8,
-    "spacing_grid_vertical": 8,
+    "spacing_grid_horizontal": 28,
+    "spacing_grid_vertical": 20,
     "buttons_border_thickness": 2,
     "buttons_border_opacity": 100,
     "buttons_radius": 40,
@@ -199,6 +199,17 @@
           "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
           "shadow": "#ffffff"
+        }
+      },
+      "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
         }
       }
     }

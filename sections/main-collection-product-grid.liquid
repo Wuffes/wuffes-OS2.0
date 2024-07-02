@@ -171,7 +171,8 @@
                     show_rating: section.settings.show_rating,
                     lazy_load: lazy_load,
                     quick_add: section.settings.quick_add,
-                    section_id: section.id
+                    section_id: section.id,
+                    color_scheme: section.settings.color_scheme
                   %}
                 </li>
               {%- endfor -%}
@@ -223,6 +224,18 @@
     {
       "type": "header",
       "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscribe_badge",
+      "label": "Show subscribe badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "bordered",
+      "label": "Bordered",
+      "default": true
     },
     {
       "type": "select",
@@ -322,6 +335,10 @@
         {
           "value": "bulk",
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+        },
+        {
+          "value": "link",
+          "label": "Link"
         }
       ]
     },
