@@ -61,6 +61,7 @@
 
       <slideshow-component
         class="slider-mobile-gutter slider-component-desktop slideshow__autoplay"
+        data-slides-per-view="6"
       >
         <ul
           class="gallery-list grid--1-col grid--1-col-tablet grid--6-col-desktop collapsible-content__grid contains-content-container grid slider slider--tablet grid--peek slider--desktop"
@@ -135,17 +136,16 @@
             </button>
             <div class="slider-counter slider-counter--dots">
               <div class="slideshow__control-wrapper">
-                {%- for block in section.blocks -%}
-                  {%- if block.type == 'collapsible_row' -%}
-                    <button
-                      class="slider-counter__link slider-counter__link--dots link"
-                      aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-                      aria-controls="Slider-{{ section.id }}"
-                      {{ block.shopify_attributes }}
-                    >
-                      <span class="dot"></span>
-                    </button>
-                  {%- endif -%}
+                {% assign items_count = section.blocks | where: 'type', 'collapsible_row' | size %}
+                {% assign dots_count = items_count | minus: 6 %}
+                {%- for i in (0..dots_count) -%}
+                  <button
+                    class="slider-counter__link slider-counter__link--dots link"
+                    aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                    aria-controls="Slider-{{ section.id }}"
+                  >
+                    <span class="dot"></span>
+                  </button>
                 {%- endfor -%}
               </div>
             </div>
