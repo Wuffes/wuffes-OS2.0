@@ -228,7 +228,7 @@
           "background_gradient": "",
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "#17443d",
-          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button_label": "#FFFFFF",
           "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
         }

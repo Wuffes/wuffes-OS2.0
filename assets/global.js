@@ -1359,3 +1359,60 @@ class AccountIcon extends HTMLElement {
 }
 
 customElements.define('account-icon', AccountIcon);
+
+class tagsFilter extends HTMLElement {
+  constructor() {
+    super();
+
+    this.querySelector('button').addEventListener('click', this.filterByTags.bind(this));
+
+    const thisEl = this;
+
+    this.querySelectorAll('.filter_item__input').forEach(function (input) {
+      input.addEventListener('change', thisEl.getFilters.bind(thisEl));
+    });
+
+    this.productCount = this.closest('.collection-hero__inner').querySelector('.collection-hero__filter_count');
+    this.filterTrigger = this.querySelector('#filter_trigger');
+
+    thisEl.filterTags = [];
+  }
+
+  filterByTags() {
+    let visibleProduct = 0,
+      selectedTags = this.filterTags;
+
+    const productItems = document.querySelectorAll('.grid__item_product');
+
+    if (selectedTags.length > 0) {
+      productItems.forEach((item) => {
+        const productTags = item.getAttribute('data-tags').split(',');
+        const hasSelectedTag = selectedTags.some((tag) => productTags.includes(tag));
+
+        item.style.display = hasSelectedTag ? 'list-item' : 'none';
+
+        if (hasSelectedTag) {
+          visibleProduct++;
+        }
+      });
+
+      this.productCount.textContent = `Showing all ${visibleProduct} products`;
+    } else {
+      productItems.forEach((item) => {
+        item.style.display = 'list-item';
+      });
+
+      this.productCount.textContent = `Showing all ${productItems.length} products`;
+    }
+
+    this.filterTrigger.checked = false;
+  }
+
+  getFilters() {
+    const tagsInput = this.querySelectorAll('.filter_item__input:checked');
+
+    this.filterTags = Array.from(tagsInput, (tag) => tag.value);
+  }
+}
+
+customElements.define('tags-filter', tagsFilter);
