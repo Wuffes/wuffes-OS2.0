@@ -63,24 +63,26 @@
         "heading_DFirFP": {
           "type": "heading",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h2"
+            "heading": "Better joint health & mobility in as little as 3 weeks**",
+            "heading_size": "h1",
+            "text_shadow": true
           }
         },
         "text_UC3wXJ": {
           "type": "text",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "text": "We’re here to improve the quality of life of our furry best friends from the inside out.",
+            "text_style": "body",
+            "content_text_shadow": true
           }
         },
         "buttons_F4UBfa": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Button label",
+            "button_label_1": "SHOP NOW",
             "button_link_1": "shopify:\/\/products\/23-in-1-multivitamin",
             "button_style_secondary_1": false,
-            "button_label_2": "Button label",
+            "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
           }
@@ -92,23 +94,161 @@
         "buttons_F4UBfa"
       ],
       "settings": {
-        "image_2": "shopify:\/\/shop_images\/Laser_New_pdp_test_carousel_img_1.png",
-        "image_overlay_opacity": 0,
+        "image": "shopify:\/\/shop_images\/reskin_homepage_banner_desktop.png",
+        "image_mobile": "shopify:\/\/shop_images\/reskin_updated_HP_Banner__Mobile.png",
+        "overlay_background": true,
+        "image_overlay_opacity": 20,
         "image_height": "medium",
-        "desktop_content_position": "middle-center",
+        "desktop_content_position": "middle-left",
         "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-4",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
         "show_text_below": true
+      }
+    },
+    "gallery_LgFkUX": {
+      "type": "gallery",
+      "blocks": {
+        "collapsible_row_NXML4D": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_10.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_MjFfhD": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_9.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_decK94": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_7.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_LpkGGP": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_6.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_KQGcmp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_1.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_PznW8d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_3.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_wMAT4d": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_2.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_MjQrMQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_4.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_hTNgPU": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_8.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_978QDL": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_5.png",
+            "page": ""
+          }
+        },
+        "gallery_links_NEN4Mw": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/facebook__icon_e6ee9170-37c0-47d4-b2da-4ead85092424.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.facebook.com\/wuffespets\/\" target=\"_blank\"><strong>@wuffespets<\/strong><\/a><a href=\"https:\/\/www.facebook.com\/groups\/283190776252380\/\" target=\"_blank\"><strong>@wuffesvip<\/strong><\/a>"
+          }
+        },
+        "gallery_links_DKgTHX": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/instagram__icon_989219ce-f2a1-4b82-9b2f-c513c3e56ac1.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.instagram.com\/wuffes\/\" target=\"_blank\"><strong>@wuffes<\/strong><\/a>"
+          }
+        },
+        "gallery_links_Rph8Ab": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/tiktok__icon_b069d9ec-526c-47ae-bf28-18091ed22265.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.tiktok.com\/@wuffespet\/\" target=\"_blank\"><strong>@wuffespet<\/strong><\/a>"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_NXML4D",
+        "collapsible_row_MjFfhD",
+        "collapsible_row_decK94",
+        "collapsible_row_LpkGGP",
+        "collapsible_row_KQGcmp",
+        "collapsible_row_PznW8d",
+        "collapsible_row_wMAT4d",
+        "collapsible_row_MjQrMQ",
+        "collapsible_row_hTNgPU",
+        "collapsible_row_978QDL",
+        "gallery_links_NEN4Mw",
+        "gallery_links_DKgTHX",
+        "gallery_links_Rph8Ab"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Introducing our furry Wuffes community",
+        "description": "Find us on Facebook, Instagram & TikTok",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "auto_rotate": true,
+        "change_slides_speed": 1
       }
     }
   },
   "order": [
     "main",
     "features_list_MP3KRp",
-    "image_banner_DnxmeF"
+    "image_banner_DnxmeF",
+    "gallery_LgFkUX"
   ]
 }
