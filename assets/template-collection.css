@@ -98,7 +98,6 @@
   margin-top: 1rem;
 }
 
-/* CUSTOM */
 .collection .grid--custom {
   column-gap: var(--grid-desktop-horizontal-spacing);
   row-gap: var(--grid-desktop-vertical-spacing);

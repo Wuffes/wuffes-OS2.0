@@ -87,8 +87,8 @@
 
 @media screen and (min-width: 750px) {
   .product-card-wrapper--custom .card__inner {
-    padding-left: calc((var(--image-padding) / 2) - 5px);
-    padding-right: calc((var(--image-padding) / 2) - 5px);
+    padding-left: calc((var(--image-padding) / 2) - 0.5rem);
+    padding-right: calc((var(--image-padding) / 2) - 0.5rem);
   }
 
   .product-card-wrapper--custom .card__inner_link {

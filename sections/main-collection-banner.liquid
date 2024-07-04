@@ -45,7 +45,7 @@
 
     {%- if section.settings.enable_tag_filter -%}
       <tags-filter class="collection-hero__filter">
-        <p id="" class="collection-hero__filter_count">
+        <p class="collection-hero__filter_count">
           Showing all {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
         </p>
 
@@ -107,62 +107,6 @@
         </div>
       </tags-filter>
     {%- endif -%}
-
-    {% comment %}
-      {%- if section.settings.enable_tag_filter -%}
-        <facet-filters-form class="collection-hero__filter">
-          <form class="facets-vertical-form" id="FacetSortForm">
-            <div class="product-count-vertical light" role="status">
-              <p class="collection-hero__filter_count">
-                <span id="ProductCount">
-                  {%- if collection.results_count -%}
-                    {{
-                      'templates.search.results_with_count'
-                      | t: terms: collection.terms, count: collection.results_count
-                    }}
-                  {%- elsif collection.products_count == collection.all_products_count -%}
-                    {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
-                  {%- else -%}
-                    {{
-                      'products.facets.product_count'
-                      | t: product_count: collection.products_count, count: collection.all_products_count
-                    }}
-                  {%- endif -%}
-                </span>
-              </p>
-              {%- render 'loading-spinner' -%}
-            </div>
-
-            <div class="filer-wrap">
-              <label
-                >Sort by condition
-                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
-                  <path d="M5.5 9L0.303848 0L10.6962 0L5.5 9Z" fill="black"></path>
-                </svg>
-              </label>
-
-              {%- for option in collection.sort_options -%}
-                <div class="filer-wrap--item">
-                  <input
-                    value="{{ option.value | escape }}"
-                    type="radio"
-                    name="filter"
-                    id="{{ option.value }}"
-                    {% if option.value == sort_by %}
-                      checked="checked"
-                    {% endif %}
-                  >
-
-                  <label for="{{ option.value }}">
-                    {{ option.name | escape }}
-                  </label>
-                </div>
-              {%- endfor -%}
-            </div>
-          </form>
-        </facet-filters-form>
-      {%- endif -%}
-    {% endcomment %}
   </div>
 </div>
 

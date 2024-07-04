@@ -90,7 +90,7 @@ input[type='checkbox'].collection-hero__filter_trigger {
   padding: 0 3.6rem;
   text-align: left;
   position: relative;
-  top: -65px;
+  top: -6.5rem;
   transition: all 0.2s ease-in-out;
 }
 
@@ -314,5 +314,5 @@ input[type='checkbox'].collection-hero__filter_trigger {
 
 .filer-wrap {
   border: 1px solid rgb(var(--color-foreground));
-  border-radius: (30px);
+  border-radius: (3rem);
 }
