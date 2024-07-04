@@ -14,6 +14,10 @@
   text-decoration: none;
 }
 
+.product-card-wrapper--custom .card__inner_link .card__content_head {
+  text-align: left;
+}
+
 .product-card-wrapper--custom .card__inner_link:hover .card__content_head {
   color: rgb(var(--color-button));
   transition: 0.2s color ease-in-out;
@@ -22,6 +26,10 @@
 .product-card-wrapper--custom .card__inner {
   padding: 16.5% var(--image-padding);
   background: rgb(var(--color-button-text));
+}
+
+.product-card-wrapper--custom .card-information {
+  display: flex;
 }
 
 .card__inner_img {
@@ -72,6 +80,11 @@
   top: 1.4rem;
 }
 
+.product-card-wrapper--custom .price {
+  font-family: var(--font-accent-family);
+  font-weight: 500;
+}
+
 @media screen and (min-width: 750px) {
   .product-card-wrapper--custom .card__inner {
     padding-left: calc((var(--image-padding) / 2) - 5px);
@@ -108,6 +121,10 @@
   .product-card-wrapper--custom .card__inner {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .product-card-wrapper--custom .card__content {
+    row-gap: 1.5rem;
   }
 
   .card__subscription_badge {

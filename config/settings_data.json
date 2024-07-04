@@ -8,6 +8,7 @@
     "heading_scale": 100,
     "type_body_font": "inter_n4",
     "body_scale": 100,
+    "type_accent_font": "inconsolata_n4",
     "page_width": 1200,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 28,
@@ -134,6 +135,15 @@
     "content_for_index": [
 
     ],
+    "blocks": {
+      "733389323033596483": {
+        "type": "shopify:\/\/apps\/okendo\/blocks\/theme-settings\/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "disabled": false,
+        "settings": {
+          "show_preview_data": true
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -208,6 +218,17 @@
           "text": "#212427",
           "button": "#17443d",
           "button_label": "#ffffff",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-1d040f24-c6e3-4e50-91a5-f60fb3f34b6b": {
+        "settings": {
+          "background": "{{ shop.brand.colors.secondary[1].background }}",
+          "background_gradient": "",
+          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "#17443d",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
         }

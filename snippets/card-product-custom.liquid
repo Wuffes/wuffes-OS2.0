@@ -1,21 +1,5 @@
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  if show_subscribe_badge
-    for selling_plan_group in card_product.selling_plan_groups
-      for selling_plan in selling_plan_group.selling_plans
-        for price_adjustment in selling_plan.price_adjustments
-          assign x = price_adjustment
-        endfor
-      endfor
-    endfor
-  endif
--%}
-
-<script>
-  console.log({{ x | json }})
-</script>
-
 {%- capture subscription_badge -%}
   <div class="card__subscription_badge">
     {{- card_product.metafields.prerebrand_collection_filter.sale_text.value -}}
@@ -103,7 +87,9 @@
               </p>
             </div>
           {%- else -%}
-            {%- render 'okendo-reviews-product-rating-summary', product: card_product -%}
+            <div class="card-information">
+              {%- render 'okendo-reviews-product-rating-summary', product: card_product -%}
+            </div>
           {%- endif -%}
         {%- endif -%}
 

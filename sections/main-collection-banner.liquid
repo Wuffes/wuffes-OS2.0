@@ -4,7 +4,7 @@
 {%- style -%}
   @media screen and (max-width: 749px) {
     .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+      padding-bottom: calc({{settings.media_shadow_vertical_offset | at_least: 0}}px + 2rem);
     }
   }
 {%- endstyle -%}
@@ -42,6 +42,94 @@
         >
       </div>
     {%- endif -%}
+
+    {%- assign tagsArray = collection.metafields.filter_collection.tags.value | split: ',' -%}
+
+    {%- for tag in tagsArray -%}
+      {%- assign tagId = forloop.index -%}
+      {%- assign tagFound = false -%}
+
+      {%- for product in collection.products -%}
+        {%- if product.tags contains tag -%}
+          {%- assign tagFound = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if tagFound -%}
+        <div class="">
+          <input type="checkbox" class="" id="tag-{{ tagId }}" value="{{ tag }}">
+          <svg
+            class="custom_checkbox_checked"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path d="M6.45825 9.99993L8.81659 12.3583L13.5416 7.6416" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <label for="tag-{{ tagId }}" class="custom_checkbox">
+            <span>{{ tag }}</span>
+          </label>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if section.settings.enable_sorting -%}
+      <facet-filters-form class="collection-hero__filter">
+        <form class="facets-vertical-form" id="FacetSortForm">
+          <div class="product-count-vertical light" role="status">
+            <p class="collection-hero__filter_count">
+              <span id="ProductCount">
+                {%- if collection.results_count -%}
+                  {{
+                    'templates.search.results_with_count'
+                    | t: terms: collection.terms, count: collection.results_count
+                  }}
+                {%- elsif collection.products_count == collection.all_products_count -%}
+                  {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+                {%- else -%}
+                  {{
+                    'products.facets.product_count'
+                    | t: product_count: collection.products_count, count: collection.all_products_count
+                  }}
+                {%- endif -%}
+              </span>
+            </p>
+            {%- render 'loading-spinner' -%}
+          </div>
+
+          <div class="filer-wrap">
+            <label
+              >Sort by condition
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9" viewBox="0 0 11 9" fill="none">
+                <path d="M5.5 9L0.303848 0L10.6962 0L5.5 9Z" fill="black"></path>
+              </svg>
+            </label>
+
+            {%- for option in collection.sort_options -%}
+              <div class="filer-wrap--item">
+                <input
+                  value="{{ option.value | escape }}"
+                  type="radio"
+                  name="filter"
+                  id="{{ option.value }}"
+                  {% if option.value == sort_by %}
+                    checked="checked"
+                  {% endif %}
+                >
+
+                <label for="{{ option.value }}">
+                  {{ option.name | escape }}
+                </label>
+              </div>
+            {%- endfor -%}
+          </div>
+        </form>
+      </facet-filters-form>
+    {%- endif -%}
   </div>
 </div>
 
@@ -72,6 +160,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
     }
   ]
 }
