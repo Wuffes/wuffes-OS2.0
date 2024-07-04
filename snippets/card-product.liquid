@@ -40,26 +40,15 @@
     endif
   -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
-    {%- if section.settings.show_subscribe_badge -%}
-      <div class="">
-        {%- assign badge_text = card_product.metafields.prerebrand_collection_filter.sale_text.value -%}
-
-        <span>
-          {{- badge_text -}}
-        </span>
-      </div>
-    {% endif %}
-    sanity
     <div
       class="
         card card--{{ settings.card_style }}
         {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
-        {% if settings.card_style == 'card' and color_scheme == blank %} color-{{ section.settings.card_color_scheme }} gradient{% else %} color-{{ color_scheme }} gradient{% endif %}
+        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if extend_height %} card--extend-height{% endif %}
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
-        {% if section.settings.bordered %} card--bordered{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >

@@ -1,5 +1,6 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card-custom.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
@@ -148,6 +149,7 @@
                 grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
                 grid--{{ section.settings.columns_desktop }}-col-desktop
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
+                {% if section.settings.card_type == 'custom'  %} grid--custom{% endif %}
               "
             >
               {%- for product in collection.products -%}
@@ -162,18 +164,32 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
-                  {% render 'card-product',
-                    card_product: product,
-                    media_aspect_ratio: section.settings.image_ratio,
-                    image_shape: section.settings.image_shape,
-                    show_secondary_image: section.settings.show_secondary_image,
-                    show_vendor: section.settings.show_vendor,
-                    show_rating: section.settings.show_rating,
-                    lazy_load: lazy_load,
-                    quick_add: section.settings.quick_add,
-                    section_id: section.id,
-                    color_scheme: section.settings.color_scheme
-                  %}
+                  {%- if section.settings.card_type == 'default' -%}
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: section.settings.image_shape,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: lazy_load,
+                      quick_add: section.settings.quick_add,
+                      section_id: section.id,
+                      color_scheme: section.settings.color_scheme
+                    %}
+                  {%- else -%}
+                    {% render 'card-product-custom',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: lazy_load,
+                      quick_add: section.settings.quick_add,
+                      section_id: section.id,
+                      color_scheme: section.settings.color_scheme,
+                      show_subscribe_badge: section.settings.show_subscribe_badge
+                    %}
+                  {%- endif -%}
                 </li>
               {%- endfor -%}
             </ul>
@@ -226,16 +242,42 @@
       "content": "t:sections.main-collection-product-grid.settings.header__3.content"
     },
     {
+      "type": "select",
+      "id": "card_type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "default",
+      "label": "Card type"
+    },
+    {
       "type": "checkbox",
       "id": "show_subscribe_badge",
       "label": "Show subscribe badge",
       "default": true
     },
     {
-      "type": "checkbox",
-      "id": "bordered",
-      "label": "Bordered",
-      "default": true
+      "type": "select",
+      "id": "reviews_summary",
+      "options": [
+        {
+          "value": "okendo",
+          "label": "Okendo"
+        },
+        {
+          "value": "default",
+          "label": "Default"
+        }
+      ],
+      "default": "default",
+      "label": "Reviews style"
     },
     {
       "type": "select",

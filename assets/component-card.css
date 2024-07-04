@@ -44,9 +44,6 @@
 .card--standard .card__inner {
   position: relative;
   box-sizing: border-box;
-}
-
-.card--bordered {
   border-radius: var(--border-radius);
   border: var(--border-width) solid rgba(var(--color-foreground), var(--border-opacity));
 }
@@ -118,7 +115,6 @@
 
 .card__inner {
   width: 100%;
-  background: rgb(255, 255, 255);
 }
 
 .card--media .card__inner .card__content {
@@ -141,7 +137,6 @@
 .card__information {
   grid-row-start: 2;
   padding: 1.3rem 1rem;
-  background: rgb(var(--color-background));
 }
 
 .card:not(.ratio) > .card__content {
