@@ -16,7 +16,7 @@
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
   - product_featured_image: {File} can use the custom value from the metafield "card_product.metafields.os2.listing_image.value"
-  - card_benefits: {JSON} uses the custom value from the metafield card_product.metafields.os2.listing_benefits.value
+  - card_benefits: {JSON} uses the custom value from the metafield metaobject.item_benefits.value
   - benefit_icon: {string} Benefit icon name. Value is taken from the "card_benefits" JSON obj
 
   Usage:
@@ -32,9 +32,10 @@
 
 {%- if card_product and card_product != empty -%}
   {%- liquid
+    assign metaobject = card_product.metafields.os20.featured_collection_item.value
     assign ratio = 1
     if card_product.metafields.os2.listing_image.value
-      assign product_featured_image = card_product.metafields.os2.listing_image.value
+      assign product_featured_image = metaobject.item_image.value
     else
       assign product_featured_image = card_product.featured_media
     endif
@@ -68,7 +69,6 @@
         {%- if product_featured_image -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
             <div class="media media--transparent ">
-              {% comment %}media--hover-effect theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="
                   {%- if product_featured_image.width >= 165 -%}{{ product_featured_image | image_url: width: 165 }} 165w,{%- endif -%}
@@ -80,7 +80,7 @@
                   {{ product_featured_image | image_url }} {{ product_featured_image.width }}w
                 "
                 src="{{ product_featured_image | image_url: width: 533 }}"
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 30 | minus: 30 | minus: 4 | times: 0.8 }}px, (min-width: 990px) calc((100vw - 30px - 30px - 4px) / 4 * 0.8), (min-width: 750px) calc((100vw - 30px - 30px - 4px) / 3 * 0.8), calc((100vw - 30px - 30px - 4px) * 0.8)"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 30 | minus: 30 | divided_by: 4 | times: 0.8 }}px, (min-width: 990px) calc((100vw - 30px - 30px - 4px) / 4 * 0.8), (min-width: 750px) calc((100vw - 30px - 30px - 4px) / 3 * 0.8), calc((100vw - 30px - 30px - 4px) * 0.8)"
                 alt="{{ product_featured_image.alt | escape }}"
                 class="motion-reduce card-image"
                 {% unless lazy_load == false %}
@@ -89,7 +89,6 @@
                 width="{{ product_featured_image.width }}"
                 height="{{ product_featured_image.height }}"
               >
-              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
               {%- if card_product.media[1] != null and show_secondary_image -%}
                 <img
@@ -128,8 +127,8 @@
                 class="full-unstyled-link"
                 aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
               >
-                {% if card_product.metafields.os2.listing_title.value %}
-                  {{ card_product.metafields.os2.listing_title.value | escape }}
+                {% if metaobject.item_title %}
+                  {{ metaobject.item_title | escape }}
                 {% else %}
                   {{ card_product.title | escape }}
                 {% endif %}
@@ -169,8 +168,8 @@
               class="full-unstyled-link"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
-              {% if card_product.metafields.os2.listing_title.value %}
-                {{ card_product.metafields.os2.listing_title.value | escape }}
+              {% if metaobject.item_title %}
+                {{ metaobject.item_title | escape }}
               {% else %}
                 {{ card_product.title | escape }}
               {% endif %}
@@ -182,21 +181,18 @@
               <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
             {%- endif -%}
 
-            {% comment %} <span class="caption-large light">{{ block.settings.description | escape }}</span> {% endcomment %}
-
             {% if show_product_description %}
-              {% if card_product.metafields.os2.listing_description.value %}
-                <p class="card-decription">{{ card_product.metafields.os2.listing_description.value }}</p>
+              {% if metaobject.item_description %}
+                <p class="card-decription">{{ metaobject.item_description }}</p>
               {% else %}
                 <p class="card-decription">{{ card_product.description }}</p>
               {% endif %}
             {% endif %}
             <div class="card-information__bottom">
               {% if show_product_benefits %}
-                {% if card_product.metafields.os2.listing_benefits.value %}
+                {% if metaobject.item_benefits.value %}
                   <div class="card-benefits">
-                    {% comment %} {{ card_product.metafields.os2.listing_benefits.value }} {% endcomment %}
-                    {% assign card_benefits = card_product.metafields.os2.listing_benefits.value %}
+                    {% assign card_benefits = metaobject.item_benefits.value %}
                     {% for benefit in card_benefits %}
                       <div class="card-benefits__column">
                         <p class="card-benefits__title">{{ benefit.title }}</p>
@@ -505,7 +501,6 @@
                             class="quick-add__product-media"
                           >
                             <div class="quick-add__product-container global-media-settings">
-                              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                               <img
                                 srcset="
                                   {%- if product_featured_image.width >= 165 -%}{{ product_featured_image | image_url: width: 165 }} 165w,{%- endif -%}
@@ -526,7 +521,6 @@
                                 width="{{ product_featured_image.width }}"
                                 height="{{ product_featured_image.height }}"
                               >
-                              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
                             </div>
                           </div>
                         {%- endif -%}
@@ -544,8 +538,8 @@
                       </div>
                       <div class="quick-add-modal__content-info--bulk-details large-up-hide">
                         <h3>
-                          {% if card_product.metafields.os2.listing_title.value %}
-                            {{ card_product.metafields.os2.listing_title.value | escape }}
+                          {% if metaobject.item_title %}
+                            {{ metaobject.item_title | escape }}
                           {% else %}
                             {{ card_product.title | escape }}
                           {% endif %}
@@ -561,8 +555,8 @@
                     <div>
                       <div class="quick-add-modal__content-info--bulk-details small-hide medium-hide">
                         <h3 class="h2">
-                          {% if card_product.metafields.os2.listing_title.value %}
-                            {{ card_product.metafields.os2.listing_title.value | escape }}
+                          {% if metaobject.item_title %}
+                            {{ metaobject.item_title | escape }}
                           {% else %}
                             {{ card_product.title | escape }}
                           {% endif %}

@@ -12,6 +12,11 @@
     color: {{ section.settings.color_scheme.settings.button }};
   }
 
+  .rich-text-carousel__placeholder {
+    width: calc({{ settings.page_width }}px / 3);
+    height: auto;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -62,6 +67,8 @@
               {% endif %}
               {% if block.settings.image %}
                 {{ block.settings.image | image_url: width: 480 | image_tag: sizes: sizes, widths: '160, 320, 480' }}
+              {% else %}
+                {{ 'hero-apparel-1' | placeholder_svg_tag: 'rich-text-carousel__placeholder placeholder-svg' }}
               {% endif %}
             </div>
           {%- endfor -%}
