@@ -41,7 +41,7 @@
                 {{ block.shopify_attributes }}
               >
                 <h2
-                  class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }}"
+                  class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }} {% if block.settings.mobile_centered %}centered-mobile-only{% endif %}"
                   {% if block.settings.no_margins %}
                     style="margin: 0;"
                   {% endif %}
@@ -523,15 +523,15 @@
         },
         {
           "type": "checkbox",
-          "id": "no_margins",
-          "default": false,
-          "label": "Remove margins"
-        },
-        {
-          "type": "checkbox",
           "id": "left_heading",
           "default": false,
           "label": "Heading above the image"
+        },
+        {
+          "type": "checkbox",
+          "id": "no_margins",
+          "default": false,
+          "label": "Remove margins (for the text above image only)"
         }
       ]
     },
