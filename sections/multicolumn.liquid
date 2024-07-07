@@ -166,11 +166,11 @@
                         Read More
                       </label>
 
-                      <div class="multicolumn-card--description">{{ block.settings.hidden_description }}</div>
+                      <div class="multicolumn-card--description">{{ block.settings.description_read_more }}</div>
                     {%- endif -%}
-                    {%- if block.settings.additional_description != blank -%}
+                    {%- if block.settings.description_2 != blank -%}
                       <div class="multicolumn-card--additional-description">
-                        {{ block.settings.additional_description }}
+                        {{ block.settings.description_2 }}
                       </div>
                     {%- endif -%}
                   </div>
@@ -485,11 +485,11 @@
         },
         {
           "value": "arrow_without_bg",
-          "label": "arrow_without_bg"
+          "label": "Arrow without background"
         }
       ],
       "default": "arrow_without_bg",
-      "label": "arrow_without_bg"
+      "label": "Arrow without background"
     },
     {
       "type": "header",
@@ -546,14 +546,15 @@
         },
         {
           "type": "richtext",
-          "id": "hidden_description",
+          "id": "description_read_more",
           "default": "<p>Hidden description</p>",
-          "label": "Hidden description"
+          "label": "Description read more",
+          "info": "Hidden text. Shows up on clicking 'Read more'"
         },
         {
           "type": "richtext",
-          "id": "additional_description",
-          "label": "Additional description"
+          "id": "description_2",
+          "label": "Description 2"
         },
         {
           "type": "text",

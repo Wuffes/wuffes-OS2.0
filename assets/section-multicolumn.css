@@ -56,6 +56,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 .icon-slider-arrow {
   height: 49px;
   width: 49px;
+  color: rgb(15, 23, 42);
 }
 
 .multicolumn .page-width.full-width {

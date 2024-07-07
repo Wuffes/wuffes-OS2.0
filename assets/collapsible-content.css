@@ -19,6 +19,10 @@
   color: rgb(23, 68, 61);
 }
 
+.icon-slider-arrow {
+  position: relative;
+}
+
 .collapsible-content .accordion summary {
   align-items: center;
 }

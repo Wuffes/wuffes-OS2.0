@@ -81,7 +81,7 @@
           <div class="grid__item">
             {%- for block in section.blocks -%}
               <div
-                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %} {% if section.settings.include_items_border %}accordion_item_border{% endif %}"
+                class="accordion{% if section.settings.layout == 'row' %} content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %} {% if section.settings.show_row_divider %}accordion_item_border{% endif %}"
                 {{ block.shopify_attributes }}
               >
                 <details
@@ -92,7 +92,7 @@
                 >
                   <summary id="Summary-{{ block.id }}-{{ section.id }}">
                     {% render 'icon-accordion', icon: block.settings.icon %}
-                    {%- if section.settings.include_items_border -%}
+                    {%- if section.settings.show_row_divider -%}
                       <p
                         class="inline-richtext inline-richtext_with_border"
                         style="color: {{ section.settings.color_scheme.settings.text }}"
@@ -115,32 +115,27 @@
                     style="color: {{ section.settings.color_scheme.settings.text }}"
                   >
                     {{ block.settings.row_content }}
-                    {%- if section.settings.include_items_border and block.settings.img_content != blank -%}
-                      <img
-                        src="{{ block.settings.img_content | img_url: "600x600" }}"
-                        alt=""
-                        width="600"
-                        height="600"
-                        loading="lazy"
-                      >
+                    {%- if section.settings.show_row_divider and block.settings.img_content != blank -%}
+                      {{
+                        block.settings.img_content
+                        | image_url: width: 600
+                        | image_tag: sizes: 600, widths: '1200, 1800, 2400'
+                      }}
+
                     {%- elsif block.settings.img_content != blank -%}
-                      <img
-                        src="{{ block.settings.img_content | img_url: "345x345" }}"
-                        alt=""
-                        width="345"
-                        height="345"
-                        loading="lazy"
-                      >
+                      {{
+                        block.settings.img_content
+                        | image_url: width: 345
+                        | image_tag: sizes: 345, widths: '690, 1035, 1380'
+                      }}
                     {%- endif -%}
                     <div class="accordion__content_author">
                       {%- if block.settings.img_author != blank -%}
-                        <img
-                          src="{{ block.settings.img_author | img_url: "54x54" }}"
-                          alt=""
-                          width="54"
-                          height="54"
-                          loading="lazy"
-                        >
+                        {{
+                          block.settings.img_author
+                          | image_url: width: 54
+                          | image_tag: sizes: 54, widths: '108, 162, 216'
+                        }}
                       {% endif %}
                       {%- if block.settings.author_name != blank -%}
                         <p>{{ block.settings.author_name }}</p>
@@ -245,9 +240,9 @@
     },
     {
       "type": "checkbox",
-      "id": "include_items_border",
+      "id": "show_row_divider",
       "default": false,
-      "label": "Items Border"
+      "label": "Show row divider"
     },
     {
       "type": "color_scheme",
