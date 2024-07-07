@@ -2,12 +2,12 @@
   padding: 0 1.5rem;
 }
 
-.gallary__social_username a {
-  display: block;
-}
-
 .gallary__social_username {
   text-align: left;
+}
+
+.slider-buttons {
+  display: none;
 }
 
 .social_icons {
@@ -31,6 +31,7 @@
   font-size: 1.4rem;
   color: rgb(33, 36, 39);
   text-decoration: none;
+  display: block;
 }
 
 .gallary__social_username a:hover {
@@ -45,6 +46,21 @@
 
 .gallery-card__image-wrapper .media {
   padding-bottom: 23rem;
+}
+@media screen and (max-width: 768px) {
+  slideshow-component .grid--peek .grid__item {
+    min-width: 40%;
+  }
+
+  .gallery-list__item {
+    min-width: 60%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  slideshow-component .grid--peek .grid__item {
+    min-width: 60%;
+  }
 }
 
 @media screen and (min-width: 768px) {

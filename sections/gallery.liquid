@@ -61,6 +61,7 @@
 
       <slideshow-component
         class="slider-mobile-gutter slider-component-desktop slideshow__autoplay"
+        data-slides-per-view="{{ section.settings.slides_per_view }}"
       >
         <ul
           class="gallery-list grid--1-col grid--1-col-tablet grid--6-col-desktop collapsible-content__grid contains-content-container grid slider slider--tablet grid--peek slider--desktop"
@@ -275,6 +276,14 @@
       "label": "t:sections.collapsible_content.settings.container_color_scheme.label",
       "info": "t:sections.collapsible_content.settings.container_color_scheme.info",
       "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Slides per view",
+      "min": 1,
+      "max": 10,
+      "default": 6
     },
     {
       "type": "header",
