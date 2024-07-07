@@ -13,11 +13,10 @@
   border-bottom: 0;
 }
 
-
-
 .collapsible-content .accordion .icon-accordion {
   width: 2.4rem;
   height: 2.4rem;
+  color: rgb(23, 68, 61);
 }
 
 .collapsible-content .accordion summary {
@@ -51,7 +50,7 @@
 
 .accordion__content_author {
   display: flex;
-  gap: 12px;
+  gap: 1.2rem;
 }
 .collapsible-content__grid .accordion.accordion_item_border {
   border-bottom: 1px solid rgb(0, 0, 0)
@@ -68,7 +67,7 @@
 
 @media screen and (min-width: 992px) {
   .collapsible-content .accordion .icon-accordion {
-    width: 5.2rem;
+    width: 3.8rem;
     height: auto;
   }
 }
@@ -95,6 +94,10 @@ summary .icon-collapsible-plus {
   summary .icon-collapsible-plus {
     width: 2.8rem;
     height: auto;
+  }
+
+  .accordion__title {
+    font-size: 2.4rem;
   }
 
   .accordion_item_border summary .icon-collapsible-plus {
@@ -190,6 +193,12 @@ summary .icon-collapsible-plus {
   margin-top: 0;
 }
 
+
+@media screen and (max-width: 776px) {
+  .grid--3-col-tablet-down .multicolumn-list__item {
+    width: 30%;
+  }
+}
 @media screen and (min-width: 750px) {
   .collapsible-content__heading {
     margin-bottom: 3rem;

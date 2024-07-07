@@ -119,7 +119,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 
 @media screen and (min-width: 992px) {
   .multicolumn .page-width.full-width {
-    max-width: 10.2rem
+    max-width: 100.2rem
   }
 }
 
