@@ -52,12 +52,12 @@
 }
 
 .features_main_content_list_description a:after {
-  content: "";
+  content: '';
   position: absolute;
-  bottom: -.2rem;
+  bottom: -0.2rem;
   left: 0;
   width: 100%;
-  height: .1rem;
+  height: 0.1rem;
   background-color: rgb(33, 36, 39);
 }
 
@@ -68,7 +68,6 @@
   color: rgb(33, 36, 39);
   text-align: center;
 }
-
 
 @media screen and (min-width: 1200px) {
   .features-list_main_content_list_item + .features-list_main_content_list_item {
@@ -96,7 +95,4 @@
     padding-top: 4rem;
     margin-top: 8rem;
   }
-
-
 }
-
