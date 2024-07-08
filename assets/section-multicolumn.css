@@ -26,21 +26,20 @@ input.multicolumn-card--input {
   display: none;
 }
 
-input.multicolumn-card--input:checked~.multicolumn-card--description {
+input.multicolumn-card--input:checked ~ .multicolumn-card--description {
   max-height: 100%;
   opacity: 1;
 }
 
 .multicolumn-card--heading {
-
 }
 
 .multicolumn-card--heading:hover {
   cursor: pointer;
-  color: rgb(30,189,154);
+  color: rgb(30, 189, 154);
 }
 
-input.multicolumn-card--input:checked~.multicolumn-card--heading {
+input.multicolumn-card--input:checked ~ .multicolumn-card--heading {
   display: none;
 }
 
@@ -50,7 +49,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 
 .multicolumn-card--heading {
   text-decoration: underline;
-  color: rgb(16,87,80);
+  color: rgb(16, 87, 80);
 }
 
 .icon-slider-arrow {
@@ -76,21 +75,20 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 
 @media screen and (min-width: 375px) {
   .multicolumn .page-width.full-width {
-    max-width: 50.4rem
+    max-width: 50.4rem;
   }
 }
 
 @media screen and (min-width: 576px) {
   .multicolumn .page-width.full-width {
-    max-width: 70.2rem
+    max-width: 70.2rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .multicolumn .page-width.full-width {
-    max-width: 90.6rem
+    max-width: 90.6rem;
   }
-
 
   slider-component {
     position: relative;
@@ -111,7 +109,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
     position: absolute;
     right: -50px;
   }
-/*
+  /*
   .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item {
     width: calc((100% - var(--grid-mobile-horizontal-spacing) - 3rem) / 3);
   } */
@@ -119,7 +117,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 
 @media screen and (min-width: 992px) {
   .multicolumn .page-width.full-width {
-    max-width: 10.2rem
+    max-width: 10.2rem;
   }
 }
 
@@ -135,7 +133,7 @@ input.multicolumn-card--input:checked~.multicolumn-card--heading {
 
 @media screen and (min-width: 1200px) {
   .multicolumn .page-width.full-width {
-    max-width: 160.8rem
+    max-width: 160.8rem;
   }
 }
 
