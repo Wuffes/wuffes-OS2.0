@@ -9,7 +9,7 @@
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient {% if section.settings.show_border %} bordered{% endif %}">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper center">
       <h1 class="collection-hero__title">
@@ -131,6 +131,12 @@
       "default": false,
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
       "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "default": true,
+      "label": "Show section border"
     },
     {
       "type": "color_scheme",

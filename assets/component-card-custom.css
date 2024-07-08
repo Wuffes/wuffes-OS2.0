@@ -19,7 +19,7 @@
 }
 
 .product-card-wrapper--custom .card__inner_link:hover .card__content_head {
-  color: rgb(var(--color-button));
+  color: var(--custom-hover-color);
   transition: 0.2s color ease-in-out;
 }
 
@@ -36,6 +36,13 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+}
+
+.card__inner_promo_badge_img {
+  width: 4.6rem;
+  position: absolute;
+  bottom: 2.3rem;
+  left: 1.3rem;
 }
 
 .product-card-wrapper--custom .card__content {
@@ -89,6 +96,13 @@
   .product-card-wrapper--custom .card__inner {
     padding-left: calc((var(--image-padding) / 2) - 0.5rem);
     padding-right: calc((var(--image-padding) / 2) - 0.5rem);
+    padding-bottom: 0;
+  }
+
+  .card__inner_promo_badge_img {
+    width: 8.8rem;
+    bottom: 0.3rem;
+    left: 1.1rem;
   }
 
   .product-card-wrapper--custom .card__inner_link {
@@ -130,5 +144,12 @@
   .card__subscription_badge {
     padding: 1.2rem;
     top: 2.3rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .card__subscription_badge {
+    padding: 1.2rem 2.5rem;
+    top: 3rem;
   }
 }

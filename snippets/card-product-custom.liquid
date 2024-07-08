@@ -34,11 +34,22 @@
           assign sizes = '(max-width: 990px) calc(50vw), (max-width: 990px) calc(25vw)'
 
           echo product_img | image_url: width: '400' | image_tag: widths: widths, sizes: sizes, loading: 'lazy', class: 'card__inner_img'
+
+          if section.settings.show_promo_badge and card_product.metafields.prerebrand_collection_filter.best_seller != blank
+            assign promo_badge_img = section.settings.promo_badge_img
+            assign promo_badge_img_widths = '46, 92, 138, 176, 264'
+            assign promo_badge_img_sizes = '(max-width: 749px) 46px, (min-width: 750px) 88px'
+
+            echo promo_badge_img | image_url: width: '88' | image_tag: widths: promo_badge_img_widths, sizes: promo_badge_img_sizes, class: 'card__inner_promo_badge_img'
+          endif
         -%}
       </div>
 
       <div class="card__content">
-        <div class="card__content_head">
+        <div
+          class="card__content_head"
+          style="--custom-hover-color: {{ section.settings.link_hover_color }}"
+        >
           {%- assign link_title = card_product.metafields.prerebrand_collection_filter.title.value
             | default: card_product.title
             | escape
@@ -50,7 +61,7 @@
         </div>
 
         {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
-          {%- if section.settings.reviews_summary == 'default' -%}
+          {%- if review_type == 'default' -%}
             <div class="card-information">
               {% liquid
                 assign rating_decimal = 0

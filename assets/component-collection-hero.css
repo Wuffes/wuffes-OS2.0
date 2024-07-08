@@ -1,3 +1,7 @@
+.collection-hero.bordered {
+  border-bottom: 1px solid rgb(var(--color-button));
+}
+
 .collection-hero__inner {
   display: flex;
   flex-direction: column;

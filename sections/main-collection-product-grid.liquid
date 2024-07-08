@@ -190,7 +190,8 @@
                       quick_add: section.settings.quick_add,
                       section_id: section.id,
                       color_scheme: section.settings.color_scheme,
-                      show_subscribe_badge: section.settings.show_subscribe_badge
+                      show_subscribe_badge: section.settings.show_subscribe_badge,
+                      review_type: section.settings.reviews_summary
                     %}
                   {%- endif -%}
                 </li>
@@ -243,28 +244,6 @@
     {
       "type": "header",
       "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-    },
-    {
-      "type": "select",
-      "id": "card_type",
-      "options": [
-        {
-          "value": "default",
-          "label": "Default"
-        },
-        {
-          "value": "custom",
-          "label": "Custom"
-        }
-      ],
-      "default": "default",
-      "label": "Card type"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_subscribe_badge",
-      "label": "Show subscribe badge",
-      "default": true
     },
     {
       "type": "select",
@@ -380,10 +359,6 @@
         {
           "value": "bulk",
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
-        },
-        {
-          "value": "link",
-          "label": "Link"
         }
       ]
     },
@@ -468,6 +443,50 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#006C5B"
+    },
+    {
+      "type": "header",
+      "content": "Custom product card"
+    },
+    {
+      "type": "select",
+      "id": "card_type",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "default",
+      "label": "Card type"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscribe_badge",
+      "label": "Show subscribe badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_promo_badge",
+      "label": "Show promo badge",
+      "default": true,
+      "info": "Utilizes product metafield: prerebrand_collection_filter.best_seller.value"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_badge_img",
+      "label": "Promo badge image"
     }
   ]
 }
