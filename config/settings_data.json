@@ -73,9 +73,9 @@
     "text_boxes_shadow_horizontal_offset": 0,
     "text_boxes_shadow_vertical_offset": 4,
     "text_boxes_shadow_blur": 5,
-    "media_border_thickness": 1,
-    "media_border_opacity": 5,
-    "media_radius": 0,
+    "media_border_thickness": 0,
+    "media_border_opacity": 0,
+    "media_radius": 20,
     "media_shadow_opacity": 0,
     "media_shadow_horizontal_offset": 0,
     "media_shadow_vertical_offset": 4,
@@ -199,6 +199,28 @@
           "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
           "shadow": "#ffffff"
+        }
+      },
+      "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57": {
+        "settings": {
+          "background": "#f1fdf0",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e": {
+        "settings": {
+          "background": "#f7ece1",
+          "background_gradient": "",
+          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "#17443d",
+          "button_label": "#FFFFFF",
+          "secondary_button_label": "#17443d",
+          "shadow": "#121212"
         }
       }
     }
