@@ -1,0 +1,55 @@
+/* .table-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  min-width: 100px;
+  max-width: 30vw;
+}
+
+#shopify-section-template--16135940833415__table_pxxdAK > div > div > div > table > thead > tr:nth-child(2) > th
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #f1f1f1;
+  z-index: 2;
+}
+
+th:nth-child(1),
+td:nth-child(1),
+th:nth-child(2),
+td:nth-child(2) {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 3;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  left: 40vw;
+}
+
+@media (max-width: 768px) {
+  th:nth-child(1),
+  td:nth-child(1) {}
+  th:nth-child(2),
+  td:nth-child(2) {
+    left: 0;
+    max-width: 40vw;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    left: 40vw;
+    max-width: 30vw;
+  }
+} */

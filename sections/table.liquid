@@ -1,0 +1,273 @@
+{{ 'section-table.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="section_table content-container color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+>
+  <div class="isolate page-width">
+    {% if section.settings.title.size > 0 %}
+      <h2 class="section_table-title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.subtitle.size > 0 %}
+      <p class="section_table-subtitle">
+        {{ section.settings.subtitle }}
+      </p>
+    {% endif %}
+
+    {% if section.blocks.size > 1 %}
+      {%- assign heading_cells = section.blocks | where: 'type', 'column_heading' -%}
+      {%- assign row_cells = section.blocks | where: 'type', 'row_heading' -%}
+      {%- assign regular_cells = section.blocks | where: 'type', 'cell' -%}
+      {%- assign regular_cell_per_row = heading_cells.size | minus: 1 -%}
+      {%- assign table_rows_count = regular_cells.size | times: 1.0 | divided_by: regular_cell_per_row | ceil -%}
+
+      <div class="table-container">
+        <table>
+          {% if heading_cells.size > 0 %}
+            <thead>
+              <tr>
+                {% for block in heading_cells %}
+                  <th class="column_heading_cell">
+                    {% if block.settings.title.size > 0 %}
+                      <p class="heading_cell-title">{{ block.settings.title }}</p>
+                    {% endif %}
+
+                    {% if block.settings.icon %}
+                      {%- capture sizes -%}
+                        (min-width: {{ settings.page_width }}px) {{ settings.page_width | divided_by: heading_cells.size | minus: 24 }}px,
+                        (min-width: 950px) {{ section.settings.table_desktop_width | divided_by: heading_cells.size | minus: 28 }}px, {{ settings.page_width | divided_by: heading_cells.size | minus: 24 }}px
+                      {%- endcapture -%}
+                      {%- assign widths = '70, 90, 140, 180, 210, 270' -%}
+                      {{
+                        block.settings.icon
+                        | image_url: width: 90
+                        | image_tag: class: 'heading_cell-icon', widths: widths, sizes: sizes
+                      }}
+                    {% endif %}
+
+                    {% if block.settings.note.size > 0 %}
+                      <span class="heading_cell-note">{{ block.settings.note }}</span>
+                    {% endif %}
+                  </th>
+                {% endfor %}
+              </tr>
+
+              {% assign table_rows_count_loop = table_rows_count | minus: 1 %}
+
+              {% if row_cells.size > table_rows_count %}
+                {% assign table_rows_count_loop = row_cells.size | minus: 1 %}
+              {% endif %}
+
+              {% for rows_iterator in (0..table_rows_count_loop) %}
+                {% assign cells_offset = regular_cell_per_row | times: rows_iterator %}
+                {% assign cells_limit = regular_cell_per_row %}
+                <tr>
+                  <th>
+                    {% if row_cells[rows_iterator].settings.title.size > 0 %}
+                      <p class="row_heading-text">{{ row_cells[rows_iterator].settings.title }}</p>
+                    {% endif %}
+                  </th>
+
+                  {% for cell in regular_cells limit: cells_limit offset: cells_offset %}
+                    <td
+                      {% if cell.settings.highlight_cell %}
+                        style="background:"
+                      {% endif %}
+                    >
+                      <p class="cell-text">{{ cell.settings.text }}</p>
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </thead>
+          {% endif %}
+        </table>
+      </div>
+    {% endif %}
+
+    {% if section.settings.bottom_note.size > 0 %}
+      <p class="section_table-bottom_note">
+        {{ section.settings.bottom_note }}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.querySelector('.table-container').addEventListener('scroll', function () {
+    var translate = 'translate(0,' + this.scrollTop + 'px)';
+    var ths = this.querySelectorAll('thead th');
+    ths.forEach((th) => (th.style.transform = translate));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Table",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_note",
+      "label": "Section bottom note"
+    },
+    {
+      "type": "range",
+      "id": "table_desktop_width",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Table desktop width",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column_heading",
+      "name": "Column heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading text"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon/image"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Note"
+        }
+      ]
+    },
+    {
+      "type": "row_heading",
+      "name": "Row heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading text"
+        }
+      ]
+    },
+    {
+      "type": "cell",
+      "name": "Cell",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "label": "Text style",
+          "options": [
+            {
+              "value": "heading",
+              "label": "Heading"
+            },
+            {
+              "value": "text",
+              "label": "Regular text"
+            },
+            {
+              "value": "numeric",
+              "label": "Numeric"
+            }
+          ],
+          "default": "numeric"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_cell",
+          "label": "Highlight cell (add background)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table",
+      "blocks": [
+        {
+          "type": "column_heading"
+        },
+        {
+          "type": "column_heading"
+        },
+        {
+          "type": "column_heading"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
