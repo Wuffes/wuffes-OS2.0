@@ -4,13 +4,27 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    .table-content {
+      background: {{ section.settings.color_scheme.settings.button_label }};
+    }
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+
+      .table-content {
+        max-width: {{ section.settings.table_desktop_width }}%;
+      }
+
+      .section_table-title {
+        max-width: {{ section.settings.table_desktop_width }}%;
+      }
     }
+
+
   }
 {%- endstyle -%}
 
@@ -34,23 +48,27 @@
       {%- assign heading_cells = section.blocks | where: 'type', 'column_heading' -%}
       {%- assign row_cells = section.blocks | where: 'type', 'row_heading' -%}
       {%- assign regular_cells = section.blocks | where: 'type', 'cell' -%}
-      {%- assign regular_cell_per_row = heading_cells.size | minus: 1 -%}
+      {% if row_cells.size > 0 %}
+        {%- assign regular_cell_per_row = heading_cells.size | minus: 1 -%}
+      {% else %}
+        {%- assign regular_cell_per_row = heading_cells.size -%}
+      {% endif %}
       {%- assign table_rows_count = regular_cells.size | times: 1.0 | divided_by: regular_cell_per_row | ceil -%}
 
       <div class="table-container">
-        <table>
+        <table class="table-content">
           {% if heading_cells.size > 0 %}
             <thead>
               <tr>
                 {% for block in heading_cells %}
-                  <th class="column_heading_cell">
+                  <th class="column_heading_cell{% if forloop.index == 1 %} row_heading_cell{% endif %} cell-column cell-column-{% if forloop.index == 1 %}{{ forloop.index | minus:1 }}{% else %}{{ forloop.index0 | minus:1 }}{% endif %}">
                     {% if block.settings.title.size > 0 %}
                       <p class="heading_cell-title">{{ block.settings.title }}</p>
                     {% endif %}
 
                     {% if block.settings.icon %}
                       {%- capture sizes -%}
-                        (min-width: {{ settings.page_width }}px) {{ settings.page_width | divided_by: heading_cells.size | minus: 24 }}px,
+                        (min-width: {{ settings.page_width }}px) {{ settings.page_width | times: 0.3 | minus: 24 }}px,
                         (min-width: 950px) {{ section.settings.table_desktop_width | divided_by: heading_cells.size | minus: 28 }}px, {{ settings.page_width | divided_by: heading_cells.size | minus: 24 }}px
                       {%- endcapture -%}
                       {%- assign widths = '70, 90, 140, 180, 210, 270' -%}
@@ -78,19 +96,28 @@
                 {% assign cells_offset = regular_cell_per_row | times: rows_iterator %}
                 {% assign cells_limit = regular_cell_per_row %}
                 <tr>
-                  <th>
-                    {% if row_cells[rows_iterator].settings.title.size > 0 %}
-                      <p class="row_heading-text">{{ row_cells[rows_iterator].settings.title }}</p>
-                    {% endif %}
-                  </th>
+                  {% if row_cells.size > 0 %}
+                    <th class="row_heading_cell cell-column-0">
+                      {% if row_cells[rows_iterator].settings.title.size > 0 %}
+                        <p class="row_heading-text">{{ row_cells[rows_iterator].settings.title }}</p>
+                      {% endif %}
+                    </th>
+                  {% endif %}
 
                   {% for cell in regular_cells limit: cells_limit offset: cells_offset %}
+                    {% if row_cells.size > 0 %}
+                      {%- assign dynamic_column_index = forloop.index0 -%}
+                    {% else %}
+                      {%- assign dynamic_column_index = forloop.index0 | minus: 1 -%}
+                    {% endif %}
+
                     <td
+                      class="cell-content cell-column cell-column-{{ dynamic_column_index }}"
                       {% if cell.settings.highlight_cell %}
-                        style="background:"
+                        style="background: {{ section.settings.color_scheme.settings.button }}; color: {{ section.settings.color_scheme.settings.button_label }};"
                       {% endif %}
                     >
-                      <p class="cell-text">{{ cell.settings.text }}</p>
+                      <p class="cell-text text_style-{{ cell.settings.text_style }}">{{ cell.settings.text }}</p>
                     </td>
                   {% endfor %}
                 </tr>
@@ -107,13 +134,51 @@
       </p>
     {% endif %}
   </div>
+
+  <div class="table-pagination">
+    {% for block in heading_cells offset: 2 %}
+      <span
+        class="table-bullet {% if forloop.index == 1 %}active{% endif %}"
+        data-column="{{ forloop.index }}"
+      ></span>
+    {% endfor %}
+  </div>
 </div>
 
 <script>
-  document.querySelector('.table-container').addEventListener('scroll', function () {
-    var translate = 'translate(0,' + this.scrollTop + 'px)';
-    var ths = this.querySelectorAll('thead th');
-    ths.forEach((th) => (th.style.transform = translate));
+  function addListenerMulti(element, eventNames, listener) {
+    var events = eventNames.split(' ');
+    for (var i = 0, iLen = events.length; i < iLen; i++) {
+      element.addEventListener(events[i], listener, false);
+    }
+  }
+  addListenerMulti(window, 'load resize orientationchange', function () {
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.cell-column:not(.cell-column-0):not(.cell-column-1)').forEach((cell) => {
+        cell.style.display = 'none';
+      });
+
+      document.querySelectorAll('.table-bullet').forEach((bullet) => {
+        bullet.addEventListener('click', function () {
+          document.querySelectorAll('.table-bullet').forEach((b) => b.classList.remove('active'));
+          this.classList.add('active');
+
+          const page = this.getAttribute('data-column');
+
+          document.querySelectorAll('.cell-column:not(.cell-column-0)').forEach((cell) => {
+            cell.style.display = 'none';
+          });
+
+          document.querySelectorAll(`.cell-column-${page}`).forEach((cell) => {
+            cell.style.display = 'table-cell';
+          });
+        });
+      });
+    } else {
+      document.querySelectorAll('.cell-column:not(.cell-column-0):not(.cell-column-1)').forEach((cell) => {
+        cell.style.display = 'table-cell';
+      });
+    }
   });
 </script>
 
@@ -229,10 +294,6 @@
           "id": "text_style",
           "label": "Text style",
           "options": [
-            {
-              "value": "heading",
-              "label": "Heading"
-            },
             {
               "value": "text",
               "label": "Regular text"
