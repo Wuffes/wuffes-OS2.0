@@ -1,5 +1,112 @@
 {
   "sections": {
+    "image_banner_NcjRzV": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/os20_image_banner.png",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "okendo_reviews_U4aLqm": {
+      "type": "okendo_reviews",
+      "settings": {
+        "title": "Scroll through what fellow pet parents have to say",
+        "custom_product": "advanced-hip-joint-support-for-large-breeds",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "custom_2_images_with_popups_YtNRi6": {
+      "type": "custom_2_images_with_popups",
+      "blocks": {
+        "image_1_popup_chUPmc": {
+          "type": "image_1_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 14,
+            "toggle_left": 50
+          }
+        },
+        "image_1_popup_KfG9Je": {
+          "type": "image_1_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 77,
+            "toggle_left": 15
+          }
+        },
+        "image_1_popup_A8LGBK": {
+          "type": "image_1_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 71,
+            "toggle_left": 80
+          }
+        },
+        "image_2_popup_Lx46g3": {
+          "type": "image_2_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 38,
+            "toggle_left": 30
+          }
+        },
+        "image_2_popup_6jEmNg": {
+          "type": "image_2_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 38,
+            "toggle_left": 66
+          }
+        },
+        "image_2_popup_Jjdz7Q": {
+          "type": "image_2_popup",
+          "settings": {
+            "title": "",
+            "text": "",
+            "toggle_top": 52,
+            "toggle_left": 77
+          }
+        }
+      },
+      "block_order": [
+        "image_1_popup_chUPmc",
+        "image_1_popup_KfG9Je",
+        "image_1_popup_A8LGBK",
+        "image_2_popup_Lx46g3",
+        "image_2_popup_6jEmNg",
+        "image_2_popup_Jjdz7Q"
+      ],
+      "settings": {
+        "title_1": "How it works",
+        "subtitle_1": "Our 23-in-1 Multivitamin helps balance your dog’s diet by filling any nutritional gaps and deficiencies, which are associated with the development of joint disease.",
+        "hint_1": "Click on the green circles for more information",
+        "image_1": "shopify:\/\/shop_images\/MV_Illustration_Desktop_1.svg",
+        "title_2": "When taken together",
+        "subtitle_2": "We recommend combining our Advanced Hip & Joint Support chews with\u2028 23-in-1 Multivitamin for best results",
+        "hint_2": "Click on the green circles for more information",
+        "image_2": "shopify:\/\/shop_images\/MV_JC_illustration.svg",
+        "section_color_scheme": "scheme-3e1ea55f-e3e0-4a1c-b879-3126884afa91",
+        "border_top": true,
+        "padding_top": 50,
+        "border_bottom": true,
+        "padding_bottom": 50
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -69,14 +176,15 @@
         "color_scheme": "scheme-5",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 28,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "hide_price": true,
+        "show_product_description": true,
+        "show_product_benefits": false
       }
     },
     "multicolumn": {
@@ -231,6 +339,9 @@
     }
   },
   "order": [
+    "image_banner_NcjRzV",
+    "okendo_reviews_U4aLqm",
+    "custom_2_images_with_popups_YtNRi6",
     "image_banner",
     "featured_collection",
     "multicolumn",
