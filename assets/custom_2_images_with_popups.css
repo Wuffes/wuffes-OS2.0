@@ -1,3 +1,7 @@
+.custom_body_no-scroll {
+  overflow: hidden;
+}
+
 .custom_2-image_wrapper {
   max-width: 600px;
   position: relative;
@@ -26,12 +30,30 @@
   }
 }
 
-.custom_2-popup_trigger {
-  /* display: none; */
+.custom_2 {
+  text-align: center;
+}
 
+.custom_2-content~.custom_2-content {
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid rgba(var(--color-shadow), 0.3);
+}
+
+.custom_2-title {
+  margin-top: 0;
+}
+
+.custom_2-main_image {
+  max-width: 100%;
+  height: auto;
+}
+
+.custom_2-popup_trigger {
   width: 20px;
   height: 20px;
   position: absolute;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .custom_2-popup_trigger::after {
@@ -61,17 +83,77 @@
 
 .custom_2-popup {
   display: none;
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(var(--color-shadow), .7);
+  /* transform: translateX(-50%) translateY(-50%); */
   z-index: 2;
-  max-width: 600px;
+
+}
+
+.custom_2-popup_content {
+  max-width: 30rem;
   width: 100%;
-  background: red;
-  height: 300px;
+  background: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-shadow));
+  height: auto;
+  min-height: 25rem;
+  padding: 1.5rem;
+  border-radius: 15px;
+  z-index: 3;
+  position: relative;
+}
+
+.custom_2-popup_image {
+  max-width: 160px;
+  height: auto;
+  width: auto;
+}
+
+.custom_2-popup_title {
+  margin: 2.4rem 0 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.custom_2-popup_text {
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .custom_2-popup_content {
+    max-width: 45rem;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .custom_2-popup_content {
+    max-width: 60rem;
+  }
+}
+
+.custom_2-popup_close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: 1px solid rgb(var(--color-shadow));
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+
+  .icon {
+    color: rgb(var(--color-shadow));
+  }
 }
 
 .custom_2-popup_trigger:checked + .custom_2-popup {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

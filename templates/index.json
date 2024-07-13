@@ -1,38 +1,14 @@
 {
   "sections": {
-    "image_banner_NcjRzV": {
-      "type": "image-banner",
-      "settings": {
-        "image": "shopify:\/\/shop_images\/os20_image_banner.png",
-        "image_overlay_opacity": 0,
-        "image_height": "large",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
-      }
-    },
-    "okendo_reviews_U4aLqm": {
-      "type": "okendo_reviews",
-      "settings": {
-        "title": "Scroll through what fellow pet parents have to say",
-        "custom_product": "advanced-hip-joint-support-for-large-breeds",
-        "padding_top": 52,
-        "padding_bottom": 52
-      }
-    },
     "custom_2_images_with_popups_YtNRi6": {
       "type": "custom_2_images_with_popups",
       "blocks": {
         "image_1_popup_chUPmc": {
           "type": "image_1_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_1.svg",
+            "title": "Calcium, Magnesium & Vitamin D",
+            "text": "Essential for maintaining bone strength and mineral density",
             "toggle_top": 14,
             "toggle_left": 50
           }
@@ -40,8 +16,9 @@
         "image_1_popup_KfG9Je": {
           "type": "image_1_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
             "toggle_top": 77,
             "toggle_left": 15
           }
@@ -49,8 +26,9 @@
         "image_1_popup_A8LGBK": {
           "type": "image_1_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_3.svg",
+            "title": "B- Vitamins",
+            "text": "Help the body convert food into energy, promoting energy metabolism and reducing fatigue",
             "toggle_top": 71,
             "toggle_left": 80
           }
@@ -58,8 +36,9 @@
         "image_2_popup_Lx46g3": {
           "type": "image_2_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_2.svg",
+            "title": "23-in-1 Multivitamin",
+            "text": "Provides nutrients that help boost energy levels to promote weight loss and increase activity levels which helps reduce osteoarthritis symptoms and helps our joint chews be even more effective.",
             "toggle_top": 38,
             "toggle_left": 30
           }
@@ -67,8 +46,9 @@
         "image_2_popup_6jEmNg": {
           "type": "image_2_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_1.svg",
+            "title": "Advanced Hip & Joint Support",
+            "text": "Regulate the immune response while our multivitamin provides all essential nutrients for the immune system to function well",
             "toggle_top": 38,
             "toggle_left": 66
           }
@@ -76,8 +56,9 @@
         "image_2_popup_Jjdz7Q": {
           "type": "image_2_popup",
           "settings": {
-            "title": "",
-            "text": "",
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
             "toggle_top": 52,
             "toggle_left": 77
           }
@@ -105,6 +86,31 @@
         "padding_top": 50,
         "border_bottom": true,
         "padding_bottom": 50
+      }
+    },
+    "image_banner_NcjRzV": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/os20_image_banner.png",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "okendo_reviews_U4aLqm": {
+      "type": "okendo_reviews",
+      "settings": {
+        "title": "Scroll through what fellow pet parents have to say",
+        "custom_product": "advanced-hip-joint-support-for-large-breeds",
+        "padding_top": 52,
+        "padding_bottom": 52
       }
     },
     "image_banner": {
@@ -339,9 +345,9 @@
     }
   },
   "order": [
+    "custom_2_images_with_popups_YtNRi6",
     "image_banner_NcjRzV",
     "okendo_reviews_U4aLqm",
-    "custom_2_images_with_popups_YtNRi6",
     "image_banner",
     "featured_collection",
     "multicolumn",

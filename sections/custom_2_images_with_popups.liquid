@@ -37,11 +37,6 @@
   (min-width: 630px) 600px, calc(100vw - 30px)
 {%- endcapture -%}
 
-{%- assign popup_img_widths = '160, 320, 480' -%}
-{%- capture popup_img_sizes -%}
-  (min-width: 630px) 600px, 160px
-{%- endcapture -%}
-
 <div class="section-{{ section.id }}-padding">
   <div
     id="Custom-2-{{ section.id }}"
@@ -98,25 +93,103 @@
               for="top_block_{{ forloop.index }}_popup"
               class="custom_2-popup"
             >
-              {% if block.settings.image.size > 0 %}
-                {{
-                  block.settings.image
-                  | image_url: width: 600
-                  | image_tag:
-                    sizes: main_img_sizes,
-                    widths: main_img_widths,
-                    fetchpriority: fetch_priority,
-                    class: 'custom_2-popup_image'
-                }}
-              {% endif %}
+              <div class="custom_2-popup_content">
+                <div class="custom_2-popup_close">
+                  {% render 'icon-close' %}
+                </div>
+                {% if block.settings.image.size > 0 %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 160
+                    | image_tag: sizes: main_img_sizes, widths: main_img_widths, class: 'custom_2-popup_image'
+                  }}
+                {% endif %}
 
-              {% if block.settings.title.size > 0 %}
-                <h5>{{ block.settings.title }}</h5>
-              {% endif %}
+                {% if block.settings.title.size > 0 %}
+                  <h5 class="custom_2-popup_title">{{ block.settings.title }}</h5>
+                {% endif %}
 
-              {% if block.settings.text.size > 0 %}
-                <p>{{ block.settings.text }}</p>
-              {% endif %}
+                {% if block.settings.text.size > 0 %}
+                  <p class="custom_2-popup_text">{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            </label>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="page-width custom_2-content custom_2-content_bottom">
+      {% if section.settings.title_2.size > 0 %}
+        <h2
+          class="custom_2-title"
+        >
+          {{- section.settings.title_2 -}}
+        </h2>
+      {% endif %}
+      {% if section.settings.subtitle_2.size > 0 %}
+        <p
+          class="custom_2-subtitle"
+        >
+          {{- section.settings.subtitle_2 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.hint_2.size > 0 %}
+        <p
+          class="custom_2-hint"
+        >
+          {{- section.settings.hint_2 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.image_2.size > 0 %}
+        <div class="custom_2-image_wrapper">
+          {{
+            section.settings.image_2
+            | image_url: width: 600
+            | image_tag:
+              sizes: main_img_sizes,
+              widths: main_img_widths,
+              fetchpriority: fetch_priority,
+              class: 'custom_2-main_image'
+          }}
+
+          {%- assign bottom_blocks = section.blocks | where: 'type', 'image_2_popup' -%}
+
+          {% for block in bottom_blocks %}
+            <input
+              type="radio"
+              name="bottom_popup"
+              id="bottom_block_{{ forloop.index }}_popup"
+              class="custom_2-popup_trigger"
+              style="top: {{ block.settings.toggle_top }}%; left: {{ block.settings.toggle_left }}%;"
+            >
+
+            <label
+              for="bottom_block_{{ forloop.index }}_popup"
+              class="custom_2-popup"
+            >
+              <div class="custom_2-popup_content">
+                <div class="custom_2-popup_close">
+                  {% render 'icon-close' %}
+                </div>
+                {% if block.settings.image.size > 0 %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 160
+                    | image_tag: sizes: main_img_sizes, widths: main_img_widths, class: 'custom_2-popup_image'
+                  }}
+                {% endif %}
+
+                {% if block.settings.title.size > 0 %}
+                  <h5 class="custom_2-popup_title">{{ block.settings.title }}</h5>
+                {% endif %}
+
+                {% if block.settings.text.size > 0 %}
+                  <p class="custom_2-popup_text">{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
             </label>
           {% endfor %}
         </div>
@@ -129,18 +202,19 @@
   document.querySelectorAll('.custom_2-popup_trigger').forEach(function (radio) {
     radio.addEventListener('click', function (event) {
       if (this.checked) {
-        // Check if already checked
         if (this.previousChecked) {
           this.checked = false;
           this.previousChecked = false;
+          document.body.classList.remove('custom_body_no-scroll');
         } else {
           document.querySelectorAll('.custom_2-popup_trigger').forEach(function (otherRadio) {
             otherRadio.previousChecked = false;
           });
           this.previousChecked = true;
+          document.body.classList.add('custom_body_no-scroll');
         }
       }
-      event.stopPropagation(); // Prevent the click from propagating to the document
+      event.stopPropagation();
     });
   });
 
@@ -149,6 +223,7 @@
       document.querySelectorAll('.custom_2-popup_trigger').forEach(function (radio) {
         radio.checked = false;
         radio.previousChecked = false;
+        document.body.classList.add('custom_body_no-scroll');
       });
     }
   });
