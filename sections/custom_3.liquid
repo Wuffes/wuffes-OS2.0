@@ -51,19 +51,34 @@
     <div class="page-width custom_3-content custom_3-content_top">
       <div class="custom_3_section__bg">
         <div class="custom_3_section__letter">
-          <h2 class="custom_3_section__title">
+          <h2
+            class="custom_3_section__title"
+            style="color: {{ section.settings.section_color_scheme.settings.button }}"
+          >
             {{- section.settings.title -}}
           </h2>
 
           <p class="custom_3_section__description">
             {% if section.settings.descr_truncate_words > 0 %}
-              <span class="custom_3__content_truncated">
+              <span
+                class="custom_3__content_truncated"
+                id="js__custom_3_content_truncated"
+              >
                 {{- section.settings.description | truncatewords: section.settings.descr_truncate_words -}}
 
-                <a href="#" id="js__custom_3_trigger" class="custom_3_trigger">read more</a>
+                <a
+                  href="#"
+                  id="js__custom_3_trigger"
+                  class="custom_3_trigger"
+                  style="color: {{ section.settings.section_color_scheme.settings.button }}"
+                  >read more</a
+                >
               </span>
 
-              <span class="custom_3__content_full">
+              <span
+                class="custom_3__content_full"
+                id="js__custom_3_content_full"
+              >
                 {{- section.settings.description -}}
               </span>
             {% else %}
@@ -74,7 +89,7 @@
           <div class="additional_img_1 absolute_img">
             {{
               section.settings.additional_img_1
-              | image_url: width: 91
+              | image_url: width: 231
               | image_tag:
                 sizes: additional_img_sizes,
                 widths: additional_img_widths,
@@ -86,7 +101,7 @@
           <div class="additional_img_2 absolute_img">
             {{
               section.settings.additional_img_2
-              | image_url: width: 91
+              | image_url: width: 231
               | image_tag:
                 sizes: additional_img_sizes,
                 widths: additional_img_widths,
@@ -98,7 +113,7 @@
           <div class="additional_img_3 absolute_img">
             {{
               section.settings.additional_img_3
-              | image_url: width: 91
+              | image_url: width: 231
               | image_tag:
                 sizes: additional_img_sizes,
                 widths: additional_img_widths,
@@ -110,10 +125,10 @@
           <div class="additional_img_bottom desktop">
             {{
               section.settings.bottom_desktop
-              | image_url: width: 262
+              | image_url: width: 413
               | image_tag:
-                sizes: additional_img_sizes,
-                widths: additional_img_widths,
+                sizes: main_img_sizes,
+                widths: main_img_widths,
                 fetchpriority: fetch_priority,
                 class: 'bottom_main_img_mobile custom_3_section_img'
             }}
@@ -124,8 +139,8 @@
               section.settings.bottom_mobile
               | image_url: width: 262
               | image_tag:
-                sizes: additional_img_sizes,
-                widths: additional_img_widths,
+                sizes: main_img_sizes,
+                widths: main_img_widths,
                 fetchpriority: fetch_priority,
                 class: 'bottom_main_img_mobile custom_3_section_img'
             }}
@@ -136,7 +151,12 @@
   </div>
 </div>
 
-<script></script>
+<script>
+  document.getElementById('js__custom_3_trigger').addEventListener('click', function () {
+    document.getElementById('js__custom_3_content_truncated').style.display = 'none';
+    document.getElementById('js__custom_3_content_full').style.display = 'block';
+  });
+</script>
 
 {% schema %}
 {

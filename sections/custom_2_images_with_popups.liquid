@@ -205,13 +205,11 @@
         if (this.previousChecked) {
           this.checked = false;
           this.previousChecked = false;
-          document.body.classList.remove('custom_body_no-scroll');
         } else {
           document.querySelectorAll('.custom_2-popup_trigger').forEach(function (otherRadio) {
             otherRadio.previousChecked = false;
           });
           this.previousChecked = true;
-          document.body.classList.add('custom_body_no-scroll');
         }
       }
       event.stopPropagation();
@@ -223,7 +221,6 @@
       document.querySelectorAll('.custom_2-popup_trigger').forEach(function (radio) {
         radio.checked = false;
         radio.previousChecked = false;
-        document.body.classList.add('custom_body_no-scroll');
       });
     }
   });
