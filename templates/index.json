@@ -1,5 +1,57 @@
 {
   "sections": {
+    "custom_4_Taipe8": {
+      "type": "custom_4",
+      "blocks": {
+        "text_item_jwJTXq": {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Accelerate <em><strong>Formulation of Cartilage<\/strong><\/em><\/p>"
+          }
+        },
+        "text_item_HLWC6g": {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Eliminate <em><strong>Inflammation<\/strong><\/em><\/p>"
+          }
+        },
+        "text_item_Nj6DV6": {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Increase <em><strong>Joint Fluid Viscosity<\/strong><\/em><\/p>"
+          }
+        },
+        "text_item_BTnqAN": {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Enhance <em><strong>Response of Protective Tissue<\/strong><\/em><\/p>"
+          }
+        },
+        "text_item_Kf94NQ": {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Improve <em><strong>Mobility & Reduce Pain<\/strong><\/em><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_item_jwJTXq",
+        "text_item_HLWC6g",
+        "text_item_Nj6DV6",
+        "text_item_BTnqAN",
+        "text_item_Kf94NQ"
+      ],
+      "settings": {
+        "title": "Results in as little as <i>3 Weeks!<\/i>",
+        "description": "If you're not happy after 3 months of consistent use, we'll refund you.",
+        "image": "shopify:\/\/shop_images\/reskin_full_price_jc_v4.png",
+        "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
+        "border_top": false,
+        "padding_top": 80,
+        "border_bottom": true,
+        "padding_bottom": 80
+      }
+    },
     "custom_3_f6G3Hz": {
       "type": "custom_3",
       "settings": {
@@ -364,6 +416,7 @@
     }
   },
   "order": [
+    "custom_4_Taipe8",
     "custom_3_f6G3Hz",
     "custom_2_images_with_popups_YtNRi6",
     "image_banner_NcjRzV",

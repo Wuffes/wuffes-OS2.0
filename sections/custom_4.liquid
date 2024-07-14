@@ -1,0 +1,177 @@
+{{ 'custom_4.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    {% if section.settings.border_top %}
+      border-top: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+    {% if section.settings.border_bottom %}
+      border-bottom: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+  }
+
+  .custom_4__wrapper {
+    background: {{ section.settings.section_color_scheme.settings.background }}
+  }
+
+  .custom_4__title i {
+    color: {{ section.settings.section_color_scheme.settings.button }}
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+{%- assign widths = '345, 432, 585, 642, 900, 1170, 1284, 1755, 1800' -%}
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 30 | divided_by: 2 }}px,
+  (min-width: 750px) calc((100vw - 30px) / 2), calc(100vw - 30px)
+{%- endcapture -%}
+
+<div class="section-{{ section.id }}-padding custom_4__wrapper">
+  <h2 class="custom_4__title hidden_mobile">
+    {{- section.settings.title -}}
+  </h2>
+
+  <p class="custom_4__description hidden_mobile">
+    {{- section.settings.description -}}
+  </p>
+
+  <div class="custom_4__wrapper_content page-width">
+    <div class="custom_4__wrapper_img">
+      {{
+        section.settings.image
+        | image_url: width: 585
+        | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'custom_4__main_img'
+      }}
+    </div>
+
+    <h2 class="custom_4__title hidden_desktop">
+      {{- section.settings.title -}}
+    </h2>
+
+    <p class="custom_4__description hidden_desktop">
+      {{- section.settings.description -}}
+    </p>
+
+    <div class="custom_4__wrapper_description">
+      <ul>
+        {%- for block in section.blocks -%}
+          <li class="custom_4__icons_item">
+            {%- render 'icon-check-bg' -%}
+
+            <div class="custom_4__icons_item_text">
+              {{- block.settings.text -}}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom 4",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content part 1 - top"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Section layout settings"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top",
+      "label": "Border top",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Border bottom",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_item",
+      "name": "Text item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom 4 (Results section)"
+    }
+  ]
+}
+{% endschema %}
