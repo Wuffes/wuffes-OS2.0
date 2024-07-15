@@ -113,34 +113,23 @@
                     style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
                   {% endif %}
                 >
-                  {%- if block.settings.image != blank -%}
-                    {%- if section.settings.image_behavior == 'ambient'
-                      or section.settings.image_behavior == 'zoom-in'
-                    -%}
-                      {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                      {%- capture sizes -%}
-                    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-                    (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-                  {%- endcapture -%}
-                    {%- else -%}
-                      {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                      {%- capture sizes -%}
-                    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                    (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-                  {%- endcapture -%}
-                    {%- endif -%}
-                    {{
-                      block.settings.image
-                      | image_url: width: 1500
-                      | image_tag:
-                        sizes: sizes,
-                        widths: widths,
-                        fetchpriority: fetch_priority,
-                        class: 'rich-text__image--media-img'
-                    }}
-                  {%- else -%}
-                    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
+                  {%- liquid
+                    if block.settings.image != blank
+                      if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in'
+                        assign widths = '530, 1060, 1590, 2120, 3180'
+                        assign image_max_width = block.settings.image_max_width | divided_by: 1.667
+                        assign sizes = '(max-width: 575px) calc(100vw - 30px), (min-width: 576px) ' | append: image_max_width | append: 'px'
+                      else
+                        assign widths = '500, 1000, 1500, 2000, 3000'
+                        assign image_max_width = block.settings.image_max_width
+                        assign sizes = '(max-width: 575px) calc(100vw - 30px), (min-width: 576px) ' | append: image_max_width | append: 'px'
+                      endif
+
+                      echo block.settings.image | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'rich-text__image--media-img'
+                    else
+                      echo 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg'
+                    endif
+                  -%}
                 </div>
 
                 <div
@@ -151,38 +140,23 @@
                     style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
                   {% endif %}
                 >
-                  {%- if block.settings.image_mobile != blank -%}
-                    {%- if section.settings.image_behavior == 'ambient'
-                      or section.settings.image_behavior == 'zoom-in'
-                    -%}
-                      {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
-                      {%- capture sizes -%}
-                        {%- comment -%} (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-                        (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667) {%- endcomment -%}
-                        (max-width: 750px) calc(100vw - 30px)
-                      {%- endcapture -%}
+                  {%- liquid
+                    if block.settings.image_mobile != blank
+                      if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in'
+                        assign widths = '560, 1120, 1680'
+                        assign image_max_width = block.settings.image_mobile_max_width | divided_by: 1.667
+                        assign sizes = '(max-width: 575px) calc(100vw - 30px), (min-width: 576px) ' | append: image_max_width | append: 'px'
+                      else
+                        assign widths = '500, 1000, 1500'
+                        assign image_max_width = block.settings.image_mobile_max_width
+                        assign sizes = '(max-width: 575px) calc(100vw - 30px), (min-width: 576px) ' | append: image_max_width | append: 'px'
+                      endif
 
-                    {%- else -%}
-                      {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
-                      {%- capture sizes -%}
-                        {%- comment -%} (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                        (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2) {%- endcomment -%}
-                        (max-width: 750px) calc(100vw - 30px)
-                      {%- endcapture -%}
-                    {%- endif -%}
-
-                    {{
-                      block.settings.image_mobile
-                      | image_url: 1500
-                      | image_tag:
-                        sizes: sizes,
-                        widths: widths,
-                        fetchpriority: fetch_priority,
-                        class: 'rich-text__image--media-img'
-                    }}
-                  {%- else -%}
-                    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
+                      echo block.settings.image_mobile | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'rich-text__image--media-img'
+                    else
+                      echo 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg'
+                    endif
+                  -%}
                 </div>
               </div>
             {%- when 'button' -%}
