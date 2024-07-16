@@ -39,6 +39,7 @@
   <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding{% if section.settings.show_border %} rich-text--border{% endif %}">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+        {%- assign perk_index = 0 -%}
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'heading' -%}
@@ -228,6 +229,36 @@
               >
                 {{- block.settings.custom_html -}}
               </div>
+            {% when 'perks' %}
+              {%- liquid
+                assign perks = section.blocks | map: 'type' | where: 'perks'
+                assign perks_size = perks.size
+                assign perk_index = perk_index | plus: 1
+                assign widths = '38, 76, 114'
+              -%}
+
+              {%- if perk_index == 1 -%}
+                <div
+                  class="rich-text__perks rich-text__perks-{{ block.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  {{ block.shopify_attributes }}
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
+                >
+                  <div
+                    class="rich_text_perks-wrap"
+                    style="--grid-col-row: {{ perks_size }}"
+                  >
+              {%- endif -%}
+              <div class="rich_text_perks-item">
+                {{- block.settings.image | image_url: width: 38 | image_tag: widths: widths -}}
+                <div class="rich_text_perks-item-text">{{- block.settings.text -}}</div>
+              </div>
+              {%- if perk_index >= perks_size -%}
+                </div>
+                </div>
+              {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -584,6 +615,22 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
+    },
+    {
+      "type": "perks",
+      "name": "Perks",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
         }
       ]
     },

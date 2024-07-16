@@ -199,3 +199,49 @@
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
 }
+
+/* PERKS */
+.rich-text__perks {
+  margin-top: 0;
+}
+
+.rich_text_perks-wrap {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 42px;
+  margin-top: 21px;
+  padding: 0 22px;
+}
+
+.rich_text_perks-col-right {
+  margin-left: 42px;
+}
+
+.rich_text_perks-item {
+  display: flex;
+  align-items: center;
+}
+
+.rich_text_perks-item-text > p {
+  margin: 0 0 0 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(var(--color-foreground));
+}
+
+@media screen and (min-width: 750px) {
+  .rich_text_perks-wrap {
+    grid-template-columns: repeat(var(--grid-col-row), 1fr);
+    column-gap: 0;
+    margin-top: 40px;
+    padding: 0;
+  }
+  .rich_text_perks-col-left,
+  .rich_text_perks-col-right {
+    display: flex;
+    align-items: baseline;
+  }
+  .rich_text_perks-item + .rich_text_perks-item {
+    margin-left: 35px;
+  }
+}

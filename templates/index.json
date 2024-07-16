@@ -325,11 +325,39 @@
             "image_behavior": "none"
           }
         },
-        "custom_qmGDFK": {
-          "type": "custom",
+        "perks_zDHdFE": {
+          "type": "perks",
           "settings": {
-            "custom_html": "<style>\n.rich_text_custom--laser-wrap{display:flex;justify-content:center;margin-top:21px}.rich_text_custom--laser-col-right{margin-left:42px}.rich_text_custom--laser-item{display:flex;align-items:center}.rich_text_custom--laser-item-text{margin:0 0 0 20px;font-size:16px;font-weight:700;color:rgba(var(--color-foreground))}@media screen and (min-width:750px){.rich_text_custom--laser-wrap{margin-top:40px}.rich_text_custom--laser-col-left,.rich_text_custom--laser-col-right{display:flex;align-items:baseline}.rich_text_custom--laser-item+.rich_text_custom--laser-item{margin-left:35px}}\n<\/style>\n\n<div class=rich_text_custom--laser-wrap><div class=rich_text_custom--laser-col-left><div class=rich_text_custom--laser-item><svg fill=none height=13 viewBox=\"0 0 38 13\"width=38 xmlns=http:\/\/www.w3.org\/2000\/svg><rect fill=#F6B1CF height=11.8567 rx=2.15576 width=37.7259 y=0.214958><\/rect><\/svg><p class=rich_text_custom--laser-item-text>Epidermis<\/div><div class=rich_text_custom--laser-item><svg fill=none height=13 viewBox=\"0 0 39 13\"width=39 xmlns=http:\/\/www.w3.org\/2000\/svg><rect fill=#FBDDEA height=11.8567 rx=2.15576 width=37.7259 y=0.214958 x=0.853577><\/rect><\/svg><p class=rich_text_custom--laser-item-text>Dermis<\/div><div class=rich_text_custom--laser-item><svg fill=none height=13 viewBox=\"0 0 39 13\"width=39 xmlns=http:\/\/www.w3.org\/2000\/svg><rect fill=#F9F6BE height=11.8567 rx=2.15576 width=37.7259 y=0.214958 x=0.707153><\/rect><path d=\"M8.29623 3.25064C8.14454 3.85742 8.39561 4.5479 8.90299 4.90883C9.39467 5.2593 10.0328 5.29592 10.6343 5.28546C11.4137 5.26453 12.282 5.12853 12.758 4.51129C13.1451 4.00912 13.1555 3.27156 12.8469 2.71709C12.5383 2.16261 11.9368 1.80691 11.3091 1.71276C10.2787 1.56106 8.57869 2.126 8.29623 3.24541V3.25064Z\"fill=#F7D884><\/path><path d=\"M13.6856 7.82769C13.5339 8.43447 13.785 9.12495 14.2924 9.48588C14.7841 9.83635 15.4222 9.87297 16.0238 9.86251C16.8031 9.84158 17.6714 9.70558 18.1474 9.08834C18.5345 8.58617 18.5449 7.84861 18.2363 7.29414C17.9277 6.73966 17.3262 6.38396 16.6985 6.2898C15.6681 6.13811 13.9681 6.70305 13.6856 7.82246V7.82769Z\"fill=#F7D884><\/path><path d=\"M28.7041 2.20783C28.0789 2.1907 27.4589 2.5849 27.2159 3.15822C26.9799 3.71397 27.0819 4.34497 27.2219 4.93006C27.4106 5.68654 27.7308 6.50501 28.4363 6.83654C29.0101 7.10609 29.7326 6.9571 30.2074 6.53608C30.6821 6.11505 30.8996 5.45092 30.8561 4.81771C30.7817 3.77882 29.8632 2.24087 28.7092 2.2067L28.7041 2.20783Z\"fill=#F7D884><\/path><path d=\"M16.9858 2.6129C16.7713 3.08891 16.8759 3.69046 17.2421 4.06708C17.5926 4.42802 18.1156 4.55356 18.6125 4.63202C19.2559 4.73141 19.9934 4.7471 20.4747 4.31294C20.867 3.95724 20.9873 3.35045 20.8094 2.85352C20.6316 2.35658 20.1974 1.9695 19.6901 1.80211C18.8636 1.52487 17.3833 1.73934 16.9858 2.61813V2.6129Z\"fill=#F7D884><\/path><path d=\"M8.77209 8.01366C8.6204 7.51149 8.14964 7.1244 7.62657 7.08255C7.12442 7.04071 6.64843 7.28656 6.22474 7.55334C5.67029 7.89857 5.10537 8.36936 5.02691 9.01799C4.96415 9.54631 5.26753 10.0799 5.72783 10.3414C6.18813 10.6029 6.77396 10.6082 7.26042 10.4042C8.06594 10.0694 9.04408 8.93952 8.77209 8.01366Z\"fill=#F7D884><\/path><path d=\"M22.804 4.96086C22.5007 5.06547 22.2757 5.36887 22.2653 5.68795C22.2548 5.99657 22.417 6.27904 22.5896 6.53535C22.8145 6.8649 23.1179 7.19968 23.5154 7.22583C23.8397 7.25199 24.1588 7.04798 24.3053 6.76028C24.4517 6.47258 24.4412 6.11688 24.3053 5.81872C24.0803 5.33748 23.3637 4.76731 22.804 4.96086Z\"fill=#F7D884><\/path><path d=\"M27.9173 10.3561C28.0167 10.0527 27.9121 9.69176 27.6662 9.48776C27.4309 9.29421 27.1013 9.25236 26.798 9.23667C26.4004 9.22098 25.9506 9.25759 25.689 9.55576C25.4746 9.79638 25.4432 10.173 25.5844 10.4659C25.7257 10.7589 26.0186 10.9629 26.3324 11.0309C26.8555 11.1407 27.7395 10.9158 27.9226 10.3509L27.9173 10.3561Z\"fill=#F7D884><\/path><path d=\"M35.4625 3.8888C35.5619 3.58541 35.4573 3.22448 35.2114 3.02047C34.976 2.82693 34.6465 2.78508 34.3431 2.76939C33.9456 2.75369 33.4957 2.79031 33.2342 3.08847C33.0198 3.32909 32.9884 3.70572 33.1296 3.99865C33.2708 4.29158 33.5637 4.49558 33.8776 4.56358C34.4007 4.67343 35.2846 4.4485 35.4677 3.88357L35.4625 3.8888Z\"fill=#F7D884><\/path><\/svg><p class=rich_text_custom--laser-item-text>Fat<\/div><\/div><div class=rich_text_custom--laser-col-right><div class=rich_text_custom--laser-item><svg fill=none height=13 viewBox=\"0 0 39 13\"width=39 xmlns=http:\/\/www.w3.org\/2000\/svg><rect fill=#EB9E79 height=11.8567 rx=2.15576 width=37.7259 y=0.214958 x=0.56073><\/rect><\/svg><p class=rich_text_custom--laser-item-text>Muscle<\/div><div class=rich_text_custom--laser-item><svg fill=none height=13 viewBox=\"0 0 39 13\"width=39 xmlns=http:\/\/www.w3.org\/2000\/svg><rect fill=#DFDCD7 height=11.8567 rx=2.15576 width=37.7259 y=0.214958 x=0.414307><\/rect><path d=\"M8.66356 1.77395C7.71883 2.01502 6.987 2.82264 6.89385 3.70257C6.80071 4.54633 7.25312 5.36599 7.74544 6.08922C8.38413 7.02942 9.24903 8.00578 10.4599 8.13837C11.4445 8.25891 12.4558 7.74059 12.9481 6.96915C13.4404 6.1977 13.467 5.19725 13.0945 4.36553C12.4824 2.9914 10.38 1.31591 8.63695 1.7619L8.66356 1.77395Z\"fill=#CFCCC9><\/path><path d=\"M18.1596 3.86205C17.2528 3.74764 16.2963 4.19385 15.8491 4.92607C15.4267 5.63541 15.464 6.49348 15.5882 7.30579C15.7497 8.34692 16.0851 9.491 17.0664 10.0287C17.8614 10.4749 18.9297 10.372 19.6875 9.86855C20.4452 9.36515 20.8676 8.50709 20.8924 7.66046C20.9421 6.25322 19.8366 4.06799 18.172 3.86205H18.1596Z\"fill=#CFCCC9><\/path><path d=\"M23.0889 7.29086C23.2203 7.75733 23.6256 8.11613 24.0637 8.15201C24.4909 8.1879 24.8961 7.96065 25.2576 7.70947C25.7286 7.38653 26.2105 6.94399 26.2762 6.34595C26.331 5.85556 26.0681 5.36517 25.6738 5.11399C25.2795 4.86282 24.7866 4.87477 24.3704 5.05419C23.6913 5.36517 22.8588 6.41771 23.0889 7.27889V7.29086Z\"fill=#CFCCC9><\/path><path d=\"M31.372 2.28785C30.9786 1.81203 30.2611 1.5794 29.6247 1.73801C29.023 1.88604 28.5601 2.34072 28.1783 2.79539C27.6807 3.38752 27.2179 4.10654 27.403 4.83613C27.5534 5.42826 28.1436 5.88294 28.7916 5.9781C29.4396 6.07327 30.1338 5.85122 30.6198 5.44941C31.4183 4.77269 32.0894 3.17604 31.3604 2.29842L31.372 2.28785Z\"fill=#CFCCC9><\/path><\/svg><p class=rich_text_custom--laser-item-text>Bone<\/div><\/div><\/div>",
-            "max_width": 1150
+            "image": "shopify:\/\/shop_images\/perks_epidermis.svg",
+            "text": "<p><strong>Epidermis<\/strong><\/p>"
+          }
+        },
+        "perks_8yMRtz": {
+          "type": "perks",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/perks_dermis.svg",
+            "text": "<p><strong>Dermis<\/strong><\/p>"
+          }
+        },
+        "perks_7PJMiV": {
+          "type": "perks",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/perks_fat.svg",
+            "text": "<p><strong>Fat<\/strong><\/p>"
+          }
+        },
+        "perks_JYL7Hn": {
+          "type": "perks",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/perks_muscle.svg",
+            "text": "<p><strong>Muscle<\/strong><\/p>"
+          }
+        },
+        "perks_DM8ajK": {
+          "type": "perks",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/perks_bone.svg",
+            "text": "<p><strong>Bone<\/strong><\/p>"
           }
         }
       },
@@ -337,7 +365,11 @@
         "heading_C6LP3k",
         "text_g9YhGL",
         "image_HWyTem",
-        "custom_qmGDFK"
+        "perks_zDHdFE",
+        "perks_8yMRtz",
+        "perks_7PJMiV",
+        "perks_JYL7Hn",
+        "perks_DM8ajK"
       ],
       "custom_css": [
         ".rich-text__image {margin-top: 5.5rem;}",
