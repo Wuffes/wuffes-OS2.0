@@ -51,7 +51,6 @@
     endif
   -%}
   <div class="article-card-wrapper card-wrapper{% if section.settings.card_can_click %} underline-links-hover {% endif %}">
-    {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
     <div
       class="
         card article-card
@@ -82,16 +81,16 @@
               if article_tag != blank
                 case article_tag
                   when 'nutrition'
-                    assign article_tag_class = 'article-card__tag__green'
+                    assign article_tag_class = 'article-card__tag--green'
 
                   when 'joint health'
-                    assign article_tag_class = 'article-card__tag__dark_green'
+                    assign article_tag_class = 'article-card__tag__dark--green'
 
                   when 'skin'
-                    assign article_tag_class = 'article-card__tag__peach'
+                    assign article_tag_class = 'article-card__tag--peach'
 
                   when 'health'
-                    assign article_tag_class = 'article-card__tag__purple'
+                    assign article_tag_class = 'article-card__tag--purple'
 
                   else
                     assign article_tag_class = ''
@@ -111,7 +110,6 @@
                 style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
               {% endif %}
             >
-              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="
                   {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
@@ -132,7 +130,6 @@
                 width="{{ article.image.width }}"
                 height="{{ article.image.height }}"
               >
-              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
             </div>
           </div>
         {%- endif -%}

@@ -61,7 +61,7 @@
       "type": "scroll-button",
       "settings": {
         "color_scheme": "scheme-41d982da-c418-4e13-91d5-c674d09e7a1a",
-        "target": "shopify-section-template--15981513605255__blog_nav_9DAU79",
+        "target": "#MainContent",
         "button_text": "BUY NOW",
         "max_width": 370,
         "padding_top": 40,

@@ -88,7 +88,6 @@
 
 .article-card__excerpt {
   width: 100%;
-  /* margin-top: 1.2rem; */
   margin-top: 1rem;
   letter-spacing: 0;
   color: rgb(var(--color-foreground));
@@ -126,7 +125,7 @@
 
 @media screen and (min-width: 750px) {
   .article-card .card__heading {
-    font-size: 2.4rem;
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
   }
 
   .article-card__image--small .ratio::before {
@@ -144,7 +143,7 @@
 
 @media screen and (min-width: 990px) {
   .article-card .card__heading {
-    font-size: 2.8rem;
+    font-size: calc(var(--font-heading-scale) * 2.8rem);
   }
 
   .article-card__image--small .ratio::before {
@@ -176,9 +175,9 @@
 .article-card__btn .button {
   min-height: 3.5rem;
   min-width: 17.8rem;
-  font-weight: 700;
+  font-weight: var(--font-heading-weight);
   font-size: 1.2rem;
-  border-radius: 30px;
+  border-radius: 3rem;
   text-transform: uppercase;
   letter-spacing: 0;
 }
@@ -188,51 +187,51 @@
 }
 
 .article-card__tag {
-  padding: 7px 30px;
+  padding: 0.7rem 3rem;
   color: rgb(var(--color-foreground));
   border: 1px solid rgb(var(--color-foreground));
   background: rgb(255, 255, 255);
   text-transform: uppercase;
   font-size: 1.2rem;
   line-height: 1;
-  font-weight: 700;
+  font-weight: var(--font-heading-weight);
   font-family: var(--font-heading-family);
-  letter-spacing: 0.36px;
+  letter-spacing: 0.036rem;
   position: absolute;
-  right: 26px;
-  top: 26px;
-  border-radius: 4px;
+  right: 2.6rem;
+  top: 2.6rem;
+  border-radius: 0.4rem;
   z-index: 1;
 }
 
-.article-card__tag__dark_green {
+.article-card__tag__dark--green {
   background: rgb(197, 250, 84);
   color: rgb(var(--color-foreground));
 }
 
-.article-card__tag__peach {
+.article-card__tag--peach {
   background: rgb(245, 129, 50);
   color: rgb(255, 255, 255);
 }
 
-.article-card__tag__purple {
+.article-card__tag--purple {
   background: rgb(62, 25, 129);
   color: rgb(255, 255, 255);
 }
 
 @media screen and (min-width: 750px) {
   .article-card__tag {
-    padding: 8px 30px;
-    font-size: 1.4rem;
-    right: 15px;
-    top: 15px;
-    border-radius: 17px;
+    padding: 0.8rem 3rem;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
+    right: 1.5rem;
+    top: 1.5rem;
+    border-radius: 1.7rem;
   }
 }
 
 @media screen and (min-width: 990px) {
   .article-card__tag {
-    padding: 9px 42px;
-    font-size: 1.6rem;
+    padding: 0.9rem 4.2rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }

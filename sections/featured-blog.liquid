@@ -71,6 +71,7 @@
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
+                {{ block.shopify_attributes }}
               >
                 {% render 'article-card',
                   blog: section.settings.blog,

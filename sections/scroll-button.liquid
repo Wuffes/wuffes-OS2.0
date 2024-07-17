@@ -14,14 +14,19 @@
   }
 {%- endstyle -%}
 
-<scroll-button
-  class="scroll-button section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-  style="--button-max-width: {{ section.settings.max_width }}px;"
->
-  <a href="#" class="scroll-button--link button button--primary" data-target-id="{{ section.settings.target }}">
-    {{- section.settings.button_text -}}
-  </a>
-</scroll-button>
+{%- if section.settings.target != blank -%}
+  <div
+    class="scroll-button section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+    style="--button-max-width: {{ section.settings.max_width }}px;"
+  >
+    <a
+      href="{{ section.settings.target }}"
+      class="scroll-button__link button button--primary"
+    >
+      {{- section.settings.button_text -}}
+    </a>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -42,7 +47,7 @@
       "type": "text",
       "id": "target",
       "label": "Target",
-      "info": "Use ID selector only"
+      "info": "Use ID selector only prefixed by '#' (ie: #targetElement)"
     },
     {
       "type": "inline_richtext",

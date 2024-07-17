@@ -1,5 +1,11 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  .article-template__content > ul > li:before {
+    content: url({{'icon-check-bullet.svg' | asset_url}});
+  }
+{%- endstyle -%}
+
 <article
   class="article-template color-{{ section.settings.color_scheme }}"
   itemscope
@@ -68,7 +74,7 @@
             %}
 
             <div class="article-breadcrumbs">
-              <a class="article-breadcrumbs--link" href="{{ blog.url }}" title="All posts">All posts </a>
+              <a class="article-breadcrumbs__link" href="{{ blog.url }}" title="All posts">All posts </a>
 
               {%- if article_tag != blank -%}
                 <svg
@@ -77,7 +83,7 @@
                   height="11"
                   viewBox="0 0 11 11"
                   fill="none"
-                  class="article-breadcrumbs--arrow"
+                  class="article-breadcrumbs__arrow"
                 >
                   <path d="M6.1875 8.9375L9.625 5.5M9.625 5.5L6.1875 2.0625M9.625 5.5H1.375" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -86,7 +92,7 @@
                   article_tag
                   | capitalize
                   | link_to_tag: tag_link_handle
-                  | replace: '<a', '<a class="article-breadcrumbs--link"'
+                  | replace: '<a', '<a class="article-breadcrumbs__link"'
                 }}
               {%- endif -%}
             </div>
@@ -98,10 +104,10 @@
             {{ article.title | escape }}
           </h1>
 
-          <div class="article-details--wrap">
+          <div class="article-details__wrap">
             {%- if block.settings.blog_show_author -%}
               <span
-                class="article-details-item--author caption-with-letter-spacing"
+                class="article-details__item article-details__item-author caption-with-letter-spacing"
                 itemprop="author"
                 itemscope
                 itemtype="http://schema.org/Person"
@@ -111,7 +117,7 @@
             {%- endif -%}
             {%- if block.settings.blog_show_date -%}
               <span
-                class="article-details-item--date caption-with-letter-spacing"
+                class="article-details__item article-details__item-date caption-with-letter-spacing"
                 itemprop="dateCreated pubdate datePublished"
               >
                 {{- article.published_at | time_tag: format: 'date' -}}
@@ -119,7 +125,7 @@
             {%- endif -%}
 
             {%- if block.settings.blog_show_estimated_read -%}
-              <span class="article-details-item--estimated-time line-divider caption-with-letter-spacing">
+              <span class="article-details__item article-details__item-estimated-time line-divider caption-with-letter-spacing">
                 {{ article.content | strip_html | split: ' ' | size | divided_by: 200 | plus: 1 }} Min Read
               </span>
             {%- endif -%}
@@ -146,11 +152,13 @@
 
       {%- when 'socials' -%}
         <div
-          class="page-width article--socials {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="page-width article-socials {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         >
-          <p class="article--socials-heading {{ block.settings.socials_alignment }}">{{- block.settings.heading -}}</p>
+          <p class="article-socials__heading {{ block.settings.socials_alignment }}">
+            {{- block.settings.heading -}}
+          </p>
 
-          <div class="article--socials-icons article--socials-icons--{{ block.settings.socials_alignment }}">
+          <div class="article-socials__icons article-socials__icons--{{ block.settings.socials_alignment }}">
             {%- if block.settings.show_facebook -%}
               <a href="{{ settings.social_facebook_link }}">
                 {%- render 'icon-facebook' -%}
