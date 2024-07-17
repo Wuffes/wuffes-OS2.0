@@ -102,7 +102,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 750px) {
   .page-width {
-    padding: 0 5rem;
+    padding: 0 1.5rem;
   }
 
   .header.page-width,
@@ -137,7 +137,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
   .page-width-desktop {
     max-width: var(--page-width);
-    padding: 0 5rem;
+    padding: 0 1.5rem;
   }
 }
 
@@ -319,7 +319,7 @@ h3,
 @media only screen and (min-width: 750px) {
   h3,
   .h3 {
-    font-size: calc(var(--font-heading-scale) * 1.8rem);
+    font-size: calc(var(--font-heading-scale) * 3.2rem);
   }
 }
 
@@ -1157,6 +1157,10 @@ deferred-media {
 
 /* component-button */
 /* Button - default */
+
+.button--primary {
+  text-transform: uppercase;
+}
 
 .button--secondary,
 .button--tertiary {

@@ -1,8 +1,8 @@
 {
   "current": {
-    "logo": "shopify:\/\/shop_images\/logo-salad-green.svg",
+    "logo": "shopify://shop_images/logo-salad-green.svg",
     "logo_width": 140,
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify://shop_images/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
     "heading_scale": 100,
@@ -73,9 +73,9 @@
     "text_boxes_shadow_horizontal_offset": 0,
     "text_boxes_shadow_vertical_offset": 4,
     "text_boxes_shadow_blur": 5,
-    "media_border_thickness": 1,
-    "media_border_opacity": 5,
-    "media_radius": 0,
+    "media_border_thickness": 0,
+    "media_border_opacity": 0,
+    "media_radius": 20,
     "media_shadow_opacity": 0,
     "media_shadow_horizontal_offset": 0,
     "media_shadow_vertical_offset": 4,
@@ -98,10 +98,10 @@
     "sale_badge_color_scheme": "scheme-5",
     "sold_out_badge_color_scheme": "scheme-1",
     "brand_headline": "Wuffes",
-    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts<\/p>",
-    "brand_image": "shopify:\/\/shop_images\/logo-salad-green.svg",
-    "social_facebook_link": "https:\/\/www.facebook.com\/wuffespets",
-    "social_instagram_link": "https:\/\/www.instagram.com\/wuffes\/",
+    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts</p>",
+    "brand_image": "shopify://shop_images/logo-salad-green.svg",
+    "social_facebook_link": "https://www.facebook.com/wuffespets",
+    "social_instagram_link": "https://www.instagram.com/wuffes/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -131,9 +131,7 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -219,6 +217,7 @@
           "text": "#212427",
           "button": "#17443d",
           "button_label": "#ffffff",
+
           "secondary_button_label": "#c5fa54",
           "shadow": "#121212"
         }
