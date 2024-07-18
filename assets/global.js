@@ -1360,7 +1360,7 @@ class AccountIcon extends HTMLElement {
 
 customElements.define('account-icon', AccountIcon);
 
-class tagsFilter extends HTMLElement {
+class TagsFilter extends HTMLElement {
   constructor() {
     super();
 
@@ -1415,4 +1415,4 @@ class tagsFilter extends HTMLElement {
   }
 }
 
-customElements.define('tags-filter', tagsFilter);
+customElements.define('tags-filter', TagsFilter);

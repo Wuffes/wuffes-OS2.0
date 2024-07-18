@@ -1,5 +1,19 @@
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
+{% comment %}
+  Renders a custom product card
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - show_rating: {Boolean} Show the product rating. Default: false
+  - color_scheme: {String} Parent color shcheme can be used to determine the card style. (optional)
+  - show_subscribe_badge: {Boolean} Show subscription savings badge Default: true
+  - show_promo_badge: {Boolean} Show promo badge in product card Default: false
+  - review_type: {String} Determines if we want to use the default reviews summary or a custom
+
+  Usage:
+  {% render 'card-product-custom', show_rating: section.settings.show_rating %}
+{% endcomment %}
+
 {%- capture subscription_badge -%}
   <div class="card__subscription_badge">
     {{- card_product.metafields.prerebrand_collection_filter.sale_text.value -}}
@@ -31,16 +45,16 @@
           endif
 
           assign widths = '130, 260, 390, 575, 860'
-          assign sizes = '(max-width: 990px) calc(50vw), (max-width: 990px) calc(25vw)'
+          assign sizes = '(max-width: 749px) calc((100vw - 58px) / 2), (min-width: 750px) calc((100vw - (25.8vw + 28px)) / 2), (min-width: 990px) calc((100vw - 144px) / 4), (min-width: 1200px) 264px'
 
-          echo product_img | image_url: width: '400' | image_tag: widths: widths, sizes: sizes, loading: 'lazy', class: 'card__inner_img'
+          echo product_img | image_url: width: '860' | image_tag: widths: widths, sizes: sizes, loading: 'lazy', class: 'card__inner_img'
 
-          if section.settings.show_promo_badge and card_product.metafields.prerebrand_collection_filter.best_seller != blank
+          if show_promo_badge and card_product.metafields.prerebrand_collection_filter.best_seller != blank
             assign promo_badge_img = section.settings.promo_badge_img
             assign promo_badge_img_widths = '46, 92, 138, 176, 264'
             assign promo_badge_img_sizes = '(max-width: 749px) 46px, (min-width: 750px) 88px'
 
-            echo promo_badge_img | image_url: width: '88' | image_tag: widths: promo_badge_img_widths, sizes: promo_badge_img_sizes, class: 'card__inner_promo_badge_img'
+            echo promo_badge_img | image_url: width: '264' | image_tag: widths: promo_badge_img_widths, sizes: promo_badge_img_sizes, class: 'card__inner_promo_badge_img'
           endif
         -%}
       </div>
