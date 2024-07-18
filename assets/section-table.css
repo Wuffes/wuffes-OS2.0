@@ -10,11 +10,12 @@
 
 .section_table-bottom_note {
   font-size: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .heading_cell-title {
   margin: 0;
+  font-size: 1.4rem;
 }
 
 .heading_cell-note {
@@ -25,6 +26,8 @@
 
 .text_style-numeric {
   font-family: var(--font-accent-family);
+  font-weight: 500;
+  font-size: 1.8rem;
 }
 
 .table-content, th, td {
@@ -41,6 +44,11 @@
 .section_table-subtitle {
   margin: 0;
   padding-bottom: 4rem;
+  font-size: 1.8rem;
+}
+
+.table-navigation {
+  display: none;
 }
 
 
@@ -57,6 +65,26 @@
     align-items: center;
     justify-content: center;
     padding: 1.4rem 0;
+  }
+
+  .table-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem 0;
+  }
+
+  .table-slider-button {
+    outline: none;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .table-slider-button--next {
+    transform: rotate(180deg);
   }
 
   .table-bullet {
@@ -88,6 +116,9 @@
     font-size: 1.4rem;
   }
 
+  .text_style-numeric {
+    font-size: 1.4rem;
+  }
 
   .heading_cell-title {
     font-size: 1.2rem;
