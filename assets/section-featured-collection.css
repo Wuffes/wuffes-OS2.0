@@ -1,0 +1,146 @@
+.featured-collection__slider {
+  display: block;
+  position: relative;
+}
+
+.featured-collection__title {
+  text-align: center;
+}
+
+@media screen and (min-width: 990px) {
+  .card-decription {
+    font-size: 14px;
+    padding-top: 1rem;
+  }
+}
+
+.section-featured-collection {
+  overflow: hidden;
+
+  .slider--desktop::after {
+    display: none;
+  }
+
+  .card__heading {
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  .card__inner {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .card-decription {
+    font-size: 12px;
+    padding-top: .7rem;
+    margin-bottom: 0;
+  }
+
+  .card--card {
+    padding-top: 1rem;
+  }
+
+  .featured-collection--slider-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .featured-collection_slider-button--next svg {
+      transform: rotate(180deg);
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .section-featured-collection {
+    .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item {
+      width: calc((100% - var(--grid-mobile-horizontal-spacing) - 3rem) / 2);
+    }
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .section-featured-collection {
+
+    .featured-collection--slider--desktop .slider__slide:first-child {
+      margin-left: 0 !important;
+    }
+
+    .featured-collection--slider-buttons {
+      position: absolute;
+      top: 50%;
+      left: -0.5rem;
+      right: -0.5rem;
+      justify-content: space-between;
+      z-index: 1;
+      display: flex;
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .section-featured-collection .featured-collection--slider-buttons {
+      left: -3.5rem;
+      right: -3.5rem;
+      z-index: -1;
+    }
+}
+
+.card-benefits {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-benefits__column {
+  width: 50%;
+}
+
+.card-benefits__title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .card-benefits__title {
+    font-size: 14px;
+  }
+
+  .contains-card--product {
+    padding-right: 2px;
+  }
+}
+
+.card-benefits__text {
+  font-size: 14px;
+  margin: .5rem 0;
+}
+
+.card-information__collection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-information__button::after {
+  display: none;
+}
+
+.card-information__button::before {
+  display: none;
+}
+
+.card-information__button {
+  min-height: 36px;
+  min-width: 160px;
+  text-transform: uppercase;
+  padding: 0 1.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 1.2rem 0;
+}
+
+

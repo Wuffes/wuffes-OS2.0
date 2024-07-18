@@ -254,7 +254,7 @@ slider-component.slider-component-full-width {
 }
 
 .slider-counter__link {
-  padding: 1rem;
+  padding: 0.7rem;
 }
 
 @media screen and (max-width: 749px) {
@@ -264,16 +264,16 @@ slider-component.slider-component-full-width {
 }
 
 .slider-counter__link--dots .dot {
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.5);
+  background: rgba(var(--color-foreground), 0.2);
   padding: 0;
   display: block;
 }
 
 .slider-counter__link--active.slider-counter__link--dots .dot {
-  background-color: rgb(var(--color-foreground));
+  background-color: rgba(var(--color-foreground), 0.7);
 }
 
 @media screen and (forced-colors: active) {
