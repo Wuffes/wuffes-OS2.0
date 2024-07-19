@@ -18,6 +18,9 @@
   list-style: none;
 }
 
+.features_main_content_list_title svg {
+  color: rgb(16, 87, 80);
+}
 .features_main_content_list_title {
   margin: 0;
   padding-left: 3.5rem;
@@ -72,6 +75,10 @@
 @media screen and (min-width: 1200px) {
   .features-list_main_content_list_item + .features-list_main_content_list_item {
     margin-top: 4rem;
+  }
+
+  .features-list__heading.inline-richtext {
+    font-size: 52px;
   }
 
   .features-list_main_content_list_item {

@@ -10,6 +10,10 @@
   display: none;
 }
 
+.features_main_content_list_title {
+  font-size: 18px;
+}
+
 .social_icons {
   margin-top: 15px;
   display: grid;
@@ -43,6 +47,10 @@
   height: auto;
 }
 
+.slideshow__control-wrapper {
+  display: none;
+}
+
 .gallery-card__image-wrapper .media {
   padding-bottom: 23rem;
 }
@@ -73,5 +81,11 @@
 
   .social_icons_wrap img {
     width: 6rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery__heading {
+    font-size: 52px;
   }
 }

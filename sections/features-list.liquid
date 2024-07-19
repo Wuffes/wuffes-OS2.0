@@ -48,7 +48,7 @@
             <li class="features-list_main_content_list_item">
               <h3 class="features_main_content_list_title">
                 {{ block.settings.heading }}
-                {% render 'icon-features-list', icon: block.settings.icon %}
+                {% render 'icon-primary-checkmark', icon: block.settings.icon %}
               </h3>
               <div class="features_main_content_list_description">
                 {{ block.settings.row_content }}
@@ -68,7 +68,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.collapsible_content.name",
+  "name": "Features List",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -78,13 +78,13 @@
     {
       "type": "text",
       "id": "caption",
-      "label": "t:sections.collapsible_content.settings.caption.label"
+      "label": "Caption"
     },
     {
       "type": "inline_richtext",
       "id": "heading",
       "label": "t:sections.collapsible_content.settings.heading.label",
-      "default": "Fearures content"
+      "default": "Features content"
     },
     {
       "type": "inline_richtext",
@@ -100,11 +100,11 @@
           "label": "t:sections.all.heading_size.options__1.label"
         },
         {
-          "value": "h1",
+          "value": "h0",
           "label": "t:sections.all.heading_size.options__2.label"
         },
         {
-          "value": "h0",
+          "value": "h1",
           "label": "t:sections.all.heading_size.options__3.label"
         }
       ],
@@ -226,11 +226,6 @@
           "type": "richtext",
           "id": "row_content",
           "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
-        },
-        {
-          "type": "page",
-          "id": "page",
-          "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.page.label"
         }
       ]
     }
