@@ -44,8 +44,10 @@
             assign product_img = card_product.featured_media
           endif
 
+          assign desktop_size = settings.page_width | divided_by: 4 | minus: 36 | append: 'px'
+
           assign widths = '130, 260, 390, 575, 860'
-          assign sizes = '(max-width: 749px) calc((100vw - 58px) / 2), (min-width: 750px) calc((100vw - (25.8vw + 28px)) / 2), (min-width: 990px) calc((100vw - 144px) / 4), (min-width: 1200px) 264px'
+          assign sizes = '(max-width: 749px) calc((100vw - 58px) / 2), (min-width: 750px) calc((100vw - (25.8vw + 28px)) / 2), (min-width: 990px) calc((100vw - 144px) / 4), (min-width: ' | append: settings.page_width | append: 'px) ' | append: desktop_size
 
           echo product_img | image_url: width: '860' | image_tag: widths: widths, sizes: sizes, loading: 'lazy', class: 'card__inner_img'
 
