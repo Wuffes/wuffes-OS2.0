@@ -21,7 +21,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "SHOP NOW",
-            "button_link_1": "shopify:\/\/collections\/all",
+            "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -29,16 +29,10 @@
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
-      "custom_css": [
-        "h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"
-      ],
+      "block_order": ["heading", "text", "button"],
+      "custom_css": ["h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"],
       "settings": {
-        "image": "shopify:\/\/shop_images\/homepage_hero_2023_desktop_opt.jpg",
+        "image": "shopify://shop_images/homepage_hero_2023_desktop_opt.jpg",
         "image_overlay_opacity": 10,
         "image_height": "small",
         "desktop_content_position": "middle-left",
@@ -51,51 +45,94 @@
         "show_text_below": false
       }
     },
-    "marquee": {
-      "type": "marquee",
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop joint care & more",
+        "heading_size": "h2",
+        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.</p>",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "os2-featured-collection",
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-5",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
       "blocks": {
-        "slide_g9c4Xq": {
-          "type": "slide",
+        "column1": {
+          "type": "column",
           "settings": {
-            "marquee_text": "Made in USA*"
+            "image": "shopify://shop_images/daily-mail-logo.svg",
+            "title": "",
+            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "slide_zjxGkr": {
-          "type": "slide",
+        "column2": {
+          "type": "column",
           "settings": {
-            "marquee_text": "Backed by science"
+            "image": "shopify://shop_images/the-sun-com-logo.svg",
+            "title": "",
+            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "slide_3GzYbE": {
-          "type": "slide",
+        "column3": {
+          "type": "column",
           "settings": {
-            "marquee_text": "Formulated by pet scientists"
+            "image": "shopify://shop_images/yahoo-logo.svg",
+            "title": "",
+            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "slide_YebJh7": {
-          "type": "slide",
+        "column_BXx3tf": {
+          "type": "column",
           "settings": {
-            "marquee_text": "Subscribe & save"
-          }
-        },
-        "slide_Y3qCMM": {
-          "type": "slide",
-          "settings": {
-            "marquee_text": "Hand-selected ingredients"
+            "image": "shopify://shop_images/woof-logo.svg",
+            "title": "",
+            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
-      "block_order": [
-        "slide_g9c4Xq",
-        "slide_zjxGkr",
-        "slide_3GzYbE",
-        "slide_YebJh7",
-        "slide_Y3qCMM"
-      ],
+      "block_order": ["column1", "column2", "column3", "column_BXx3tf"],
       "settings": {
-        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
-        "marquee_icon": "shopify:\/\/shop_images\/icon__green_check.svg",
-        "icon_width": 15
+        "title": "Loved by the world’s best",
+        "heading_size": "h2",
+        "image_width": "half",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "rich_text": {
@@ -104,355 +141,76 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Why 90 days?",
+            "heading": "Talk about your brand",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>The health and wellbeing of our furry friends is our top priority, so we understand the desire to see immediate results. But just like with us humans, health supplements can take a full 90 days to work their magic (though many customers see significant improvements in as little as 3 weeks!).<\/p><p>Here are some of the great results your pup can look forward to:<\/p>"
-          }
-        },
-        "custom_XUBFEE": {
-          "type": "custom",
-          "settings": {
-            "custom_html": "<style>\n.rich_text_custom--wrap{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.rich_text_custom--col{flex:0 0 50%;max-width:50%;margin-bottom:40px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;width:100%;padding-right:15px;padding-left:15px;position:relative}.rich_text_custom--icon{max-width:45px;max-height:38px}.rich_text_custom--text{font-size:1.6rem;font-weight:700;font-family:var(font--heading-family)}@media screen and (min-width:750px){.rich-text__custom{margin-top:3rem}.rich_text_custom--col{flex:0 0 25%;max-width:25%;margin-bottom:0}}@media screen and (min-width:990px){.rich_text_custom--icon{min-width:66px;min-height:60px}.rich-text__custom{margin-top:8rem!important}}\n<\/style>\n\n<div class=\"rich_text_custom--wrap\">\n<div class=\"rich_text_custom--col\">\n<svg class=\"rich_text_custom--icon\" viewbox=\"0 0 45 46\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" height=\"46\" width=\"45\"><g clip-path=\"url(#clip0_47_585)\"><path d=\"M44.5 22.6651C44.5 34.8154 34.6503 44.6651 22.5 44.6651C10.3497 44.6651 0.5 34.8154 0.5 22.6651C0.5 10.5148 10.3497 0.6651 22.5 0.6651C34.6503 0.6651 44.5 10.5148 44.5 22.6651Z\" stroke=\"#17443D\" fill=\"white\"><\/path><path d=\"M36.2 17.0651C36.3657 17.0651 36.5 16.9308 36.5 16.7651C36.5 16.5994 36.3657 16.4651 36.2 16.4651C36.0343 16.4651 35.9 16.5994 35.9 16.7651C35.9 16.9308 36.0343 17.0651 36.2 17.0651Z\" fill=\"#17443D\"><\/path><path d=\"M35.5 14.9651C35.7 13.8651 35.4 12.7651 34.9 11.8651C34.4 10.9651 33.5 10.3651 32.6 10.0651C32.3 9.9651 32 9.9651 31.8 10.0651C31.5 10.1651 31.3 10.3651 31.2 10.7651C31.1 11.1651 31.3 11.6651 31.6 11.9651C31.9 12.2651 32.3 12.3651 32.6 12.5651C33.4 13.0651 33.9 14.0651 34 15.1651C34 15.0651 34 15.0651 34 14.9651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M19.5 23.1651C19.6 23.1651 21.5 24.1651 22.7 27.8651C22.9 28.6651 22.9 29.4651 22.6 30.1651C22.4 30.6651 22.1 31.3651 21.7 32.1651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M21 34.1651C20.3 36.0651 19.6 38.0651 20.2 40.1651C20.4 40.9651 20.8 41.6651 21.5 42.1651C21.9 42.4651 22.6 42.7651 22.9 42.3651C23.1 42.1651 23 41.9651 22.9 41.6651C22.8 41.5651 22.7 41.3651 22.6 41.2651C20.9 39.0651 22.1 35.7651 23.2 33.6651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M24.4 31.5651C25.4 30.4651 26.6 29.5651 27.3 28.1651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M40.3 17.3651C40 17.4651 39.7 17.4651 39.4 17.2651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M40 16.1651C40.2 16.3651 40.5 16.4651 40.7 16.4651C40.8 16.4651 40.9 16.3651 41 16.3651C41 16.2651 41.1 16.2651 41.1 16.1651C41.1 15.8651 41 15.5651 40.8 15.4651C40.6 15.3651 40.2 15.2651 40 15.4651C39.8 15.5651 39.9 15.9651 40 16.1651Z\" fill=\"#17443D\"><\/path><path d=\"M26.6 31.7651C30.5 28.1651 31.9 25.0651 32.7 23.5651C33.5 22.0651 34.1 20.4651 35.7 19.7651C36.3 19.4651 37 19.3651 37.7 19.1651C39 18.8651 40 18.4651 40.3 17.3651C40.3 17.3651 41.2 16.5651 41 15.7651C40.9 15.5651 40.8 15.4651 40.6 15.4651H40.5C40 15.5651 39.6 15.6651 39.2 15.8651C38.6 15.9651 37.9 16.1651 37.4 15.9651C36.9 15.8651 36.2473 15.4346 35.9 15.3651C35.8703 15.3592 35.5 15.1651 35.7 15.2651C35.5 15.1651 33.7 15.2651 33.3 16.0651C32.3 15.0651 30.8 14.4651 29.4 14.4651C28.7 14.4651 28.1 14.6651 27.6 15.0651C27.1 15.4651 26.8 16.1651 27 16.8651C27.2 17.4651 27.9 17.9651 28.5 17.7651C29 17.5651 29.2 17.1651 29.7 16.8651C30.1 16.6651 30.5 16.6651 30.9 16.8651C31.4 17.1651 31.6 17.8651 31.2 18.3651C30.4 19.3651 28.6 21.4651 27 20.2651C26.3 19.7651 25.7 18.9651 25.1 18.3651C24.2 17.3651 23.3 16.4651 22.3 15.6651C19.5 13.3651 15.3 12.4651 11.8 14.0651C10.3 13.4651 9.4 11.6651 9.7 10.1651C9.8 9.8651 9.9 9.4651 9.9 9.1651C9.9 8.8651 9.6 8.4651 9.3 8.4651C8.9 8.4651 8.7 8.8651 8.6 9.1651C8 9.5651 8 10.2651 8 10.9651C8.1 12.5651 9.1 13.9651 10.4 14.7651C9.5 15.7651 9 17.1651 9.5 18.5651C10.1 20.4651 11.8 21.8651 13.3 22.8651C13.4 22.9651 13.5 22.9651 13.6 23.0651C15 23.9651 16 25.1651 16.6 26.6651C17 27.7651 17.2 28.9651 17.2 30.1651C17.2 30.8651 17.1 31.6651 17.2 32.3651C17.3 32.7651 17.4 33.0651 17.7 33.2651C18.4 33.8651 19.6 33.9651 20.8 33.9651C22.6 33.8651 24.3 33.4651 26 32.9651C26.8 32.7651 27.2 32.1651 26.6 31.7651ZM26.6 31.7651C26.4 31.5651 26.2 31.5651 26 31.4651C24.5 31.1651 23.1 32.2651 21.7 32.2651C20.8 32.2651 19.9 31.9651 19.5 31.1651C18.8 29.7651 19.5 27.9651 19.6 26.4651C19.7 25.3651 19.7 24.2651 19.5 23.2651C19.4 22.6651 19.3 22.0651 19.1 21.4651C18.4 19.1651 16.8 16.9651 14.5 16.0651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M17.1218 31.9651C17 31.6651 16.6 31.1651 16.6 31.1651C16.6 31.1651 16 30.7651 15.7 30.9651C15.4 31.1651 15.4 31.5651 15.4 31.9651C15.8 34.0651 18.6 35.3651 20.5 35.2651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><path d=\"M22.5 35.1651C23.6 34.7651 24.7 34.0651 25.6 33.0651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"><\/path><\/g><defs><clippath id=\"clip0_47_585\"><rect fill=\"white\" height=\"45\" transform=\"translate(0 0.1651)\" width=\"45\"><\/rect><\/clippath><\/defs><\/svg><p class=\"rich_text_custom--text\">Improved mobility<\/p>\n<\/div>\n<div class=\"rich_text_custom--col\">\n<svg class=\"rich_text_custom--icon\" viewbox=\"0 0 45 45\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" style=\"enable-background:new 0 0 45 45\" version=\"1.1\" x=\"0px\" xml:space=\"preserve\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" y=\"0px\"><style>.injury_iconst0{fill:#fff}.injury_iconst1{fill:#17443d}.injury_iconst2{fill:none;stroke:#17443d;stroke-linecap:round;stroke-linejoin:round}.injury_iconst3{fill:none;stroke:#17443d;stroke-width:.5669;stroke-linecap:round;stroke-linejoin:round}<\/style>\n<g><g><circle class=\"injury_iconst0\" cx=\"22.5\" cy=\"22.5\" r=\"21.5\"><\/circle><path d=\"M22.5,1.5c11.6,0,21,9.4,21,21s-9.4,21-21,21s-21-9.4-21-21S10.9,1.5,22.5,1.5 M22.5,0.5\n            c-12.2,0-22,9.8-22,22s9.8,22,22,22s22-9.8,22-22S34.7,0.5,22.5,0.5L22.5,0.5z\" class=\"injury_iconst1\"><\/path><\/g><\/g><g><path d=\"M16.4,22.5c-1.6,0.6-1.8,1.9-2.7,3.2c-0.5,0.7-1.3,1.1-2.1,1.4c-1,0.3-2.1,0.4-3.1,0.5s-2.1,0.5-2.9,1.2\n          c-0.4,0.4-0.7,1-0.4,1.4c0.2,0.4,0.8,0.4,1.3,0.3c0.4-0.2,0.8-0.5,1.2-0.8c1.1-0.8,2.6-0.9,4-0.8c0.8,0,1.6,0.1,2.5,0\n          c0.8-0.1,1.1-0.3,1.7-0.6c1.3-0.7,2.4-1.7,3.2-2.9\" class=\"injury_iconst2\"><\/path><path d=\"M27.2,20.9c-1.7,1-1,2.7,0.4,3.6c1.9,1.2,4,2,6.1,2.7c-1.1,0.3-2.4,0.7-3.5,1c-0.4,0.1-0.7,0.2-1,0.4\n          c-0.3,0.2-0.5,0.5-0.5,0.9c0,0.5,0.5,0.8,1,0.9c0.5,0,1-0.1,1.4-0.3c1.5-0.6,3-1.2,4.6-1.8c0.5-0.2,1-0.4,1.1-1s-0.3-1.1-0.8-1.4\" class=\"injury_iconst2\"><\/path><path d=\"M31.5,26.4c-1.2,0.1-5,1-6.1,1.1c-0.4,0-0.7,0.1-1.1,0.2c-0.3,0.2-0.6,0.5-0.7,0.8c0,0.5,0.4,0.9,0.9,1\n          s1,0,1.4-0.1c1.6-0.3,1.2-0.3,2.8-0.6\" class=\"injury_iconst2\"><\/path><path d=\"M22.6,14.2c0.1,0.2,0.4,0.4,0.9,0.5c0.1,0,0.3,0,0.4,0c0.1,0,0.1-0.1,0.1-0.2c0.1-0.2,0.1-0.5-0.1-0.8\n          c-0.1-0.2-0.7-0.4-1-0.3C22.6,13.6,22.4,14,22.6,14.2z\" class=\"injury_iconst1\"><\/path><path d=\"M36.7,26.2c1.2-2-0.3-3.5-2.1-4.6c-2.7-1.7-6-2.2-9.1-2.5c-1.8-0.2-3.6-0.2-5.3-0.7C18.9,18,19,16.6,19,16.6\n          c1.1,0,2.9,0.3,3.6-0.9c0,0,1.4-0.5,1.5-1.6c0-0.3-0.1-0.5-0.3-0.5l0,0c-0.1,0-0.1,0-0.2-0.1l0,0c-0.6-0.2-1.8,0.1-3.3-0.5\n          c-1.1-2.3-3.2-1.6-3.2-1.6c-1.4-1.2-3.6-1.1-5.2-0.2c-0.4,0.2-0.7,0.5-1,0.9c-0.2,0.4-0.3,0.9-0.1,1.3c0.2,0.4,0.6,0.7,1,0.7\n          c0.6-0.1,1-0.6,1.4-1c0.6-0.5,1.4-0.7,2.1-0.4c0,0-4,4.8-3.4,12.4\" class=\"injury_iconst2\"><\/path><path d=\"M11.9,25.1\" class=\"injury_iconst2\"><\/path><path d=\"M19.7,12c0.1-0.9-0.4-1.9-1.3-2.2s-1.9,0.1-2.4,0.9\" class=\"injury_iconst2\"><\/path><line class=\"injury_iconst2\" x1=\"16\" x2=\"23.7\" y1=\"28.3\" y2=\"28.4\"><\/line><path d=\"M12.4,24.8c-0.6,0.6-1.5,0.9-2.3,1.1s-1.7,0.4-2.4,0.7c-0.8,0.4-1.4,1-1.6,1.8\" class=\"injury_iconst2\"><\/path><path d=\"M18.1,14.1c0.2,0.1,0.5,0.1,0.7-0.1\" class=\"injury_iconst3\"><\/path><path d=\"M35.9,22.6c2.9,0.8,4,2.5,4,3.8c0,0.8-0.3,1.6-0.7,2.3c-0.4,0.6-1.1,1.5-1.8,1.6c-0.4,0-0.8-0.2-0.7-0.7\n          c0.1-0.2,0.2-0.4,0.3-0.5c0.6-0.6,1.2-1.4,1.4-2.2c0.2-0.8,0-1.8-1.3-2.6\" class=\"injury_iconst2\"><\/path><path d=\"M13.3,31.1c-0.1,0.3-0.2,0.6-0.3,0.9\" class=\"injury_iconst2\"><\/path><path d=\"M15,30.7c0.2,0.7,0.4,1.4,0.7,2.1\" class=\"injury_iconst2\"><\/path><path d=\"M15.9,29.9c0.3,0.3,0.6,0.6,0.9,0.8l-0.1-0.1\" class=\"injury_iconst2\"><\/path><\/g><\/svg><p class=\"rich_text_custom--text\">Less pain<\/p>\n<\/div>\n<div class=\"rich_text_custom--col\">\n<svg class=\"rich_text_custom--icon\" viewbox=\"0 0 45 45\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" style=\"enable-background:new 0 0 45 45\" version=\"1.1\" x=\"0px\" xml:space=\"preserve\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" y=\"0px\" id=\"Layer_1\"><style>.less_pain_iconst0{fill:#fff}.less_pain_iconst1{fill:#17443d}.less_pain_iconst2{fill:#fff;stroke:#17443d;stroke-linecap:round;stroke-linejoin:round}<\/style>\n<g><g><circle class=\"less_pain_iconst0\" cx=\"22.5\" cy=\"22.5\" r=\"21.5\"><\/circle><path d=\"M22.5,1.5c11.6,0,21,9.4,21,21s-9.4,21-21,21s-21-9.4-21-21S10.9,1.5,22.5,1.5 M22.5,0.5\n            c-12.2,0-22,9.8-22,22s9.8,22,22,22s22-9.8,22-22S34.7,0.5,22.5,0.5L22.5,0.5z\" class=\"less_pain_iconst1\"><\/path><\/g><\/g><g><path d=\"M33.6,19.2c0.8,0.4,1.7,0.6,2.5,0.9c0.3,0.1,0.6,0.3,0.7,0.6c0.4,0.8-0.3,2-0.5,2.8c-0.1,0.3-0.2,0.8-0.5,0.9\n          c-0.3,0.2-0.7-0.1-0.8-0.4c-0.1-0.4,0.2-0.9,0.3-1.3c0.1-0.5,0.2-1.2-0.3-1.5c-0.2-0.1-0.5-0.1-0.7-0.2c-0.2-0.1-0.4-0.1-0.6-0.1\" class=\"less_pain_iconst2\"><\/path><path d=\"M15,33.1c-0.3,1.4-0.7,2.9-1,4.3c0,0.1-0.1,0.3,0,0.4c0.1,0.2,0.4,0.2,0.6,0.1c0.2-0.1,0.3-0.3,0.4-0.5\n          l1.2-2.6c0.1-0.2,0.4-0.4,0.6-0.3c1.6,0.4,3.4,0.6,4.9-0.1c1-0.5,1.8-1.4,2.4-2.4c0.5-1,0.9-2.1,1.2-3.2\" class=\"less_pain_iconst2\"><\/path><path d=\"M33,23.2c0.5-1.2,0.8-2.4,0.7-3.6c-0.2-2-1.1-4.1-1.1-6.3c0-0.9,0.5-1.8,0.8-2.7c0.2-0.5,0.7-1.7,0.3-2.3\n          c0,0-0.1-1-0.7-1.3c-0.1,0-0.3,0-0.4,0.1l0,0l-0.1,0.1l0,0c-0.3,0.4-0.5,1.4-1.4,2.4c-0.8,0-1.9,0.3-2.3,1.4\n          c-1.4-0.8-3.4-0.4-4.5,0.8c-0.4,0.5-0.7,1.2-0.6,1.9s0.9,1.2,1.6,0.9c0.5-0.2,0.8-0.9,1.1-1.4c0.5-0.9,1.6-1.1,2.6-0.8\n          c-0.1,3.3-1.3,6.8-3.6,9.1C23.9,23,22,24,20.3,25.3c-0.6,0.4-1,1.1-1.8,0.9c-0.6-0.2-1.2-0.8-1.4-1.4C16.8,24,17.2,23,17,22\n          c0-0.2-0.1-0.5-0.4-0.5s-0.5,0.3-0.5,0.6c-0.3,1.1-0.4,2.3,0,3.4c0.2,0.5,0.4,0.9,0.8,1.3c0.2,0.2,0.4,0.3,0.6,0.5\n          c0.5,0.5-0.7,1.7-1,2.2s-0.5,0.8-1.1,1s-1.2,0.4-1.8,0.5s-1.1,0.4-1.5,0.7c-1,0.7-2.8,2.1-3.3,2.4c-0.7,0.5-0.9,1.3,0.5,1\n          c0.7-0.2,1.4-0.6,2-1c0.5-0.3,0.9-0.7,1.4-1s1.1-0.2,1.7-0.1c2.6,0.2,5.1-0.9,7.3-2.1c1.9-1,3.8-2.1,5.6-3.2c1.6-1,3.4-1.7,4.8-3.1\n          \" class=\"less_pain_iconst2\"><\/path><circle class=\"less_pain_iconst1\" cx=\"30.8\" cy=\"11\" r=\"0.3\"><\/circle><path d=\"M30,9.6c-0.2-0.8-0.7-1.6-1.5-2.1S26.9,7,26,7.2c-0.4,0.1-0.9,0.5-0.8,0.9c0,0.3,0.3,0.5,0.6,0.6\n          c0.3,0.1,0.6,0.1,0.9,0.1c1,0,2,0.5,2.6,1.2\" class=\"less_pain_iconst2\"><\/path><path d=\"M32.9,8.3c0.2,0,0.5-0.1,0.6-0.3c0.5-0.6-0.3-0.9-0.8-0.9c-0.3,0-0.5,0.3-0.5,0.5C32.2,8,32.5,8.3,32.9,8.3z\" class=\"less_pain_iconst1\"><\/path><path d=\"M29,21.5c0,0,0.6,1.9,3.6,3.4c0.1,0,0.2,0.1,0.2,0.2c0.1,0.3,0.3,1-0.4,1.4c-0.9,0.7-2.1,1.3-1.8,2.1\n          c0.3,0.9,1.7-0.3,2-0.5c0.8-0.7,1.8-1.4,1.7-2.6c0-0.8-0.5-1.3-1-1.9s-1.1-1.4-1.2-2.3\" class=\"less_pain_iconst2\"><\/path><\/g><\/svg><p class=\"rich_text_custom--text\">Increased energy<\/p>\n<\/div>\n<div class=\"rich_text_custom--col\">\n<svg class=\"rich_text_custom--icon\" viewbox=\"0 0 45 46\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" height=\"46\" width=\"45\"><g id=\"Group\"><g id=\"Group_2\"><path d=\"M44.5 22.6651C44.5 34.8154 34.6503 44.6651 22.5 44.6651C10.3497 44.6651 0.5 34.8154 0.5 22.6651C0.5 10.5148 10.3497 0.6651 22.5 0.6651C34.6503 0.6651 44.5 10.5148 44.5 22.6651Z\" stroke=\"#17443D\" id=\"Ellipse 1\" fill=\"white\"><\/path><\/g><path d=\"M23 40.6651C21.8 38.2651 21.4 38.7651 20.3 35.7651C19.2 32.7651 18.8 32.6651 18.1 31.7651C17.4 30.8651 16.6 30.1651 17.7 28.5651C18.8 26.9651 20.3 26.4651 21.4 26.6651C22.5 26.8651 23.5 26.9651 24.6 26.8651C25.7 26.7651 26.6 28.1651 26.6 28.1651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector\"><\/path><path d=\"M27.7 40.1651C27.4 38.2651 27.1 36.3651 26.9 35.0651C26.8 34.7651 26.8 34.4651 26.8 34.2651C26.6 31.0651 28.5 29.8651 28.4 28.1651C28.4 27.9651 28.4 27.8651 28.3 27.7651C27.1 25.2651 25.2 27.0651 25.2 27.0651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector_2\"><\/path><path d=\"M24.7 4.6651C23.2 6.2651 21.9 7.7651 21.2 8.5651C19 10.9651 14.6 15.6651 15.5 19.1651C16.4 22.6651 20.9 24.7651 22.9 24.9651C24.9 25.1651 27 23.4651 26.6 21.8651C26.2 20.2651 24.3 19.3651 24.6 17.5651C25 15.8651 25.2 15.0651 25.1 13.3651C25 11.5651 27.7 8.5651 29.6 6.8651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector_3\"><\/path><path d=\"M15.6 16.6651C14.7 17.3651 14.8 17.2651 14.2 18.0651C13.5 18.9651 13.3 19.4651 13.3 20.4651C13.3 22.3651 11.9 24.0651 12.1 25.9651C12.2 27.3651 13.3 28.4651 13.4 29.8651C13.4 30.3651 13.4 30.7651 13.5 31.2651C13.9 33.4651 17.6 35.0651 19.6 35.3651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector_4\"><\/path><path d=\"M25.3 16.3651C27.4 15.9651 28.1 18.6651 28.5 20.0651C28.9 21.2651 29.2 22.5651 29.7 23.7651C30.1 24.9651 30.6 26.0651 30.8 27.2651C31 28.5651 30.8 29.9651 30.1 31.0651C29.3 32.3651 27.7 32.8651 26.8 33.9651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector_5\"><\/path><path d=\"M19.5 21.2651C17.9 20.2651 17.1 17.9651 17.8 16.1651\" stroke=\"#17443D\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\" id=\"Vector_6\"><\/path><\/g><\/svg><p class=\"rich_text_custom--text\">Decreased inflammation<\/p>\n<\/div>\n<\/div>",
-            "max_width": 1150
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "custom_XUBFEE"
-      ],
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); } .rich-text__text > p {font-size: 1.8rem; }}",
-        "@media screen and (min-width: 990px) {.rich-text__blocks > * + * {margin-top: 4rem; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
+      "block_order": ["heading", "text"],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+        "color_scheme": "scheme-1",
         "full_width": true,
-        "lineheight": 1,
         "padding_top": 40,
-        "padding_bottom": 40,
-        "show_border": false
+        "padding_bottom": 0
       }
     },
-    "rich_text_PCUBiK": {
-      "type": "rich-text",
+    "collage": {
+      "type": "collage",
       "blocks": {
-        "heading_aYVN4z": {
-          "type": "heading",
+        "collection-0": {
+          "type": "collection",
           "settings": {
-            "heading": "A little bit about us",
-            "heading_size": "h1"
+            "collection": ""
           }
         },
-        "text_JbACr8": {
-          "type": "text",
+        "product": {
+          "type": "product",
           "settings": {
-            "text": "<p>As Pet-Super Parents, we [line-through]think[\/line-through] know our pets are the absolute best. And we know how important our fluffy family members are to us, which is why we built a company who’s sole focus is to ensure they can live their best lives for as long as physically possible.<\/p>"
+            "product": "",
+            "second_image": false
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
           }
         }
       },
-      "block_order": [
-        "heading_aYVN4z",
-        "text_JbACr8"
-      ],
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text {padding: 60px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); } .rich-text__text > p {line-height: 3.5rem; font-size: 2rem; }}",
-        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
+      "block_order": ["collection-0", "product", "collection-1"],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
-        "background": "shopify:\/\/shop_images\/homepage_icons_bg.png",
-        "full_width": true,
-        "lineheight": 1,
-        "padding_top": 52,
-        "padding_bottom": 52,
-        "show_border": false
+        "heading": "Multimedia collage",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
-    "rich_text_M3CRGd": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_BwzJMj": {
-          "type": "heading",
-          "settings": {
-            "heading": "How it works",
-            "heading_size": "h1"
-          }
-        },
-        "text_eecUFN": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Made with the finest, scientifically-backed ingredients, our powerful joint chews help decrease joint pain and improve mobility.<\/p>"
-          }
-        },
-        "image_Ha8iUK": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/JC_Illustration_Desktop.svg",
-            "image_max_width": 750,
-            "image_mobile": "shopify:\/\/shop_images\/JC_Illustration_Desktop_picker_tabs.svg",
-            "image_mobile_max_width": 350,
-            "image_behavior": "none"
-          }
-        }
-      },
-      "block_order": [
-        "heading_BwzJMj",
-        "text_eecUFN",
-        "image_Ha8iUK"
-      ],
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
-        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
+    "video": {
+      "type": "video",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "full_width": true,
-        "lineheight": 1,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "show_border": false
-      }
-    },
-    "rich_text_Ejgiff": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_dMWQBD": {
-          "type": "heading",
-          "settings": {
-            "heading": "Benefits",
-            "heading_size": "h1"
-          }
-        },
-        "image_gqCHDD": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/new_pdp_infographic_img_desktop.svg",
-            "image_max_width": 1000,
-            "image_mobile": "shopify:\/\/shop_images\/new_pdp_infographic_img_mobile.svg",
-            "image_mobile_max_width": 200,
-            "image_behavior": "none"
-          }
-        }
-      },
-      "block_order": [
-        "heading_dMWQBD",
-        "image_gqCHDD"
-      ],
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
-        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
-        "full_width": true,
-        "lineheight": 1,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "show_border": false
-      }
-    },
-    "custom_1_EnrLFc": {
-      "type": "custom-1",
-      "blocks": {
-        "heading_LanTLW": {
-          "type": "heading",
-          "settings": {
-            "heading": "<strong>A joint chew tailor made for [underline]BIG dogs[\/underline] <\/strong>",
-            "heading_size": "custom"
-          }
-        }
-      },
-      "block_order": [
-        "heading_LanTLW"
-      ],
-      "settings": {
-        "show_border": true,
-        "image": "shopify:\/\/shop_images\/JC_LB_large_img_desktop_1.svg",
-        "image_mobile": "shopify:\/\/shop_images\/JC_LB_large_img_mobile_1.svg",
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "padding_top": 38,
-        "padding_bottom": 56,
-        "custom_liquid": "<div class=custom-section-1--custom_content-wrap><div class=custom_content-list-item><svg fill=none height=68 viewBox=\"0 0 69 68\"width=69 xmlns=http:\/\/www.w3.org\/2000\/svg><g clip-path=url(#clip0_272_1993)><path d=\"M67.9893 34C67.9893 52.2254 53.2147 67 34.9893 67C16.7639 67 1.98932 52.2254 1.98932 34C1.98932 15.7746 16.7639 1 34.9893 1C53.2147 1 67.9893 15.7746 67.9893 34Z\"stroke=#17443D stroke-width=2 fill=white><\/path><path d=\"M15.3449 34.1511L20.0293 51.9822C21.2382 56.3644 30.3049 57.7244 40.4293 55.0044C50.5538 52.2844 57.8071 46.5422 56.7493 42.16L52.0649 24.3289C51.1582 20.7022 44.6604 19.1911 36.6515 20.2489C36.5004 22.2133 35.1404 24.0267 33.176 24.7822C32.8738 24.7822 32.7226 24.9333 32.4204 24.9333C31.9671 26.5956 30.7582 27.9556 29.096 28.56C27.8871 29.0133 26.5271 28.8622 25.4693 28.4089C24.8649 29.0133 24.1093 29.6178 23.2026 29.92C21.2382 30.5244 19.2738 29.92 17.9138 28.56C15.9493 30.3733 15.0426 32.3378 15.3449 34.1511Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M48.5893 31.1288C45.7182 33.5466 41.1849 35.8133 35.896 37.1733C30.6071 38.5333 25.6204 38.8355 21.8427 38.2311\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M17.6115 17.8311C15.1938 16.0178 16.5538 14.6578 17.6115 14.0533C18.5182 12.5422 18.8204 13.4489 20.6338 13.4489C22.4471 13.4489 22.7493 15.2622 20.6338 16.9244C18.5182 18.4356 20.4827 19.9467 17.6115 17.8311Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M28.0382 10.7289C28.9449 8.4622 30.456 9.36887 31.0604 10.1244C32.4204 10.5778 31.816 11.0311 32.1182 12.5422C32.4204 14.0533 31.0604 14.6578 29.3982 13.1466C27.736 11.6355 26.8293 13.6 28.0382 10.7289Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M24.7138 21.9111C23.0515 20.8533 24.2604 19.4933 25.1671 18.8888C25.6204 17.5288 27.1315 17.8311 27.8871 18.1333C29.3982 17.5288 29.2471 19.1911 28.9449 20.2488C29.5493 21.76 28.0382 22.6666 26.9804 22.8177C25.3182 23.7244 24.7138 22.6666 24.7138 21.9111Z\"stroke=#17443D stroke-width=2 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><\/g><defs><clipPath id=clip0_272_1993><rect fill=white height=68 transform=translate(0.989319) width=68><\/rect><\/clipPath><\/defs><\/svg><p class=custom_content-list-item-text><b>Powerful<\/b> active ingredient panel<\/div><div class=custom_content-list-item><svg fill=none height=68 viewBox=\"0 0 69 68\"width=69 xmlns=http:\/\/www.w3.org\/2000\/svg><g clip-path=url(#clip0_272_2003)><path d=\"M67.9893 34C67.9893 52.2254 53.2147 67 34.9893 67C16.7639 67 1.98932 52.2254 1.98932 34C1.98932 15.7746 16.7639 1 34.9893 1C53.2147 1 67.9893 15.7746 67.9893 34Z\"stroke=#17443D stroke-width=2 fill=white><\/path><path d=\"M55.6915 25.5378C55.9419 25.5378 56.1448 25.3348 56.1448 25.0844C56.1448 24.8341 55.9419 24.6311 55.6915 24.6311C55.4411 24.6311 55.2382 24.8341 55.2382 25.0844C55.2382 25.3348 55.4411 25.5378 55.6915 25.5378Z\"fill=#17443D><\/path><path d=\"M54.6338 22.3645C54.936 20.7022 54.4827 19.04 53.7271 17.68C52.9715 16.32 51.6115 15.4133 50.2515 14.96C49.7982 14.8089 49.3449 14.8089 49.0427 14.96C48.5893 15.1111 48.2871 15.4133 48.136 16.0178C47.9849 16.6222 48.2871 17.3778 48.7404 17.8311C49.1938 18.2845 49.7982 18.4356 50.2515 18.7378C51.4604 19.4933 52.216 21.0045 52.3671 22.6667C52.3671 22.5156 52.3671 22.5156 52.3671 22.3645\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M30.4559 34.7556C30.607 34.7556 33.4782 36.2667 35.2915 41.8578C35.5937 43.0667 35.5937 44.2756 35.1404 45.3333C34.8382 46.0889 34.3848 47.1467 33.7804 48.3556\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M32.7226 51.3778C31.6648 54.2489 30.6071 57.2711 31.5137 60.4445C31.816 61.6534 32.4204 62.7111 33.4782 63.4667C34.0826 63.92 35.1404 64.3734 35.5937 63.7689C35.896 63.4667 35.7448 63.1645 35.5937 62.7111C35.4426 62.56 35.2915 62.2578 35.1404 62.1067C32.5715 58.7822 34.3848 53.7956 36.0471 50.6223\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M37.8604 47.4489C39.3715 45.7867 41.1849 44.4267 42.2426 42.3111\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M61.8871 25.9911C61.4338 26.1423 60.9804 26.1422 60.5271 25.84\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M61.4338 24.1778C61.736 24.48 62.1893 24.6312 62.4915 24.6312C62.6427 24.6312 62.7938 24.48 62.9449 24.48C62.9449 24.3289 63.096 24.3289 63.096 24.1778C63.096 23.7245 62.9449 23.2712 62.6427 23.12C62.3404 22.9689 61.736 22.8178 61.4338 23.12C61.1315 23.2712 61.2827 23.8756 61.4338 24.1778Z\"fill=#17443D><\/path><path d=\"M41.1849 47.7511C47.0782 42.3111 49.1937 37.6267 50.4026 35.36C51.6115 33.0933 52.5182 30.6756 54.936 29.6178C55.8426 29.1645 56.9004 29.0133 57.9582 28.7111C59.9226 28.2578 61.4337 27.6533 61.8871 25.9911C61.8871 25.9911 63.2471 24.7822 62.9449 23.5733C62.7937 23.2711 62.6426 23.12 62.3404 23.12H62.1893C61.4337 23.2711 60.8293 23.4222 60.2249 23.7245C59.3182 23.8756 58.2604 24.1778 57.5049 23.8756C56.7493 23.7245 55.763 23.0739 55.2382 22.9689C55.1933 22.9599 54.6337 22.6667 54.936 22.8178C54.6337 22.6667 51.9137 22.8178 51.3093 24.0267C49.7982 22.5156 47.5315 21.6089 45.416 21.6089C44.3582 21.6089 43.4515 21.9111 42.696 22.5156C41.9404 23.12 41.4871 24.1778 41.7893 25.2356C42.0915 26.1422 43.1493 26.8978 44.056 26.5956C44.8115 26.2933 45.1137 25.6889 45.8693 25.2356C46.4737 24.9333 47.0782 24.9333 47.6826 25.2356C48.4382 25.6889 48.7404 26.7467 48.136 27.5022C46.9271 29.0133 44.2071 32.1867 41.7893 30.3733C40.7315 29.6178 39.8249 28.4089 38.9182 27.5022C37.5582 25.9911 36.1982 24.6311 34.6871 23.4222C30.456 19.9467 24.1093 18.5867 18.8204 21.0045C16.5537 20.0978 15.1937 17.3778 15.6471 15.1111C15.7982 14.6578 15.9493 14.0533 15.9493 13.6C15.9493 13.1467 15.496 12.5422 15.0426 12.5422C14.4382 12.5422 14.136 13.1467 13.9849 13.6C13.0782 14.2045 13.0782 15.2622 13.0782 16.32C13.2293 18.7378 14.7404 20.8533 16.7049 22.0622C15.3449 23.5733 14.5893 25.6889 15.3449 27.8045C16.2515 30.6756 18.8204 32.7911 21.0871 34.3022C21.2382 34.4533 21.3893 34.4533 21.5404 34.6045C23.656 35.9645 25.1671 37.7778 26.0737 40.0445C26.6782 41.7067 26.9804 43.52 26.9804 45.3333C26.9804 46.3911 26.8293 47.6 26.9804 48.6578C27.1315 49.2622 27.2826 49.7156 27.736 50.0178C28.7937 50.9245 30.6071 51.0756 32.4204 51.0756C35.1404 50.9245 37.7093 50.32 40.2782 49.5645C41.4871 49.2622 42.0915 48.3556 41.1849 47.7511ZM41.1849 47.7511C40.8826 47.4489 40.5804 47.4489 40.2782 47.2978C38.0115 46.8445 35.896 48.5067 33.7804 48.5067C32.4204 48.5067 31.0604 48.0533 30.456 46.8445C29.3982 44.7289 30.456 42.0089 30.6071 39.7422C30.7582 38.08 30.7582 36.4178 30.456 34.9067C30.3049 34 30.1537 33.0933 29.8515 32.1867C28.7937 28.7111 26.376 25.3867 22.9004 24.0267\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M26.8622 48.0534C26.6782 47.6001 26.0738 46.8445 26.0738 46.8445C26.0738 46.8445 25.1671 46.24 24.7138 46.5423C24.2604 46.8445 24.2604 47.4489 24.2604 48.0534C24.8649 51.2267 29.096 53.1911 31.9671 53.04\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><path d=\"M34.9893 52.8889C36.6515 52.2845 38.3138 51.2267 39.6738 49.7156\"stroke=#17443D stroke-width=1.5 stroke-linecap=round stroke-linejoin=round stroke-miterlimit=10><\/path><\/g><defs><clipPath id=clip0_272_2003><rect fill=white height=68 transform=translate(0.989319) width=68><\/rect><\/clipPath><\/defs><\/svg><p class=custom_content-list-item-text><b>Scientifically-formulated<\/b> for larger pups<\/div><p class=custom_content-bottom-text>*Compared to our small & medium breed formula<\/div>"
-      }
-    },
-    "rich_text_XbVUH6": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_C6LP3k": {
-          "type": "heading",
-          "settings": {
-            "heading": "How it Works",
-            "heading_size": "h1"
-          }
-        },
-        "text_g9YhGL": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Harness the healing power of light to help soothe pain, inflammation and injuries.<\/strong><\/p>"
-          }
-        },
-        "image_HWyTem": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/new_pdp_hero_laser_6.png",
-            "image_max_width": 600,
-            "image_mobile": "shopify:\/\/shop_images\/new_pdp_hero_laser_6.png",
-            "image_mobile_max_width": 500,
-            "image_behavior": "none"
-          }
-        },
-        "perks_zDHdFE": {
-          "type": "perks",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/perks_epidermis.svg",
-            "text": "<p><strong>Epidermis<\/strong><\/p>"
-          }
-        },
-        "perks_8yMRtz": {
-          "type": "perks",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/perks_dermis.svg",
-            "text": "<p><strong>Dermis<\/strong><\/p>"
-          }
-        },
-        "perks_7PJMiV": {
-          "type": "perks",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/perks_fat.svg",
-            "text": "<p><strong>Fat<\/strong><\/p>"
-          }
-        },
-        "perks_JYL7Hn": {
-          "type": "perks",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/perks_muscle.svg",
-            "text": "<p><strong>Muscle<\/strong><\/p>"
-          }
-        },
-        "perks_DM8ajK": {
-          "type": "perks",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/perks_bone.svg",
-            "text": "<p><strong>Bone<\/strong><\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_C6LP3k",
-        "text_g9YhGL",
-        "image_HWyTem",
-        "perks_zDHdFE",
-        "perks_8yMRtz",
-        "perks_7PJMiV",
-        "perks_JYL7Hn",
-        "perks_DM8ajK"
-      ],
-      "custom_css": [
-        ".rich-text__image {margin-top: 5.5rem;}",
-        "@media screen and (min-width: 750px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
-        "@media screen and (min-width: 990px) {.rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
-        "full_width": true,
-        "lineheight": 1,
-        "padding_top": 40,
-        "padding_bottom": 52,
-        "show_border": false
-      }
-    },
-    "rich_text_RmfXy9": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_VNG4bT": {
-          "type": "heading",
-          "settings": {
-            "heading": "How can we help?",
-            "heading_size": "h1"
-          }
-        },
-        "list_E6fLdj": {
-          "type": "list",
-          "settings": {
-            "list_heading": "My dog won’t eat the product",
-            "list_content": "<p>We pride ourselves in making the tastiest of supplement treats but if your dog isn’t convinced, we suggest breaking the chews into their food or wrapping them in a piece of meat or cheese. If that doesn’t work, get in touch and we’ll find the best solution for you and your furry bestie.<\/p>",
-            "alignment": "left"
-          }
-        },
-        "list_UqC6Y8": {
-          "type": "list",
-          "settings": {
-            "list_heading": "I don’t think it’s working",
-            "list_content": "<p>Please make sure you give each product a full 90 days, as it takes up to 3 months for wellbeing supplements to show their full effects. If you have any questions, our customer service team is on hand and always happy to chat.<\/p>",
-            "alignment": "left"
-          }
-        },
-        "list_wrpLTE": {
-          "type": "list",
-          "settings": {
-            "list_heading": "My dog had a reaction",
-            "list_content": "<p>If your pup isn’t reacting well to a certain ingredient, please see a vet so they confirm the product is not suitable for them.<\/p>",
-            "alignment": "left"
-          }
-        }
-      },
-      "block_order": [
-        "heading_VNG4bT",
-        "list_E6fLdj",
-        "list_UqC6Y8",
-        "list_wrpLTE"
-      ],
-      "custom_css": [
-        "@media screen and (min-width: 750px) {.rich-text {padding-top: 50px; padding-bottom: 50px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 2.8rem); }}",
-        "@media screen and (min-width: 990px) {.rich-text {padding-top: 80px; padding-bottom: 80px; } .rich-text__heading.h1 {font-size: calc(var(--font-heading-scale) * 4rem); }}"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "full_width": true,
-        "lineheight": 1,
-        "padding_top": 40,
-        "padding_bottom": 40,
-        "show_border": true
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
-  "order": [
-    "image_banner",
-    "marquee",
-    "rich_text",
-    "rich_text_PCUBiK",
-    "rich_text_M3CRGd",
-    "rich_text_Ejgiff",
-    "custom_1_EnrLFc",
-    "rich_text_XbVUH6",
-    "rich_text_RmfXy9"
-  ]
+  "order": ["image_banner", "featured_collection", "multicolumn", "rich_text", "collage", "video"]
 }
