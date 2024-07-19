@@ -2,13 +2,13 @@
   overflow: hidden;
 }
 
-.custom_2-image_wrapper {
+.custom-2-image_wrapper {
   max-width: 600px;
   position: relative;
   margin: 0 auto;
 }
 
-.custom_2-popup {
+.custom-2-popup {
   display: none;
 }
 
@@ -30,33 +30,33 @@
   }
 }
 
-.custom_2 {
+.custom-2 {
   text-align: center;
 }
 
-.custom_2-content~.custom_2-content {
+.custom-2-content~.custom-2-content {
   margin-top: 4rem;
   padding-top: 4rem;
   border-top: 1px solid rgba(var(--color-shadow), 0.3);
 }
 
-.custom_2-title {
+.custom-2-title {
   margin-top: 0;
 }
 
-.custom_2-main_image {
+.custom-2-main_image {
   max-width: 100%;
   height: auto;
 }
 
-.custom_2-popup_trigger {
+.custom-2-popup_trigger {
   width: 20px;
   height: 20px;
   position: absolute;
   transform: translateX(-50%) translateY(-50%);
 }
 
-.custom_2-popup_trigger::after {
+.custom-2-popup_trigger::after {
   content: '';
   width: 20px;
   height: 20px;
@@ -81,7 +81,7 @@
   z-index: 1;
 }
 
-.custom_2-popup {
+.custom-2-popup {
   display: none;
   position: fixed;
   left: 0;
@@ -93,7 +93,7 @@
 
 }
 
-.custom_2-popup_content {
+.custom-2-popup_content {
   max-width: 30rem;
   width: 100%;
   background: rgb(var(--color-background));
@@ -106,36 +106,36 @@
   position: relative;
 }
 
-.custom_2-popup_image {
+.custom-2-popup_image {
   max-width: 160px;
   height: auto;
   width: auto;
 }
 
-.custom_2-popup_title {
+.custom-2-popup_title {
   margin: 2.4rem 0 0 0;
   font-size: 2rem;
   font-weight: 700;
 }
 
-.custom_2-popup_text {
+.custom-2-popup_text {
   margin-top: 1.5rem;
   font-size: 1.6rem;
 }
 
 @media screen and (min-width: 750px) {
-  .custom_2-popup_content {
+  .custom-2-popup_content {
     max-width: 45rem;
   }
 }
 
 @media screen and (min-width: 950px) {
-  .custom_2-popup_content {
+  .custom-2-popup_content {
     max-width: 60rem;
   }
 }
 
-.custom_2-popup_close {
+.custom-2-popup_close {
   width: 32px;
   height: 32px;
   position: absolute;
@@ -151,7 +151,7 @@
   }
 }
 
-.custom_2-popup_trigger:checked + .custom_2-popup {
+.custom-2-popup_trigger:checked + .custom-2-popup {
   display: flex;
   align-items: center;
   justify-content: center;

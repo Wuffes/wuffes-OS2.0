@@ -1,4 +1,4 @@
-{{ 'custom_4.css' | asset_url | stylesheet_tag }}
+{{ 'custom-4.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -13,11 +13,11 @@
     {% endif %}
   }
 
-  .custom_4__wrapper {
+  .custom-4__wrapper {
     background: {{ section.settings.section_color_scheme.settings.background }}
   }
 
-  .custom_4__title i {
+  .custom-4__title em {
     color: {{ section.settings.section_color_scheme.settings.button }}
   }
 
@@ -42,39 +42,46 @@
   (min-width: 750px) calc((100vw - 30px) / 2), calc(100vw - 30px)
 {%- endcapture -%}
 
-<div class="section-{{ section.id }}-padding custom_4__wrapper">
-  <h2 class="custom_4__title hidden_mobile">
+<div class="section-{{ section.id }}-padding custom-4__wrapper">
+  <h2 class="custom-4__title hidden_mobile">
     {{- section.settings.title -}}
   </h2>
 
-  <p class="custom_4__description hidden_mobile">
+  <p class="custom-4__description hidden_mobile">
     {{- section.settings.description -}}
   </p>
 
-  <div class="custom_4__wrapper_content page-width">
-    <div class="custom_4__wrapper_img">
-      {{
-        section.settings.image
-        | image_url: width: 585
-        | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'custom_4__main_img'
-      }}
+  <div class="custom-4__wrapper_content page-width">
+    <div class="custom-4__wrapper_img">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 1800
+          | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'custom-4__main_img'
+        }}
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
     </div>
 
-    <h2 class="custom_4__title hidden_desktop">
+    <h2 class="custom-4__title hidden_desktop">
       {{- section.settings.title -}}
     </h2>
 
-    <p class="custom_4__description hidden_desktop">
+    <p class="custom-4__description hidden_desktop">
       {{- section.settings.description -}}
     </p>
 
-    <div class="custom_4__wrapper_description">
+    <div class="custom-4__wrapper_description">
       <ul>
         {%- for block in section.blocks -%}
-          <li class="custom_4__icons_item">
+          <li
+            class="custom-4__icons_item"
+            {{ block.shopify_attributes }}
+          >
             {%- render 'icon-check-bg' -%}
 
-            <div class="custom_4__icons_item_text">
+            <div class="custom-4__icons_item_text">
               {{- block.settings.text -}}
             </div>
           </li>
@@ -98,14 +105,16 @@
       "content": "Section content part 1 - top"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "title",
-      "label": "Title"
+      "label": "Title",
+      "default": "<p>Section Title</p>"
     },
     {
       "type": "textarea",
       "id": "description",
-      "label": "Description"
+      "label": "Description",
+      "default": "Section Description"
     },
     {
       "type": "image_picker",
@@ -163,14 +172,57 @@
         {
           "type": "richtext",
           "id": "text",
-          "label": "Text"
+          "label": "Text",
+          "default": "<p>Item description</p>"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custom 4 (Results section)"
+      "name": "Custom 4 (Results section)",
+      "settings": {
+        "title": "<p>Results in as little as <em>3 Weeks!<\/em></p>",
+        "description": "If you're not happy after 3 months of consistent use, we'll refund you.",
+        "image": "shopify:\/\/shop_images\/reskin_full_price_jc_v4.png",
+        "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
+        "border_top": false,
+        "padding_top": 80,
+        "border_bottom": true,
+        "padding_bottom": 80
+      },
+      "blocks": [
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Accelerate <em><strong>Formulation of Cartilage<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Eliminate <em><strong>Inflammation<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Increase <em><strong>Joint Fluid Viscosity<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Enhance <em><strong>Response of Protective Tissue<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Improve <em><strong>Mobility & Reduce Pain<\/strong><\/em><\/p>"
+          }
+        }
+      ]
     }
   ]
 }

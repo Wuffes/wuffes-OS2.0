@@ -1,4 +1,4 @@
-{{ 'custom_2_images_with_popups.css' | asset_url | stylesheet_tag }}
+{{ 'custom-2_images_with_popups.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -37,22 +37,27 @@
   (min-width: 630px) 600px, calc(100vw - 30px)
 {%- endcapture -%}
 
+{%- assign popup_img_widths = '160, 200, 320, 400, 480, 600' -%}
+{%- capture popup_img_sizes -%}
+  (min-width: 630px) 200px, 160px
+{%- endcapture -%}
+
 <div class="section-{{ section.id }}-padding">
   <div
     id="Custom-2-{{ section.id }}"
-    class="custom_2"
+    class="custom-2"
   >
-    <div class="page-width custom_2-content custom_2-content_top">
+    <div class="page-width custom-2-content custom-2-content_top">
       {% if section.settings.title_1.size > 0 %}
         <h2
-          class="custom_2-title"
+          class="custom-2-title"
         >
           {{- section.settings.title_1 -}}
         </h2>
       {% endif %}
       {% if section.settings.subtitle_1.size > 0 %}
         <p
-          class="custom_2-subtitle"
+          class="custom-2-subtitle"
         >
           {{- section.settings.subtitle_1 -}}
         </p>
@@ -60,22 +65,22 @@
 
       {% if section.settings.hint_1.size > 0 %}
         <p
-          class="custom_2-hint"
+          class="custom-2-hint"
         >
           {{- section.settings.hint_1 -}}
         </p>
       {% endif %}
 
-      {% if section.settings.image_1.size > 0 %}
-        <div class="custom_2-image_wrapper">
+      {% if section.settings.image_1 != blank %}
+        <div class="custom-2-image_wrapper">
           {{
             section.settings.image_1
-            | image_url: width: 600
+            | image_url: width: 1800
             | image_tag:
               sizes: main_img_sizes,
               widths: main_img_widths,
               fetchpriority: fetch_priority,
-              class: 'custom_2-main_image'
+              class: 'custom-2-main_image'
           }}
 
           {%- assign top_blocks = section.blocks | where: 'type', 'image_1_popup' -%}
@@ -85,51 +90,54 @@
               type="radio"
               name="top_popup"
               id="top_block_{{ forloop.index }}_popup"
-              class="custom_2-popup_trigger"
+              class="custom-2-popup_trigger"
               style="top: {{ block.settings.toggle_top }}%; left: {{ block.settings.toggle_left }}%;"
             >
 
             <label
               for="top_block_{{ forloop.index }}_popup"
-              class="custom_2-popup"
+              class="custom-2-popup"
+              {{ block.shopify_attributes }}
             >
-              <div class="custom_2-popup_content">
-                <div class="custom_2-popup_close">
+              <div class="custom-2-popup_content">
+                <div class="custom-2-popup_close">
                   {% render 'icon-close' %}
                 </div>
                 {% if block.settings.image.size > 0 %}
                   {{
                     block.settings.image
-                    | image_url: width: 160
-                    | image_tag: sizes: main_img_sizes, widths: main_img_widths, class: 'custom_2-popup_image'
+                    | image_url: width: 600
+                    | image_tag: sizes: popup_img_sizes, widths: popup_img_widths, class: 'custom-2-popup_image'
                   }}
                 {% endif %}
 
                 {% if block.settings.title.size > 0 %}
-                  <h5 class="custom_2-popup_title">{{ block.settings.title }}</h5>
+                  <h5 class="custom-2-popup_title">{{ block.settings.title }}</h5>
                 {% endif %}
 
                 {% if block.settings.text.size > 0 %}
-                  <p class="custom_2-popup_text">{{ block.settings.text }}</p>
+                  <p class="custom-2-popup_text">{{ block.settings.text }}</p>
                 {% endif %}
               </div>
             </label>
           {% endfor %}
         </div>
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
     </div>
 
-    <div class="page-width custom_2-content custom_2-content_bottom">
+    <div class="page-width custom-2-content custom-2-content_bottom">
       {% if section.settings.title_2.size > 0 %}
         <h2
-          class="custom_2-title"
+          class="custom-2-title"
         >
           {{- section.settings.title_2 -}}
         </h2>
       {% endif %}
       {% if section.settings.subtitle_2.size > 0 %}
         <p
-          class="custom_2-subtitle"
+          class="custom-2-subtitle"
         >
           {{- section.settings.subtitle_2 -}}
         </p>
@@ -137,22 +145,22 @@
 
       {% if section.settings.hint_2.size > 0 %}
         <p
-          class="custom_2-hint"
+          class="custom-2-hint"
         >
           {{- section.settings.hint_2 -}}
         </p>
       {% endif %}
 
-      {% if section.settings.image_2.size > 0 %}
-        <div class="custom_2-image_wrapper">
+      {% if section.settings.image_2 != blank %}
+        <div class="custom-2-image_wrapper">
           {{
             section.settings.image_2
-            | image_url: width: 600
+            | image_url: width: 1800
             | image_tag:
               sizes: main_img_sizes,
               widths: main_img_widths,
               fetchpriority: fetch_priority,
-              class: 'custom_2-main_image'
+              class: 'custom-2-main_image'
           }}
 
           {%- assign bottom_blocks = section.blocks | where: 'type', 'image_2_popup' -%}
@@ -162,51 +170,54 @@
               type="radio"
               name="bottom_popup"
               id="bottom_block_{{ forloop.index }}_popup"
-              class="custom_2-popup_trigger"
+              class="custom-2-popup_trigger"
               style="top: {{ block.settings.toggle_top }}%; left: {{ block.settings.toggle_left }}%;"
             >
 
             <label
               for="bottom_block_{{ forloop.index }}_popup"
-              class="custom_2-popup"
+              class="custom-2-popup"
+              {{ block.shopify_attributes }}
             >
-              <div class="custom_2-popup_content">
-                <div class="custom_2-popup_close">
+              <div class="custom-2-popup_content">
+                <div class="custom-2-popup_close">
                   {% render 'icon-close' %}
                 </div>
                 {% if block.settings.image.size > 0 %}
                   {{
                     block.settings.image
-                    | image_url: width: 160
-                    | image_tag: sizes: main_img_sizes, widths: main_img_widths, class: 'custom_2-popup_image'
+                    | image_url: width: 600
+                    | image_tag: sizes: popup_img_sizes, widths: popup_img_widths, class: 'custom-2-popup_image'
                   }}
                 {% endif %}
 
                 {% if block.settings.title.size > 0 %}
-                  <h5 class="custom_2-popup_title">{{ block.settings.title }}</h5>
+                  <h5 class="custom-2-popup_title">{{ block.settings.title }}</h5>
                 {% endif %}
 
                 {% if block.settings.text.size > 0 %}
-                  <p class="custom_2-popup_text">{{ block.settings.text }}</p>
+                  <p class="custom-2-popup_text">{{ block.settings.text }}</p>
                 {% endif %}
               </div>
             </label>
           {% endfor %}
         </div>
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
     </div>
   </div>
 </div>
 
 <script>
-  document.querySelectorAll('.custom_2-popup_trigger').forEach(function (radio) {
+  document.querySelectorAll('.custom-2-popup_trigger').forEach(function (radio) {
     radio.addEventListener('click', function (event) {
       if (this.checked) {
         if (this.previousChecked) {
           this.checked = false;
           this.previousChecked = false;
         } else {
-          document.querySelectorAll('.custom_2-popup_trigger').forEach(function (otherRadio) {
+          document.querySelectorAll('.custom-2-popup_trigger').forEach(function (otherRadio) {
             otherRadio.previousChecked = false;
           });
           this.previousChecked = true;
@@ -217,8 +228,8 @@
   });
 
   document.addEventListener('click', function (event) {
-    if (!event.target.closest('.custom_2-popup')) {
-      document.querySelectorAll('.custom_2-popup_trigger').forEach(function (radio) {
+    if (!event.target.closest('.custom-2-popup')) {
+      document.querySelectorAll('.custom-2-popup_trigger').forEach(function (radio) {
         radio.checked = false;
         radio.previousChecked = false;
       });
@@ -242,17 +253,20 @@
     {
       "type": "text",
       "id": "title_1",
-      "label": "Title 1"
+      "label": "Title 1",
+      "default": "Top section title"
     },
     {
       "type": "textarea",
       "id": "subtitle_1",
-      "label": "Subitle 1"
+      "label": "Subitle 1",
+      "default": "Top section subtitle"
     },
     {
       "type": "textarea",
       "id": "hint_1",
-      "label": "Hint 1"
+      "label": "Hint 1",
+      "default": "Top section hint"
     },
     {
       "type": "image_picker",
@@ -266,17 +280,20 @@
     {
       "type": "text",
       "id": "title_2",
-      "label": "Title 2"
+      "label": "Title 2",
+      "default": "Bottom section title"
     },
     {
       "type": "textarea",
       "id": "subtitle_2",
-      "label": "Subitle 2"
+      "label": "Subitle 2",
+      "default": "Bottom section subtitle"
     },
     {
       "type": "textarea",
       "id": "hint_2",
-      "label": "Hint 2"
+      "label": "Hint 2",
+      "default": "Bottom section hint"
     },
     {
       "type": "image_picker",
@@ -414,7 +431,84 @@
   ],
   "presets": [
     {
-      "name": "Custom 2 (img with popups)"
+      "name": "Custom 2 (img with popups)",
+      "settings": {
+        "title_1": "How it works",
+        "subtitle_1": "Our 23-in-1 Multivitamin helps balance your dog’s diet by filling any nutritional gaps and deficiencies, which are associated with the development of joint disease.",
+        "hint_1": "Click on the green circles for more information",
+        "image_1": "shopify:\/\/shop_images\/MV_Illustration_Desktop_1.svg",
+        "title_2": "When taken together",
+        "subtitle_2": "We recommend combining our Advanced Hip & Joint Support chews with\u2028 23-in-1 Multivitamin for best results",
+        "hint_2": "Click on the green circles for more information",
+        "image_2": "shopify:\/\/shop_images\/MV_JC_illustration.svg",
+        "section_color_scheme": "scheme-3e1ea55f-e3e0-4a1c-b879-3126884afa91",
+        "border_top": true,
+        "padding_top": 50,
+        "border_bottom": true,
+        "padding_bottom": 50
+      },
+      "blocks": [
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_1.svg",
+            "title": "Calcium, Magnesium & Vitamin D",
+            "text": "Essential for maintaining bone strength and mineral density",
+            "toggle_top": 14,
+            "toggle_left": 50
+          }
+        },
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
+            "toggle_top": 77,
+            "toggle_left": 15
+          }
+        },
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_3.svg",
+            "title": "B- Vitamins",
+            "text": "Help the body convert food into energy, promoting energy metabolism and reducing fatigue",
+            "toggle_top": 71,
+            "toggle_left": 80
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_2.svg",
+            "title": "23-in-1 Multivitamin",
+            "text": "Provides nutrients that help boost energy levels to promote weight loss and increase activity levels which helps reduce osteoarthritis symptoms and helps our joint chews be even more effective.",
+            "toggle_top": 38,
+            "toggle_left": 30
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_1.svg",
+            "title": "Advanced Hip & Joint Support",
+            "text": "Regulate the immune response while our multivitamin provides all essential nutrients for the immune system to function well",
+            "toggle_top": 38,
+            "toggle_left": 66
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
+            "toggle_top": 52,
+            "toggle_left": 77
+          }
+        }
+      ]
     }
   ]
 }

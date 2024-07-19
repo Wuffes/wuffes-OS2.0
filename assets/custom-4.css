@@ -1,4 +1,4 @@
-.custom_4__title {
+.custom-4__title {
   margin-top: 22px;
   margin-bottom: 0;
   padding: 0 32px;
@@ -7,12 +7,12 @@
   text-align: center;
   font-size: 28px;
 
-  i {
+  em {
     display: block;
   }
 }
 
-.custom_4__description {
+.custom-4__description {
   margin-top: 15px;
   padding: 0 20px;
 
@@ -21,7 +21,7 @@
   text-align: center;
 }
 
-.custom_4__wrapper_description {
+.custom-4__wrapper_description {
   margin-top: 31px;
 
   ul {
@@ -29,18 +29,18 @@
   }
 }
 
-.custom_4__wrapper_content {
+.custom-4__wrapper_content {
   padding: 0;
 }
 
-.custom_4__wrapper_img {
-  .custom_4__main_img {
+.custom-4__wrapper_img {
+  .custom-4__main_img {
     width: 100%;
     height: auto;
   }
 }
 
-.custom_4__icons_item {
+.custom-4__icons_item {
   padding: 10px 11px;
   margin: 0 auto;
 
@@ -72,7 +72,7 @@
   }
 }
 
-.custom_4__icons_item + .custom_4__icons_item {
+.custom-4__icons_item + .custom-4__icons_item {
   margin-top: 8px;
 }
 
@@ -80,15 +80,15 @@
   display: none;
 }
 
-.custom_4_button_wrapper {
+.custom-4_button_wrapper {
   text-align: center;
 }
 
-.custom_4_button_wrapper {
+.custom-4_button_wrapper {
   margin-top: 31px;
 }
 
-.custom_4__icons_item_text p {
+.custom-4__icons_item_text p {
       margin: 0;
     }
 
@@ -101,23 +101,23 @@
     display: none;
   }
 
-  .custom_4__title {
+  .custom-4__title {
     margin-top: 0;
 
     font-size: 40px;
 
-    i {
+    em {
       display: inline;
     }
   }
 
-  .custom_4__description {
+  .custom-4__description {
     margin-top: 18px;
 
     font-size: 20px;
   }
 
-  .custom_4__wrapper_content {
+  .custom-4__wrapper_content {
     padding: 0 15px;
 
     margin-top: 20px;
@@ -125,18 +125,18 @@
     display: flex;
   }
 
-  .custom_4__wrapper_img {
+  .custom-4__wrapper_img {
     flex: 50%;
   }
 
-  .custom_4__wrapper_description {
+  .custom-4__wrapper_description {
     margin-top: 45px;
     padding-left: 60px;
 
     flex: 50%;
   }
 
-  .custom_4__icons_item {
+  .custom-4__icons_item {
     max-width: 427px;
 
     column-gap: 18px;
@@ -150,17 +150,17 @@
     }
   }
 
-  .custom_4_button_wrapper {
+  .custom-4_button_wrapper {
     margin-top: 65px;
   }
 }
 
 @media screen and (min-width: 992px) {
-  .custom_4__title {
+  .custom-4__title {
     font-size: 48px;
   }
 
-  .custom_4__icons_item_text {
+  .custom-4__icons_item_text {
     font-size: 20px;
   }
 }

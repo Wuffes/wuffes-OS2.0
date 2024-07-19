@@ -1,7 +1,7 @@
 {
   "sections": {
-    "custom_4_Taipe8": {
-      "type": "custom_4",
+    "custom-4_Taipe8": {
+      "type": "custom-4",
       "blocks": {
         "text_item_jwJTXq": {
           "type": "text_item",
@@ -42,7 +42,7 @@
         "text_item_Kf94NQ"
       ],
       "settings": {
-        "title": "Results in as little as <i>3 Weeks!<\/i>",
+        "title": "<p>Results in as little as <em>3 Weeks!<\/em><\/p>",
         "description": "If you're not happy after 3 months of consistent use, we'll refund you.",
         "image": "shopify:\/\/shop_images\/reskin_full_price_jc_v4.png",
         "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
@@ -52,11 +52,11 @@
         "padding_bottom": 80
       }
     },
-    "custom_3_f6G3Hz": {
-      "type": "custom_3",
+    "custom-3_f6G3Hz": {
+      "type": "custom-3",
       "settings": {
         "title": "The Full Story",
-        "description": "Wuffes was born out of love and necessity. When my wife’s grandmother passed away, we adopted her aging dog who suffered from debilitating arthritis. Recommended treatments fell short, so we decided to look for better solutions. Many options contained harmful and unnecessary ingredients, with insufficient active components, which simply wasn’t good enough for my furry best friend. \n<br><br>\nEnter Josh, my Co-Founder and fellow dog dad. Together, we embarked on creating our own joint supplement, prioritizing top-tier active ingredients while ditching the harmful inactives. Our products embody our commitment to helping improve the quality of life of our furry family members - we owe this to them, and we owe it to all our fellow pet parents out there.\n<br><br>\nOur initial goal was to make the best quality product, and that hasn’t changed. We’re not a faceless corporation, we’re dog lovers just like you and we genuinely care and want the best for all dogs. Because everyone thinks their dog is the best, and everyone is absolutely right.\n<br><br>\nWith love,\n<br>\nSam & Josh",
+        "description": "<p>Wuffes was born out of love and necessity. When my wife’s grandmother passed away, we adopted her aging dog who suffered from debilitating arthritis. Recommended treatments fell short, so we decided to look for better solutions. Many options contained harmful and unnecessary ingredients, with insufficient active components, which simply wasn’t good enough for my furry best friend. <\/p><p>Enter Josh, my Co-Founder and fellow dog dad. Together, we embarked on creating our own joint supplement, prioritizing top-tier active ingredients while ditching the harmful inactives. Our products embody our commitment to helping improve the quality of life of our furry family members - we owe this to them, and we owe it to all our fellow pet parents out there.<\/p><p>Our initial goal was to make the best quality product, and that hasn’t changed. We’re not a faceless corporation, we’re dog lovers just like you and we genuinely care and want the best for all dogs. Because everyone thinks their dog is the best, and everyone is absolutely right.<\/p><p>With love, <\/p><p>Sam & Josh<\/p>",
         "bg_image": "shopify:\/\/shop_images\/full_story__bg.png",
         "bottom_mobile": "shopify:\/\/shop_images\/full_story_r_b_img_mobile_1.png",
         "bottom_desktop": "shopify:\/\/shop_images\/full_story_r_b_img_1.png",
@@ -71,8 +71,8 @@
         "padding_bottom": 36
       }
     },
-    "custom_2_images_with_popups_YtNRi6": {
-      "type": "custom_2_images_with_popups",
+    "custom-2-images-with-popups_YtNRi6": {
+      "type": "custom-2-images-with-popups",
       "blocks": {
         "image_1_popup_chUPmc": {
           "type": "image_1_popup",
@@ -175,8 +175,8 @@
         "show_text_below": true
       }
     },
-    "okendo_reviews_U4aLqm": {
-      "type": "okendo_reviews",
+    "okendo-reviews_U4aLqm": {
+      "type": "okendo-reviews",
       "settings": {
         "title": "Scroll through what fellow pet parents have to say",
         "custom_product": "advanced-hip-joint-support-for-large-breeds",
@@ -416,11 +416,11 @@
     }
   },
   "order": [
-    "custom_4_Taipe8",
-    "custom_3_f6G3Hz",
-    "custom_2_images_with_popups_YtNRi6",
+    "custom-4_Taipe8",
+    "custom-3_f6G3Hz",
+    "custom-2-images-with-popups_YtNRi6",
     "image_banner_NcjRzV",
-    "okendo_reviews_U4aLqm",
+    "okendo-reviews_U4aLqm",
     "image_banner",
     "featured_collection",
     "multicolumn",
