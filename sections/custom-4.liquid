@@ -14,11 +14,15 @@
   }
 
   .custom-4__wrapper {
-    background: {{ section.settings.section_color_scheme.settings.background }}
+    background: {{ section.settings.section_color_scheme.settings.background }};
+  }
+
+  .custom-4__icons_item svg {
+    color: {{ section.settings.section_color_scheme.settings.button }};
   }
 
   .custom-4__title em {
-    color: {{ section.settings.section_color_scheme.settings.button }}
+    color: {{ section.settings.section_color_scheme.settings.button }};
   }
 
   @media screen and (min-width: 750px) {

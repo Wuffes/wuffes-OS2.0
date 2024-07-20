@@ -10,6 +10,10 @@
   em {
     display: block;
   }
+
+  p {
+    margin: 0;
+  }
 }
 
 .custom-4__description {
@@ -19,6 +23,7 @@
   font-size: 12px;
   font-weight: 700;
   text-align: center;
+  letter-spacing: 0.01em;
 }
 
 .custom-4__wrapper_description {
@@ -58,16 +63,6 @@
   svg {
     min-width: 30px;
     width: 30px;
-  }
-
-  .custom_3__icons_item_text {
-    padding-left: 12px;
-
-    font-size: 14px;
-  }
-
-  svg {
-    width: 100%;
     height: auto;
   }
 }
@@ -88,9 +83,15 @@
   margin-top: 31px;
 }
 
+.custom-4__icons_item_text {
+  padding-left: 12px;
+
+  font-size: 14px;
+}
+
 .custom-4__icons_item_text p {
-      margin: 0;
-    }
+  margin: 0;
+}
 
 @media screen and (min-width: 768px) {
   .hidden_mobile {
