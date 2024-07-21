@@ -26,6 +26,7 @@
   padding-left: 3.5rem;
   position: relative;
   color: rgb(23, 68, 61);
+  font-size: 2rem;
 }
 
 .features-list__heading_icon {
@@ -78,7 +79,7 @@
   }
 
   .features-list__heading.inline-richtext {
-    font-size: 52px;
+    font-size: 4rem;
   }
 
   .features-list_main_content_list_item {
