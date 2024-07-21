@@ -94,7 +94,7 @@
   }
 
   .banner--large:not(.banner--adapt) {
-    min-height: 80rem;
+    min-height: 43.4rem;
   }
 
   .banner__content.banner__content--top-left {
@@ -140,6 +140,18 @@
   .banner__content.banner__content--bottom-right {
     align-items: flex-end;
     justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .banner--large:not(.banner--adapt) {
+    min-height: 60rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .banner--large:not(.banner--adapt) {
+    min-height: 80rem;
   }
 }
 

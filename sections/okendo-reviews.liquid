@@ -8,6 +8,10 @@
     }
   }
 
+  .section-okendo-reviews {
+    overflow: hidden;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -40,7 +44,7 @@
 {
   "name": "Okendo reviews",
   "tag": "section",
-  "class": "section",
+  "class": "section section-okendo-reviews",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
