@@ -371,10 +371,19 @@ class MenuDrawer extends HTMLElement {
     this.querySelectorAll('summary').forEach((summary) =>
       summary.addEventListener('click', this.onSummaryClick.bind(this))
     );
+
     this.querySelectorAll(
       'button:not(.localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)'
     ).forEach((button) => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+
+    this.querySelector('.menu-drawer-close').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const summaryElement = this.querySelector('summary');
+      this.closeMenuDrawer(event, summaryElement);
+    });
   }
+
 
   onKeyUp(event) {
     if (event.code.toUpperCase() !== 'ESCAPE') return;
@@ -428,6 +437,7 @@ class MenuDrawer extends HTMLElement {
   }
 
   closeMenuDrawer(event, elementToFocus = false) {
+
     if (event === undefined) return;
 
     this.mainDetailsToggle.classList.remove('menu-opening');
@@ -442,7 +452,8 @@ class MenuDrawer extends HTMLElement {
     removeTrapFocus(elementToFocus);
     this.closeAnimation(this.mainDetailsToggle);
 
-    if (event instanceof KeyboardEvent) elementToFocus?.setAttribute('aria-expanded', false);
+    // if (event instanceof KeyboardEvent) elementToFocus?.setAttribute('aria-expanded', false);
+    elementToFocus?.setAttribute('aria-expanded', false);
   }
 
   onFocusOut() {
@@ -750,7 +761,6 @@ class SlideshowComponent extends SliderComponent {
       this.reducedMotion.addEventListener('change', () => {
         if (this.slider.getAttribute('data-autoplay') === 'true') this.setAutoPlay();
       });
-
       [this.prevButton, this.nextButton].forEach((button) => {
         button.addEventListener(
           'click',

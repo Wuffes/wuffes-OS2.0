@@ -1,0 +1,229 @@
+.header.page-width {
+  max-width: unset;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+}
+
+.header--sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.header--wrapper {
+  width: 100%;
+  background: rgb(var(--color-background));
+  z-index: 1;
+}
+
+.header--wrapper--inner {
+  max-width: var(--page-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: 'left-icons heading icons';
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.header--wrapper--inner.header--wrapper--inner-col-2 .header__heading,
+.header--has-timer .header--wrapper--inner .header__heading {
+  grid-area: left-icons;
+}
+
+.header--col_left {
+  display: flex;
+  align-items: center;
+}
+
+.header--top-left .header__heading {
+  justify-self: flex-start;
+}
+
+.header--top-left .header--wrapper--inner,
+.header--has-timer .header--wrapper--inner {
+  grid-template-columns: auto 2fr auto;
+}
+
+a.menu-drawer-close {
+  cursor: pointer;
+}
+
+.header__icons {
+  align-items: center;
+}
+
+.header__icon--menu-close {
+  height: 3.4rem;
+  width: 3.4rem;
+  border-radius: 50%;
+  background: rgb(var(--color-foreground));
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 999;
+}
+
+.header__icon--menu-close .icon-close {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.header__icon--menu-close .icon-close > path {
+  fill: rgb(58, 57, 67);
+}
+
+.header__icons--info {
+  display: none;
+  margin: 0 1.5rem 0 0;
+}
+
+@media screen and (max-width: 749px) {
+  .header--wrapper--inner {
+    column-gap: 1.5rem;
+  }
+
+  .header--mobile-center .header--wrapper--inner {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .header--has-timer .header--wrapper--inner {
+    grid-template-columns: auto 2fr auto;
+    column-gap: 0;
+  }
+
+  .header--mobile-center .header__heading {
+    justify-self: center;
+  }
+
+  .header--mobile-left .header__heading {
+    grid-area: left-icons;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .header--wrapper--inner {
+    column-gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .header--wrapper {
+    height: 5rem;
+  }
+
+  .header--col_desktop-search {
+    display: block;
+  }
+
+  .header__heading-logo {
+    max-width: 11rem;
+  }
+
+  .header__icon .icon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .header__icon .icon.icon-account {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .header--col_desktop-search {
+    display: none;
+  }
+}
+
+.desktop-search--submit {
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 0;
+  display: none;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0.1rem;
+  top: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.desktop-search--submit-icon {
+  fill: rgb(var(--color-foreground));
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .header--wrapper {
+    height: 7rem;
+  }
+
+  .header--top-center .header__search {
+    display: none;
+  }
+
+  .header--col_desktop-search {
+    display: block;
+    width: auto;
+    height: 2rem;
+    margin: 0 0 0 1.5rem;
+    border-bottom: 2px solid rgb(var(--color-button));
+    position: relative;
+  }
+
+  .desktop-search--link {
+    display: block;
+    font-size: calc(var(--font-body-scale) * 1.5rem);
+    line-height: 1.2;
+    color: rgb(var(--color-foreground));
+    text-decoration: none;
+    will-change: transform;
+    transform: translateY(-3px) translateZ(0);
+  }
+
+  .desktop-search--input {
+    width: auto;
+    height: 1.8rem;
+    display: none;
+    overflow: visible;
+    padding: 0;
+    background: none;
+    color: rgb(var(--color-foreground));
+    border: none;
+    outline: none;
+    font-size: calc(var(--font-body-scale) * 1.5rem);
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    will-change: transform;
+    transform: translateY(-3px) translateZ(0);
+  }
+
+  .desktop-search--input::placeholder {
+    color: rgb(var(--color-foreground));
+  }
+
+  .desktop-search--input:focus-visible {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .header__icon .icon:not(.icon-close) {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .header__icons--info {
+    display: block;
+  }
+}

@@ -1,0 +1,115 @@
+{{- 'section-marquee.css' | asset_url | stylesheet_tag -}}
+
+{% comment %}
+  {%- if section.settings.marquee_icon != blank -%}
+    {%- style -%}
+      .marquee__blocks_icon {
+        width: {{- section.settings.icon_width -}}px;
+      }
+    {%- endstyle -%}
+  {%- endif -%}
+{% endcomment %}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="marquee__container color-{{ section.settings.color_scheme }} gradient">
+    <div class="marquee__wrap scroll-trigger animate--slide-in">
+      {%- for index in (1..2) -%}
+        <div class="marquee__content scroll">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.marquee_text != blank -%}
+              <div class="marquee__blocks_slide" {{ block.shopify_attributes }}>
+                {%- if section.settings.marquee_icon -%}
+                  <img
+                    src="{{ section.settings.marquee_icon | image_url }}"
+                    width="{{ section.settings.icon_width }}"
+                    height=""
+                    class="marquee__blocks_icon"
+                  >
+                {%- endif -%}
+
+                <p class="marquee__blocks_text">
+                  {{- block.settings.marquee_text -}}
+                </p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.marquee.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "label": "Icon image",
+      "id": "marquee_icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "Icon width",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.marquee.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Text",
+          "id": "marquee_text",
+          "default": "Add text here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.marquee.presets.name",
+      "settings": {
+        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
+        "marquee_icon": "shopify:\/\/shop_images\/icon__green_check.svg",
+        "icon_width": 15
+      },
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Made in USA*"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Backed by science"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Formulated by pet scientists"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

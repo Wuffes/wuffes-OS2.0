@@ -5,6 +5,7 @@
     "favicon": "shopify://shop_images/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
+    "type_header_font_custom_weight": "700",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
     "body_scale": 100,
@@ -59,7 +60,7 @@
     "blog_card_style": "standard",
     "blog_card_image_padding": 0,
     "blog_card_text_alignment": "left",
-    "blog_card_color_scheme": "scheme-2",
+    "blog_card_color_scheme": "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac",
     "blog_card_border_thickness": 0,
     "blog_card_border_opacity": 10,
     "blog_card_corner_radius": 0,
@@ -117,7 +118,9 @@
     "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
-    "cart_drawer_collection": "all",
+    "cart_drawer_collection": "",
+    "cart_color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+    "cart_drawer_footer_text": "Buy more items — get bigger discounts and pay less!",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -205,8 +208,52 @@
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button_label": "#ffffff",
-          "secondary_button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
           "shadow": "#ffffff"
+        }
+      },
+      "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6": {
+        "settings": {
+          "background": "#f1fdf0",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-fd1c0ed7-df5f-4bd3-9c5e-9316911adf64": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-41d982da-c418-4e13-91d5-c674d09e7a1a": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "#212427",
+          "secondary_button_label": "#17443d",
+          "shadow": "#121212"
         }
       },
       "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41": {

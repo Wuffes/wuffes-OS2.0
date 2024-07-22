@@ -1547,6 +1547,11 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "textarea",
+        "id": "cart_drawer_footer_text",
+        "label": "Cart drawer footer text"
       }
     ]
   }
