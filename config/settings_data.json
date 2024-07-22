@@ -74,9 +74,9 @@
     "text_boxes_shadow_horizontal_offset": 0,
     "text_boxes_shadow_vertical_offset": 4,
     "text_boxes_shadow_blur": 5,
-    "media_border_thickness": 1,
-    "media_border_opacity": 5,
-    "media_radius": 0,
+    "media_border_thickness": 0,
+    "media_border_opacity": 0,
+    "media_radius": 20,
     "media_shadow_opacity": 0,
     "media_shadow_horizontal_offset": 0,
     "media_shadow_vertical_offset": 4,
@@ -204,35 +204,24 @@
           "shadow": "#ffffff"
         }
       },
-      "scheme-8e688a55-f361-4706-96c3-c37ebb88b2eb": {
+      "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57": {
         "settings": {
-          "background": "#ffffff",
-          "background_gradient": "",
-          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "button": "{{ shop.brand.colors.primary[0].foreground }}",
-          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "shadow": "#121212"
-        }
-      },
-      "scheme-8e577348-7902-4431-a614-442eecc36d3c": {
-        "settings": {
-          "background": "#17443d",
-          "background_gradient": "",
-          "text": "#ffffff",
-          "button": "{{ shop.brand.colors.primary[0].foreground }}",
-          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "shadow": "#121212"
-        }
-      },
-      "scheme-a2b01683-4076-4955-9a45-56b757f0e120": {
-        "settings": {
-          "background": "#fffaf7",
+          "background": "#f1fdf0",
           "background_gradient": "",
           "text": "#212427",
-          "button": "#c5fa54",
-          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e": {
+        "settings": {
+          "background": "#f7ece1",
+          "background_gradient": "",
+          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "button": "#17443d",
+          "button_label": "#FFFFFF",
           "secondary_button_label": "#17443d",
           "shadow": "#121212"
         }

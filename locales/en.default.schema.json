@@ -1314,6 +1314,12 @@
     "image-with-text": {
       "name": "Image with text",
       "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "subheading": {
+          "label": "Subheading"
+        },
         "image": {
           "label": "Image"
         },
@@ -1329,6 +1335,10 @@
           },
           "options__4": {
             "label": "Large"
+          },
+
+          "options__5": {
+            "label": "Original"
           },
           "label": "Image height"
         },
@@ -1468,6 +1478,20 @@
             },
             "outline_button": {
               "label": "Use outline button style"
+            }
+          }
+        },
+        "collapsible": {
+          "name": "Collapsible content",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "inner_text": {
+              "label": "Inner text"
+            },
+            "image": {
+              "label": "Image"
             }
           }
         }
@@ -2936,6 +2960,58 @@
       },
       "presets": {
         "name": "Rich text"
+      }
+    },
+    "rich-text-carousel": {
+      "name": "Rich text carousel",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "desktop_content_position": {
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "label": "Desktop content position",
+          "info": "Position is automatically optimized for mobile."
+        },
+        "content_alignment": {
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+          "label": "Content alignment"
+        },
+        "full_width": {
+          "label": "Make section full width"
+        }
+      },
+      "blocks": {
+        "slide": {
+          "name": "Slide",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "logo": {
+              "label": "Logo"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Rich text carousel"
       }
     },
     "video": {
