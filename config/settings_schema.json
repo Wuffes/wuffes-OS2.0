@@ -219,6 +219,16 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Accent font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_accent_font",
+        "default": "inconsolata_n4",
+        "label": "Font family"
       }
     ]
   },

@@ -1,0 +1,129 @@
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Renders a custom product card
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - show_rating: {Boolean} Show the product rating. Default: false
+  - color_scheme: {String} Parent color shcheme can be used to determine the card style. (optional)
+  - show_subscribe_badge: {Boolean} Show subscription savings badge Default: true
+  - show_promo_badge: {Boolean} Show promo badge in product card Default: false
+  - review_type: {String} Determines if we want to use the default reviews summary or a custom
+
+  Usage:
+  {% render 'card-product-custom', show_rating: section.settings.show_rating %}
+{% endcomment %}
+
+{%- capture subscription_badge -%}
+  <div class="card__subscription_badge">
+    {{- card_product.metafields.prerebrand_collection_filter.sale_text.value -}}
+  </div>
+{%- endcapture -%}
+
+<div class="card-wrapper product-card-wrapper product-card-wrapper--custom underline-links-hover">
+  <div
+    class="
+      card
+      {% if settings.card_style == 'card' and color_scheme == blank %} color-{{ section.settings.card_color_scheme }} gradient{% else %} color-{{ color_scheme }} gradient{% endif %}
+      {% if section.settings.bordered %} card--bordered{% endif %}
+    "
+  >
+    <a
+      href="{{ card_product.url }}"
+      class="card__inner_link full-unstyled-link"
+    >
+      <div class="card__inner">
+        {%- liquid
+          if show_subscribe_badge
+            echo subscription_badge
+          endif
+
+          if card_product.metafields.collection.preview
+            assign product_img = card_product.metafields.collection.preview
+          else
+            assign product_img = card_product.featured_media
+          endif
+
+          assign desktop_size = settings.page_width | divided_by: 4 | minus: 36 | append: 'px'
+
+          assign widths = '130, 260, 390, 575, 860'
+          assign sizes = '(max-width: 749px) calc((100vw - 58px) / 2), (min-width: 750px) calc((100vw - (25.8vw + 28px)) / 2), (min-width: 990px) calc((100vw - 144px) / 4), (min-width: ' | append: settings.page_width | append: 'px) ' | append: desktop_size
+
+          echo product_img | image_url: width: '860' | image_tag: widths: widths, sizes: sizes, loading: 'lazy', class: 'card__inner_img'
+
+          if show_promo_badge and card_product.metafields.prerebrand_collection_filter.best_seller != blank
+            assign promo_badge_img = section.settings.promo_badge_img
+            assign promo_badge_img_widths = '46, 92, 138, 176, 264'
+            assign promo_badge_img_sizes = '(max-width: 749px) 46px, (min-width: 750px) 88px'
+
+            echo promo_badge_img | image_url: width: '264' | image_tag: widths: promo_badge_img_widths, sizes: promo_badge_img_sizes, class: 'card__inner_promo_badge_img'
+          endif
+        -%}
+      </div>
+
+      <div class="card__content">
+        <div
+          class="card__content_head"
+          style="--custom-hover-color: {{ section.settings.link_hover_color }}"
+        >
+          {%- assign link_title = card_product.metafields.prerebrand_collection_filter.title.value
+            | default: card_product.title
+            | escape
+          -%}
+
+          <span>{{- link_title -}}</span>
+
+          {% render 'price', product: card_product, price_class: '', show_compare_at_price: true, short_price: true %}
+        </div>
+
+        {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
+          {%- if review_type == 'default' -%}
+            <div class="card-information">
+              {% liquid
+                assign rating_decimal = 0
+                assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1
+                if decimal >= 0.3 and decimal <= 0.7
+                  assign rating_decimal = 0.5
+                elsif decimal > 0.7
+                  assign rating_decimal = 1
+                endif
+              %}
+              <div
+                class="rating"
+                role="img"
+                aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}"
+              >
+                <span
+                  aria-hidden="true"
+                  class="rating-star"
+                  style="--rating: {{ card_product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ card_product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+                ></span>
+              </div>
+              <p class="rating-text caption">
+                <span aria-hidden="true">
+                  {{- card_product.metafields.reviews.rating.value }} /
+                  {{ card_product.metafields.reviews.rating.value.scale_max -}}
+                </span>
+              </p>
+              <p class="rating-count caption">
+                <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
+                <span class="visually-hidden">
+                  {{- card_product.metafields.reviews.rating_count }}
+                  {{ 'accessibility.total_reviews' | t -}}
+                </span>
+              </p>
+            </div>
+          {%- else -%}
+            <div class="card-information">
+              {%- render 'okendo-reviews-product-rating-summary', product: card_product -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="card-button-wrap">
+          <button class="button button--full-width">SHOP NOW</button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
