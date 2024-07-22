@@ -1,0 +1,147 @@
+{{ 'component-blog-nav.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .label-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nav-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="blog-nav color-{{ section.settings.color_scheme }} {% if section.settings.show_border %} blog-nav--border{% endif %}">
+  <nav
+    role="nav"
+    class="page-width blog-nav__wrap nav-{{ section.id }}-padding"
+  >
+    {% if section.settings.heading != blank %}
+      <input class="blog-nav__input" id="nav-input-trigger" type="checkbox">
+      <label for="nav-input-trigger" href="#" class="blog-nav__heading label-{{ section.id }}-padding">
+        {{- section.settings.heading -}}
+        {%- render 'icon-chevron' -%}
+      </label>
+    {%- else -%}
+      <a href="#" class="blog-nav__heading">
+        {{- section.settings.link.title -}}
+      </a>
+    {%- endif -%}
+    <ul class="blog-nav__lists list-unstyled" closed>
+      {% liquid
+        if template.name == 'article'
+          assign article_tag = article.metafields.article.tag | downcase
+
+          if article_tag == ''
+            for tag in article.tags
+              assign current_tag = tag | downcase
+              if current_tag == 'joint health' or current_tag == 'skin' or current_tag == 'nutrition' or current_tag == 'exercise' or current_tag == 'pet tips'
+                assign article_tag = current_tag | handleize
+                break
+              endif
+            endfor
+          endif
+          assign article_tag_handleize = article_tag | handleize
+        endif
+      %}
+
+      {%- for link in section.settings.link.links -%}
+        <li class="blog-nav__list">
+          <a
+            href="{{ link.url }}"
+            class="blog-nav__list-link {% if link.current or template.name == 'article' and article_tag_handleize == link.handle %} blog-nav__list-link--active{% endif %}"
+          >
+            {{- link.title -}}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Blog nav",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["blog", "article"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Blog menu"
+    },
+    {
+      "type": "link_list",
+      "id": "link",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 13
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "default": true,
+      "label": "Show border"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog nav"
+    }
+  ]
+}
+{% endschema %}

@@ -1,8 +1,8 @@
 {
   "current": {
-    "logo": "shopify:\/\/shop_images\/logo-salad-green.svg",
+    "logo": "shopify://shop_images/logo-salad-green.svg",
     "logo_width": 140,
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify://shop_images/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
     "type_header_font_custom_weight": "700",
@@ -59,7 +59,7 @@
     "blog_card_style": "standard",
     "blog_card_image_padding": 0,
     "blog_card_text_alignment": "left",
-    "blog_card_color_scheme": "scheme-2",
+    "blog_card_color_scheme": "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac",
     "blog_card_border_thickness": 0,
     "blog_card_border_opacity": 10,
     "blog_card_corner_radius": 0,
@@ -99,10 +99,10 @@
     "sale_badge_color_scheme": "scheme-5",
     "sold_out_badge_color_scheme": "scheme-1",
     "brand_headline": "Wuffes",
-    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts<\/p>",
-    "brand_image": "shopify:\/\/shop_images\/logo-salad-green.svg",
-    "social_facebook_link": "https:\/\/www.facebook.com\/wuffespets",
-    "social_instagram_link": "https:\/\/www.instagram.com\/wuffes\/",
+    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts</p>",
+    "brand_image": "shopify://shop_images/logo-salad-green.svg",
+    "social_facebook_link": "https://www.facebook.com/wuffespets",
+    "social_instagram_link": "https://www.instagram.com/wuffes/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -134,9 +134,7 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
         "settings": {
@@ -204,24 +202,47 @@
           "shadow": "#ffffff"
         }
       },
-      "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57": {
+      "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6": {
         "settings": {
           "background": "#f1fdf0",
           "background_gradient": "",
           "text": "#212427",
           "button": "#17443d",
           "button_label": "#ffffff",
-          "secondary_button_label": "#17443d",
+
+          "secondary_button_label": "#c5fa54",
           "shadow": "#121212"
         }
       },
-      "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e": {
+      "scheme-fd1c0ed7-df5f-4bd3-9c5e-9316911adf64": {
         "settings": {
-          "background": "#f7ece1",
+          "background": "#fffaf7",
           "background_gradient": "",
-          "text": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "text": "#212427",
           "button": "#17443d",
-          "button_label": "#FFFFFF",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-41d982da-c418-4e13-91d5-c674d09e7a1a": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "#212427",
           "secondary_button_label": "#17443d",
           "shadow": "#121212"
         }

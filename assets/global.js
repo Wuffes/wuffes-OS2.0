@@ -761,7 +761,6 @@ class SlideshowComponent extends SliderComponent {
       this.reducedMotion.addEventListener('change', () => {
         if (this.slider.getAttribute('data-autoplay') === 'true') this.setAutoPlay();
       });
-
       [this.prevButton, this.nextButton].forEach((button) => {
         button.addEventListener(
           'click',
