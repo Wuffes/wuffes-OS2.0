@@ -5,6 +5,7 @@
     "favicon": "shopify:\/\/shop_images\/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
+    "type_header_font_custom_weight": "700",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
     "body_scale": 100,
@@ -116,7 +117,9 @@
     "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
-    "cart_drawer_collection": "all",
+    "cart_drawer_collection": "",
+    "cart_color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+    "cart_drawer_footer_text": "Buy more items — get bigger discounts and pay less!",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -197,7 +200,7 @@
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button_label": "#ffffff",
-          "secondary_button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
           "shadow": "#ffffff"
         }
       },

@@ -5,45 +5,73 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "logo_RxCK7w": {
+          "type": "logo",
+          "settings": {
+            "show_social": true,
+            "alignment": "footer-block__alignment--left",
+            "alignment_mobile": "footer-block__mobile-alignment--center"
+          }
+        },
         "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "alignment": "footer-block__alignment--left",
+            "heading": "Company",
+            "menu": "company"
           }
         },
         "footer-1": {
           "type": "link_list",
           "settings": {
-            "heading": "Info",
-            "menu": "footer"
+            "alignment": "footer-block__alignment--left",
+            "heading": "Shop",
+            "menu": "shop"
           }
         },
         "footer-2": {
           "type": "text",
           "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "alignment": "footer-block__alignment--center",
+            "heading": "<a href=\"mailto:hello@wuffes.com\" title=\"mailto:hello@wuffes.com\">hello@wuffes.com<\/a>",
+            "subtext": "",
+            "icon": "email"
           }
         }
       },
       "block_order": [
+        "logo_RxCK7w",
         "footer-0",
         "footer-1",
         "footer-2"
       ],
+      "custom_css": [
+
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "show_social": true,
-        "enable_country_selector": false,
+        "enable_follow_on_shop": false,
+        "show_social": false,
         "enable_language_selector": false,
-        "payment_enable": true,
+        "margin_top": 0,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 30,
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 35,
+        "show_border": true,
+        "bottom_footer_text": "<p>© 2024 Statements on <a href=\"https:\/\/wuffes.com\" title=\"https:\/\/wuffes.com\">wuffes.com<\/a> have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent disease.<\/p>\n<p>*With globally sourced ingredients<br>\n**Results may vary<\/p>",
+        "policy_menu": "full-price-copyright-links",
+        "links_mobile_half_width": true,
         "show_policy": false,
-        "margin_top": 48,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "show_copyright": false,
+        "enable_country_selector": false,
+        "payment_enable": false,
+        "bottom_padding_top_mobile": 20,
+        "bottom_padding_bottom_mobile": 95,
+        "bottom_padding_top_desktop": 35,
+        "bottom_padding_bottom_desktop": 100
       }
     }
   },
