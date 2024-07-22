@@ -125,11 +125,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 @media screen and (min-width: 990px) {
-  .header:not(.drawer-menu).page-width {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
   .page-width--narrow {
     max-width: 72.6rem;
     padding: 0;
@@ -1881,7 +1876,6 @@ input[type='checkbox'] {
 
 .quantity:after {
   pointer-events: none;
-  content: '';
   position: absolute;
   top: var(--inputs-border-width);
   right: var(--inputs-border-width);
@@ -1897,7 +1891,6 @@ input[type='checkbox'] {
 .quantity:before {
   background: rgb(var(--color-background));
   pointer-events: none;
-  content: '';
   position: absolute;
   top: 0;
   right: 0;
@@ -1913,22 +1906,22 @@ input[type='checkbox'] {
   color: currentColor;
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
+  font-weight: var(--font-body-weight-bold);
   font-size: 1.6rem;
-  font-weight: 500;
-  opacity: 0.85;
   text-align: center;
   background-color: transparent;
   border: 0;
   padding: 0 0.5rem;
-  width: 100%;
-  flex-grow: 1;
+  width: 3rem;
+  height: 3rem;
+  flex-grow: 0;
   -webkit-appearance: none;
   appearance: none;
 }
 
 .quantity__button {
-  width: calc(4.5rem / var(--font-body-scale));
+  width: 3rem;
+  height: 3rem;
   flex-shrink: 0;
   font-size: 1.8rem;
   border: 0;
@@ -1950,7 +1943,7 @@ input[type='checkbox'] {
 }
 
 .quantity__button svg {
-  width: 1rem;
+  width: 1.2rem;
   pointer-events: none;
 }
 
@@ -2070,13 +2063,13 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 .cart-count-bubble {
+  display: none;
   position: absolute;
   background-color: rgb(var(--color-button));
   color: rgb(var(--color-button-text));
   height: 1.7rem;
   width: 1.7rem;
   border-radius: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
@@ -2342,17 +2335,6 @@ product-info .loading__spinner:not(.hidden) ~ *,
   background-color: rgb(var(--color-background));
 }
 
-.header-wrapper--border-bottom {
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
-}
-
-.header {
-  display: grid;
-  grid-template-areas: 'left-icons heading icons';
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items: center;
-}
-
 @media screen and (max-width: 749px) {
   .header--has-app {
     grid-template-columns: auto 1fr auto;
@@ -2404,10 +2386,6 @@ product-info .loading__spinner:not(.hidden) ~ *,
   .header--top-center.drawer-menu {
     grid-template-areas: 'left-icons heading icons';
     grid-template-columns: 1fr auto 1fr;
-  }
-
-  .header:not(.header--middle-left, .header--middle-center) .header__inline-menu {
-    margin-top: 1.05rem;
   }
 }
 
@@ -2503,7 +2481,14 @@ product-info .loading__spinner:not(.hidden) ~ *,
   display: flex;
   grid-area: icons;
   justify-self: end;
-  padding-right: 0.8rem;
+}
+
+.header__icon .icon:not(.icon-close) > path {
+  transition: 0.2s fill ease-in-out;
+}
+
+.header__icon:hover .icon:not(.icon-close) > path {
+  fill: rgb(var(--color-button));
 }
 
 .header__icons .shopify-app-block {
@@ -2531,14 +2516,9 @@ product-info .loading__spinner:not(.hidden) ~ *,
   content: none;
 }
 
-.header__icon:hover .icon,
-.modal__close-button:hover .icon {
-  transform: scale(1.07);
-}
-
 .header__icon .icon {
-  height: 2rem;
-  width: 2rem;
+  height: 4.4rem;
+  width: 4.4rem;
   fill: none;
   vertical-align: middle;
 }
@@ -2552,18 +2532,18 @@ product-info .loading__spinner:not(.hidden) ~ *,
 
 .header__icon--cart {
   position: relative;
-  margin-right: -1.2rem;
 }
 
 .header__icon--menu[aria-expanded='true']::before {
   content: '';
-  top: 100%;
+  top: 0;
   left: 0;
-  height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
+  height: 100vh;
   width: 100%;
   display: block;
   position: absolute;
-  background: rgba(var(--color-foreground), 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 .header__icon--account shop-user-avatar {
@@ -2609,11 +2589,6 @@ menu-drawer + .header__search {
   .header:not(.header--top-center) * > .header__search,
   .header--top-center > .header__search {
     display: inline-flex;
-  }
-
-  .header:not(.header--top-center) > .header__search,
-  .header--top-center * > .header__search {
-    display: none;
   }
 }
 
@@ -2740,9 +2715,18 @@ details[open] > .header__submenu {
 
 /* Header menu */
 .header__inline-menu {
+  width: 100%;
   margin-left: -1.2rem;
   grid-area: navigation;
   display: none;
+  border-top: 1px solid rgb(var(--color-button));
+  will-change: transform;
+  transform: translateY(0) translateZ(0);
+  transition: transform 0.15s ease-in-out;
+}
+
+.header__inline-menu--hidden {
+  transform: translateY(-100%) translateZ(0);
 }
 
 .header--top-center .header__inline-menu,
@@ -2752,7 +2736,8 @@ details[open] > .header__submenu {
 
 @media screen and (min-width: 990px) {
   .header__inline-menu {
-    display: block;
+    display: flex;
+    justify-content: center;
   }
 
   .header--top-center .header__inline-menu {
@@ -2773,9 +2758,20 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item {
-  padding: 1.2rem;
+  height: 33px;
+  padding: 0 2rem;
+  font-size: 1.4rem;
+  font-family: var(--font-heading-family);
+  letter-spacing: 0;
+  line-height: 1;
   text-decoration: none;
   color: rgba(var(--color-foreground), 1);
+}
+
+.header__menu-item--active {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-background));
+  font-weight: var(--font-body-weight-bold);
 }
 
 .header__menu-item:hover {
@@ -2787,8 +2783,12 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  color: rgb(var(--color-button));
+  transition: 0.2s color ease-in-out;
+}
+
+.header__menu-item--active:hover span {
+  color: rgb(var(--color-background));
 }
 
 details[open] > .header__menu-item {
@@ -2896,6 +2896,10 @@ details-disclosure > details {
 @media screen and (min-width: 990px) {
   .overflow-hidden-tablet {
     overflow: auto;
+  }
+
+  .header__menu-item {
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }
 
