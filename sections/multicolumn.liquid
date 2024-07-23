@@ -47,7 +47,7 @@
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.subheading != blank -%}
-          <h4 style="color: {{ section.settings.color_scheme.settings.text }}">
+          <h4 class="multicolumn-list_subheading" style="color: {{ section.settings.color_scheme.settings.text }}">
             {{- section.settings.subheading -}}
           </h4>
         {%- endif -%}
@@ -143,11 +143,11 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext test-{{ forloop.index }}">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext title-{{ forloop.index }}">{{ block.settings.title }}</h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div
-                    class="rte test-{{ forloop.index }}"
+                    class="rte multicolumn-card_description description-{{ forloop.index }}"
                     style="color: {{ section.settings.color_scheme.settings.text }}"
                   >
                     {{ block.settings.text }}

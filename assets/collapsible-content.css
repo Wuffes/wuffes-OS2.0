@@ -8,6 +8,15 @@
   padding-top: 5rem;
 }
 
+.collapsible-content__heading.h1 {
+  font-size: 5rem;
+}
+
+.full_width_image img {
+  width: 100%;
+  height: auto;
+}
+
 .collapsible-content__grid .accordion {
   border-top: 0;
   border-bottom: 0;
@@ -31,12 +40,12 @@
   padding: 1rem 4rem 2.5rem;
 }
 
-.collapsible-content .accordion__content a{
-  color: rgb(23,68,61);
+.collapsible-content .accordion__content a {
+  color: rgb(23, 68, 61);
 }
 
-.collapsible-content .accordion__content a:hover{
-  color: rgb(0,108,91);
+.collapsible-content .accordion__content a:hover {
+  color: rgb(0, 108, 91);
 }
 
 .accordion_item_border .accordion__content.rte {
@@ -57,7 +66,7 @@
   gap: 1.2rem;
 }
 .collapsible-content__grid .accordion.accordion_item_border {
-  border-bottom: 1px solid rgb(0, 0, 0)
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 @media screen and (min-width: 992px) {
@@ -86,7 +95,7 @@
 
 summary .icon-collapsible-plus {
   position: absolute;
-  height: .1rem;
+  height: 0.1rem;
   width: 2.5rem;
   right: 2.5rem;
   top: 50%;
@@ -141,6 +150,10 @@ summary .icon-collapsible-plus {
 @media screen and (min-width: 750px) {
   .collapsible-content__media--small {
     height: 31.4rem;
+  }
+
+  .collapsible-content__heading.h1 {
+    font-size: 6rem;
   }
 
   .collapsible-content__media--large {
