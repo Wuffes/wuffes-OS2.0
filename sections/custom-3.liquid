@@ -1,0 +1,306 @@
+{{ 'custom-3.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    {% if section.settings.border_top %}
+      border-top: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+    {% if section.settings.border_bottom %}
+      border-bottom: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+    background: {{ section.settings.section_color_scheme.settings.background }};
+  }
+
+  .custom-3_section__letter {
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | img_url:'951x1122' }}');
+    {% else %}
+      background-color: {{ section.settings.section_color_scheme.settings.background }};
+    {% endif %}
+    background-size: cover;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+{%- assign additional_img_widths = '91, 182, 231, 273, 462, 693' -%}
+{%- capture additional_img_sizes -%}
+  (min-width: 1200px) 231px, 91px
+{%- endcapture -%}
+
+{%- assign main_img_widths = '262, 413, 524, 786, 826, 1239' -%}
+{%- capture main_img_sizes -%}
+  (min-width: 768px) 413px, 262px
+{%- endcapture -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div
+    id="Custom-3-{{ section.id }}"
+    class="custom-3"
+  >
+    <div class="page-width custom-3-content custom-3-content_top">
+      <div class="custom-3_section__bg">
+        <div class="custom-3_section__letter">
+          <h2
+            class="custom-3_section__title"
+            style="color: {{ section.settings.section_color_scheme.settings.button }}"
+          >
+            {{- section.settings.title -}}
+          </h2>
+
+          <div class="custom-3_section__description">
+            {% if section.settings.descr_truncate_words > 0 %}
+              <div
+                class="custom-3__content_truncated"
+                id="js__custom-3_content_truncated"
+              >
+                {{- section.settings.description | truncatewords: section.settings.descr_truncate_words -}}
+
+                <a
+                  href="#"
+                  id="js__custom-3_trigger"
+                  class="custom-3_trigger"
+                  style="color: {{ section.settings.section_color_scheme.settings.button }}"
+                  >read more</a
+                >
+              </div>
+
+              <div
+                class="custom-3__content_full"
+                id="js__custom-3_content_full"
+              >
+                {{- section.settings.description -}}
+              </div>
+            {% else %}
+              {{- section.settings.description -}}
+            {% endif %}
+          </div>
+
+          <div class="additional_img_1 absolute_img">
+            {% if section.settings.additional_img_1 != blank %}
+              {{
+                section.settings.additional_img_1
+                | image_url: width: 693
+                | image_tag:
+                  sizes: additional_img_sizes,
+                  widths: additional_img_widths,
+                  fetchpriority: fetch_priority,
+                  class: 'custom-3_additional_img'
+              }}
+            {% else %}
+              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          <div class="additional_img_2 absolute_img">
+            {% if section.settings.additional_img_2 != blank %}
+              {{
+                section.settings.additional_img_2
+                | image_url: width: 693
+                | image_tag:
+                  sizes: additional_img_sizes,
+                  widths: additional_img_widths,
+                  fetchpriority: fetch_priority,
+                  class: 'custom-3_additional_img'
+              }}
+            {% else %}
+              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          <div class="additional_img_3 absolute_img">
+            {% if section.settings.additional_img_3 != blank %}
+              {{
+                section.settings.additional_img_3
+                | image_url: width: 693
+                | image_tag:
+                  sizes: additional_img_sizes,
+                  widths: additional_img_widths,
+                  fetchpriority: fetch_priority,
+                  class: 'custom-3_additional_img'
+              }}
+            {% else %}
+              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+          <div class="additional_img_bottom">
+            {% if section.settings.bottom_mobile != blank and section.settings.bottom_desktop != blank %}
+              <picture>
+                <source
+                  media="(min-width: 768px)"
+                  srcset="{{ section.settings.bottom_desktop | image_url: width: 1239 }}"
+                >
+                {{
+                  section.settings.bottom_mobile
+                  | image_url: width: 1239
+                  | image_tag:
+                    sizes: main_img_sizes,
+                    widths: main_img_widths,
+                    fetchpriority: fetch_priority,
+                    class: 'bottom_main_img_mobile custom-3_section_img'
+                }}
+              </picture>
+            {% else %}
+              {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('js__custom-3_trigger').addEventListener('click', function () {
+    document.getElementById('js__custom-3_content_truncated').style.display = 'none';
+    document.getElementById('js__custom-3_content_full').style.display = 'block';
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom 3",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content part 1 - top"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Section Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc faucibus a pellentesque sit amet. Vitae justo eget magna fermentum iaculis. Enim blandit volutpat maecenas volutpat. Amet consectetur adipiscing elit pellentesque habitant morbi. Velit egestas dui id ornare arcu odio ut. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Augue interdum velit euismod in. Rutrum tellus pellentesque eu tincidunt tortor aliquam. Id faucibus nisl tincidunt eget nullam non nisi. Orci dapibus ultrices in iaculis nunc sed augue. Velit euismod in pellentesque massa placerat. Pellentesque elit ullamcorper dignissim cras tincidunt.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_mobile",
+      "label": "Bottom Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_desktop",
+      "label": "Bottom Desktop Image"
+    },
+    {
+      "type": "range",
+      "id": "descr_truncate_words",
+      "min": 0,
+      "max": 99,
+      "step": 1,
+      "unit": "wrd",
+      "label": "Add Read More button after",
+      "default": 0
+    },
+    {
+      "type": "image_picker",
+      "id": "additional_img_1",
+      "label": "Additional Image 1 (left top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "additional_img_2",
+      "label": "Additional Image 2 (right top)"
+    },
+    {
+      "type": "image_picker",
+      "id": "additional_img_3",
+      "label": "Additional Image 3 (left bottom)"
+    },
+    {
+      "type": "header",
+      "content": "Section layout settings"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-7"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top",
+      "label": "Border top",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Border bottom",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom 3 (Full story)",
+      "settings": {
+        "title": "The Full Story",
+        "description": "<p>Wuffes was born out of love and necessity. When my wife’s grandmother passed away, we adopted her aging dog who suffered from debilitating arthritis. Recommended treatments fell short, so we decided to look for better solutions. Many options contained harmful and unnecessary ingredients, with insufficient active components, which simply wasn’t good enough for my furry best friend. <\/p><p>Enter Josh, my Co-Founder and fellow dog dad. Together, we embarked on creating our own joint supplement, prioritizing top-tier active ingredients while ditching the harmful inactives. Our products embody our commitment to helping improve the quality of life of our furry family members - we owe this to them, and we owe it to all our fellow pet parents out there.<\/p><p>Our initial goal was to make the best quality product, and that hasn’t changed. We’re not a faceless corporation, we’re dog lovers just like you and we genuinely care and want the best for all dogs. Because everyone thinks their dog is the best, and everyone is absolutely right.<\/p><p>With love, <\/p><p>Sam & Josh<\/p>",
+        "bg_image": "shopify:\/\/shop_images\/full_story__bg.png",
+        "bottom_mobile": "shopify:\/\/shop_images\/full_story_r_b_img_mobile_1.png",
+        "bottom_desktop": "shopify:\/\/shop_images\/full_story_r_b_img_1.png",
+        "descr_truncate_words": 84,
+        "additional_img_1": "shopify:\/\/shop_images\/full_story_l_t_img.png",
+        "additional_img_2": "shopify:\/\/shop_images\/full_story_r_t_img.png",
+        "additional_img_3": "shopify:\/\/shop_images\/full_story_l_b_img.png",
+        "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
+        "border_top": false,
+        "padding_top": 36,
+        "border_bottom": false,
+        "padding_bottom": 36
+      }
+    }
+  ]
+}
+{% endschema %}

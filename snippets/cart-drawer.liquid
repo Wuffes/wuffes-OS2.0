@@ -29,20 +29,25 @@
     >
       {%- if cart == empty -%}
         <div class="drawer__inner-empty">
+          <div class="drawer__header">
+            <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+            <button
+              class="drawer__close"
+              type="button"
+              onclick="this.closest('cart-drawer').close()"
+              aria-label="{{ 'accessibility.close' | t }}"
+            >
+              {% render 'icon-close' %}
+            </button>
+          </div>
+
           <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
             <div class="cart-drawer__empty-content">
+              <div class="cart-drawer__empty-content-icon">
+                {%- render 'icon-cart-empty-dog' -%}
+              </div>
+
               <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
-              <button
-                class="drawer__close"
-                type="button"
-                onclick="this.closest('cart-drawer').close()"
-                aria-label="{{ 'accessibility.close' | t }}"
-              >
-                {% render 'icon-close' %}
-              </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
-                {{ 'general.continue_shopping' | t }}
-              </a>
 
               {%- if shop.customer_accounts_enabled and customer == null -%}
                 <p class="cart__login-title h3">{{ 'sections.cart.login.title' | t }}</p>
@@ -57,6 +62,50 @@
               {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
             </div>
           {%- endif -%}
+
+          <div class="cart-drawer__footer">
+            <div class="totals" role="status">
+              <h2 class="totals__total">
+                {{ 'sections.cart.estimated_total' | t }}
+                <svg
+                  class="totals__total-icon"
+                  width="10"
+                  height="10"
+                  viewBox="0 0 8 8"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M4.45,0.29a0.5,0.5,0,0,0-.91,0l-1,2.06-2.15.33a0.5,0.5,0,0,0-.28.84L1.72,5.14,1.34,7.42a0.5,0.5,0,0,0,.74.52L4,6.88,5.92,7.94a0.5,0.5,0,0,0,.74-0.52L6.28,5.14,7.86,3.52a0.5,0.5,0,0,0-.28-0.84L5.42,2.35Z"></path>
+                </svg>
+              </h2>
+              <p class="totals__total-value"></p>
+            </div>
+          </div>
+
+          <div class="cart__ctas">
+            <button
+              type="submit"
+              id="CartDrawer-Checkout"
+              class="cart__checkout-button button"
+              name="checkout"
+              form="CartDrawer-Form"
+              disabled
+            >
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+
+            <p class="drawer__footer_bottom-text">
+              <svg
+                class="drawer__footer_bottom-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7.5,0A7.5,7.5,0,1,0,15,7.5,7.5,7.5,0,0,0,7.5,0Zm3.86,7L9.78,8.64l0.37,2.28a0.5,0.5,0,0,1-.74.52L7.5,10.38,5.58,11.44a0.5,0.5,0,0,1-.74-0.52L5.22,8.64,3.64,7a0.5,0.5,0,0,1,.28-0.84l2.15-.33L7,3.79a0.5,0.5,0,0,1,.91,0l1,2.06,2.15,0.33A0.5,0.5,0,0,1,11.36,7Z"></path>
+              </svg>
+              {{- settings.cart_drawer_footer_text -}}
+            </p>
+          </div>
         </div>
       {%- endif -%}
       <div class="drawer__header">
@@ -85,33 +134,6 @@
             {%- if cart != empty -%}
               <div class="drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
-                  <thead role="rowgroup">
-                    <tr role="row">
-                      <th id="CartDrawer-ColumnProductImage" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.image' | t }}</span>
-                      </th>
-                      <th
-                        id="CartDrawer-ColumnProduct"
-                        class="caption-with-letter-spacing"
-                        scope="col"
-                        role="columnheader"
-                      >
-                        {{ 'sections.cart.headings.product' | t }}
-                      </th>
-                      <th
-                        id="CartDrawer-ColumnTotal"
-                        class="right caption-with-letter-spacing"
-                        scope="col"
-                        role="columnheader"
-                      >
-                        {{ 'sections.cart.headings.total' | t }}
-                      </th>
-                      <th id="CartDrawer-ColumnQuantity" role="columnheader">
-                        <span class="visually-hidden">{{ 'sections.cart.headings.quantity' | t }}</span>
-                      </th>
-                    </tr>
-                  </thead>
-
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
                       <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
@@ -144,19 +166,17 @@
                               <span class="visually-hidden">
                                 {{ 'products.product.price.regular_price' | t }}
                               </span>
+
                               <s class="cart-item__old-price product-option">
                                 {{- item.original_price | money -}}
                               </s>
+
                               <span class="visually-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
                               </span>
                               <strong class="cart-item__final-price product-option">
                                 {{ item.final_price | money }}
                               </strong>
-                            </div>
-                          {%- else -%}
-                            <div class="product-option">
-                              {{ item.original_price | money }}
                             </div>
                           {%- endif -%}
 
@@ -168,7 +188,6 @@
                               {%- if item.product.has_only_default_variant == false -%}
                                 {%- for option in item.options_with_values -%}
                                   <div class="product-option">
-                                    <dt>{{ option.name }}:</dt>
                                     <dd>
                                       {{ option.value -}}
                                       {%- unless forloop.last %}, {% endunless %}
@@ -226,15 +245,15 @@
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
-                                <s class="cart-item__old-price price price--end">
-                                  {{ item.original_line_price | money }}
-                                </s>
-                                <span class="visually-hidden">
-                                  {{ 'products.product.price.sale_price' | t }}
-                                </span>
                                 <span class="price price--end">
                                   {{ item.final_line_price | money }}
                                 </span>
+                                <span class="visually-hidden">
+                                  {{ 'products.product.price.sale_price' | t }}
+                                </span>
+                                <s class="cart-item__old-price price price--end">
+                                  {{ item.original_line_price | money }}
+                                </s>
                               </div>
                             {%- else -%}
                               <span class="price price--end">
@@ -488,21 +507,21 @@
           </div>
 
           <div class="totals" role="status">
-            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
-          </div>
+            <h2 class="totals__total">
+              {{ 'sections.cart.estimated_total' | t }}
 
-          <small class="tax-note caption-large rte">
-            {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-            {%- elsif cart.taxes_included -%}
-              {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-            {%- elsif shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-            {%- else -%}
-              {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-            {%- endif -%}
-          </small>
+              <svg
+                class="totals__total-icon"
+                width="10"
+                height="10"
+                viewBox="0 0 8 8"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M4.45,0.29a0.5,0.5,0,0,0-.91,0l-1,2.06-2.15.33a0.5,0.5,0,0,0-.28.84L1.72,5.14,1.34,7.42a0.5,0.5,0,0,0,.74.52L4,6.88,5.92,7.94a0.5,0.5,0,0,0,.74-0.52L6.28,5.14,7.86,3.52a0.5,0.5,0,0,0-.28-0.84L5.42,2.35Z"></path>
+              </svg>
+            </h2>
+            <p class="totals__total-value">{{ cart.total_price | money }}</p>
+          </div>
         </div>
 
         <!-- CTAs -->
@@ -520,6 +539,20 @@
           >
             {{ 'sections.cart.checkout' | t }}
           </button>
+
+          <p class="drawer__footer_bottom-text">
+            <svg
+              class="drawer__footer_bottom-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 15 15"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M7.5,0A7.5,7.5,0,1,0,15,7.5,7.5,7.5,0,0,0,7.5,0Zm3.86,7L9.78,8.64l0.37,2.28a0.5,0.5,0,0,1-.74.52L7.5,10.38,5.58,11.44a0.5,0.5,0,0,1-.74-0.52L5.22,8.64,3.64,7a0.5,0.5,0,0,1,.28-0.84l2.15-.33L7,3.79a0.5,0.5,0,0,1,.91,0l1,2.06,2.15,0.33A0.5,0.5,0,0,1,11.36,7Z"></path>
+            </svg>
+
+            {{- settings.cart_drawer_footer_text -}}
+          </p>
         </div>
       </div>
     </div>

@@ -1,0 +1,635 @@
+{{ 'section-table.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    .table-content {
+      background: {{ section.settings.section_color_scheme.settings.background }};
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+
+      .table-content {
+        max-width: {{ section.settings.table_desktop_width }}%;
+      }
+
+      .section_table-title {
+        max-width: {{ section.settings.table_desktop_width }}%;
+      }
+    }
+
+
+  }
+{%- endstyle -%}
+
+<div
+  class="section_table content-container color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+>
+  <div class="isolate page-width">
+    {% if section.settings.title.size > 0 %}
+      <h2 class="section_table-title">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.subtitle.size > 0 %}
+      <p class="section_table-subtitle">
+        {{ section.settings.subtitle }}
+      </p>
+    {% endif %}
+
+    {% if section.blocks.size > 1 %}
+      {%- assign heading_cells = section.blocks | where: 'type', 'column_heading' -%}
+      {%- assign row_cells = section.blocks | where: 'type', 'row_heading' -%}
+      {%- assign regular_cells = section.blocks | where: 'type', 'cell' -%}
+      {% if row_cells.size > 0 %}
+        {%- assign regular_cell_per_row = heading_cells.size | minus: 1 -%}
+      {% else %}
+        {%- assign regular_cell_per_row = heading_cells.size -%}
+      {% endif %}
+      {%- assign table_rows_count = regular_cells.size | times: 1.0 | divided_by: regular_cell_per_row | ceil -%}
+
+      <div class="table-container">
+        <table class="table-content">
+          {% if heading_cells.size > 0 %}
+            <thead>
+              <tr>
+                {% for block in heading_cells %}
+                  <th
+                    class="column_heading_cell{% if forloop.index == 1 %} row_heading_cell{% endif %} cell-column cell-column-{% if forloop.index == 1 %}{{ forloop.index | minus:1 }}{% else %}{{ forloop.index0 | minus:1 }}{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {% if block.settings.title.size > 0 %}
+                      <p class="heading_cell-title">{{ block.settings.title }}</p>
+                    {% endif %}
+
+                    {% if block.settings.icon %}
+                      {%- capture sizes -%}
+                        (min-width: {{ settings.page_width }}px) {{ settings.page_width | divided_by: 100 | times: section.settings.table_desktop_width | divided_by: heading_cells.size | minus: 24 }}px,
+                        (min-width: 768px) calc((100vw - 30px) / 100 * {{ section.settings.table_desktop_width }} / {{ heading_cells.size }}), calc((100vw - 30px) / 3)
+                      {%- endcapture -%}
+                      {%- assign widths = '70, 90, 140, 180, 210, 270' -%}
+                      {{
+                        block.settings.icon
+                        | image_url: width: 270
+                        | image_tag: class: 'heading_cell-icon', widths: widths, sizes: sizes
+                      }}
+                    {% endif %}
+
+                    {% if block.settings.note.size > 0 %}
+                      <span class="heading_cell-note">{{ block.settings.note }}</span>
+                    {% endif %}
+                  </th>
+                {% endfor %}
+              </tr>
+
+              {% assign table_rows_count_loop = table_rows_count | minus: 1 %}
+
+              {% if row_cells.size > table_rows_count %}
+                {% assign table_rows_count_loop = row_cells.size | minus: 1 %}
+              {% endif %}
+
+              {% for rows_iterator in (0..table_rows_count_loop) %}
+                {% assign cells_offset = regular_cell_per_row | times: rows_iterator %}
+                {% assign cells_limit = regular_cell_per_row %}
+                <tr>
+                  {% if row_cells.size > 0 %}
+                    <th
+                      class="row_heading_cell cell-column-0"
+                      {{ row_cells[rows_iterator].shopify_attributes }}
+                    >
+                      {% if row_cells[rows_iterator].settings.title.size > 0 %}
+                        <p class="row_heading-text">{{ row_cells[rows_iterator].settings.title }}</p>
+                      {% endif %}
+                    </th>
+                  {% endif %}
+
+                  {% for cell in regular_cells limit: cells_limit offset: cells_offset %}
+                    {% if row_cells.size > 0 %}
+                      {%- assign dynamic_column_index = forloop.index0 -%}
+                    {% else %}
+                      {%- assign dynamic_column_index = forloop.index0 | minus: 1 -%}
+                    {% endif %}
+
+                    <td
+                      class="cell-content cell-column cell-column-{{ dynamic_column_index }}"
+                      {% if cell.settings.highlight_cell %}
+                        style="background: {{ section.settings.color_scheme.settings.button }}; color: {{ section.settings.color_scheme.settings.button_label }};"
+                      {% endif %}
+                      {{ cell.shopify_attributes }}
+                    >
+                      <p class="cell-text text_style-{{ cell.settings.text_style }}">{{ cell.settings.text }}</p>
+                    </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </thead>
+          {% endif %}
+        </table>
+      </div>
+    {% endif %}
+
+    {% if section.settings.bottom_note.size > 0 %}
+      <p class="section_table-bottom_note">
+        {{ section.settings.bottom_note }}
+      </p>
+    {% endif %}
+  </div>
+
+  {% if heading_cells.size > 0 %}
+    <div class="table-pagination">
+      {% for block in heading_cells offset: 2 %}
+        <span
+          class="table-bullet {% if forloop.index == 1 %}active{% endif %}"
+          data-column="{{ forloop.index }}"
+        ></span>
+      {% endfor %}
+    </div>
+
+    <div class="table-navigation">
+      <button
+        type="button"
+        class="table-slider-button table-slider-button--prev"
+        name="previous"
+        data-column="0"
+      >
+        {% render 'icon-slider-arrow' %}
+      </button>
+
+      <button
+        type="button"
+        class="table-slider-button table-slider-button--next"
+        name="next"
+        data-column="2"
+      >
+        {% render 'icon-slider-arrow' %}
+      </button>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function addListenerMulti(element, eventNames, listener) {
+    var events = eventNames.split(' ');
+    for (var i = 0, iLen = events.length; i < iLen; i++) {
+      element.addEventListener(events[i], listener, false);
+    }
+  }
+  addListenerMulti(window, 'load resize orientationchange', function () {
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.cell-column:not(.cell-column-0):not(.cell-column-1)').forEach((cell) => {
+        cell.style.display = 'none';
+      });
+
+      const bullets = document.querySelectorAll('.table-bullet');
+      const prevButton = document.querySelector('.table-slider-button--prev');
+      const nextButton = document.querySelector('.table-slider-button--next');
+      let currentPage = 1;
+      const totalPages = {{ heading_cells.size | minus: 2 }};
+
+      function showPage(page) {
+        bullets.forEach(b => b.classList.remove('active'));
+        document.querySelector(`.table-bullet[data-column="${page}"]`).classList.add('active');
+
+        document.querySelectorAll('.cell-column:not(.cell-column-0)').forEach(cell => {
+          cell.style.display = 'none';
+        });
+
+        document.querySelectorAll(`.cell-column-${page}`).forEach(cell => {
+          cell.style.display = 'table-cell';
+        });
+      }
+
+      bullets.forEach(bullet => {
+        bullet.addEventListener('click', function() {
+          currentPage = parseInt(this.getAttribute('data-column'));
+          showPage(currentPage);
+        });
+      });
+
+      prevButton.addEventListener('click', function() {
+        currentPage = currentPage > 1 ? currentPage - 1 : totalPages;
+        showPage(currentPage);
+      });
+
+      nextButton.addEventListener('click', function() {
+        currentPage = currentPage < totalPages ? currentPage + 1 : 1;
+        showPage(currentPage);
+      });
+
+      showPage(currentPage);
+
+      {% comment %} document.querySelectorAll('.table-bullet').forEach((bullet) => {
+        bullet.addEventListener('click', function () {
+          document.querySelectorAll('.table-bullet').forEach((b) => b.classList.remove('active'));
+          this.classList.add('active');
+
+          const page = this.getAttribute('data-column');
+
+          document.querySelectorAll('.cell-column:not(.cell-column-0)').forEach((cell) => {
+            cell.style.display = 'none';
+          });
+
+          document.querySelectorAll(`.cell-column-${page}`).forEach((cell) => {
+            cell.style.display = 'table-cell';
+          });
+        });
+      }); {% endcomment %}
+    } else {
+      document.querySelectorAll('.cell-column:not(.cell-column-0):not(.cell-column-1)').forEach((cell) => {
+        cell.style.display = 'table-cell';
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Table",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Section title",
+      "default": "Section title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "Section subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_note",
+      "label": "Section bottom note"
+    },
+    {
+      "type": "range",
+      "id": "table_desktop_width",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Table desktop width",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column_heading",
+      "name": "Column heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading text"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon/image"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Note"
+        }
+      ]
+    },
+    {
+      "type": "row_heading",
+      "name": "Row heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Heading text"
+        }
+      ]
+    },
+    {
+      "type": "cell",
+      "name": "Cell",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "label": "Text style",
+          "options": [
+            {
+              "value": "text",
+              "label": "Regular text"
+            },
+            {
+              "value": "numeric",
+              "label": "Numeric"
+            }
+          ],
+          "default": "numeric"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight_cell",
+          "label": "Highlight cell (add background)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table",
+      "settings": {
+        "color_scheme": "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e",
+        "title": "#1 Highest Reviewed Hip & Joint Supplement for Dogs*",
+        "subtitle": "*Based on 4.8\/5 reviews on Trustpilot, as of December 20th 2023",
+        "bottom_note": "Based on the daily maintenance dosage for a 120lb+ dog",
+        "table_desktop_width": 70,
+        "padding_top": 40,
+        "padding_bottom": 50
+      },
+      "blocks": [
+        {
+          "type": "column_heading",
+          "settings": {
+            "title": "",
+            "note": ""
+          }
+        },
+        {
+          "type": "column_heading",
+          "settings": {
+            "title": "",
+            "icon": "shopify:\/\/shop_images\/reskin_logo_updated.svg",
+            "note": ""
+          }
+        },
+        {
+          "type": "column_heading",
+          "settings": {
+            "title": "Best Selling\n<br>\nAlternative 1",
+            "note": "(2 Chews 120lb Dog)"
+          }
+        },
+        {
+          "type": "column_heading",
+          "settings": {
+            "title": "Best Selling\n<br>\nAlternative 2",
+            "note": "(2 Chews 120lb Dog)"
+          }
+        },
+        {
+          "type": "column_heading",
+          "settings": {
+            "title": "Best Selling\n<br>\nAlternative 3",
+            "note": "(2 Chews 120lb Dog)"
+          }
+        },
+        {
+          "type": "row_heading",
+          "settings": {
+            "title": "GLUCOSAMINE"
+          }
+        },
+        {
+          "type": "row_heading",
+          "settings": {
+            "title": "MSM"
+          }
+        },
+        {
+          "type": "row_heading",
+          "settings": {
+            "title": "CHONDROITIN"
+          }
+        },
+        {
+          "type": "row_heading",
+          "settings": {
+            "title": "HYALURONIC ACID"
+          }
+        },
+        {
+          "type": "row_heading",
+          "settings": {
+            "title": "GREEN LIPPED MUSSELS"
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "2500mg",
+            "text_style": "numeric",
+            "highlight_cell": true
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "1600mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "900mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "1200mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "800mg",
+            "text_style": "numeric",
+            "highlight_cell": true
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "800mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "500mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "300mg",
+            "text_style": "numeric",
+            "highlight_cell": true
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "350mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "600mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "42mg",
+            "text_style": "numeric",
+            "highlight_cell": true
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "12mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "200mg",
+            "text_style": "numeric",
+            "highlight_cell": true
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "400mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        },
+        {
+          "type": "cell",
+          "settings": {
+            "text": "0mg",
+            "text_style": "numeric",
+            "highlight_cell": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

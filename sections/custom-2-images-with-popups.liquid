@@ -1,0 +1,492 @@
+{{ 'custom-2-images-with-popups.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background: {{ section.settings.section_color_scheme.settings.background }};
+
+    .okendo-reviews_title {
+      text-align: center;
+    }
+
+    .custom-2-hint {
+      color: {{ section.settings.section_color_scheme.settings.button }};
+    }
+
+    {% if section.settings.border_top %}
+      border-top: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+    {% if section.settings.border_bottom %}
+      border-bottom: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+{%- assign main_img_widths = '345, 360, 400, 600, 670, 720, 800, 1080, 1200, 1340, 1800' -%}
+{%- capture main_img_sizes -%}
+  (min-width: 630px) 600px, calc(100vw - 30px)
+{%- endcapture -%}
+
+{%- assign popup_img_widths = '160, 200, 320, 400, 480, 600' -%}
+{%- capture popup_img_sizes -%}
+  (min-width: 630px) 200px, 160px
+{%- endcapture -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div
+    id="Custom-2-{{ section.id }}"
+    class="custom-2"
+  >
+    <div class="page-width custom-2-content custom-2-content_top">
+      {% if section.settings.title_1.size > 0 %}
+        <h2
+          class="custom-2-title"
+        >
+          {{- section.settings.title_1 -}}
+        </h2>
+      {% endif %}
+      {% if section.settings.subtitle_1.size > 0 %}
+        <p
+          class="custom-2-subtitle"
+        >
+          {{- section.settings.subtitle_1 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.hint_1.size > 0 %}
+        <p
+          class="custom-2-hint"
+        >
+          {{- section.settings.hint_1 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.image_1 != blank %}
+        <div class="custom-2-image_wrapper">
+          {{
+            section.settings.image_1
+            | image_url: width: 1800
+            | image_tag:
+              sizes: main_img_sizes,
+              widths: main_img_widths,
+              fetchpriority: fetch_priority,
+              class: 'custom-2-main_image'
+          }}
+
+          {%- assign top_blocks = section.blocks | where: 'type', 'image_1_popup' -%}
+
+          {% for block in top_blocks %}
+            <input
+              type="checkbox"
+              {% comment %} name="top_popup" {% endcomment %}
+              id="top_block_{{ forloop.index }}_popup"
+              class="custom-2-popup_trigger"
+              style="top: {{ block.settings.toggle_top }}%; left: {{ block.settings.toggle_left }}%;"
+            >
+
+            <label
+              for="top_block_{{ forloop.index }}_popup"
+              class="custom-2-popup"
+              {{ block.shopify_attributes }}
+            >
+              <div class="custom-2-popup_content">
+                <div class="custom-2-popup_close">
+                  {% render 'icon-close' %}
+                </div>
+                {% if block.settings.image.size > 0 %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 600
+                    | image_tag: sizes: popup_img_sizes, widths: popup_img_widths, class: 'custom-2-popup_image'
+                  }}
+                {% endif %}
+
+                {% if block.settings.title.size > 0 %}
+                  <h5 class="custom-2-popup_title">{{ block.settings.title }}</h5>
+                {% endif %}
+
+                {% if block.settings.text.size > 0 %}
+                  <p class="custom-2-popup_text">{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            </label>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+
+    <div class="page-width custom-2-content custom-2-content_bottom">
+      {% if section.settings.title_2.size > 0 %}
+        <h2
+          class="custom-2-title"
+        >
+          {{- section.settings.title_2 -}}
+        </h2>
+      {% endif %}
+      {% if section.settings.subtitle_2.size > 0 %}
+        <p
+          class="custom-2-subtitle"
+        >
+          {{- section.settings.subtitle_2 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.hint_2.size > 0 %}
+        <p
+          class="custom-2-hint"
+        >
+          {{- section.settings.hint_2 -}}
+        </p>
+      {% endif %}
+
+      {% if section.settings.image_2 != blank %}
+        <div class="custom-2-image_wrapper">
+          {{
+            section.settings.image_2
+            | image_url: width: 1800
+            | image_tag:
+              sizes: main_img_sizes,
+              widths: main_img_widths,
+              fetchpriority: fetch_priority,
+              class: 'custom-2-main_image'
+          }}
+
+          {%- assign bottom_blocks = section.blocks | where: 'type', 'image_2_popup' -%}
+
+          {% for block in bottom_blocks %}
+            <input
+              type="checkbox"
+              {% comment %} name="bottom_popup" {% endcomment %}
+              id="bottom_block_{{ forloop.index }}_popup"
+              class="custom-2-popup_trigger"
+              style="top: {{ block.settings.toggle_top }}%; left: {{ block.settings.toggle_left }}%;"
+            >
+
+            <label
+              for="bottom_block_{{ forloop.index }}_popup"
+              class="custom-2-popup"
+              {{ block.shopify_attributes }}
+            >
+              <div class="custom-2-popup_content">
+                <div class="custom-2-popup_close">
+                  {% render 'icon-close' %}
+                </div>
+                {% if block.settings.image.size > 0 %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 600
+                    | image_tag: sizes: popup_img_sizes, widths: popup_img_widths, class: 'custom-2-popup_image'
+                  }}
+                {% endif %}
+
+                {% if block.settings.title.size > 0 %}
+                  <h5 class="custom-2-popup_title">{{ block.settings.title }}</h5>
+                {% endif %}
+
+                {% if block.settings.text.size > 0 %}
+                  <p class="custom-2-popup_text">{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            </label>
+          {% endfor %}
+        </div>
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom 2",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content part 1 - top"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title 1",
+      "default": "Top section title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_1",
+      "label": "Subitle 1",
+      "default": "Top section subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "hint_1",
+      "label": "Hint 1",
+      "default": "Top section hint"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "header",
+      "content": "Section content part 2 - bottom"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title 2",
+      "default": "Bottom section title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_2",
+      "label": "Subitle 2",
+      "default": "Bottom section subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "hint_2",
+      "label": "Hint 2",
+      "default": "Bottom section hint"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "header",
+      "content": "Section layout settings"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top",
+      "label": "Border top",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Border bottom",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_1_popup",
+      "name": "Image 1 popup (top)",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Popup image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Popup title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Popup text"
+        },
+        {
+          "type": "range",
+          "id": "toggle_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Popup toggle position - top",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "toggle_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Popup toggle position - left",
+          "default": 50
+        }
+      ]
+    },
+    {
+      "type": "image_2_popup",
+      "name": "Image 2 popup (bottom)",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Popup image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Popup title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Popup text"
+        },
+        {
+          "type": "range",
+          "id": "toggle_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Popup toggle position - top",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "toggle_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Popup toggle position - left",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom 2 (img with popups)",
+      "settings": {
+        "title_1": "How it works",
+        "subtitle_1": "Our 23-in-1 Multivitamin helps balance your dog’s diet by filling any nutritional gaps and deficiencies, which are associated with the development of joint disease.",
+        "hint_1": "Click on the green circles for more information",
+        "image_1": "shopify:\/\/shop_images\/MV_Illustration_Desktop_1.svg",
+        "title_2": "When taken together",
+        "subtitle_2": "We recommend combining our Advanced Hip & Joint Support chews with\u2028 23-in-1 Multivitamin for best results",
+        "hint_2": "Click on the green circles for more information",
+        "image_2": "shopify:\/\/shop_images\/MV_JC_illustration.svg",
+        "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
+        "border_top": true,
+        "padding_top": 50,
+        "border_bottom": true,
+        "padding_bottom": 50
+      },
+      "blocks": [
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_1.svg",
+            "title": "Calcium, Magnesium & Vitamin D",
+            "text": "Essential for maintaining bone strength and mineral density",
+            "toggle_top": 14,
+            "toggle_left": 50
+          }
+        },
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
+            "toggle_top": 77,
+            "toggle_left": 15
+          }
+        },
+        {
+          "type": "image_1_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_3.svg",
+            "title": "B- Vitamins",
+            "text": "Help the body convert food into energy, promoting energy metabolism and reducing fatigue",
+            "toggle_top": 71,
+            "toggle_left": 80
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_2.svg",
+            "title": "23-in-1 Multivitamin",
+            "text": "Provides nutrients that help boost energy levels to promote weight loss and increase activity levels which helps reduce osteoarthritis symptoms and helps our joint chews be even more effective.",
+            "toggle_top": 38,
+            "toggle_left": 30
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_bottom_1.svg",
+            "title": "Advanced Hip & Joint Support",
+            "text": "Regulate the immune response while our multivitamin provides all essential nutrients for the immune system to function well",
+            "toggle_top": 38,
+            "toggle_left": 66
+          }
+        },
+        {
+          "type": "image_2_popup",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Custom_MV_top_2_a577cdee-ab46-4a98-811c-184f6e37c2e0.svg",
+            "title": "Vitamins A, C & E, Zinc and Selenium",
+            "text": "Essential for the immune system to function properly",
+            "toggle_top": 52,
+            "toggle_left": 77
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

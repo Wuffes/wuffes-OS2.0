@@ -24,11 +24,37 @@
   endif
 -%}
 
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+<div
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}"
+  {% if section.settings.border_top_width > 0 or section.settings.border_bottom_width > 0 %}
+    style="{% if section.settings.border_top_width > 0 %}border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.color_scheme.settings.button }};{% endif %}{% if section.settings.border_bottom_width > 0 %}border-bottom: {{ section.settings.border_bottom_width }}px solid {{ section.settings.color_scheme.settings.button }};{% endif %}"
+  {% endif %}
+>
   <div class="page-width">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
+      <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}{% if section.settings.mobile_reversed %} image-with-text__mobile--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'heading' and block.settings.left_heading -%}
+              <div
+                class="image-with-text__decoration"
+                {{ block.shopify_attributes }}
+              >
+                <h2
+                  class="image-with-text__heading image-with-text__heading_above inline-richtext {{ block.settings.heading_size }} {% if block.settings.mobile_centered %}centered-mobile-only{% endif %}"
+                  {% if block.settings.no_margins %}
+                    style="margin: 0;"
+                  {% endif %}
+                >
+                  {{ block.settings.heading }}
+                </h2>
+                <div
+                  class="image-with-text__media-decorate"
+                  style="background: {{ section.settings.color_scheme.settings.button }};"
+                ></div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
           <div
             class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
             {% if section.settings.height == 'adapt' and section.settings.image != blank %}
@@ -37,29 +63,57 @@
           >
             {%- if section.settings.image != blank -%}
               {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
-                {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
+                {%- assign widths = '345, 432, 642, 900, 1284, 1800' -%}
                 {%- capture sizes -%}
-              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
-              (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
-            {%- endcapture -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+                  (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+                {%- endcapture -%}
               {%- else -%}
-                {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+                {%- assign widths = '345, 360, 535, 750, 1070, 1500' -%}
                 {%- capture sizes -%}
-              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-            {%- endcapture -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                {%- endcapture -%}
               {%- endif -%}
-              {{
-                section.settings.image
-                | image_url: width: 1500
-                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
-              }}
+              {% if section.settings.image_border_radius > 0 %}
+                {%- capture border_radius -%}
+                  border-radius: {{ section.settings.image_border_radius }}px;
+                {%- endcapture -%}
+                {{
+                  section.settings.image
+                  | image_url: width: 1500
+                  | image_tag:
+                    sizes: sizes,
+                    widths: widths,
+                    fetchpriority: fetch_priority,
+                    style: border_radius,
+                    class: 'image-with-text__media_image'
+                }}
+              {% else %}
+                {{
+                  section.settings.image
+                  | image_url: width: 1500
+                  | image_tag:
+                    sizes: sizes,
+                    widths: widths,
+                    fetchpriority: fetch_priority,
+                    class: 'image-with-text__media_image'
+                }}
+              {% endif %}
             {%- else -%}
               {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
           </div>
         </div>
-        <div class="image-with-text__text-item grid__item">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'heading' and block.settings.left_heading -%}
+            {% assign heading_above_image = true %}
+          {%- endif -%}
+        {%- endfor -%}
+        <div
+          class="image-with-text__text-item grid__item {% if heading_above_image %}image-with-text__heading-above{% endif %}"
+          id="ImageWithText--grid__item--{{ section.id }}"
+        >
           <div
             id="ImageWithText--{{ section.id }}"
             class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
@@ -67,12 +121,18 @@
             {%- for block in section.blocks -%}
               {% case block.type %}
                 {%- when 'heading' -%}
-                  <h2
-                    class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
-                    {{ block.shopify_attributes }}
-                  >
-                    {{ block.settings.heading }}
-                  </h2>
+                  {% unless block.settings.left_heading %}
+                    <h2
+                      class="image-with-text__heading inline-richtext {{ block.settings.heading_size }} {% if block.settings.mobile_centered %}centered-mobile-only{% endif %}"
+                      {% if block.settings.no_margins %}
+                        style="margin: 0;"
+                      {% endif %}
+                      {{ block.shopify_attributes }}
+                    >
+                      {{ block.settings.heading }}
+                    </h2>
+                  {% endunless %}
+
                 {%- when 'caption' -%}
                   <p
                     class="image-with-text__text image-with-text__text--caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} {{ block.settings.text_style }}"
@@ -92,12 +152,56 @@
                       {% else %}
                         href="{{ block.settings.button_link }}"
                       {% endif %}
-                      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                      class="button image-with-text--button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
                       {{ block.shopify_attributes }}
                     >
                       {{ block.settings.button_label | escape }}
                     </a>
                   {%- endif -%}
+                {%- when 'collapsible' -%}
+                  <div class="image-with-text__collapsible">
+                    <div
+                      class="accordion"
+                      {{ block.shopify_attributes }}
+                    >
+                      <details
+                        id="Details-{{ block.id }}-{{ section.id }}"
+                        {% if block.settings.open_by_default %}
+                          open
+                        {% endif %}
+                      >
+                        <summary id="Summary-{{ block.id }}-{{ section.id }}">
+                          <h3 class="accordion__title image-with-text__accordion__title inline-richtext h3">
+                            {{ block.settings.title | escape }}
+                          </h3>
+                          <span class="icon-plus">
+                            {% render 'icon-plus-circle', class: 'image-with-text__accordion-icon' %}
+                          </span>
+                          <span class="icon-minus">
+                            {% render 'icon-minus-circle', class: 'image-with-text__accordion-icon' %}
+                          </span>
+                        </summary>
+                        <div
+                          class="accordion__content rte"
+                          id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
+                          role="region"
+                          aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
+                        >
+                          {% if block.settings.inner_text.size > 0 %}
+                            {{ block.settings.inner_text }}
+                          {% endif %}
+
+                          {% if block.settings.image %}
+                            {{
+                              block.settings.image
+                              | image_url: width: 1500
+                              | image_tag: sizes: sizes, widths: widths, fetchpriority: 'auto'
+                            }}
+                          {% endif %}
+                        </div>
+                      </details>
+                    </div>
+                  </div>
               {%- endcase -%}
             {%- endfor -%}
           </div>
@@ -116,9 +220,27 @@
   },
   "settings": [
     {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Image with text heading",
+      "label": "t:sections.image-with-text.settings.heading.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "default": "Image with text subheading",
+      "label": "t:sections.image-with-text.settings.subheading.label"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_reversed",
+      "default": false,
+      "label": "Reversed layout on mobile"
     },
     {
       "type": "select",
@@ -139,6 +261,10 @@
         {
           "value": "large",
           "label": "t:sections.image-with-text.settings.height.options__4.label"
+        },
+        {
+          "value": "original",
+          "label": "t:sections.image-with-text.settings.height.options__5.label"
         }
       ],
       "default": "adapt",
@@ -304,6 +430,16 @@
     },
     {
       "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
       "id": "padding_top",
       "min": 0,
       "max": 100,
@@ -321,6 +457,26 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Top border width",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom border width",
+      "default": 0
     }
   ],
   "blocks": [
@@ -334,6 +490,12 @@
           "id": "heading",
           "default": "Image with text",
           "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "mobile_centered",
+          "default": false,
+          "label": "Centered on mobile"
         },
         {
           "type": "select",
@@ -350,10 +512,26 @@
             {
               "value": "h0",
               "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "h3",
+              "label": "Smaller"
             }
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "left_heading",
+          "default": false,
+          "label": "Heading above the image"
+        },
+        {
+          "type": "checkbox",
+          "id": "no_margins",
+          "default": false,
+          "label": "Remove margins (for the text above image only)"
         }
       ]
     },
@@ -409,7 +587,7 @@
     {
       "type": "text",
       "name": "t:sections.image-with-text.blocks.text.name",
-      "limit": 1,
+      "limit": 2,
       "settings": [
         {
           "type": "richtext",
@@ -457,6 +635,30 @@
           "id": "button_style_secondary",
           "default": false,
           "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+        }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "t:sections.image-with-text.blocks.collapsible.name",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Collapsible item title",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "inner_text",
+          "default": "<p>Collapsible item inner text</p>",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.inner_text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-with-text.blocks.collapsible.settings.image.label"
         }
       ]
     }
