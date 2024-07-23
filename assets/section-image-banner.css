@@ -510,6 +510,16 @@ img.image-banner-desktop {
   }
 }
 
+@media screen and (min-width: 1200px) {
+  .banner__box {
+    max-width: 90rem;
+  }
+
+  .banner__heading.h0 {
+    font-size: 5.2rem;
+  }
+}
+
 .banner__heading {
   margin-bottom: 0;
 }

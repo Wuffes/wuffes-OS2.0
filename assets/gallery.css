@@ -51,17 +51,26 @@
   padding-bottom: 23rem;
 }
 
-.banner__heading.h1 {
-  font-size: 6.4rem;
+.gallery__heading {
+  padding: 0 1.5rem;
+  font-size: 2.4rem;
 }
 
-.gallery__heading.inline-richtext.h1 {
-  font-size: 5rem;
+.gallery-card__image-wrapper .media > *:not(.zoom):not(.deferred-media__poster-button) {
+  border-radius: 1.8rem;
+}
+
+.collapsible-content__grid {
+  gap: 2rem;
 }
 
 @media screen and (max-width: 768px) {
   slideshow-component .grid--peek .grid__item {
     min-width: 40%;
+  }
+
+  .gallery__heading {
+    font-size: 2.8rem;
   }
 
   .gallery-list__item {
