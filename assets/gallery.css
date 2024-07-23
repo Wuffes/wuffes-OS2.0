@@ -1,0 +1,136 @@
+.gallery.page-width {
+  padding: 0 1.5rem;
+}
+
+.gallary__social_username {
+  text-align: left;
+}
+
+.slider-buttons {
+  display: none;
+}
+
+.social_icons {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+.social_icons_wrap {
+  min-width: 15rem;
+  display: flex;
+  grid-template-columns: 4rem 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gallary__social_username a {
+  font-size: 1.4rem;
+  color: rgb(33, 36, 39);
+  text-decoration: none;
+  display: block;
+}
+
+.gallary__social_username a:hover {
+  color: rgb(23, 68, 61);
+}
+
+.social_icons_wrap img {
+  width: 4rem;
+  height: auto;
+}
+
+.slideshow__control-wrapper {
+  display: none;
+}
+
+.gallery-card__image-wrapper .media {
+  padding-bottom: 23rem;
+}
+
+.gallery__heading {
+  padding: 0 1.5rem;
+  font-size: 2.4rem;
+}
+
+.gallery-card__image-wrapper .media > *:not(.zoom):not(.deferred-media__poster-button) {
+  border-radius: 1.8rem;
+}
+
+.collapsible-content__grid {
+  gap: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  slideshow-component .grid--peek .grid__item {
+    min-width: 40%;
+  }
+
+  .gallery__heading {
+    font-size: 2.8rem;
+  }
+
+  .gallery-list__item {
+    min-width: 60%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  slideshow-component .grid--peek .grid__item {
+    min-width: 60%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .social_icons {
+    max-width: 70.25rem;
+    grid-template-columns: repeat(3, auto);
+    gap: 0;
+    padding-bottom: 4rem;
+    margin: 0 auto;
+  }
+
+  .gallery__heading.inline-richtext.h1 {
+    font-size: 7rem;
+  }
+
+  /* .gallery-list__item + .gallery-list__item {
+    margin-left: 50px;
+  } */
+
+  .gallery-list__item img {
+    max-width: 205px;
+  }
+
+  .social_icons_wrap img {
+    width: 6rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .slider-mobile-gutter.slider-component-desktop {
+    padding: 0 15px;
+  }
+  .grid--1-col.grid--1-col-tablet.grid--6-col-desktop {
+    gap: 5rem;
+    margin-left: 1.5rem;
+  }
+
+  .media > *:not(.zoom):not(.deferred-media__poster-button) {
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .grid--1-col.grid--1-col-tablet.grid--6-col-desktop .grid__item {
+    width: 14%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery__heading {
+    font-size: 40px;
+  }
+}
