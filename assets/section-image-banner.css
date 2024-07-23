@@ -426,10 +426,6 @@ img.image-banner-desktop {
   font-size: 26px;
 }
 
-.gallery__heading.inline-richtext.h1 {
-  font-size: 4rem;
-}
-
 @media screen and (min-width: 750px) {
   .banner__box {
     padding: 4rem 3.5rem;
@@ -462,14 +458,6 @@ img.image-banner-desktop {
 
 .banner__heading.h0 {
   font-size: 3.8rem;
-}
-
-.banner__heading.h1 {
-  font-size: 6.4rem;
-}
-
-.gallery__heading.inline-richtext.h1 {
-  font-size: 5rem;
 }
 
 .banner::after,

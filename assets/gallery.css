@@ -50,6 +50,15 @@
 .gallery-card__image-wrapper .media {
   padding-bottom: 23rem;
 }
+
+.banner__heading.h1 {
+  font-size: 6.4rem;
+}
+
+.gallery__heading.inline-richtext.h1 {
+  font-size: 5rem;
+}
+
 @media screen and (max-width: 768px) {
   slideshow-component .grid--peek .grid__item {
     min-width: 40%;
@@ -73,6 +82,10 @@
     gap: 0;
     padding-bottom: 4rem;
     margin: 0 auto;
+  }
+
+  .gallery__heading.inline-richtext.h1 {
+    font-size: 7rem;
   }
 
   /* .gallery-list__item + .gallery-list__item {
@@ -103,7 +116,7 @@
   }
 
   .grid--1-col.grid--1-col-tablet.grid--6-col-desktop .grid__item {
-    width: 13.6%;
+    width: 14%;
   }
 }
 

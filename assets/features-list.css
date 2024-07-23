@@ -73,6 +73,15 @@
   text-align: center;
 }
 
+.features-list__heading.h1 {
+  font-size: 5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .features-list__heading.h1 {
+    font-size: 6rem;
+  }
+}
 @media screen and (min-width: 1200px) {
   .features-list_main_content_list_item + .features-list_main_content_list_item {
     margin-top: 4rem;
