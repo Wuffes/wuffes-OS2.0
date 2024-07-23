@@ -79,7 +79,11 @@
       {%- else -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span class="price-item price-item--regular">
-          {{ money_price }}
+          {%- if short_price -%}
+            {{ money_price_max }}
+          {%- else -%}
+            {{ money_price }}
+          {%- endif -%}
         </span>
       {%- endif -%}
     </div>

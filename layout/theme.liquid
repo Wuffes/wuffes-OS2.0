@@ -61,6 +61,11 @@
         assign type_header_font__style = settings.type_header_font.style
         assign type_header_font__weight = settings.type_header_font.weight
       endif
+
+      assign type_accent_font__family = settings.type_accent_font.family
+      assign type_accent_font__fallback = 'monospace'
+      assign type_accent_font__style = settings.type_accent_font.style
+      assign type_accent_font__weight = settings.type_accent_font.weight
     %}
 
     {% style %}
@@ -122,6 +127,9 @@
           | font_face: font_display: 'swap' }}
       {%- endif -%}
 
+      {{ settings.type_accent_font
+      | font_face: font_display: 'swap' }}
+
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
         {% if forloop.index == 1 -%}
@@ -163,7 +171,7 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgb(var(--color-foreground));
+        color: rgba(var(--color-foreground));
         background-color: rgb(var(--color-background));
       }
 
@@ -176,6 +184,10 @@
         --font-heading-family: {{ type_header_font__family }}, {{ type_header_font__fallback }};
         --font-heading-style: {{ type_header_font__style }};
         --font-heading-weight: {{ type_header_font__weight }};
+
+        --font-accent-family: {{ type_accent_font__family }}, {{ type_accent_font__fallback }};
+        --font-accent-style: {{ type_accent_font__style }};
+        --font-accent-weight: {{ type_accent_font__weight }};
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -386,7 +398,7 @@
 
     <script>
       if (Shopify.designMode) {
-        document.documentElement.classList.add('shopify-design-mode')
+        document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
   </head>
@@ -414,26 +426,26 @@
     </ul>
 
     <script>
-      window.shopUrl = '{{ request.origin }}'
+      window.shopUrl = '{{ request.origin }}';
       window.routes = {
         cart_add_url: '{{ routes.cart_add_url }}',
         cart_change_url: '{{ routes.cart_change_url }}',
         cart_update_url: '{{ routes.cart_update_url }}',
         cart_url: '{{ routes.cart_url }}',
         predictive_search_url: '{{ routes.predictive_search_url }}',
-      }
+      };
 
       window.cartStrings = {
         error: `{{ 'sections.cart.cart_error' | t }}`,
         quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,
-      }
+      };
 
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
         soldOut: `{{ 'products.product.sold_out' | t }}`,
         unavailable: `{{ 'products.product.unavailable' | t }}`,
         unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
-      }
+      };
 
       window.quickOrderListStrings = {
         itemsAdded: `{{ 'sections.quick_order_list.items_added.other' | t: quantity: '[quantity]' }}`,
@@ -445,7 +457,7 @@
         min_error: `{{- 'sections.quick_order_list.min_error' | t: min: '[min]' }}`,
         max_error: `{{- 'sections.quick_order_list.max_error' | t: max: '[max]' }}`,
         step_error: `{{- 'sections.quick_order_list.step_error' | t: step: '[step]' }}`,
-      }
+      };
 
       window.accessibilityStrings = {
         imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
@@ -455,7 +467,7 @@
         recipientFormExpanded: `{{ 'recipient.form.expanded' | t }}`,
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
-      }
+      };
     </script>
 
     {%- if settings.predictive_search_enabled -%}

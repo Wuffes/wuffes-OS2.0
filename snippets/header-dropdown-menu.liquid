@@ -83,17 +83,17 @@
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
+            class="header__menu-item list-menu__item link link--text focus-inset{% if link.current %} header__menu-item--active{% endif %}"
             {% if link.current %}
               aria-current="page"
             {% endif %}
           >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
-              {{- link.title | escape -}}
+            <span>
+              {%- if link.title contains '[' -%}
+                {{- link.title | split: '[' | first -}}
+              {%- else -%}
+                {{- link.title | escape -}}
+              {%- endif -%}
             </span>
           </a>
         {%- endif -%}

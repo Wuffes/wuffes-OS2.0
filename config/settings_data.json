@@ -1,17 +1,19 @@
 {
   "current": {
-    "logo": "shopify:\/\/shop_images\/logo-salad-green.svg",
+    "logo": "shopify://shop_images/logo-salad-green.svg",
     "logo_width": 140,
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify://shop_images/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
+    "type_header_font_custom_weight": "700",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
     "body_scale": 100,
+    "type_accent_font": "inconsolata_n4",
     "page_width": 1200,
     "spacing_sections": 0,
-    "spacing_grid_horizontal": 8,
-    "spacing_grid_vertical": 8,
+    "spacing_grid_horizontal": 28,
+    "spacing_grid_vertical": 20,
     "buttons_border_thickness": 2,
     "buttons_border_opacity": 100,
     "buttons_radius": 40,
@@ -58,7 +60,7 @@
     "blog_card_style": "standard",
     "blog_card_image_padding": 0,
     "blog_card_text_alignment": "left",
-    "blog_card_color_scheme": "scheme-2",
+    "blog_card_color_scheme": "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac",
     "blog_card_border_thickness": 0,
     "blog_card_border_opacity": 10,
     "blog_card_corner_radius": 0,
@@ -98,10 +100,10 @@
     "sale_badge_color_scheme": "scheme-5",
     "sold_out_badge_color_scheme": "scheme-1",
     "brand_headline": "Wuffes",
-    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts<\/p>",
-    "brand_image": "shopify:\/\/shop_images\/logo-salad-green.svg",
-    "social_facebook_link": "https:\/\/www.facebook.com\/wuffespets",
-    "social_instagram_link": "https:\/\/www.instagram.com\/wuffes\/",
+    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts</p>",
+    "brand_image": "shopify://shop_images/logo-salad-green.svg",
+    "social_facebook_link": "https://www.facebook.com/wuffespets",
+    "social_instagram_link": "https://www.instagram.com/wuffes/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -116,7 +118,9 @@
     "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
-    "cart_drawer_collection": "all",
+    "cart_drawer_collection": "",
+    "cart_color_scheme": "scheme-a2b01683-4076-4955-9a45-56b757f0e120",
+    "cart_drawer_footer_text": "Buy more items — get bigger discounts and pay less!",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -131,12 +135,10 @@
         }
       }
     },
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
       "733389323033596483": {
-        "type": "shopify:\/\/apps\/okendo\/blocks\/theme-settings\/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "type": "shopify://apps/okendo/blocks/theme-settings/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
         "disabled": false,
         "settings": {
           "show_preview_data": true
@@ -206,29 +208,73 @@
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button_label": "#ffffff",
-          "secondary_button_label": "#ffffff",
+          "secondary_button_label": "#17443d",
           "shadow": "#ffffff"
         }
       },
-      "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57": {
+      "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6": {
         "settings": {
           "background": "#f1fdf0",
           "background_gradient": "",
           "text": "#212427",
           "button": "#17443d",
           "button_label": "#ffffff",
+          "secondary_button_label": "#c5fa54",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-fd1c0ed7-df5f-4bd3-9c5e-9316911adf64": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-41d982da-c418-4e13-91d5-c674d09e7a1a": {
+        "settings": {
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "{{ shop.brand.colors.primary[0].foreground }}",
+          "button_label": "#212427",
           "secondary_button_label": "#17443d",
           "shadow": "#121212"
         }
       },
-      "scheme-eb3c7109-9814-4f99-bff0-becf4d92b93e": {
+      "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41": {
         "settings": {
-          "background": "#f7ece1",
+          "background": "#fffaf7",
+          "background_gradient": "",
+          "text": "#212427",
+          "button": "#17443d",
+          "button_label": "#ffffff",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-1d040f24-c6e3-4e50-91a5-f60fb3f34b6b": {
+        "settings": {
+          "background": "{{ shop.brand.colors.secondary[1].background }}",
           "background_gradient": "",
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "#17443d",
-          "button_label": "#ffffff",
-          "secondary_button_label": "#17443d",
+          "button_label": "#FFFFFF",
+          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
         }
       },
