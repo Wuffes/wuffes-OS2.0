@@ -8,6 +8,14 @@
   padding-top: 5rem;
 }
 
+.accordion_gif {
+  max-width: 34.5rem;
+}
+
+.accordion__content_author_img {
+  max-width: 5.4rem;
+}
+
 .collapsible-content__heading.h1 {
   font-size: 5rem;
 }

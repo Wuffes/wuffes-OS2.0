@@ -128,28 +128,24 @@
 
                     {%- elsif block.settings.img_content != blank -%}
                       <div class="accordion_gif">
-                        {{
-                          block.settings.img_content
-                          | image_url: width: 345
-                          | image_tag: sizes: 345, widths: '690, 1035, 1380'
-                        }}
-
                         {% capture sizes %}(min-width: 750px) 345px, calc(100vw-110px){% endcapture %}
                         {% capture widths %}345,690,1035{% endcapture %}
                         {{
                           block.settings.img_content
-                          | image_url: width: 550
+                          | image_url: width: 1035
                           | image_tag: widths: widths, sizes: sizes
                         }}
                       </div>
                     {%- endif -%}
                     <div class="accordion__content_author">
                       {%- if block.settings.img_author != blank -%}
-                        {{
-                          block.settings.img_author
-                          | image_url: width: 162
-                          | image_tag: sizes: '54px', widths: '54, 108, 162'
-                        }}
+                        <div class="accordion__content_author_img">
+                          {{
+                            block.settings.img_author
+                            | image_url: width: 162
+                            | image_tag: sizes: '54px', widths: '54, 108, 162'
+                          }}
+                        </div>
                       {% endif %}
                       {%- if block.settings.author_name != blank -%}
                         <p>{{ block.settings.author_name }}</p>
