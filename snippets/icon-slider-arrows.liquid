@@ -1,0 +1,25 @@
+{%- if icon != 'none' -%}
+  <svg
+    class="icon-slider-arrow"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    width="35"
+    height="35"
+    viewBox="0 0 35 35"
+  >
+    {%- case icon -%}
+    {%- when 'arrow_with_green_bg' -%}
+      <rect x="1.73438" y="1.56812" width="32" height="32" rx="16" fill="#C5FA54"></rect>
+      <rect x="1.73438" y="1.56812" width="32" height="32" rx="16" stroke="#17443D" stroke-width="2"></rect>
+      <path d="M24.7559 17.5682H10.7128M10.7128 17.5682L15.9789 13.5559M10.7128 17.5682L15.9789 21.5805" stroke="#17443D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+    {%- when 'arrow_light_green_bg' -%}
+      <rect x="1.48438" y="1.01123" width="32" height="32" rx="16" fill="#F1FDF0"></rect>
+      <rect x="1.48438" y="1.01123" width="32" height="32" rx="16" stroke="#17443D" stroke-width="2"></rect>
+      <path d="M24.5059 17.0111L10.4628 17.0111M10.4628 17.0111L15.7289 12.9988M10.4628 17.0111L15.7289 21.0234" stroke="#17443D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+    {%- when 'arrow_without_bg' -%}
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2579 18.492C10.8307 18.0598 10.8307 17.359 11.2579 16.9267L22.1954 5.85836C22.6225 5.42612 23.315 5.42612 23.7421 5.85836C24.1693 6.29061 24.1693 6.99142 23.7421 7.42367L13.578 17.7094L23.7421 27.9951C24.1693 28.4274 24.1693 29.1282 23.7421 29.5604C23.315 29.9927 22.6225 29.9927 22.1954 29.5604L11.2579 18.492Z" fill="currentColor"/>
+    {%- endcase -%}
+  </svg>
+{%- endif -%}
