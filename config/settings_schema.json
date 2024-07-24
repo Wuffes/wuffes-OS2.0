@@ -219,6 +219,16 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Accent font"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_accent_font",
+        "default": "inconsolata_n4",
+        "label": "Font family"
       }
     ]
   },
@@ -1537,6 +1547,11 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      },
+      {
+        "type": "textarea",
+        "id": "cart_drawer_footer_text",
+        "label": "Cart drawer footer text"
       }
     ]
   }

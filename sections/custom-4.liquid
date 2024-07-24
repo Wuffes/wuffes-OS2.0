@@ -1,0 +1,233 @@
+{{ 'custom-4.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    {% if section.settings.border_top %}
+      border-top: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+    {% if section.settings.border_bottom %}
+      border-bottom: 1px solid {{ section.settings.section_color_scheme.settings.shadow }};
+    {% endif %}
+  }
+
+  .custom-4__wrapper {
+    background: {{ section.settings.section_color_scheme.settings.background }};
+  }
+
+  .custom-4__icons_item svg {
+    color: {{ section.settings.section_color_scheme.settings.button }};
+  }
+
+  .custom-4__title em {
+    color: {{ section.settings.section_color_scheme.settings.button }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+{%- assign widths = '345, 432, 585, 642, 900, 1170, 1284, 1755, 1800' -%}
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 30 | divided_by: 2 }}px,
+  (min-width: 750px) calc((100vw - 30px) / 2), calc(100vw - 30px)
+{%- endcapture -%}
+
+<div class="section-{{ section.id }}-padding custom-4__wrapper">
+  <h2 class="custom-4__title hidden_mobile">
+    {{- section.settings.title -}}
+  </h2>
+
+  <p class="custom-4__description hidden_mobile">
+    {{- section.settings.description -}}
+  </p>
+
+  <div class="custom-4__wrapper_content page-width">
+    <div class="custom-4__wrapper_img">
+      {% if section.settings.image != blank %}
+        {{
+          section.settings.image
+          | image_url: width: 1800
+          | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority, class: 'custom-4__main_img'
+        }}
+      {% else %}
+        {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+
+    <h2 class="custom-4__title hidden_desktop">
+      {{- section.settings.title -}}
+    </h2>
+
+    <p class="custom-4__description hidden_desktop">
+      {{- section.settings.description -}}
+    </p>
+
+    <div class="custom-4__wrapper_description">
+      <ul>
+        {%- for block in section.blocks -%}
+          <li
+            class="custom-4__icons_item"
+            {{ block.shopify_attributes }}
+          >
+            {%- render 'icon-check-bg' -%}
+
+            <div class="custom-4__icons_item_text">
+              {{- block.settings.text -}}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom 4",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section content part 1 - top"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Section Title</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Section Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Section layout settings"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top",
+      "label": "Border top",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Border bottom",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_item",
+      "name": "Text item",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Item description</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom 4 (Results section)",
+      "settings": {
+        "title": "<p>Results in as little as <em>3 Weeks!<\/em></p>",
+        "description": "If you're not happy after 3 months of consistent use, we'll refund you.",
+        "image": "shopify:\/\/shop_images\/reskin_full_price_jc_v4.png",
+        "section_color_scheme": "scheme-a74e0164-6e02-4b0d-b250-9c5a57b69d57",
+        "border_top": false,
+        "padding_top": 80,
+        "border_bottom": true,
+        "padding_bottom": 80
+      },
+      "blocks": [
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Accelerate <em><strong>Formulation of Cartilage<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Eliminate <em><strong>Inflammation<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Increase <em><strong>Joint Fluid Viscosity<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Enhance <em><strong>Response of Protective Tissue<\/strong><\/em><\/p>"
+          }
+        },
+        {
+          "type": "text_item",
+          "settings": {
+            "text": "<p>Improve <em><strong>Mobility & Reduce Pain<\/strong><\/em><\/p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

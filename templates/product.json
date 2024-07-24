@@ -30,7 +30,8 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "swatch_shape": "circle"
           }
         },
         "quantity_selector": {
@@ -110,14 +111,26 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "color_scheme": "",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "media_fit": "contain",
         "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "okendo_reviews_q9VVPU": {
+      "type": "okendo_reviews",
+      "settings": {
+        "title": "TEST OKENDO ON PDP (without section.settings.product)",
+        "subtitle": "",
+        "custom_product": ""
       }
     },
     "image-with-text": {
@@ -127,7 +140,10 @@
           "type": "heading",
           "settings": {
             "heading": "Image with text",
-            "heading_size": "h1"
+            "mobile_centered": false,
+            "heading_size": "h1",
+            "left_heading": false,
+            "no_margins": false
           }
         },
         "image-with-text-1": {
@@ -143,16 +159,24 @@
         "image-with-text-1"
       ],
       "settings": {
+        "heading": "Image with text heading",
+        "subheading": "Image with text subheading",
+        "mobile_reversed": false,
         "height": "small",
         "desktop_image_width": "medium",
         "layout": "text_first",
         "desktop_content_position": "top",
         "desktop_content_alignment": "left",
         "content_layout": "no-overlap",
+        "section_color_scheme": "",
         "color_scheme": "scheme-2",
+        "image_behavior": "none",
         "mobile_content_alignment": "left",
+        "image_border_radius": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "border_top_width": 0,
+        "border_bottom_width": 0
       }
     },
     "multicolumn": {
@@ -203,9 +227,11 @@
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
+        "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
@@ -217,6 +243,7 @@
   },
   "order": [
     "main",
+    "okendo_reviews_q9VVPU",
     "image-with-text",
     "multicolumn",
     "related-products"

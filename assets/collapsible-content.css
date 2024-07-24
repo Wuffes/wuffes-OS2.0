@@ -179,34 +179,7 @@ summary .icon-collapsible-plus {
   margin: 0 auto;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  max-width: 100%;
-}
-
-@media screen and (min-width: 375px) {
-  .collapsible-content-wrapper-narrow {
-    max-width: 54rem;
-  }
-}
-@media screen and (min-width: 576px) {
-  .collapsible-content-wrapper-narrow {
-    max-width: 72rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .collapsible-content-wrapper-narrow {
-    max-width: 96rem;
-  }
-
-  .accordion_item_border summary {
-    height: 70px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .collapsible-content-wrapper-narrow {
-    max-width: 110rem;
-  }
+  max-width: 73.4rem;
 }
 
 .collapsible-content__header {

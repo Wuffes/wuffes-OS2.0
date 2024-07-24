@@ -1,0 +1,167 @@
+.custom-4__title {
+  margin-top: 22px;
+  margin-bottom: 0;
+  padding: 0 32px;
+
+  font-size: 35px;
+  text-align: center;
+  font-size: 28px;
+
+  em {
+    display: block;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.custom-4__description {
+  margin-top: 15px;
+  padding: 0 20px;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.custom-4__wrapper_description {
+  margin-top: 31px;
+
+  ul {
+    padding: 0;
+  }
+}
+
+.custom-4__wrapper_content {
+  padding: 0;
+}
+
+.custom-4__wrapper_img {
+  .custom-4__main_img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.custom-4__icons_item {
+  padding: 10px 11px;
+  margin: 0 auto;
+
+  background: rgb(var(--color-background));
+  border: 1px solid rgb(var(--color-foreground));
+  border-radius: 100px;
+
+  display: grid;
+  grid-template-columns: 25px auto;
+  column-gap: 12px;
+  align-items: center;
+
+  max-width: 297px;
+
+  svg {
+    min-width: 30px;
+    width: 30px;
+    height: auto;
+  }
+}
+
+.custom-4__icons_item + .custom-4__icons_item {
+  margin-top: 8px;
+}
+
+.hidden_mobile {
+  display: none;
+}
+
+.custom-4_button_wrapper {
+  text-align: center;
+}
+
+.custom-4_button_wrapper {
+  margin-top: 31px;
+}
+
+.custom-4__icons_item_text {
+  padding-left: 12px;
+
+  font-size: 14px;
+}
+
+.custom-4__icons_item_text p {
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .hidden_mobile {
+    display: block;
+  }
+
+  .hidden_desktop {
+    display: none;
+  }
+
+  .custom-4__title {
+    margin-top: 0;
+
+    font-size: 40px;
+
+    em {
+      display: inline;
+    }
+  }
+
+  .custom-4__description {
+    margin-top: 18px;
+
+    font-size: 20px;
+  }
+
+  .custom-4__wrapper_content {
+    padding: 0 15px;
+
+    margin-top: 20px;
+
+    display: flex;
+  }
+
+  .custom-4__wrapper_img {
+    flex: 50%;
+  }
+
+  .custom-4__wrapper_description {
+    margin-top: 45px;
+    padding-left: 60px;
+
+    flex: 50%;
+  }
+
+  .custom-4__icons_item {
+    max-width: 427px;
+
+    column-gap: 18px;
+
+    padding: 12px 18px 12px 16px;
+    margin: 0;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .custom-4_button_wrapper {
+    margin-top: 65px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .custom-4__title {
+    font-size: 48px;
+  }
+
+  .custom-4__icons_item_text {
+    font-size: 20px;
+  }
+}

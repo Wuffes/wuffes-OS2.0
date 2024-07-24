@@ -59,6 +59,9 @@
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {%- liquid
         assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+        if section.settings.image != blank
+          assign image_class = 'image-banner-desktop'
+        endif
         if section.settings.image_2 != blank
           assign image_class = 'banner__media-image-half'
         endif
@@ -70,6 +73,7 @@
           assign sizes = full_width
         endif
       -%}
+
       {{
         section.settings.image
         | image_url: width: 3840
@@ -77,6 +81,18 @@
           width: section.settings.image.width,
           height: image_height,
           class: image_class,
+          sizes: sizes,
+          widths: widths,
+          fetchpriority: fetch_priority
+      }}
+
+      {{
+        section.settings.image_mobile
+        | image_url: width: 1200
+        | image_tag:
+          width: section.settings.image.width,
+          height: image_height,
+          class: 'image-banner-mobile',
           sizes: sizes,
           widths: widths,
           fetchpriority: fetch_priority
@@ -121,14 +137,16 @@
         {%- case block.type -%}
           {%- when 'heading' -%}
             <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+              class="banner__heading inline-richtext {{ block.settings.heading_size }} {% if block.settings.text_shadow %}text-shadow{% endif %}"
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-              <p>{{ block.settings.text }}</p>
+              <p class="{% if block.settings.content_text_shadow %}text-shadow{% endif %}">
+                {{ block.settings.text }}
+              </p>
             </div>
           {%- when 'buttons' -%}
             <div
@@ -179,6 +197,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "First image mobile"
     },
     {
       "type": "image_picker",
@@ -382,16 +405,22 @@
               "label": "t:sections.all.heading_size.options__1.label"
             },
             {
-              "value": "h1",
+              "value": "h0",
               "label": "t:sections.all.heading_size.options__2.label"
             },
             {
-              "value": "h0",
+              "value": "h1",
               "label": "t:sections.all.heading_size.options__3.label"
             }
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "text_shadow",
+          "label": "Enable heading shadow",
+          "default": false
         }
       ]
     },
@@ -425,6 +454,12 @@
           ],
           "default": "body",
           "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "content_text_shadow",
+          "label": "Enable content shadow",
+          "default": false
         }
       ]
     },

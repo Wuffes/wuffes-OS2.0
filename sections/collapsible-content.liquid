@@ -28,22 +28,12 @@
               {{ section.settings.caption | escape }}
             </p>
           {% endif %}
-
           {%- if section.settings.heading != blank -%}
             <h2 class="collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
               {{ section.settings.heading }}
             </h2>
           {%- else -%}
             <h2 class="visually-hidden">{{ 'accessibility.collapsible_content_title' | t }}</h2>
-          {% endif %}
-
-          {%- if section.settings.description != blank -%}
-            <p
-              class="collapsible-content__description"
-              style="color: {{ section.settings.color_scheme.settings.text }}"
-            >
-              {{ section.settings.description }}
-            </p>
           {% endif %}
         </div>
         <div class="grid grid--1-col grid--2-col-tablet collapsible-content__grid{% if section.settings.desktop_layout == 'image_second' %} collapsible-content__grid--reverse{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -112,7 +102,6 @@
                     id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
                     role="region"
                     aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"
-                    style="color: {{ section.settings.color_scheme.settings.text }}"
                   >
                     {{ block.settings.row_content }}
                     {%- if section.settings.show_row_divider and block.settings.img_content != blank -%}
@@ -182,11 +171,6 @@
       "id": "heading",
       "label": "t:sections.collapsible_content.settings.heading.label",
       "default": "Collapsible content"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "description",
-      "label": "Description"
     },
     {
       "type": "select",
@@ -535,10 +519,6 @@
             {
               "value": "washing",
               "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.icon.options__44.label"
-            },
-            {
-              "value": "check",
-              "label": "Check Icon"
             }
           ],
           "default": "check_mark",
@@ -548,21 +528,6 @@
           "type": "richtext",
           "id": "row_content",
           "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
-        },
-        {
-          "type": "image_picker",
-          "id": "img_content",
-          "label": "Content Image"
-        },
-        {
-          "type": "image_picker",
-          "id": "img_author",
-          "label": "Author Image"
-        },
-        {
-          "type": "richtext",
-          "id": "author_name",
-          "label": "Author Name"
         },
         {
           "type": "page",

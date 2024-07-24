@@ -1,0 +1,126 @@
+.section_table {
+  text-align: center;
+}
+
+.table-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.section_table-bottom_note {
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.heading_cell-title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.heading_cell-note {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+
+.text_style-numeric {
+  font-family: var(--font-accent-family);
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+
+.table-content, th, td {
+  padding: .5rem;
+  border: .1rem solid rgb(var(--color-shadow));
+  border-collapse: collapse;
+}
+
+.section_table-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section_table-subtitle {
+  margin: 0;
+  padding-bottom: 4rem;
+  font-size: 1.8rem;
+}
+
+.table-navigation {
+  display: none;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .table-content {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem 0;
+  }
+
+  .table-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem 0;
+  }
+
+  .table-slider-button {
+    outline: none;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .table-slider-button--next {
+    transform: rotate(180deg);
+  }
+
+  .table-bullet {
+    display: inline-block;
+    margin: 0 6px;
+    width: 13px;
+    height: 13px;
+    position: relative;
+    border-radius: 50%;
+    background: rgba(var(--color-shadow), .4);
+
+    &.active {
+      background-color: rgb(var(--color-button));
+    }
+  }
+
+  .row_heading_cell {
+    max-width: calc((100vw - 3rem) * 0.4);
+    width: 36%;
+  }
+
+  .cell-content {
+    max-width: calc((100vw - 3rem) * 0.3);
+    width: 30%;
+  }
+
+  .row_heading-text,
+  .cell-text {
+    font-size: 1.4rem;
+  }
+
+  .text_style-numeric {
+    font-size: 1.4rem;
+  }
+
+  .heading_cell-title {
+    font-size: 1.2rem;
+  }
+}

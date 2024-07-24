@@ -1,0 +1,31 @@
+.header-timer {
+  padding: 0.5rem 1.75rem 0.2rem;
+  border: 1px solid rgb(var(--color-foreground));
+  text-align: center;
+  border-radius: 10rem;
+}
+
+.header-timer--heading {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: var(--font-heading-weight);
+  letter-spacing: 0;
+  color: rgb(var(--color-foreground));
+}
+
+.header-timer--counter {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgb(var(--color-foreground));
+}
+
+@media screen and (min-width: 990px) {
+  .header-timer {
+    padding: 0.5rem 2.7rem;
+  }
+
+  .header-timer--heading,
+  .header-timer--counter {
+    font-size: calc(var(--font-body-scale) * 1.6rem);
+  }
+}

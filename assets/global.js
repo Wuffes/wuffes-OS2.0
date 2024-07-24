@@ -371,10 +371,19 @@ class MenuDrawer extends HTMLElement {
     this.querySelectorAll('summary').forEach((summary) =>
       summary.addEventListener('click', this.onSummaryClick.bind(this))
     );
+
     this.querySelectorAll(
       'button:not(.localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)'
     ).forEach((button) => button.addEventListener('click', this.onCloseButtonClick.bind(this)));
+
+    this.querySelector('.menu-drawer-close').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const summaryElement = this.querySelector('summary');
+      this.closeMenuDrawer(event, summaryElement);
+    });
   }
+
 
   onKeyUp(event) {
     if (event.code.toUpperCase() !== 'ESCAPE') return;
@@ -428,6 +437,7 @@ class MenuDrawer extends HTMLElement {
   }
 
   closeMenuDrawer(event, elementToFocus = false) {
+
     if (event === undefined) return;
 
     this.mainDetailsToggle.classList.remove('menu-opening');
@@ -442,7 +452,8 @@ class MenuDrawer extends HTMLElement {
     removeTrapFocus(elementToFocus);
     this.closeAnimation(this.mainDetailsToggle);
 
-    if (event instanceof KeyboardEvent) elementToFocus?.setAttribute('aria-expanded', false);
+    // if (event instanceof KeyboardEvent) elementToFocus?.setAttribute('aria-expanded', false);
+    elementToFocus?.setAttribute('aria-expanded', false);
   }
 
   onFocusOut() {
@@ -750,7 +761,6 @@ class SlideshowComponent extends SliderComponent {
       this.reducedMotion.addEventListener('change', () => {
         if (this.slider.getAttribute('data-autoplay') === 'true') this.setAutoPlay();
       });
-
       [this.prevButton, this.nextButton].forEach((button) => {
         button.addEventListener(
           'click',
@@ -884,7 +894,9 @@ class SlideshowComponent extends SliderComponent {
 
   autoRotateSlides() {
     const slideScrollPosition =
-      this.currentPage === this.sliderItems.length ? 0 : this.slider.scrollLeft + this.sliderItemOffset;
+      this.currentPage === this.sliderItems.length - (this.dataset.slidesPerView - 1)
+        ? 0
+        : this.slider.scrollLeft + this.sliderItemOffset;
 
     this.setSlidePosition(slideScrollPosition);
     this.applyAnimationToAnnouncementBar();
@@ -1359,3 +1371,60 @@ class AccountIcon extends HTMLElement {
 }
 
 customElements.define('account-icon', AccountIcon);
+
+class TagsFilter extends HTMLElement {
+  constructor() {
+    super();
+
+    this.querySelector('button').addEventListener('click', this.filterByTags.bind(this));
+
+    const thisEl = this;
+
+    this.querySelectorAll('.filter_item__input').forEach(function (input) {
+      input.addEventListener('change', thisEl.getFilters.bind(thisEl));
+    });
+
+    this.productCount = this.closest('.collection-hero__inner').querySelector('.collection-hero__filter_count');
+    this.filterTrigger = this.querySelector('#filter_trigger');
+
+    thisEl.filterTags = [];
+  }
+
+  filterByTags() {
+    let visibleProduct = 0,
+      selectedTags = this.filterTags;
+
+    const productItems = document.querySelectorAll('.grid__item_product');
+
+    if (selectedTags.length > 0) {
+      productItems.forEach((item) => {
+        const productTags = item.getAttribute('data-tags').split(',');
+        const hasSelectedTag = selectedTags.some((tag) => productTags.includes(tag));
+
+        item.style.display = hasSelectedTag ? 'list-item' : 'none';
+
+        if (hasSelectedTag) {
+          visibleProduct++;
+        }
+      });
+
+      this.productCount.textContent = `Showing all ${visibleProduct} products`;
+    } else {
+      productItems.forEach((item) => {
+        item.style.display = 'list-item';
+      });
+
+      this.productCount.textContent = `Showing all ${productItems.length} products`;
+    }
+
+    this.filterTrigger.checked = false;
+  }
+
+  getFilters() {
+    const tagsInput = this.querySelectorAll('.filter_item__input:checked');
+
+    this.filterTags = Array.from(tagsInput, (tag) => tag.value);
+  }
+}
+
+customElements.define('tags-filter', TagsFilter);

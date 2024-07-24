@@ -1,0 +1,89 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    .okendo-reviews_title {
+      text-align: center;
+    }
+  }
+
+  .section-okendo-reviews {
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="section-{{ section.id }}-padding">
+  <div
+    id="Okendo-reviews-{{ section.id }}"
+    class="okendo-reviews page-width"
+  >
+    {% if section.settings.title.size > 0 %}
+      <h2
+        class="okendo-reviews_title"
+      >
+        {{- section.settings.title -}}
+      </h2>
+    {% endif %}
+
+    {%- if section.settings.custom_product.size > 0 -%}
+      {% render 'okendo-reviews-widget', product: section.settings.custom_product %}
+    {%- else -%}
+      {% render 'okendo-reviews-widget', product: product %}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Okendo reviews",
+  "tag": "section",
+  "class": "section section-okendo-reviews",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "product",
+      "id": "custom_product",
+      "label": "Custom product reviews (optional)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Okendo reviews"
+    }
+  ]
+}
+{% endschema %}
