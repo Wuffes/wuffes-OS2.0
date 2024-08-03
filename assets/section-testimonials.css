@@ -24,5 +24,52 @@
   border-radius: 2rem;
 }
 
-@media screen and (max-width: 749px) {
+.js_slide_card_bottom {
+  min-height: 7.7rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  border-top: 1px solid rgb(36, 36, 39);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+
+  border-radius: 0 0 2rem 2rem;
+}
+
+.js_slide_card_bottom_wrap {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10rem auto;
+  align-items: center;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.js_slide_card_bottom_wrap img {
+  height: auto;
+  width: 100%;
+  position: relative;
+  bottom: 3.5rem;
+  z-index: 5;
+}
+
+.testimonials_slide_card_bottom_text {
+  grid-area: 1 / 2;
+  color: rgb(36, 36, 39);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.block_video_wrapper {
+  border-radius: 2rem;
+  border: 0.1rem solid rgb(36, 36, 39);
+}
+
+@media screen and (min-width: 768px) {
+  .testimonials_slide_card_bottom_text {
+    font-size: 1.8rem;
+  }
 }

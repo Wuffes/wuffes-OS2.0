@@ -171,7 +171,22 @@
               </video>
             {%- endif -%}
 
-            <div class="js_slide_card_bottom">ttttttttt</div>
+            <div class="js_slide_card_bottom">
+              <div class="js_slide_card_bottom_wrap">
+                {% if block.settings.slide_product_img != blank %}
+                  {{
+                    block.settings.slide_product_img
+                    | image_url: width: 300
+                    | image_tag: sizes: '100px', widths: '100, 200, 300'
+                  }}
+                {% endif %}
+                {% if block.settings.slide_product_title != blank %}
+                  <h4 class="testimonials_slide_card_bottom_text">
+                    {{ block.settings.slide_product_title }}
+                  </h4>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </li>
       {% endfor %}
@@ -344,6 +359,17 @@
           "id": "description",
           "label": "t:sections.video.settings.description.label",
           "info": "t:sections.video.settings.description.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_product_img",
+          "label": "Product picture"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_product_title",
+          "default": "Testimonials slide product title",
+          "label": "Slide text author"
         }
       ]
     },
@@ -368,6 +394,45 @@
           "id": "video_autoplay",
           "label": "Enable video autoplay",
           "default": false
+        },
+        {
+          "type": "header",
+          "content": "Main Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review_icons",
+          "label": "Show icons review",
+          "default": false
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_title",
+          "default": "Testimonials slide title",
+          "label": "Slide title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_text",
+          "default": "Testimonials slide text",
+          "label": "Slide text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_text_author",
+          "default": "Testimonials slide text author",
+          "label": "Slide text author"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_product_img",
+          "label": "Product picture"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_product_title",
+          "default": "Testimonials slide product title",
+          "label": "Slide text author"
         },
         {
           "type": "header",

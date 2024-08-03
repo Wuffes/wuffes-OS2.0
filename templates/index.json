@@ -11,7 +11,9 @@
             "video_autoplay": false,
             "video": "shopify:\/\/files\/videos\/DrTiffany.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "description": ""
+            "description": "",
+            "slide_product_img": "shopify:\/\/shop_images\/hp_testimonials_cb0_500.png",
+            "slide_product_title": "1000mg CBD Isolate Oil"
           }
         },
         "text_zzqMVe": {
@@ -20,6 +22,11 @@
             "item_title": "Collections",
             "enable_video_looping": false,
             "video_autoplay": false,
+            "show_review_icons": false,
+            "slide_title": "Testimonials slide title",
+            "slide_text": "Testimonials slide text",
+            "slide_text_author": "Testimonials slide text author",
+            "slide_product_title": "Testimonials slide product title",
             "video": "shopify:\/\/files\/videos\/DrAndrew.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc"
           }
@@ -32,7 +39,8 @@
             "video_autoplay": false,
             "video": "shopify:\/\/files\/videos\/DrCarin.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "description": ""
+            "description": "",
+            "slide_product_title": "Testimonials slide product title"
           }
         },
         "testimonials_video_jRgDpW": {
@@ -43,7 +51,8 @@
             "video_autoplay": false,
             "video": "shopify:\/\/files\/videos\/DrTiffany.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "description": ""
+            "description": "",
+            "slide_product_title": "Testimonials slide product title"
           }
         },
         "testimonials_video_amHNkb": {
@@ -54,7 +63,8 @@
             "video_autoplay": false,
             "video": "shopify:\/\/files\/videos\/DrAndrew.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "description": ""
+            "description": "",
+            "slide_product_title": "Testimonials slide product title"
           }
         }
       },
