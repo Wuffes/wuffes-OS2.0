@@ -1,0 +1,28 @@
+.js_slide_card_bottom {
+  min-height: 77px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid rgb(var(--dl_main_text_color));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  transition: 0.3s;
+}
+.js_slide_card_bottom.active-class {
+  bottom: -150px;
+  transition: 0.3s;
+}
+.block_video_wrapper {
+  position: relative;
+}
+
+.testimonials__slide_video {
+  width: 100%;
+  border-radius: 2rem;
+}
+
+@media screen and (max-width: 749px) {
+}

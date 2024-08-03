@@ -1,5 +1,79 @@
 {
   "sections": {
+    "testimonials_66k9wN": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials_video_FaGzqV": {
+          "type": "testimonials_video",
+          "settings": {
+            "item_title": "Collections",
+            "enable_video_looping": false,
+            "video_autoplay": false,
+            "video": "shopify:\/\/files\/videos\/DrTiffany.mp4",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        },
+        "text_zzqMVe": {
+          "type": "text",
+          "settings": {
+            "item_title": "Collections",
+            "enable_video_looping": false,
+            "video_autoplay": false,
+            "video": "shopify:\/\/files\/videos\/DrAndrew.mp4",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc"
+          }
+        },
+        "testimonials_video_hdFtpQ": {
+          "type": "testimonials_video",
+          "settings": {
+            "item_title": "Collections",
+            "enable_video_looping": false,
+            "video_autoplay": false,
+            "video": "shopify:\/\/files\/videos\/DrCarin.mp4",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        },
+        "testimonials_video_jRgDpW": {
+          "type": "testimonials_video",
+          "settings": {
+            "item_title": "Collections",
+            "enable_video_looping": false,
+            "video_autoplay": false,
+            "video": "shopify:\/\/files\/videos\/DrTiffany.mp4",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        },
+        "testimonials_video_amHNkb": {
+          "type": "testimonials_video",
+          "settings": {
+            "item_title": "Collections",
+            "enable_video_looping": false,
+            "video_autoplay": false,
+            "video": "shopify:\/\/files\/videos\/DrAndrew.mp4",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_video_FaGzqV",
+        "text_zzqMVe",
+        "testimonials_video_hdFtpQ",
+        "testimonials_video_jRgDpW",
+        "testimonials_video_amHNkb"
+      ],
+      "settings": {
+        "title": "Collections",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -7,21 +81,23 @@
           "type": "heading",
           "settings": {
             "heading": "Better joint health & mobility in as little as 3 weeks**",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "text_shadow": false
           }
         },
         "text": {
           "type": "text",
           "settings": {
             "text": "We’re here to improve the quality of life of our furry best friends from the inside out.",
-            "text_style": "body"
+            "text_style": "body",
+            "content_text_shadow": false
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
             "button_label_1": "SHOP NOW",
-            "button_link_1": "shopify://collections/all",
+            "button_link_1": "shopify:\/\/collections\/all",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -29,10 +105,16 @@
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
-      "custom_css": ["h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "custom_css": [
+        "h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"
+      ],
       "settings": {
-        "image": "shopify://shop_images/homepage_hero_2023_desktop_opt.jpg",
+        "image": "shopify:\/\/shop_images\/homepage_hero_2023_desktop_opt.jpg",
         "image_overlay_opacity": 10,
         "image_height": "small",
         "desktop_content_position": "middle-left",
@@ -50,7 +132,7 @@
       "settings": {
         "title": "Shop joint care & more",
         "heading_size": "h2",
-        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.</p>",
+        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
         "show_description": false,
         "description_style": "body",
         "collection": "os2-featured-collection",
@@ -63,14 +145,15 @@
         "color_scheme": "scheme-5",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 28,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "hide_price": true,
+        "show_product_description": true,
+        "show_product_benefits": false
       }
     },
     "multicolumn": {
@@ -79,9 +162,12 @@
         "column1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/daily-mail-logo.svg",
+            "image": "shopify:\/\/shop_images\/daily-mail-logo.svg",
             "title": "",
-            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”</p>",
+            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”<\/p>",
+            "enable_hidden_description": false,
+            "description_read_more": "<p>Hidden description<\/p>",
+            "description_2": "",
             "link_label": "",
             "link": ""
           }
@@ -89,9 +175,12 @@
         "column2": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/the-sun-com-logo.svg",
+            "image": "shopify:\/\/shop_images\/the-sun-com-logo.svg",
             "title": "",
-            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"</p>",
+            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"<\/p>",
+            "enable_hidden_description": false,
+            "description_read_more": "<p>Hidden description<\/p>",
+            "description_2": "",
             "link_label": "",
             "link": ""
           }
@@ -99,9 +188,12 @@
         "column3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/yahoo-logo.svg",
+            "image": "shopify:\/\/shop_images\/yahoo-logo.svg",
             "title": "",
-            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"</p>",
+            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"<\/p>",
+            "enable_hidden_description": false,
+            "description_read_more": "<p>Hidden description<\/p>",
+            "description_2": "",
             "link_label": "",
             "link": ""
           }
@@ -109,19 +201,35 @@
         "column_BXx3tf": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/woof-logo.svg",
+            "image": "shopify:\/\/shop_images\/woof-logo.svg",
             "title": "",
-            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"</p>",
+            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"<\/p>",
+            "enable_hidden_description": false,
+            "description_read_more": "<p>Hidden description<\/p>",
+            "description_2": "",
             "link_label": "",
             "link": ""
           }
         }
       },
-      "block_order": ["column1", "column2", "column3", "column_BXx3tf"],
+      "block_order": [
+        "column1",
+        "column2",
+        "column3",
+        "column_BXx3tf"
+      ],
       "settings": {
         "title": "Loved by the world’s best",
+        "heading_alignment": "center",
+        "subheading": "",
+        "description": "Description",
         "heading_size": "h2",
+        "full_width": false,
         "image_width": "half",
+        "enable_slide_border_radius": false,
+        "enable_border_radius": false,
+        "enable_border": false,
+        "block_heading_alignment": "center",
         "image_ratio": "adapt",
         "columns_desktop": 2,
         "column_alignment": "center",
@@ -131,6 +239,9 @@
         "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
+        "enable_desktop_slider": false,
+        "pagination": false,
+        "icon": "arrow_without_bg",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -148,18 +259,23 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
           }
         }
       },
-      "block_order": ["heading", "text"],
+      "block_order": [
+        "heading",
+        "text"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-1",
         "full_width": true,
+        "lineheight": 1,
         "padding_top": 40,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "show_border": false
       }
     },
     "collage": {
@@ -185,7 +301,11 @@
           }
         }
       },
-      "block_order": ["collection-0", "product", "collection-1"],
+      "block_order": [
+        "collection-0",
+        "product",
+        "collection-1"
+      ],
       "settings": {
         "heading": "Multimedia collage",
         "heading_size": "h2",
@@ -203,7 +323,7 @@
         "heading": "",
         "heading_size": "h1",
         "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,
         "color_scheme": "scheme-1",
@@ -212,5 +332,13 @@
       }
     }
   },
-  "order": ["image_banner", "featured_collection", "multicolumn", "rich_text", "collage", "video"]
+  "order": [
+    "testimonials_66k9wN",
+    "image_banner",
+    "featured_collection",
+    "multicolumn",
+    "rich_text",
+    "collage",
+    "video"
+  ]
 }
