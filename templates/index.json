@@ -41,6 +41,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/HP_OS20_Desktop.png",
+        "image_tablet": "shopify:\/\/shop_images\/shopify_2_0_heroBanner_tablet.png",
         "image_mobile": "shopify:\/\/shop_images\/HP_OS20_Mobile.png",
         "image_overlay_opacity": 0,
         "image_height": "small",
@@ -51,7 +52,8 @@
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
-        "show_text_below": false
+        "show_text_below": false,
+        "full_width_text_desktop": true
       }
     },
     "marquee_g7ECFF": {
@@ -445,7 +447,7 @@
         "email_form_rY6RYB"
       ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-daff46ae-3c58-4715-ae9c-15c6507443e0",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
