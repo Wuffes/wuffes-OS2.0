@@ -27,6 +27,14 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  #Banner-{{ section.id }} {
+    .image-banner-mobile,
+    .image-banner-tablet,
+    .image-banner-desktop {
+      border-radius: {{ section.settings.image_border_radius }}px;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -409,6 +417,16 @@
       "id": "full_width_text_desktop",
       "default": false,
       "label": "Full width text on desktop"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 0
     }
   ],
   "blocks": [
