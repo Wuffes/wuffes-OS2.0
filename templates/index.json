@@ -53,7 +53,8 @@
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false,
-        "full_width_text_desktop": true
+        "full_width_text_desktop": true,
+        "image_border_radius": 0
       }
     },
     "marquee_g7ECFF": {
@@ -216,11 +217,14 @@
         "text_qUathQ",
         "button_78XKzM"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.image-with-text__content {padding-top: 0; padding-left: 0; padding-right: 0; }}"
+      ],
       "settings": {
         "heading": "",
         "subheading": "",
         "image": "shopify:\/\/shop_images\/reskin_founders_photo.png",
-        "mobile_reversed": false,
+        "mobile_reversed": true,
         "height": "original",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -230,11 +234,11 @@
         "section_color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
         "color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
         "image_behavior": "none",
-        "mobile_content_alignment": "left",
+        "mobile_content_alignment": "center",
         "image_border_radius": 0,
         "padding_top": 100,
         "padding_bottom": 100,
-        "border_top_width": 1,
+        "border_top_width": 2,
         "border_bottom_width": 1
       }
     },
@@ -272,11 +276,14 @@
         "text_NyF4zQ",
         "button_FzTW9W"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.image-with-text__content {padding-top: 0; padding-left: 0; padding-right: 0; }}"
+      ],
       "settings": {
         "heading": "",
         "subheading": "",
         "image": "shopify:\/\/shop_images\/reskin_homepage_subscribe.jpg",
-        "mobile_reversed": false,
+        "mobile_reversed": true,
         "height": "original",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -286,12 +293,12 @@
         "section_color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
         "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
         "image_behavior": "none",
-        "mobile_content_alignment": "left",
+        "mobile_content_alignment": "center",
         "image_border_radius": 20,
         "padding_top": 100,
         "padding_bottom": 100,
-        "border_top_width": 0,
-        "border_bottom_width": 1
+        "border_top_width": 1,
+        "border_bottom_width": 2
       }
     },
     "gallery_jP9Yzn": {
