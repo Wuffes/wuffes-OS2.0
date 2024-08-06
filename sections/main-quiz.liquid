@@ -1,0 +1,297 @@
+{{ 'section-main-quiz.css' | asset_url | stylesheet_tag }}
+
+<div class="quiz color-{{ section.settings.color_scheme }} gradient">
+  <div class="quiz__progress_bar">
+    <div class="quiz__progress_bar__inner"></div>
+  </div>
+
+  <quiz-step>
+    <form class="quiz_step__form quiz_step__form--{{ section.settings.input_type }}">
+      <div class="quiz_step__contents">
+        <div class="quiz_step__heading">
+          {{- section.settings.heading -}}
+        </div>
+
+        {%- if section.settings.input_type == 'text'
+          or section.settings.input_type == 'number'
+          or section.settings.input_type == 'autocomplete'
+        -%}
+          <input
+            class="quiz_step__input"
+            type="{{ section.settings.input_type }}"
+            name="{{ section.settings.name }}"
+            placeholder="{{ section.settings.placeholder }}"
+            {% if section.settings.type == 'number' %}
+              min="1"
+              max="{{ section.settings.input_num_limit }}"
+              pattern="[0-9]*"
+            {% endif %}
+          >
+        {%- elsif section.settings.input_type == 'radio' and section.blocks.size > 0 -%}
+          <div class="quiz_step__radio_wrap">
+            {%- for block in section.blocks -%}
+              <div class="quiz_step__radio_block">
+                <input
+                  class="quiz_step__input"
+                  type="radio"
+                  name="{{ section.settings.name }}"
+                  value="{{ block.settings.options_text }}"
+                  id="{{ section.settings.name | append: '_' | append: forloop.index }}"
+                >
+
+                <label
+                  class="quiz_step__radio_label{% if block.settings.options_icons != blank %} quiz_step__radio_label--icons quiz_step__radio_label--{{ block.settings.icon_color_control }}{% endif %}"
+                  for="{{ section.settings.name | append: '_' | append: forloop.index }}"
+                >
+                  {%- if block.settings.options_icons -%}
+                    {%- render 'icon-dogs',
+                      asset: block.settings.options_icons,
+                      width: block.settings.options_icons_width
+                    -%}
+                  {%- endif -%}
+
+                  {{- block.settings.options_text -}}
+                </label>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="quiz_step__contents_bottom">
+        {%- if section.settings.show_trust_badge -%}
+          <div class="quiz_step__trust">
+            {%- liquid
+              assign trust_logo = section.settings.trust_logo
+              assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
+              assign trust_logo_sizes = '(max-width: 767px) 74px, (min-width: 768px) 92px'
+
+              assign star_icons = section.settings.trust_star_icons
+              assign star_icons_widths = '100, 123, 200, 246, 300, 369'
+              assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
+
+              if trust_logo != blank
+                echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'
+              endif
+
+              if star_icons != blank
+                echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz_step__star_icons'
+              endif
+
+              if section.settings.trust_text
+                echo section.settings.trust_text
+              endif
+            -%}
+          </div>
+        {%- endif -%}
+
+        {%- unless section.settings.hide_next_button -%}
+          <input
+            class="quiz_step__next_btn button button--primary"
+            type="submit"
+            value="{{ section.settings.next_btn_text }}"
+            disabled
+          >
+        {%- endunless -%}
+      </div>
+    </form>
+  </quiz-step>
+</div>
+
+{% schema %}
+{
+  "name": "Quiz step",
+  "tag": "section",
+  "class": "quiz_step",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<h2>Add title here</h2>"
+    },
+    {
+      "type": "header",
+      "content": "Input type"
+    },
+    {
+      "type": "select",
+      "id": "input_type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "text",
+          "label": "Text"
+        },
+        {
+          "value": "number",
+          "label": "Number"
+        },
+        {
+          "value": "email",
+          "label": "Email"
+        },
+        {
+          "value": "radio",
+          "label": "Radio"
+        }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Input name",
+      "default": "name",
+      "info": "Input attribute that gets passed to klaviyo as a property"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "info": "Only works on input type: text, number and email"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badge",
+      "label": "Show trust badge",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_next_button",
+      "label": "Hide next button",
+      "info": "Automatically goes to next step after input",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Trust badge"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_logo",
+      "label": "Trust logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_star_icons",
+      "label": "Trust star icons"
+    },
+    {
+      "type": "richtext",
+      "id": "trust_text",
+      "label": "Text",
+      "default": "<p>TrustScore 4.8 | <strong>1,000+ Reviews</strong></p>"
+    },
+    {
+      "type": "header",
+      "content": "Step settings"
+    },
+    {
+      "type": "text",
+      "id": "next_btn_text",
+      "label": "Next button text",
+      "default": "CONTINUE"
+    },
+    {
+      "type": "text",
+      "id": "prev_btn_text",
+      "label": "Prev button text",
+      "default": "back"
+    },
+    {
+      "type": "header",
+      "content": "Input number settings",
+      "info": "Only applies to input type=number"
+    },
+    {
+      "type": "range",
+      "id": "input_num_limit",
+      "label": "Max limit",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "radio_options",
+      "name": "Radio options",
+      "settings": [
+        {
+          "type": "text",
+          "id": "options_text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "options_icons",
+          "label": "Icons name"
+        },
+        {
+          "type": "range",
+          "id": "options_icons_width",
+          "label": "Icons width",
+          "min": 15,
+          "max": 80,
+          "step": 1,
+          "unit": "px",
+          "default": 47
+        },
+        {
+          "type": "select",
+          "id": "icon_color_control",
+          "label": "Icons color change on:",
+          "options": [
+            {
+              "value": "stroke",
+              "label": "Stroke"
+            },
+            {
+              "value": "fill",
+              "label": "Fill"
+            }
+          ],
+          "default": "fill"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz step"
+    }
+  ]
+}
+{% endschema %}
