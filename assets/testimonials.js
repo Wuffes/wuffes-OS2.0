@@ -11,18 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Получаем новые кнопки
   const newNextButton = document.querySelector('.next-button.data-slider-button');
   const newPrevButton = document.querySelector('.prev-button.data-slider-button');
 
-  // Получаем старые кнопки
   const oldNextButton = document.querySelector('.slider-button--next');
   const oldPrevButton = document.querySelector('.slider-button--prev');
 
-  // Добавляем обработчики событий на новые кнопки
   newNextButton.addEventListener('click', function () {
     oldNextButton.click();
   });
