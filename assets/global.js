@@ -668,33 +668,6 @@ class SliderComponent extends HTMLElement {
     this.initPages();
   }
 
-  // nextPage() {
-  //   const isLastSlide = this.currentPage === this.sliderItemsToShow.length;
-
-  //   if (isLastSlide) {
-  //     this.slideScrollPosition = 0;
-  //   } else {
-  //     this.slideScrollPosition += this.sliderFirstItemNode.clientWidth;
-  //   }
-
-  //   this.setSlidePosition(this.slideScrollPosition);
-  //   this.applyAnimationToAnnouncementBar('next');
-  // }
-
-  // prevPage() {
-  //   const isFirstSlide = this.currentPage === 1;
-
-  //   if (isFirstSlide) {
-  //     this.slideScrollPosition =
-  //       this.slider.scrollLeft + this.sliderFirstItemNode.clientWidth * (this.sliderItemsToShow.length - 1);
-  //   } else {
-  //     this.slideScrollPosition -= this.sliderFirstItemNode.clientWidth;
-  //   }
-
-  //   this.setSlidePosition(this.slideScrollPosition);
-  //   this.applyAnimationToAnnouncementBar('previous');
-  // }
-
   update() {
     // Temporarily prevents unneeded updates resulting from variant changes
     // This should be refactored as part of https://github.com/Shopify/dawn/issues/2057
