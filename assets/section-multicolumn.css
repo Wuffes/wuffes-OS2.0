@@ -29,7 +29,7 @@ slideshow-component {
   display: none;
 }
 
-.slider-counter.caption {
+.multicolumn-list .slider-counter.caption {
   display: none;
 }
 
@@ -254,18 +254,18 @@ slideshow-component .multicolumn.background-none .multicolumn-card {
   position: relative;
 }
 
-.slider-counter.slider-counter--dots {
+.multicolumn-list .slider-counter.slider-counter--dots {
   width: 100%;
 }
 
-.slider-counter__link--dots.link {
+.multicolumn-list .slider-counter__link--dots.link {
   padding: 0;
   width: 12.5%;
   background-color: #b6b3b3;
   height: 0.5rem;
 }
 
-.link.slider-counter__link--active {
+.multicolumn-list .link.slider-counter__link--active {
   background-color: rgb(23, 68, 61);
 }
 
@@ -273,7 +273,7 @@ slideshow-component .multicolumn.background-none .multicolumn-card {
   font-size: 1.4rem;
 }
 
-.slider-buttons.pagination_buttons .slider-counter.slider-counter--dots .slideshow__control-wrapper {
+.multicolumn-list .slider-buttons.pagination_buttons .slider-counter.slider-counter--dots .slideshow__control-wrapper {
   padding: 0 1.5rem;
   width: 100%;
   height: 5px;
@@ -351,7 +351,7 @@ slideshow-component .multicolumn.background-none .multicolumn-card {
     right: -5rem;
   }
 
-  .slider-buttons.pagination_buttons .slider-counter--dots {
+  .multicolumn-list .slider-buttons.pagination_buttons .slider-counter--dots {
     display: none;
   }
 

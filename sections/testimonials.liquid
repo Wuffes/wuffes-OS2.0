@@ -16,6 +16,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .testimonials_bg_img {
+    background-image: url( "{{ section.settings.img_bg | img_url: '100x', crop:'center' }}, {{ section.settings.img_bg | img_url: '200x', crop:'center' }} 2x");
+    background-repeat: repeat;
+    background-size: 10rem;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -41,181 +47,233 @@
   {%- endif %}
 {%- endcapture -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  {% if section.settings.img_bg != blank %}
-    <div class="testimonials_bg">
-      {{ section.settings.img_bg | image_url: width: 162 | image_tag: sizes: '54px', widths: '54, 108, 162' }}
-    </div>
-  {% endif %}
-
-  {% if section.settings.title != blank %}
-    <div
-      class="collection-list-wrapper page-width isolate page-width-desktop{% if section.settings.title == blank %} no-heading{% endif %} section-{{ section.id }}-padding"
-    >
-      <h2
-        id="SectionHeading-{{ section.id }}"
-        class="testimonials-title inline-richtext"
-      >
-        {{ section.settings.title }}
-      </h2>
-    </div>
-  {% endif %}
-
-  <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <ul
-      id="Slider-{{ section.id }}"
-      data-id="{{ section.id }}"
-      class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop slider slider--desktop featured-collection--slider--desktop slider--tablet grid--peek"
-      role="list"
-      aria-label="{{ 'general.slider.name' | t }}"
-    >
-      {%- liquid
-        assign columns = section.blocks.size
-        if columns > 3
-          assign columns = 3
-        endif
-      -%}
-      {%- for block in section.blocks -%}
-        <li
-          id="Slide-{{ section.id }}-{{ forloop.index }}"
-          class="collection-list__item grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          <h3>{{ block.settings.item_title }}</h3>
-          <div class="block_video_wrapper">
-            {%- if block.type == 'testimonials_video' -%}
-              <deferred-media
-                class="{%- if block.settings.video_autoplay -%}video_autoplay{% endif %} video-section__media deferred-media gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if block.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                data-media-id="{{ video_id }} "
-                {% if block.settings.video.preview_image != null %}
-                  style="--ratio-percent: {{ 1 | divided_by: block.settings.video.preview_image.aspect_ratio | times: 100 }}%;"
-                {% endif %}
-              >
-                <button
-                  id="Deferred-Poster-Modal-{{ video_id }}"
-                  class="video-section__poster media deferred-media__poster media--landscape"
-                  type="button"
-                  aria-label="{{ alt }}"
-                >
-                  {%- if block.settings.video.preview_image != null -%}
-                    {{
-                      block.settings.video.preview_image
-                      | image_url: width: 3840
-                      | image_tag: sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
-                    }}
-                  {%- else -%}
-                    {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                  {%- endif -%}
-                  <span class="deferred-media__poster-button motion-reduce">
-                    {%- render 'icon-play' -%}
-                  </span>
-                </button>
-                <template>
-                  {%- if block.settings.video == null and block.settings.video_url != null -%}
-                    {%- liquid
-                      assign loop = ''
-                      if block.settings.enable_video_looping
-                        assign loop = '&loop=1&playlist=' | append: video_id
-                      endif
-                    -%}
-                    {%- if block.settings.video_url.type == 'youtube' -%}
-                      <iframe
-                        src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
-                        class="js-youtube"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen
-                        title="{{ block.settings.description | escape }}"
-                      ></iframe>
-                    {%- else -%}
-                      <iframe
-                        src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
-                        class="js-vimeo"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen
-                        title="{{ block.settings.description | escape }}"
-                      ></iframe>
-                    {%- endif -%}
-                  {%- else -%}
-                    {{
-                      block.settings.video
-                      | video_tag:
-                        image_size: '1100x',
-                        autoplay: true,
-                        loop: section.settings.enable_video_looping,
-                        controls: true,
-                        muted: false
-                    }}
-                  {%- endif -%}
-                </template>
-              </deferred-media>
-            {%- endif -%}
-
-            {%- if block.type == 'text' -%}
-              <video
-                playsinline="playsinline"
-                muted="muted"
-                autoplay="autoplay"
-                loop="loop"
-                class="testimonials__slide_video"
-                style="z-index: -1;"
-                preload="metadata"
-              >
-                <source
-                  src="{{ block.settings.video.sources[1].url }}"
-                  type="video/mp4"
-                >
-              </video>
-            {%- endif -%}
-
-            <div class="js_slide_card_bottom">
-              <div class="js_slide_card_bottom_wrap">
-                {% if block.settings.slide_product_img != blank %}
-                  {{
-                    block.settings.slide_product_img
-                    | image_url: width: 300
-                    | image_tag: sizes: '100px', widths: '100, 200, 300'
-                  }}
-                {% endif %}
-                {% if block.settings.slide_product_title != blank %}
-                  <h4 class="testimonials_slide_card_bottom_text">
-                    {{ block.settings.slide_product_title }}
-                  </h4>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-    <div class="slider-buttons">
-      <button
-        type="button"
-        class="slider-button slider-button--prev"
-        name="previous"
-        aria-label="{{ 'general.slider.previous_slide' | t }}"
-      >
-        {% render 'icon-caret' %}
-      </button>
-      <div class="slider-counter caption">
-        <span class="slider-counter--current">1</span>
-        <span aria-hidden="true"> / </span>
-        <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-        <span class="slider-counter--total">{{ section.blocks.size }}</span>
+<div class="color-{{ section.settings.color_scheme }}   {%- if section.settings.enable_img_bg -%} testimonials_bg_img{%- endif -%}">
+  {% comment %}
+    {% if section.settings.img_bg != blank %}
+      <div class="testimonials_bg">
+        {{ section.settings.img_bg | image_url: width: 162 | image_tag: sizes: '54px', widths: '54, 108, 162' }}
       </div>
-      <button
-        type="button"
-        class="slider-button slider-button--next"
-        name="next"
-        aria-label="{{ 'general.slider.next_slide' | t }}"
-      >
-        {% render 'icon-caret' %}
-      </button>
+    {% endif %}
+  {% endcomment %}
+
+  <div class="container-fluid testimonials__container">
+    <div class="testimonials__wrap">
+      {% if section.settings.title != blank %}
+        <div class="testimonials__desktop_left_block">
+          <h2
+            id="SectionHeading-{{ section.id }}"
+            class="testimonials-title inline-richtext"
+          >
+            {{ section.settings.title }}
+          </h2>
+
+          <div class="testimonials_slider_buttons_desktop">
+            <button
+              type="button"
+              class="prev-button data-slider-button"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+
+            <button
+              type="button"
+              class="next-button data-slider-button"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+          </div>
+        </div>
+      {% endif %}
+      <div class="testimonials__desktop_right_block">
+        <slider-component class="testimonials_slider slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <ul
+            id="Slider-{{ section.id }}"
+            data-id="{{ section.id }}"
+            class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop slider slider--desktop slider--tablet grid--peek"
+            role="list"
+            aria-label="{{ 'general.slider.name' | t }}"
+          >
+            {%- liquid
+              assign columns = section.blocks.size
+              if columns > 3
+                assign columns = 3
+              endif
+            -%}
+            {%- for block in section.blocks -%}
+              <li
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="collection-list__item grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <h3>{{ block.settings.item_title }}</h3>
+                <div class="block_video_wrapper">
+                  {%- if block.type == 'testimonials_video' -%}
+                    <deferred-media
+                      class="{%- if block.settings.video_autoplay -%}video_autoplay{% endif %} video-section__media deferred-media gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if block.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      data-media-id="{{ video_id }} "
+                      {% if block.settings.video.preview_image != null %}
+                        style="--ratio-percent: {{ 1 | divided_by: block.settings.video.preview_image.aspect_ratio | times: 100 }}%;"
+                      {% endif %}
+                    >
+                      <button
+                        id="Deferred-Poster-Modal-{{ video_id }}"
+                        class="video-section__poster media deferred-media__poster media--landscape"
+                        type="button"
+                        aria-label="{{ alt }}"
+                      >
+                        {%- if block.settings.video.preview_image != null -%}
+                          {{
+                            block.settings.video.preview_image
+                            | image_url: width: 3840
+                            | image_tag: sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
+                          }}
+                        {%- else -%}
+                          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                        {%- endif -%}
+                        <span class="deferred-media__poster-button motion-reduce">
+                          {%- render 'icon-play' -%}
+                        </span>
+                      </button>
+                      <template>
+                        {%- if block.settings.video == null and block.settings.video_url != null -%}
+                          {%- liquid
+                            assign loop = ''
+                            if block.settings.enable_video_looping
+                              assign loop = '&loop=1&playlist=' | append: video_id
+                            endif
+                          -%}
+                          {%- if block.settings.video_url.type == 'youtube' -%}
+                            <iframe
+                              src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+                              class="js-youtube"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- else -%}
+                            <iframe
+                              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+                              class="js-vimeo"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- endif -%}
+                        {%- else -%}
+                          {{
+                            block.settings.video
+                            | video_tag:
+                              image_size: '1100x',
+                              autoplay: true,
+                              loop: section.settings.enable_video_looping,
+                              controls: true,
+                              muted: false
+                          }}
+                        {%- endif -%}
+                      </template>
+                    </deferred-media>
+                  {%- endif -%}
+
+                  {%- if block.type == 'text' -%}
+                    <div class="testimonials__slide_card_text_wrap">
+                      {%- if block.settings.show_review_icons == true -%}
+                        <div class="testimonials__slide_stars">
+                          {% render 'icon-stars' %}
+                        </div>
+                      {%- endif -%}
+
+                      {% if block.settings.slide_title != blank %}
+                        <p class="testimonials__slide_card_text_heading">
+                          {{ block.settings.slide_title }}
+                        </p>
+                      {% endif %}
+
+                      {% if block.settings.slide_text != blank %}
+                        <p class="testimonials__slide_card_text_content">
+                          {{ block.settings.slide_text }}
+                        </p>
+                      {% endif %}
+
+                      {% if block.settings.slide_text_author != blank %}
+                        <p class="testimonials__slide_card_text_name">
+                          {{ block.settings.slide_text_author }}
+                        </p>
+                      {% endif %}
+                    </div>
+                    <video
+                      playsinline="playsinline"
+                      muted="muted"
+                      autoplay="autoplay"
+                      loop="loop"
+                      class="testimonials__slide_video"
+                      style="z-index: -1;"
+                      preload="metadata"
+                    >
+                      <source
+                        src="{{ block.settings.video.sources[1].url }}"
+                        type="video/mp4"
+                      >
+                    </video>
+
+                    <div class="testimonials__slide_video_overlay"></div>
+                  {%- endif -%}
+
+                  <div class="js_slide_card_bottom">
+                    <div class="js_slide_card_bottom_wrap">
+                      {% if block.settings.slide_product_img != blank %}
+                        {{
+                          block.settings.slide_product_img
+                          | image_url: width: 300
+                          | image_tag: sizes: '100px', widths: '100, 200, 300'
+                        }}
+                      {% endif %}
+                      {% if block.settings.slide_product_title != blank %}
+                        <h4 class="testimonials_slide_card_bottom_text">
+                          {{ block.settings.slide_product_title }}
+                        </h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="slider-buttons">
+            <button
+              type="button"
+              class="slider-button slider-button--prev"
+              name="previous"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+            <div class="slider-counter caption">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+              <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            </div>
+            <button
+              type="button"
+              class="slider-button slider-button--next"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+          </div>
+        </slider-component>
+      </div>
     </div>
-  </slider-component>
+  </div>
 </div>
 <script src="{{ 'testimonials.js' | asset_url }}" defer="defer"></script>
 {% schema %}
@@ -252,29 +310,15 @@
       "default": "scheme-1"
     },
     {
+      "type": "checkbox",
+      "id": "enable_img_bg",
+      "label": "Enable background image",
+      "default": false
+    },
+    {
       "type": "image_picker",
       "id": "img_bg",
       "label": "Background image"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.collection-list.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.collection-list.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.collection-list.settings.columns_mobile.options__2.label"
-        }
-      ],
-      "default": "1",
-      "label": "t:sections.collection-list.settings.columns_mobile.label"
     },
     {
       "type": "header",

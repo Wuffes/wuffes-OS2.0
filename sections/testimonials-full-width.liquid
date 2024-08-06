@@ -1,0 +1,235 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'section-testimonials-full-width.css' | asset_url | stylesheet_tag }}
+<div
+  class="color-{{ section.settings.color_scheme }} isolate gradient"
+>
+  <div
+    class="section-testimonials_full_width collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    id="collection-{{ section.id }}"
+    data-id="{{ section.id }}"
+  >
+    <div class="featured-collection__wrap">
+      <div class="collection__title featured-collection__title title-wrapper title-wrapper--no-top-margin page-width">
+        {%- if section.settings.title != blank -%}
+          <h2 class="testimonials_title inline-richtext">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.sub_title != blank -%}
+          <p class="testimonials_subtitle">
+            {{ section.settings.sub_title }}
+          </p>
+        {%- endif -%}
+        {%- if section.settings.heading_description != blank -%}
+          <p class="testimonials_heading_description">
+            {{ section.settings.heading_description }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      <slideshow-component
+        class="testimonials_fill_width__slider slider-mobile-gutter page-width-desktop slider-component-desktop scroll-trigger animate--slide-in"
+        style="display: block;"
+      >
+        <ul
+          id="Slider-{{ section.id }}"
+          data-id="{{ section.id }}"
+          class=" testimonials_fill_width__slider_wrapper grid product-grid contains-card contains-card--product grid--1-col-tablet-down slider slider--desktop testimonials_fill_width--slider--desktop slider--tablet grid--peek grid--{{ section.settings.columns_desktop }}-col-desktop "
+          role="list"
+          aria-label="{{ 'general.slider.name' | t }}"
+        >
+          {%- for block in section.blocks -%}
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            >
+              <div class="featured_story__slide_img_wrap">
+                {%- if block.settings.slide_main_img != blank -%}
+                  {% capture sizes %}(min-width: 990px) calc((1100px-90px)/3), (min-width: 750px) calc((100vw-45px)/2), calc(100vw-60px){% endcapture %}
+                  {% capture widths %}300,340,365,600,680,730,900,1020,1095{% endcapture %}
+                  {{ block.settings.slide_main_img | image_url: width: 1095 | image_tag: widths: widths, sizes: sizes }}
+                {%- endif -%}
+                {%- if block.settings.steps_per_day != blank -%}
+                  <p class="slide__img_tag">
+                    {{ block.settings.steps_per_day }}
+                  </p>
+                {%- endif -%}
+                {%- if block.settings.text_month != blank -%}
+                  <p class="slide__img_badge">
+                    {{ block.settings.text_month }}
+                  </p>
+                {%- endif -%}
+              </div>
+              <div class="featured_story__slide_content_wrap">
+                {%- if block.settings.item_title != blank -%}
+                  <p class="slide_content__heading">
+                    {{ block.settings.item_title }}
+                  </p>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <p class="slide_content__subheading">
+                    {{ block.settings.description }}
+                  </p>
+                {%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="slider-buttons testimonials--slider-buttons">
+          <div
+            class="testimonials_slider_pagination slider-counter slider-counter--dots"
+          >
+            <div class="slideshow__control-wrapper">
+              {%- for block in section.blocks -%}
+                <button
+                  type="button"
+                  class="slider-counter__link slider-counter__link--dots link"
+                  aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                  aria-controls="Slider-{{ section.id }}"
+                >
+                  <span class="dot"></span>
+                </button>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="testimonials_navigation">
+            <button
+              type="button"
+              class="slider-button slider-button--prev testimonials_slider-button--prev"
+              name="previous"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+              aria-controls="Slider-{{ section.id }}"
+            >
+              <span class="icon_desktop">
+                {% render 'icon-caret' %}
+              </span>
+
+              <span class="icon_mobile">
+                {% render 'icon-arrow' %}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="slider-button slider-button--next testimonials_slider-button--next"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+              aria-controls="Slider-{{ section.id }}"
+            >
+              <span class="icon_desktop">
+                {% render 'icon-caret' %}
+              </span>
+
+              <span class="icon_mobile">
+                {% render 'icon-arrow' %}
+              </span>
+            </button>
+          </div>
+        </div>
+      </slideshow-component>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials Full Width",
+  "tag": "section",
+  "class": "section testimonials-list",
+  "max_blocks": 15,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Testimonials title",
+      "label": "Testimonials title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sub_title",
+      "default": "Testimonials subtitle",
+      "label": "Testimonials subtitle"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_description",
+      "default": "Testimonials description",
+      "label": "Testimonials description"
+    },
+
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonials_slide",
+      "name": "Testimonials slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_main_img",
+          "label": "Slide image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text_month",
+          "default": "Month 1",
+          "label": "Slide title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "item_title",
+          "default": "Slide title",
+          "label": "Slide title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "default": "Slide description",
+          "label": "Slide description"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "steps_per_day",
+          "default": "X steps / per day",
+          "label": "Staps per day"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Full width",
+      "blocks": [
+        {
+          "type": "testimonials_slide"
+        },
+        {
+          "type": "testimonials_slide"
+        },
+        {
+          "type": "testimonials_slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
