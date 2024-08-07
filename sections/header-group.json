@@ -30,16 +30,16 @@
     "header": {
       "type": "header",
       "settings": {
-        "hide_menu": false,
-        "hide_right_icons": false,
-        "hide_header_nav": false,
+        "hide_menu": true,
+        "hide_right_icons": true,
+        "hide_header_nav": true,
         "logo_position": "top-center",
         "menu": "new-main-menu",
         "secondary-menu": "new-secondary-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "always",
         "show_line_separator": true,
-        "color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
+        "color_scheme": "scheme-3",
         "menu_color_scheme": "scheme-8e577348-7902-4431-a614-442eecc36d3c",
         "show_account": true,
         "enable_country_selector": false,
@@ -53,7 +53,8 @@
         "show_timer": false,
         "timer_range_hr": 0,
         "timer_range_min": 20,
-        "timer_range_sec": 0
+        "timer_range_sec": 0,
+        "timer_text": "UNLOCK UP TO 58% OFF"
       }
     }
   },

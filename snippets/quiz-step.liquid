@@ -1,0 +1,152 @@
+<quiz-step>
+  <a
+    href="#"
+    class="quiz_step__prev_btn quiz_step__prev_btn--mobile"
+  >
+    {%- render 'icon-arrow' -%}
+    {{- section.settings.prev_btn_text -}}
+  </a>
+
+  <form class="quiz_step__form">
+    <div class="quiz_step__contents">
+      {%- if block.settings.heading != blank -%}
+        <div class="quiz_step__heading">
+          {{- block.settings.heading | replace: '[dog_name]', '<span>your dog</span>' -}}
+        </div>
+      {%- endif -%}
+
+      {%- if block.type contains 'radio-icon' -%}
+        {%- assign radio_array = block.settings.label | split: ',' -%}
+
+        <div class="quiz_step__radio_wrap">
+          {%- for radio in radio_array -%}
+            {%- liquid
+              assign radio_split = radio | split: ':'
+              assign radio_text = radio_split[0]
+              assign radio_icon = radio_split[1]
+              assign radio_width = radio_split[2]
+            -%}
+
+            <div class="quiz_step__radio_block quiz_step__radio_block--icon">
+              <input
+                class="quiz_step__input"
+                type="radio"
+                name="{{ block.settings.name }}"
+                value="{{ radio_text }}"
+                id="{{ block.settings.name | append: '_' | append: forloop.index }}"
+              >
+
+              <label
+                class="quiz_step__radio_label quiz_step__radio_label--{{ block.type }} quiz_step__radio_label--{{ block.settings.icon_coloring }}"
+                for="{{ block.settings.name | append: '_' | append: forloop.index }}"
+              >
+                {%- if radio_icon -%}
+                  {%- render 'icon-dogs', asset: radio_icon, width: radio_width -%}
+                {%- endif -%}
+
+                {{- radio_text -}}
+              </label>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- elsif block.type == 'radio' -%}
+        {%- assign radio_array = block.settings.label | split: ',' -%}
+
+        {%- liquid
+          if radio_array.size > 2
+            assign grid_class = 'quiz_step__radio_wrap--multi_grid'
+          else
+            assign grid_class = 'quiz_step__radio_wrap--two_grid'
+          endif
+        -%}
+
+        <div class="quiz_step__radio_wrap {{ grid_class }}">
+          {%- for radio_text in radio_array -%}
+            <div class="quiz_step__radio_block">
+              <input
+                class="quiz_step__input"
+                type="radio"
+                name="{{ block.settings.name }}"
+                value="{{ radio_text | downcase }}"
+                id="{{ block.settings.name | append: '_' | append: forloop.index }}"
+              >
+
+              <label
+                class="quiz_step__radio_label"
+                for="{{ block.settings.name | append: '_' | append: forloop.index }}"
+              >
+                {{- radio_text -}}
+              </label>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <input
+          class="quiz_step__input"
+          type="{{ block.type }}"
+          name="{{ block.settings.name }}"
+          placeholder="{{ block.settings.placeholder }}"
+          {% if block.type == 'number' %}
+            min="1"
+            max="{{ block.settings.input_num_limit }}"
+            pattern="[0-9]*"
+          {% endif %}
+          {% if block.type == 'email' %}
+            inputmode="email"
+          {% endif %}
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="quiz_step__contents_bottom">
+      {%- if block.settings.show_trust_badge -%}
+        <div class="quiz_step__trust">
+          {%- liquid
+            assign trust_logo = section.settings.trust_logo
+            assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
+            assign trust_logo_sizes = '(max-width: 749px) 74px, (min-width: 750px) 92px'
+
+            assign star_icons = section.settings.trust_star_icons
+            assign star_icons_widths = '100, 123, 200, 246, 300, 369'
+            assign star_icons_sizes = '(max-width: 749px) 100px, (min-width: 750px) 123px'
+
+            if trust_logo != blank
+              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'
+            endif
+
+            if star_icons != blank
+              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz_step__star_icons'
+            endif
+
+            if section.settings.trust_text
+              echo section.settings.trust_text
+            endif
+          -%}
+        </div>
+      {%- endif -%}
+
+      {%- unless block.settings.hide_next_button -%}
+        <input
+          class="quiz_step__next_btn button button--primary"
+          type="submit"
+          value="{{ block.settings.next_btn_text }}"
+          disabled
+        >
+      {%- endunless -%}
+
+      {%- if block.settings.footer_text != blank -%}
+        <div class="quiz_step__footer_text">
+          {{- block.settings.footer_text -}}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <a
+      href="#"
+      class="quiz_step__prev_btn quiz_step__prev_btn--desktop"
+    >
+      {%- render 'icon-arrow' -%}
+      {{- section.settings.prev_btn_text -}}
+    </a>
+  </form>
+</quiz-step>
