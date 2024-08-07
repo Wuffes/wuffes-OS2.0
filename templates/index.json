@@ -7,21 +7,23 @@
           "type": "heading",
           "settings": {
             "heading": "Better joint health & mobility in as little as 3 weeks**",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "text_shadow": false
           }
         },
         "text": {
           "type": "text",
           "settings": {
             "text": "We’re here to improve the quality of life of our furry best friends from the inside out.",
-            "text_style": "body"
+            "text_style": "body",
+            "content_text_shadow": false
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
             "button_label_1": "SHOP NOW",
-            "button_link_1": "shopify://collections/all",
+            "button_link_1": "shopify:\/\/collections\/all",
             "button_style_secondary_1": false,
             "button_label_2": "",
             "button_link_2": "",
@@ -29,11 +31,19 @@
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
-      "custom_css": ["h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "custom_css": [
+        "h2,p {text-shadow: rgb(61, 61, 61) 0px 4px 10px;}"
+      ],
       "settings": {
-        "image": "shopify://shop_images/homepage_hero_2023_desktop_opt.jpg",
-        "image_overlay_opacity": 10,
+        "image": "shopify:\/\/shop_images\/HP_OS20_Desktop.png",
+        "image_tablet": "shopify:\/\/shop_images\/shopify_2_0_heroBanner_tablet.png",
+        "image_mobile": "shopify:\/\/shop_images\/HP_OS20_Mobile.png",
+        "image_overlay_opacity": 0,
         "image_height": "small",
         "desktop_content_position": "middle-left",
         "show_text_box": false,
@@ -42,7 +52,56 @@
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
-        "show_text_below": false
+        "show_text_below": false,
+        "full_width_text_desktop": true,
+        "image_border_radius": 0
+      }
+    },
+    "marquee_g7ECFF": {
+      "type": "marquee",
+      "blocks": {
+        "slide_aNcLfz": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Made in USA*"
+          }
+        },
+        "slide_iDLqfe": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Backed by science"
+          }
+        },
+        "slide_gafyHp": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Formulated by pet scientists"
+          }
+        },
+        "slide_pNUUfK": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Subscribe & save"
+          }
+        },
+        "slide_YH6xDc": {
+          "type": "slide",
+          "settings": {
+            "marquee_text": "Hand-selected ingredients"
+          }
+        }
+      },
+      "block_order": [
+        "slide_aNcLfz",
+        "slide_iDLqfe",
+        "slide_gafyHp",
+        "slide_pNUUfK",
+        "slide_YH6xDc"
+      ],
+      "settings": {
+        "color_scheme": "scheme-daff46ae-3c58-4715-ae9c-15c6507443e0",
+        "marquee_icon": "shopify:\/\/shop_images\/icon__green_check.svg",
+        "icon_width": 15
       }
     },
     "featured_collection": {
@@ -50,167 +109,366 @@
       "settings": {
         "title": "Shop joint care & more",
         "heading_size": "h2",
-        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.</p>",
+        "description": "<p>Specialized in joint care, we have everything you need to keep your pup in top shape.<\/p>",
         "show_description": false,
         "description_style": "body",
         "collection": "os2-featured-collection",
         "products_to_show": 8,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": true,
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-a287991c-c9f1-4ae6-afc3-d46cfee987ac",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "1",
+        "quick_add": "link",
         "swipe_on_mobile": true,
-        "padding_top": 28,
-        "padding_bottom": 36
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "hide_price": true,
+        "show_product_description": true,
+        "show_product_benefits": true
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
+    "rich_text_carousel_WPrmmq": {
+      "type": "rich-text-carousel",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "slide_KbwxCa": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/daily-mail-logo.svg",
-            "title": "",
-            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”</p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>“Ready to potentially save money on veterinary bills? Shop the Wuffes website now and prevent your dog from getting sick, slow or both.”<\/p>",
+            "image": "shopify:\/\/shop_images\/daily-mail-logo.svg"
           }
         },
-        "column2": {
-          "type": "column",
+        "slide_XxBinm": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/the-sun-com-logo.svg",
-            "title": "",
-            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"</p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>\"In just two months of Wuffes you’ll notice visible changes in your energy and mobility levels.\"<\/p>",
+            "image": "shopify:\/\/shop_images\/the-sun-com-logo.svg"
           }
         },
-        "column3": {
-          "type": "column",
+        "slide_m8fDge": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/yahoo-logo.svg",
-            "title": "",
-            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"</p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>\"Wuffes’ top-rated supplements can help keep your dog strong\"<\/p>",
+            "image": "shopify:\/\/shop_images\/yahoo-logo.svg"
           }
         },
-        "column_BXx3tf": {
-          "type": "column",
+        "slide_FWQjKw": {
+          "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/woof-logo.svg",
-            "title": "",
-            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"</p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>\"Wuffes offers THE BEST dog supplements our team has tried to date! From battling joint pain to reducing anxiety, this is your one-stop shop for all things pet wellness\"<\/p>",
+            "image": "shopify:\/\/shop_images\/woof-logo.svg"
           }
         }
       },
-      "block_order": ["column1", "column2", "column3", "column_BXx3tf"],
+      "block_order": [
+        "slide_KbwxCa",
+        "slide_XxBinm",
+        "slide_m8fDge",
+        "slide_FWQjKw"
+      ],
       "settings": {
-        "title": "Loved by the world’s best",
-        "heading_size": "h2",
-        "image_width": "half",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "scheme-2418b1b0-ba20-49f7-9dce-c752dafc47af",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        }
-      },
-      "block_order": ["heading", "text"],
-      "settings": {
+        "heading": "Loved by the world’s best",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
         "full_width": true,
         "padding_top": 40,
-        "padding_bottom": 0
+        "padding_bottom": 40
       }
     },
-    "collage": {
-      "type": "collage",
+    "image_with_text_dBq3NK": {
+      "type": "image-with-text",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "heading_Yj3Cn3": {
+          "type": "heading",
           "settings": {
-            "collection": ""
+            "heading": "A little bit about us",
+            "mobile_centered": true,
+            "heading_size": "h2",
+            "left_heading": false,
+            "no_margins": false
           }
         },
-        "product": {
-          "type": "product",
+        "text_qUathQ": {
+          "type": "text",
           "settings": {
-            "product": "",
-            "second_image": false
+            "text": "<p>As Pet-Super Parents, we <em>think<\/em> know our pets are the absolute best. And we know how important our fluffy family members are to us, which is why we built a company who’s sole focus is to ensure they can live their best lives for as long as physically possible.<\/p>",
+            "text_style": "body"
           }
         },
-        "collection-1": {
-          "type": "collection",
+        "button_78XKzM": {
+          "type": "button",
           "settings": {
-            "collection": ""
+            "button_label": "FIND OUT MORE",
+            "button_link": "shopify:\/\/pages\/about-us",
+            "button_style_secondary": false
           }
         }
       },
-      "block_order": ["collection-0", "product", "collection-1"],
-      "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "video": {
-      "type": "video",
+      "block_order": [
+        "heading_Yj3Cn3",
+        "text_qUathQ",
+        "button_78XKzM"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.image-with-text__content {padding-top: 0; padding-left: 0; padding-right: 0; }}"
+      ],
       "settings": {
         "heading": "",
-        "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
+        "subheading": "",
+        "image": "shopify:\/\/shop_images\/reskin_founders_photo.png",
+        "mobile_reversed": true,
+        "height": "original",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
+        "color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "image_border_radius": 0,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "border_top_width": 2,
+        "border_bottom_width": 1
+      }
+    },
+    "image_with_text_gCTxQn": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_FfxCCf": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe & save",
+            "mobile_centered": false,
+            "heading_size": "h2",
+            "left_heading": false,
+            "no_margins": false
+          }
+        },
+        "text_NyF4zQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subscribe to save on repeat orders and never miss a day of joint health support!<\/p><ul><li><strong>Save up to 26%<\/strong><\/li><li><strong>From just over $0.55\/day<\/strong><\/li><li><strong>Pause, skip or cancel anytime<\/strong><\/li><li><strong>Join 400k+ happy pet parents<\/strong><\/li><\/ul>",
+            "text_style": "body"
+          }
+        },
+        "button_FzTW9W": {
+          "type": "button",
+          "settings": {
+            "button_label": "SHOP NOW",
+            "button_link": "https:\/\/wuffes.com\/products\/advanced-hip-joint-support-for-large-breeds",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_FfxCCf",
+        "text_NyF4zQ",
+        "button_FzTW9W"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.image-with-text__content {padding-top: 0; padding-left: 0; padding-right: 0; }}"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "image": "shopify:\/\/shop_images\/reskin_homepage_subscribe.jpg",
+        "mobile_reversed": true,
+        "height": "original",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
+        "color_scheme": "scheme-aee6180d-a203-4330-b1bf-c8e8f91cf2b6",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "image_border_radius": 20,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "border_top_width": 1,
+        "border_bottom_width": 2
+      }
+    },
+    "gallery_jP9Yzn": {
+      "type": "gallery",
+      "blocks": {
+        "collapsible_row_P8newd": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_8.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_RnBrHG": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_9.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_gf9WGi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_1.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_gwb8U8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_2.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_XCm9Yg": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_3.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_MJdUUR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_4.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_DGaKTe": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_5.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_kdcDqY": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_6.png",
+            "page": ""
+          }
+        },
+        "collapsible_row_34hATB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Gallery row",
+            "image": "shopify:\/\/shop_images\/homepage_2023_instagram_img_7.png",
+            "page": ""
+          }
+        },
+        "gallery_links_p3PLfc": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/facebook__icon_e6ee9170-37c0-47d4-b2da-4ead85092424.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.facebook.com\/wuffespets\/\" target=\"_blank\"><strong>@wuffespets<\/strong><\/a> <a href=\"https:\/\/www.facebook.com\/groups\/283190776252380\/\" target=\"_blank\"><strong>@wuffesvip<\/strong><\/a>"
+          }
+        },
+        "gallery_links_KKzqNF": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/tiktok__icon_b069d9ec-526c-47ae-bf28-18091ed22265.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.instagram.com\/wuffes\/\" target=\"_blank\"><strong>@wuffes<\/strong><\/a>"
+          }
+        },
+        "gallery_links_DN43KX": {
+          "type": "gallery_links",
+          "settings": {
+            "social_image": "shopify:\/\/shop_images\/instagram__icon_989219ce-f2a1-4b82-9b2f-c513c3e56ac1.svg",
+            "social_image_link_text": "<a href=\"https:\/\/www.tiktok.com\/@wuffespet\/\" target=\"_blank\"><strong>@wuffespet<\/strong><\/a>"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_P8newd",
+        "collapsible_row_RnBrHG",
+        "collapsible_row_gf9WGi",
+        "collapsible_row_gwb8U8",
+        "collapsible_row_XCm9Yg",
+        "collapsible_row_MJdUUR",
+        "collapsible_row_DGaKTe",
+        "collapsible_row_kdcDqY",
+        "collapsible_row_34hATB",
+        "gallery_links_p3PLfc",
+        "gallery_links_KKzqNF",
+        "gallery_links_DN43KX"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Introducing our furry Wuffes community",
+        "description": "Find us on Facebook, Instagram & TikTok",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "auto_rotate": false,
+        "change_slides_speed": 1
+      }
+    },
+    "newsletter_gKna3B": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_4ghwi4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe to our emails",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_8jTegw": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Be the first to know about new collections and exclusive offers.<\/p>"
+          }
+        },
+        "email_form_rY6RYB": {
+          "type": "email_form",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "heading_4ghwi4",
+        "paragraph_8jTegw",
+        "email_form_rY6RYB"
+      ],
+      "settings": {
+        "color_scheme": "scheme-daff46ae-3c58-4715-ae9c-15c6507443e0",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
-  "order": ["image_banner", "featured_collection", "multicolumn", "rich_text", "collage", "video"]
+  "order": [
+    "image_banner",
+    "marquee_g7ECFF",
+    "featured_collection",
+    "rich_text_carousel_WPrmmq",
+    "image_with_text_dBq3NK",
+    "image_with_text_gCTxQn",
+    "gallery_jP9Yzn",
+    "newsletter_gKna3B"
+  ]
 }
