@@ -27,6 +27,14 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  #Banner-{{ section.id }} {
+    .image-banner-mobile,
+    .image-banner-tablet,
+    .image-banner-desktop {
+      border-radius: {{ section.settings.image_border_radius }}px;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -53,7 +61,7 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  class="banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }} banner--{{ section.settings.image_height }}{% if section.settings.stack_images_on_mobile and section.settings.image != blank and section.settings.image_2 != blank %} banner--stacked{% endif %}{% if section.settings.image_height == 'adapt' and section.settings.image != blank %} banner--adapt{% endif %}{% if section.settings.show_text_below %} banner--mobile-bottom{%- endif -%}{% if section.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {%- if section.settings.image_height == 'hero' %}hero_banner_height{% endif %}"
 >
   {%- if section.settings.image != blank -%}
     <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -87,8 +95,20 @@
       }}
 
       {{
-        section.settings.image_mobile
+        section.settings.image_tablet
         | image_url: width: 1200
+        | image_tag:
+          width: section.settings.image.width,
+          height: image_height,
+          class: 'image-banner-tablet',
+          sizes: sizes,
+          widths: widths,
+          fetchpriority: fetch_priority
+      }}
+
+      {{
+        section.settings.image_mobile
+        | image_url: width: 767
         | image_tag:
           width: section.settings.image.width,
           height: image_height,
@@ -131,7 +151,7 @@
       }}
     </div>
   {%- endif -%}
-  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} {% unless section.settings.full_width_text_desktop == true %}page-width{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -200,6 +220,11 @@
     },
     {
       "type": "image_picker",
+      "id": "image_tablet",
+      "label": "First image tablet"
+    },
+    {
+      "type": "image_picker",
       "id": "image_mobile",
       "label": "First image mobile"
     },
@@ -237,6 +262,10 @@
         {
           "value": "large",
           "label": "t:sections.image-banner.settings.image_height.options__4.label"
+        },
+        {
+          "value": "hero",
+          "label": "Hero"
         }
       ],
       "default": "medium",
@@ -382,6 +411,22 @@
       "id": "show_text_below",
       "default": true,
       "label": "t:sections.image-banner.settings.show_text_below.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_text_desktop",
+      "default": false,
+      "label": "Full width text on desktop"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 0
     }
   ],
   "blocks": [

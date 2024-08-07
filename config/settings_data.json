@@ -1,8 +1,8 @@
 {
   "current": {
-    "logo": "shopify://shop_images/logo-salad-green.svg",
+    "logo": "shopify:\/\/shop_images\/logo-salad-green.svg",
     "logo_width": 140,
-    "favicon": "shopify://shop_images/favicon.png",
+    "favicon": "shopify:\/\/shop_images\/favicon.png",
     "type_header_font": "baskerville_no_2_n4",
     "type_header_font_custom": "Satoshi-Variable",
     "type_header_font_custom_weight": "700",
@@ -100,10 +100,10 @@
     "sale_badge_color_scheme": "scheme-5",
     "sold_out_badge_color_scheme": "scheme-1",
     "brand_headline": "Wuffes",
-    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts</p>",
-    "brand_image": "shopify://shop_images/logo-salad-green.svg",
-    "social_facebook_link": "https://www.facebook.com/wuffespets",
-    "social_instagram_link": "https://www.instagram.com/wuffes/",
+    "brand_description": "<p>Joint Supplements for Dogs by The Joint Health Experts<\/p>",
+    "brand_image": "shopify:\/\/shop_images\/logo-salad-green.svg",
+    "social_facebook_link": "https:\/\/www.facebook.com\/wuffespets",
+    "social_instagram_link": "https:\/\/www.instagram.com\/wuffes\/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -135,10 +135,12 @@
         }
       }
     },
-    "content_for_index": [],
+    "content_for_index": [
+
+    ],
     "blocks": {
       "733389323033596483": {
-        "type": "shopify://apps/okendo/blocks/theme-settings/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "type": "shopify:\/\/apps\/okendo\/blocks\/theme-settings\/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
         "disabled": false,
         "settings": {
           "show_preview_data": true
@@ -273,7 +275,7 @@
           "background_gradient": "",
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "#17443d",
-          "button_label": "#FFFFFF",
+          "button_label": "#ffffff",
           "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
         }
@@ -298,6 +300,17 @@
           "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
           "shadow": "#121212"
+        }
+      },
+      "scheme-daff46ae-3c58-4715-ae9c-15c6507443e0": {
+        "settings": {
+          "background": "#17443d",
+          "background_gradient": "",
+          "text": "#fff",
+          "button": "#c5fa54",
+          "button_label": "#121212",
+          "secondary_button_label": "#fff",
+          "shadow": "#17443d"
         }
       }
     }
