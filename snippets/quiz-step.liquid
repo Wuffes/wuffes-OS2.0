@@ -1,24 +1,34 @@
-<quiz-step>
-  <a
-    href="#"
-    class="quiz_step__prev_btn quiz_step__prev_btn--mobile"
-  >
-    {%- render 'icon-arrow' -%}
-    {{- section.settings.prev_btn_text -}}
-  </a>
+<quiz-step quiz-step-index="{{ step_index }}">
+  {%- unless step_index == 0 -%}
+    <quiz-back
+      class="quiz_step__back--mobile"
+    >
+      {%- render 'icon-arrow' -%}
+      {{- section.settings.prev_btn_text -}}
+    </quiz-back>
+  {%- endunless -%}
 
   <form class="quiz_step__form">
     <div class="quiz_step__contents">
       {%- if block.settings.heading != blank -%}
-        <div class="quiz_step__heading">
-          {{- block.settings.heading | replace: '[dog_name]', '<span>your dog</span>' -}}
+        <div
+          class="quiz_step__heading"
+
+          animate
+          animate-fade-in
+        >
+          {{- block.settings.heading | replace: '[dog_name]', '<span dog-name>your dog</span>' -}}
         </div>
       {%- endif -%}
 
       {%- if block.type contains 'radio-icon' -%}
         {%- assign radio_array = block.settings.label | split: ',' -%}
 
-        <div class="quiz_step__radio_wrap">
+        <div
+          class="quiz_step__radio_wrap"
+          animate
+          animate-fade-in
+        >
           {%- for radio in radio_array -%}
             {%- liquid
               assign radio_split = radio | split: ':'
@@ -31,8 +41,8 @@
               <input
                 class="quiz_step__input"
                 type="radio"
-                name="{{ block.settings.name }}"
-                value="{{ radio_text }}"
+                name="{{ block.settings.name | strip}}"
+                value="{{ radio_text | strip }}"
                 id="{{ block.settings.name | append: '_' | append: forloop.index }}"
               >
 
@@ -60,14 +70,18 @@
           endif
         -%}
 
-        <div class="quiz_step__radio_wrap {{ grid_class }}">
+        <div
+          class="quiz_step__radio_wrap {{ grid_class }}"
+          animate
+          animate-fade-in
+        >
           {%- for radio_text in radio_array -%}
             <div class="quiz_step__radio_block">
               <input
                 class="quiz_step__input"
                 type="radio"
-                name="{{ block.settings.name }}"
-                value="{{ radio_text | downcase }}"
+                name="{{ block.settings.name | strip }}"
+                value="{{ radio_text | downcase | strip }}"
                 id="{{ block.settings.name | append: '_' | append: forloop.index }}"
               >
 
@@ -86,6 +100,10 @@
           type="{{ block.type }}"
           name="{{ block.settings.name }}"
           placeholder="{{ block.settings.placeholder }}"
+          animate
+          animate-fade-in
+          required
+
           {% if block.type == 'number' %}
             min="1"
             max="{{ block.settings.input_num_limit }}"
@@ -100,7 +118,12 @@
 
     <div class="quiz_step__contents_bottom">
       {%- if block.settings.show_trust_badge -%}
-        <div class="quiz_step__trust">
+        <div
+          class="quiz_step__trust"
+          {% if step_index == 0 %}
+            animate animate-fade-in
+          {% endif %}
+        >
           {%- liquid
             assign trust_logo = section.settings.trust_logo
             assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
@@ -131,6 +154,9 @@
           type="submit"
           value="{{ block.settings.next_btn_text }}"
           disabled
+          {% if step_index == 0 %}
+            animate animate-fade-in
+          {% endif %}
         >
       {%- endunless -%}
 
@@ -141,12 +167,13 @@
       {%- endif -%}
     </div>
 
-    <a
-      href="#"
-      class="quiz_step__prev_btn quiz_step__prev_btn--desktop"
-    >
-      {%- render 'icon-arrow' -%}
-      {{- section.settings.prev_btn_text -}}
-    </a>
+    {%- unless step_index == 0 -%}
+      <quiz-back
+        class="quiz_step__back--desktop"
+      >
+        {%- render 'icon-arrow' -%}
+        {{- section.settings.prev_btn_text -}}
+      </quiz-back>
+    {%- endunless -%}
   </form>
 </quiz-step>

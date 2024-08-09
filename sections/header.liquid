@@ -429,13 +429,15 @@
         requestAnimationFrame(this.reset.bind(this));
       }
 
-      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        headerMenu.classList.add('header__inline-menu--hidden');
-        headerWrapper.classList.add('header--sticky');
-      }
-      else if(scrollTop < (this.currentScrollTop - 5)) {
-        headerMenu.classList.remove('header__inline-menu--hidden');
-        headerWrapper.classList.remove('header--sticky');
+      if(headerMenu) {
+        if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+          headerMenu.classList.add('header__inline-menu--hidden');
+          headerWrapper.classList.add('header--sticky');
+        }
+        else if(scrollTop < (this.currentScrollTop - 5)) {
+          headerMenu.classList.remove('header__inline-menu--hidden');
+          headerWrapper.classList.remove('header--sticky');
+        }
       }
 
       this.currentScrollTop = scrollTop;

@@ -1,28 +1,52 @@
 {{ 'section-main-quiz.css' | asset_url | stylesheet_tag }}
 
-<div class="quiz color-{{ section.settings.color_scheme }} gradient">
-  <div class="quiz__progress_bar">
-    <div class="quiz__progress_bar__inner">
-      <p class="quiz__progress_bar__text">10%</p>
+{% liquid
+  capture quiz_attributes
+    if section.settings.redirect_url
+      echo ' data-redirect-url=' | append: section.settings.redirect_url
+    endif
+
+    if section.settings.redirect_url_pdp_lb
+      echo ' data-redirect-url-pdp-lb=' | append: section.settings.redirect_url_pdp_lb
+    endif
+
+    if section.settings.redirect_url_pdp_sb
+      echo ' data-redirect-url-pdp-sb=' | append: section.settings.redirect_url_pdp_sb
+    endif
+
+    if section.settings.gcloud_url
+      echo ' data-gcloud-url=' | append: section.settings.gcloud_url
+    endif
+
+    if section.settings.default_redirect
+      echo ' data-default-redirect=' | append: section.settings.default_redirect
+    endif
+  endcapture
+%}
+
+<main-quiz class="quiz color-{{ section.settings.color_scheme }} gradient" {{ quiz_attributes }}>
+  <quiz-progress>
+    <div quiz-progress-inner>
+      <p quiz-progress-text>0%</p>
     </div>
-  </div>
+  </quiz-progress>
 
   {%- for block in section.blocks -%}
-    {%- render 'quiz-step', block: block -%}
+    {%- render 'quiz-step', block: block, step_index: forloop.index0 -%}
   {%- endfor -%}
 
-  <quiz-step>
+  <quiz-step quiz-step-index="last">
     <div class="quiz_step_final">
       <div>
         {%- if section.settings.final_step_heading != blank -%}
           <div class="quiz_step__heading quiz_step_final__heading">
-            {{- section.settings.final_step_heading | replace: '[dog_name]', '<span>your dog</span>' -}}
+            {{- section.settings.final_step_heading | replace: '[dog_name]', '<span dog-name>your dog</span>' -}}
           </div>
         {%- endif -%}
 
-        <div class="quiz_step__loading_screen">
-          <div class="quiz_step__loading_screen__progress"></div>
-        </div>
+        <loading-screen class="quiz_step__loading_screen">
+          <div loading-screen-progress></div>
+        </loading-screen>
 
         {%- liquid
           if section.settings.final_step_image_desktop and section.settings.final_step_image_mobile
@@ -96,7 +120,7 @@
       </div>
     </div>
   </quiz-step>
-</div>
+</main-quiz>
 
 {% schema %}
 {
@@ -168,6 +192,36 @@
       "id": "final_step_bottom_text",
       "label": "Bottom text",
       "default": "<h3>Crafted with love and backed by science</h3>"
+    },
+    {
+      "type": "header",
+      "content": "URLs"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url_pdp_lb",
+      "label": "PDP LB Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url_pdp_sb",
+      "label": "PDP SB Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "gcloud_url",
+      "label": "Gcloud URL"
+    },
+    {
+      "type": "text",
+      "id": "default_redirect",
+      "label": "Default redirect",
+      "default": "full_price"
     }
   ],
   "blocks": [
