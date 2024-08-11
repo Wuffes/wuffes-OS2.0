@@ -114,6 +114,18 @@
           {% endif %}
         >
       {%- endif -%}
+
+      {%- if block.settings.name == 'breed' -%}
+        <ul data-breed-list>
+          <li>Not sure / Not listed</li>
+
+          {%- for dog_breed in dog_breeds -%}
+            <li>
+              {{- dog_breed.breed -}}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
     </div>
 
     <div class="quiz_step__contents_bottom">
@@ -127,11 +139,11 @@
           {%- liquid
             assign trust_logo = section.settings.trust_logo
             assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
-            assign trust_logo_sizes = '(max-width: 749px) 74px, (min-width: 750px) 92px'
+            assign trust_logo_sizes = '(max-width: 767px) 74px, (min-width: 768px) 92px'
 
             assign star_icons = section.settings.trust_star_icons
             assign star_icons_widths = '100, 123, 200, 246, 300, 369'
-            assign star_icons_sizes = '(max-width: 749px) 100px, (min-width: 750px) 123px'
+            assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
 
             if trust_logo != blank
               echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'

@@ -1456,6 +1456,15 @@ class Quiz extends HTMLElement {
       }
     });
 
+    this.querySelectorAll("input[name='breed']").forEach((breedInput) => {
+      breedInput.addEventListener('click', this.onBreedInputClick.bind(this));
+      breedInput.addEventListener('blur', this.onBreedInputBlur.bind(this));
+    });
+
+    this.querySelectorAll('ul[data-breed-list] li').forEach((list) =>
+      list.addEventListener('click', this.onBreedSelect.bind(this))
+    );
+
     this.querySelectorAll('form').forEach((form) => {
       form.addEventListener('submit', this.onFormSubmit.bind(this));
     });
@@ -1467,7 +1476,84 @@ class Quiz extends HTMLElement {
 
   onInit() {
     const quizFirstStep = this.querySelector("quiz-step[quiz-step-index='0']");
+
+    if (Shopify.designMode) {
+      this.querySelectorAll('quiz-step').forEach((step) => {
+        step.style.display = 'block';
+      });
+
+      this.querySelectorAll('[animate-fade-in]').forEach((element) => {
+        element.removeAttribute('animate-fade-in');
+      });
+    }
+
     this.animateElementBlocks(quizFirstStep);
+  }
+
+  onBreedInputClick(event) {
+    const breedDropdown = event.target.parentElement.querySelector('ul[data-breed-list]');
+    breedDropdown.style.display = 'block';
+    clearTimeout(this.hideTimeout);
+  }
+
+  onBreedInputBlur(event) {
+    const breedDropdown = event.target.parentElement.querySelector('ul[data-breed-list]');
+
+    this.hideTimeout = setTimeout(() => {
+      const selectedBreed = breedDropdown.querySelector('li[selected]');
+
+      event.target.value =
+        event.target.value === '' || selectedBreed === null ? 'Not sure / Not listed' : selectedBreed.textContent;
+
+      breedDropdown.style.display = 'none';
+
+      this.toggleSubmitButton(this.getCurrentStep(event), true);
+    }, 200);
+  }
+
+  onBreedSelect(event) {
+    const thisBreed = event.target.textContent;
+    const thisInput = event.target.parentElement.previousElementSibling;
+    const breedLists = event.target.parentElement.querySelectorAll('li');
+
+    breedLists.forEach((list) => list.removeAttribute('selected'));
+    event.target.setAttribute('selected', true);
+
+    thisInput.value = thisBreed;
+  }
+
+  filterDropdown(event) {
+    const dropDown = event.target.nextElementSibling;
+
+    if (dropDown !== null && dropDown.hasAttribute('data-breed-list')) {
+      const inputValue = event.target.value.toLowerCase();
+      let firstItemFound = false;
+
+      if (!dropDown.originalItems) {
+        dropDown.originalItems = Array.from(dropDown.querySelectorAll('li'));
+      }
+
+      dropDown.innerHTML = '';
+
+      dropDown.originalItems.forEach((li) => {
+        const listItemText = li.textContent;
+        const lowerCaseListItemText = listItemText.toLowerCase();
+
+        if (lowerCaseListItemText.includes(inputValue)) {
+          const boldedText = listItemText.replace(new RegExp(inputValue, 'gi'), (match) => `<strong>${match}</strong>`);
+          li.innerHTML = boldedText;
+
+          if (!firstItemFound) {
+            li.setAttribute('selected', 'true');
+            firstItemFound = true;
+          } else {
+            li.removeAttribute('selected');
+          }
+
+          dropDown.appendChild(li);
+        }
+      });
+    }
   }
 
   getCurrentStep(event) {
@@ -1493,6 +1579,8 @@ class Quiz extends HTMLElement {
 
   onInputChange(event) {
     const isEmpty = event.target.value.trim() === '';
+
+    event.target.name === 'breed' ? this.filterDropdown(event) : null;
 
     this.toggleSubmitButton(this.getCurrentStep(event), !isEmpty);
   }

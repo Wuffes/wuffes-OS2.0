@@ -1,5 +1,7 @@
 {{ 'section-main-quiz.css' | asset_url | stylesheet_tag }}
 
+{%- assign dog_breeds = shop.metafields.shop.dog_breed_list.value -%}
+
 {% liquid
   capture quiz_attributes
     if section.settings.redirect_url
@@ -32,12 +34,20 @@
   </quiz-progress>
 
   {%- for block in section.blocks -%}
-    {%- render 'quiz-step', block: block, step_index: forloop.index0 -%}
+    {%- render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: dog_breeds -%}
   {%- endfor -%}
 
   <quiz-step quiz-step-index="last">
     <div class="quiz_step_final">
       <div>
+        {%- if section.settings.final_step_logo -%}
+          {%- liquid
+            assign widths = '170, 340, 510'
+
+            echo section.settings.final_step_logo | image_url: width: 510 | image_tag: widths: widths, class: 'quiz_step_final__logo'
+          -%}
+        {%- endif -%}
+
         {%- if section.settings.final_step_heading != blank -%}
           <div class="quiz_step__heading quiz_step_final__heading">
             {{- section.settings.final_step_heading | replace: '[dog_name]', '<span dog-name>your dog</span>' -}}
@@ -65,12 +75,12 @@
           {%- liquid
             assign widths = '357, 500, 714, 790, 1000, 1071, 1500, 1580, 2370'
             assign widths_array = widths | split: ','
-            assign sizes = '(max-width: 749px) 357px, (min-width: 750px) 500px, (min-width: 990px) 790'
+            assign sizes = '(max-width: 767px) 357px, (min-width: 768px) 500px, (min-width: 990px) 790'
           -%}
 
           {%- if desktop_image != blank -%}
             <source
-              media="(min-width: 750px)"
+              media="(min-width: 768px)"
               srcset="
                 {%- for width in widths_array -%}
                   {{ desktop_image | image_url: width: width }} {{ width }}w{%- if forloop.last == false %},{% endif -%}
@@ -98,11 +108,11 @@
           {%- liquid
             assign trust_logo = section.settings.trust_logo
             assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
-            assign trust_logo_sizes = '(max-width: 749px) 74px, (min-width: 750px) 92px'
+            assign trust_logo_sizes = '(max-width: 767px) 74px, (min-width: 768px) 92px'
 
             assign star_icons = section.settings.trust_star_icons
             assign star_icons_widths = '100, 123, 200, 246, 300, 369'
-            assign star_icons_sizes = '(max-width: 749px) 100px, (min-width: 750px) 123px'
+            assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
 
             if trust_logo != blank
               echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'
@@ -170,6 +180,11 @@
     {
       "type": "header",
       "content": "Final step"
+    },
+    {
+      "type": "image_picker",
+      "id": "final_step_logo",
+      "label": "Logo"
     },
     {
       "type": "richtext",
