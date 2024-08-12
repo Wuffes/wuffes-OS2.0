@@ -27,7 +27,7 @@ ul[data-breed-list] {
   padding: 0;
   margin: 0.5rem 0 0 0;
 
-  background: #fff;
+  background: rgb(255, 255, 255);
   list-style-type: none;
 
   position: absolute;
@@ -41,7 +41,7 @@ ul[data-breed-list] {
   scrollbar-width: auto;
   -webkit-overflow-scrolling: touch;
 
-  box-shadow: 0 6px 19px #30303040;
+  box-shadow: 0 6px 19px rgba(48, 48, 48, 0.25);
   border-radius: 1rem;
 
   li {
@@ -49,6 +49,23 @@ ul[data-breed-list] {
     margin: 0;
     font-size: 1.4rem;
     cursor: pointer;
+
+    &:hover {
+      background: rgb(241, 253, 240);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(117, 117, 117);
+    border-radius: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
   }
 }
 
@@ -240,6 +257,13 @@ quiz-step {
   width: 100%;
   font-size: 1.6rem;
   font-weight: var(--font-heading-weight);
+}
+
+.quiz_step__next_btn:not([disabled]):hover {
+  background: rgb(var(--color-link));
+  color: rgb(var(--color-button));
+
+  transition: all 0.2s ease-in-out;
 }
 
 quiz-back {
