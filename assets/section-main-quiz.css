@@ -247,6 +247,7 @@ quiz-back {
   align-items: center;
   letter-spacing: 0;
   font-size: 1.6rem;
+  cursor: pointer;
 
   .icon-arrow {
     margin-right: 0.5rem;

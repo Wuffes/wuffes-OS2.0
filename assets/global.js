@@ -1444,6 +1444,10 @@ class Quiz extends HTMLElement {
   setUpEventListeners() {
     document.addEventListener('DOMContentLoaded', this.onInit.bind(this));
 
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:load', this.onSectionLoad.bind(this));
+    }
+
     this.querySelectorAll("input:not([type='submit'])").forEach((input) => {
       if (input.type === 'radio') {
         input.addEventListener('click', this.onTabChange.bind(this));
@@ -1476,18 +1480,27 @@ class Quiz extends HTMLElement {
 
   onInit() {
     const quizFirstStep = this.querySelector("quiz-step[quiz-step-index='0']");
+    const quizTextInputs = this.querySelectorAll("input[type='text'], input[type='number'], input[type='email']");
 
-    if (Shopify.designMode) {
-      this.querySelectorAll('quiz-step').forEach((step) => {
-        step.style.display = 'block';
-      });
+    setTimeout(() => {
+      quizTextInputs.forEach((input) => {
+        const thisInputBtn = input.closest('quiz-step');
 
-      this.querySelectorAll('[animate-fade-in]').forEach((element) => {
-        element.removeAttribute('animate-fade-in');
+        this.toggleSubmitButton(thisInputBtn, input.value.trim() !== '');
       });
-    }
+    }, 500);
 
     this.animateElementBlocks(quizFirstStep);
+  }
+
+  onSectionLoad() {
+    this.querySelectorAll('quiz-step').forEach((step) => {
+      step.style.display = 'block';
+
+      step.querySelectorAll('[animate-fade-in]').forEach((element) => {
+        element.removeAttribute('animate-fade-in');
+      });
+    });
   }
 
   onBreedInputClick(event) {
@@ -1579,10 +1592,13 @@ class Quiz extends HTMLElement {
 
   onInputChange(event) {
     const isEmpty = event.target.value.trim() === '';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmail = event.target.type === 'email';
+    const isValid = isEmail ? emailRegex.test(event.target.value) : !isEmpty;
 
     event.target.name === 'breed' ? this.filterDropdown(event) : null;
 
-    this.toggleSubmitButton(this.getCurrentStep(event), !isEmpty);
+    this.toggleSubmitButton(this.getCurrentStep(event), isValid);
   }
 
   onInputKeyPress(event) {

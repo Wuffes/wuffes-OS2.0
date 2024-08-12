@@ -1,3 +1,14 @@
+{% comment %}
+  Renders a quiz step
+  Accepts:
+  - block: {Object} Block settings (optional)
+  - step_index: {Integer} Current block iteration
+  - dog_breeds: {Object} Passes the dog breed json from shop metafields
+
+  Usage:
+  {%- render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: shop.metafields.shop.dog_breed_list.value -%}
+{% endcomment %}
+
 <quiz-step quiz-step-index="{{ step_index }}">
   {%- unless step_index == 0 -%}
     <quiz-back
@@ -13,7 +24,6 @@
       {%- if block.settings.heading != blank -%}
         <div
           class="quiz_step__heading"
-
           animate
           animate-fade-in
         >
@@ -115,7 +125,7 @@
         >
       {%- endif -%}
 
-      {%- if block.settings.name == 'breed' -%}
+      {%- if dog_breeds -%}
         <ul data-breed-list>
           <li>Not sure / Not listed</li>
 

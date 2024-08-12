@@ -1,6 +1,6 @@
 {{ 'section-main-quiz.css' | asset_url | stylesheet_tag }}
 
-{%- assign dog_breeds = shop.metafields.shop.dog_breed_list.value -%}
+{%- assign dog_breeds = false -%}
 
 {% liquid
   capture quiz_attributes
@@ -33,9 +33,15 @@
     </div>
   </quiz-progress>
 
-  {%- for block in section.blocks -%}
-    {%- render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: dog_breeds -%}
-  {%- endfor -%}
+  {%- liquid
+    for block in section.blocks
+      if block.settings.name == 'breed'
+        assign dog_breeds = shop.metafields.shop.dog_breed_list.value
+      endif
+
+      render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: dog_breeds
+    endfor
+  -%}
 
   <quiz-step quiz-step-index="last">
     <div class="quiz_step_final">
