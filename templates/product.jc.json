@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "top_main": {
+      "type": "main-product-jc"
+    }
+  },
+  "order": [
+    "top_main"
+  ]
+}

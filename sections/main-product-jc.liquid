@@ -1,0 +1,164 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-main.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="MainProduct-jc-{{ section.id }}"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+  data-section="{{ section.id }}"
+>
+  {%- assign widths = '345, 565, 750, 1130, 1695' -%}
+  {%- capture sizes -%}
+    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+    (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+  {%- endcapture -%}
+
+  {%- assign widths_thumbs = '92, 184, 276' -%}
+  {%- capture sizes_thumbs -%}
+    (min-width: {{ settings.page_width }}px) 92px,
+    (min-width: 750px) 92px, 92px
+  {%- endcapture -%}
+
+  <script>
+    console.log({{ product.metafields.os20.product_picker.value | json }})
+  </script>
+  {% assign product_picker = product.metafields.os20.product_picker.value %}
+  <div class="product-main_wrapper page-width">
+    <div class="product-main_left">
+      {% if product_picker.custom_title or product_picker.custom_subtitle %}
+        <div class="product-main_info product-main_info-mobile">
+          {% if product_picker.custom_title %}
+            <h1 class="h2 product-main_title">
+              {{ product_picker.custom_title }}
+
+              {% if product_picker.custom_title_numbers %}
+                <span class="h5 product-main_title_numbers">{{ product_picker.custom_title_numbers }}</span>
+              {% endif %}
+            </h1>
+          {% endif %}
+
+          {% if product_picker.custom_subtitle %}
+            <h4 class="product-main_subtitle">
+              {{ product_picker.custom_subtitle }}
+            </h4>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% assign hero_images_arr = product_picker.carousel_images.value %}
+      {% assign hero_thumbs_arr = product_picker.carousel_thumbnails.value %}
+      {% if hero_images_arr %}
+        <slideshow-component
+          class="slider-mobile-gutter"
+          role="region"
+          aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
+          aria-label="{{ section.settings.accessibility_info | escape }}"
+        >
+          <div
+            class="grid grid--1-col product-main__slider slider slider--everywhere{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            id="Slider-{{ section.id }}"
+            aria-live="polite"
+            aria-atomic="true"
+            data-autoplay="false"
+            data-speed="5"
+          >
+            {% for slide in hero_images_arr %}
+              <div
+                class="slideshow__slide product-main__slide grid__item grid--1-col slider__slide"
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                role="group"
+                aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
+                aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                tabindex="-1"
+              >
+                {{
+                  slide
+                  | image_url: width: 1695
+                  | image_tag: sizes: sizes, widths: widths, class: 'product-main__slider_image'
+                }}
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="slider-buttons">
+            <button
+              type="button"
+              class="slider-button slider-button--prev"
+              name="previous"
+              aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
+              aria-controls="Slider-{{ section.id }}"
+              style="display: none;"
+            >
+              {% render 'icon-caret' %}
+            </button>
+            <div class="slider-counter slider-counter--dots">
+              <div class="slideshow__control-wrapper">
+                {%- for thumb in hero_thumbs_arr -%}
+                  <button
+                    class="slider-counter__link slider-counter__link--dots link"
+                    aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                    aria-controls="Slider-{{ section.id }}"
+                  >
+                    <div class="dot">
+                      {{
+                        thumb
+                        | image_url: width: 200
+                        | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__slider_image'
+                      }}
+                    </div>
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+            <button
+              type="button"
+              class="slider-button slider-button--next"
+              name="next"
+              aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
+              aria-controls="Slider-{{ section.id }}"
+              style="display: none;"
+            >
+              {% render 'icon-caret' %}
+            </button>
+          </div>
+        </slideshow-component>
+      {% endif %}
+    </div>
+
+    <div class="product-main_right">
+      {% if product_picker.custom_title or product_picker.custom_subtitle %}
+        <div class="product-main_info product-main_info-desktop">
+          {% if product_picker.custom_title %}
+            <h2 class="product-main_title">
+              {{ product_picker.custom_title }}
+
+              {% if product_picker.custom_title_numbers %}
+                <span class="h5 product-main_title_numbers">{{ product_picker.custom_title_numbers }}</span>
+              {% endif %}
+            </h2>
+          {% endif %}
+
+          {% if product_picker.custom_subtitle %}
+            <h4 class="product-main_subtitle">
+              {{ product_picker.custom_subtitle }}
+            </h4>
+          {% endif %}
+
+          {% if product_picker.custom_description %}
+            <p class="product-main_description">
+              {{ product_picker.custom_description }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

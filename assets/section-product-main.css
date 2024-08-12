@@ -1,0 +1,33 @@
+.product-main_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-main_info-desktop {
+  display: none;
+}
+
+.product-main__slider_image {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .product-main_wrapper {
+    flex-direction: row;
+  }
+
+  .product-main_left,
+  .product-main_right {
+    width: 50%;
+    padding: 0 15px;
+  }
+
+  .product-main_info-mobile {
+    display: none;
+  }
+
+  .product-main_info-desktop {
+    display: block;
+  }
+}
