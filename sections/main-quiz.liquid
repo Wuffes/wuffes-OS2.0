@@ -44,25 +44,25 @@
   -%}
 
   <quiz-step quiz-step-index="last">
-    <div class="quiz_step_final">
+    <div class="quiz-step-final">
       <div>
         {%- if section.settings.final_step_logo -%}
           {%- liquid
             assign widths = '170, 340, 510'
 
-            echo section.settings.final_step_logo | image_url: width: 510 | image_tag: widths: widths, class: 'quiz_step_final__logo'
+            echo section.settings.final_step_logo | image_url: width: 510 | image_tag: widths: widths, class: 'quiz-step-final__logo'
           -%}
         {%- endif -%}
 
         {%- if section.settings.final_step_heading != blank -%}
-          <div class="quiz_step__heading quiz_step_final__heading">
+          <div class="quiz-step__heading quiz-step-final__heading">
             {{- section.settings.final_step_heading | replace: '[dog_name]', '<span dog-name>your dog</span>' -}}
           </div>
         {%- endif -%}
 
-        <loading-screen class="quiz_step__loading_screen">
+        <div class="loading-screen">
           <div loading-screen-progress></div>
-        </loading-screen>
+        </div>
 
         {%- liquid
           if section.settings.final_step_image_desktop and section.settings.final_step_image_mobile
@@ -98,19 +98,19 @@
           {{-
             featured_image
             | image_url: width: 2370
-            | image_tag: widths: widths, sizes: sizes, class: 'quiz_step_final__image'
+            | image_tag: widths: widths, sizes: sizes, class: 'quiz-step-final__image'
           -}}
         </picture>
 
-        <div class="quiz_step__contents_bottom_text">
+        <div class="quiz-step-contents__bottom-text">
           {%- if section.settings.final_step_bottom_text -%}
             {{- section.settings.final_step_bottom_text -}}
           {%- endif -%}
         </div>
       </div>
 
-      <div class="quiz_step__contents_bottom">
-        <div class="quiz_step__trust">
+      <div class="quiz-step-contents__bottom">
+        <div class="quiz-step__trust">
           {%- liquid
             assign trust_logo = section.settings.trust_logo
             assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
@@ -121,11 +121,11 @@
             assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
 
             if trust_logo != blank
-              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'
+              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz-step__trust-logo'
             endif
 
             if star_icons != blank
-              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz_step__star_icons'
+              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz-step__star-icons'
             endif
 
             if section.settings.trust_text
@@ -138,11 +138,13 @@
   </quiz-step>
 </main-quiz>
 
+<script src="{{ 'main-quiz.js' | asset_url }}" defer></script>
+
 {% schema %}
 {
   "name": "Quiz",
   "tag": "section",
-  "class": "section__quiz_step",
+  "class": "section__quiz-step",
   "enabled_on": {
     "templates": ["page"]
   },

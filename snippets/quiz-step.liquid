@@ -9,21 +9,21 @@
   {%- render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: shop.metafields.shop.dog_breed_list.value -%}
 {% endcomment %}
 
-<quiz-step quiz-step-index="{{ step_index }}">
+<quiz-step quiz-step-index="{{ step_index }}" {{ shopify.block_attributes }}>
   {%- unless step_index == 0 -%}
     <quiz-back
-      class="quiz_step__back--mobile"
+      class="quiz-step__back--mobile"
     >
       {%- render 'icon-arrow' -%}
       {{- section.settings.prev_btn_text -}}
     </quiz-back>
   {%- endunless -%}
 
-  <form class="quiz_step__form">
-    <div class="quiz_step__contents">
+  <form class="quiz-step__form">
+    <div class="quiz-step__contents">
       {%- if block.settings.heading != blank -%}
         <div
-          class="quiz_step__heading"
+          class="quiz-step__heading"
           animate
           animate-fade-in
         >
@@ -35,7 +35,7 @@
         {%- assign radio_array = block.settings.label | split: ',' -%}
 
         <div
-          class="quiz_step__radio_wrap"
+          class="quiz-step__radio-wrap"
           animate
           animate-fade-in
         >
@@ -47,9 +47,9 @@
               assign radio_width = radio_split[2]
             -%}
 
-            <div class="quiz_step__radio_block quiz_step__radio_block--icon">
+            <div class="quiz-step__radio-block quiz-step__radio-block--icon">
               <input
-                class="quiz_step__input"
+                class="quiz-step__input"
                 type="radio"
                 name="{{ block.settings.name | strip}}"
                 value="{{ radio_text | strip }}"
@@ -57,12 +57,40 @@
               >
 
               <label
-                class="quiz_step__radio_label quiz_step__radio_label--{{ block.type }} quiz_step__radio_label--{{ block.settings.icon_coloring }}"
+                class="quiz-step__radio-label quiz-step__radio-label--{{ block.type }} quiz-step__radio-label--{{ block.settings.icon_coloring }}"
                 for="{{ block.settings.name | append: '_' | append: forloop.index }}"
+                {% if radio_width %}
+                  style="--icon-width: {{ radio_width }}px;"
+                {% endif %}
               >
-                {%- if radio_icon -%}
-                  {%- render 'icon-dogs', asset: radio_icon, width: radio_width -%}
-                {%- endif -%}
+                {%- liquid
+                  if radio_icon
+                    case radio_icon
+                      when 'icon-dog-size-1'
+                        render 'icon-dog-size-1'
+                      when 'icon-dog-size-2'
+                        render 'icon-dog-size-2'
+                      when 'icon-dog-size-3'
+                        render 'icon-dog-size-3'
+                      when 'icon-dog-size-4'
+                        render 'icon-dog-size-4'
+                      when 'icon-dog-size-5'
+                        render 'icon-dog-size-5'
+                      when 'icon-dog-body-type-1'
+                        render 'icon-dog-body-type-1'
+                      when 'icon-dog-body-type-2'
+                        render 'icon-dog-body-type-2'
+                      when 'icon-dog-body-type-3'
+                        render 'icon-dog-body-type-3'
+                      when 'icon-dog-body-type-4'
+                        render 'icon-dog-body-type-4'
+                      when 'icon-dog-body-type-5'
+                        render 'icon-dog-body-type-5'
+                      else
+                        render 'icon-dog-size-1'
+                    endcase
+                  endif
+                -%}
 
                 {{- radio_text -}}
               </label>
@@ -74,21 +102,21 @@
 
         {%- liquid
           if radio_array.size > 2
-            assign grid_class = 'quiz_step__radio_wrap--multi_grid'
+            assign grid_class = 'quiz-step__radio-wrap--multi_grid'
           else
-            assign grid_class = 'quiz_step__radio_wrap--two_grid'
+            assign grid_class = 'quiz-step__radio-wrap--two_grid'
           endif
         -%}
 
         <div
-          class="quiz_step__radio_wrap {{ grid_class }}"
+          class="quiz-step__radio-wrap {{ grid_class }}"
           animate
           animate-fade-in
         >
           {%- for radio_text in radio_array -%}
-            <div class="quiz_step__radio_block">
+            <div class="quiz-step__radio-block">
               <input
-                class="quiz_step__input"
+                class="quiz-step__input"
                 type="radio"
                 name="{{ block.settings.name | strip }}"
                 value="{{ radio_text | downcase | strip }}"
@@ -96,7 +124,7 @@
               >
 
               <label
-                class="quiz_step__radio_label"
+                class="quiz-step__radio-label"
                 for="{{ block.settings.name | append: '_' | append: forloop.index }}"
               >
                 {{- radio_text -}}
@@ -106,7 +134,7 @@
         </div>
       {%- else -%}
         <input
-          class="quiz_step__input"
+          class="quiz-step__input"
           type="{{ block.type }}"
           name="{{ block.settings.name }}"
           placeholder="{{ block.settings.placeholder }}"
@@ -138,10 +166,10 @@
       {%- endif -%}
     </div>
 
-    <div class="quiz_step__contents_bottom">
+    <div class="quiz-step-contents__bottom">
       {%- if block.settings.show_trust_badge -%}
         <div
-          class="quiz_step__trust"
+          class="quiz-step__trust"
           {% if step_index == 0 %}
             animate animate-fade-in
           {% endif %}
@@ -156,11 +184,11 @@
             assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
 
             if trust_logo != blank
-              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz_step__trust_logo'
+              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz-step__trust-logo'
             endif
 
             if star_icons != blank
-              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz_step__star_icons'
+              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz-step__star-icons'
             endif
 
             if section.settings.trust_text
@@ -172,7 +200,7 @@
 
       {%- unless block.settings.hide_next_button -%}
         <input
-          class="quiz_step__next_btn button button--primary"
+          class="quiz-step__next-btn button button--primary"
           type="submit"
           value="{{ block.settings.next_btn_text }}"
           disabled
@@ -183,7 +211,7 @@
       {%- endunless -%}
 
       {%- if block.settings.footer_text != blank -%}
-        <div class="quiz_step__footer_text">
+        <div class="quiz-step__footer-text">
           {{- block.settings.footer_text -}}
         </div>
       {%- endif -%}
@@ -191,7 +219,7 @@
 
     {%- unless step_index == 0 -%}
       <quiz-back
-        class="quiz_step__back--desktop"
+        class="quiz-step__back--desktop"
       >
         {%- render 'icon-arrow' -%}
         {{- section.settings.prev_btn_text -}}
