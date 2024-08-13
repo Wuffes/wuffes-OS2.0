@@ -17,8 +17,8 @@
     }
   }
 
-  .testimonials_bg_img {
-    background-image: url( "{{ section.settings.img_bg | img_url: '100x', crop:'center' }}, {{ section.settings.img_bg | img_url: '200x', crop:'center' }} 2x");
+   .testimonials_bg_img {
+    background-image: url( "{{ section.settings.img_bg | image_url: width: 100, crop:'center' }}");
     background-repeat: repeat;
     background-size: 10rem;
   }
@@ -42,22 +42,21 @@
   {% if section.settings.full_width -%}
     100vw
   {%- else -%}
-    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px)
-    calc(100vw - 10rem), 100vw
+  (min-width: 1600px) calc((67vw-60px)* 0.36),
+  (min-width: 1200px) calc((67vw-60px)* 0.44),
+  (min-width: 992px) calc((50vw-30px)* 0.66),
+  (min-width: 768px) calc((50vw-30px)* 0.7),
+  (min-width: 680px) calc((100vw-50px)*0.43),
+  (min-width: 500px) calc((100vw-35px)*0.55),
+  (min-width: 460px) calc((100vw-35px)*0.65), calc((100vw-35px)*0.75)
   {%- endif %}
 {%- endcapture -%}
 
-<div class="color-{{ section.settings.color_scheme }}   {%- if section.settings.enable_img_bg -%} testimonials_bg_img{%- endif -%}">
-  {% comment %}
-    {% if section.settings.img_bg != blank %}
-      <div class="testimonials_bg">
-        {{ section.settings.img_bg | image_url: width: 162 | image_tag: sizes: '54px', widths: '54, 108, 162' }}
-      </div>
-    {% endif %}
-  {% endcomment %}
-
-  <div class="container-fluid testimonials__container">
-    <div class="testimonials__wrap">
+<div
+  class="color-{{ section.settings.color_scheme }}   {%- if section.settings.enable_img_bg -%} testimonials_bg_img{%- endif -%}"
+>
+  <div class="container-fluid testimonials__container section-{{ section.id }}-padding ">
+    <div class="testimonials__wrap testimonials_slider_block-video-wrapper">
       {% if section.settings.title != blank %}
         <div class="testimonials__desktop_left_block">
           <h2
@@ -67,7 +66,7 @@
             {{ section.settings.title }}
           </h2>
 
-          <div class="testimonials_slider_buttons_desktop">
+          <div class="testimonials-slider_buttons_desktop">
             <button
               type="button"
               class="prev-button data-slider-button"
@@ -89,11 +88,11 @@
         </div>
       {% endif %}
       <div class="testimonials__desktop_right_block">
-        <slider-component class="testimonials_slider slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <slideshow-component class="testimonials_slider slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <ul
             id="Slider-{{ section.id }}"
             data-id="{{ section.id }}"
-            class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop slider slider--desktop slider--tablet grid--peek"
+            class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--3-col-desktop slider slider--desktop slider--tablet grid--peek"
             role="list"
             aria-label="{{ 'general.slider.name' | t }}"
           >
@@ -115,10 +114,11 @@
               >
                 <h3>{{ block.settings.item_title }}</h3>
                 <div class="block_video_wrapper">
-                  {%- if block.type == 'testimonials_video' -%}
+                  {%- if block.type == 'video' -%}
                     <deferred-media
-                      class="{%- if block.settings.video_autoplay -%}video_autoplay{% endif %} video-section__media deferred-media gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if block.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      class="video-section__media deferred-media gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if block.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                       data-media-id="{{ video_id }} "
+                      {{ block.shopify_attributes }}
                       {% if block.settings.video.preview_image != null %}
                         style="--ratio-percent: {{ 1 | divided_by: block.settings.video.preview_image.aspect_ratio | times: 100 }}%;"
                       {% endif %}
@@ -136,7 +136,7 @@
                             | image_tag: sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
                           }}
                         {%- else -%}
-                          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                          {{ 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                         {%- endif -%}
                         <span class="deferred-media__poster-button motion-reduce">
                           {%- render 'icon-play' -%}
@@ -144,12 +144,6 @@
                       </button>
                       <template>
                         {%- if block.settings.video == null and block.settings.video_url != null -%}
-                          {%- liquid
-                            assign loop = ''
-                            if block.settings.enable_video_looping
-                              assign loop = '&loop=1&playlist=' | append: video_id
-                            endif
-                          -%}
                           {%- if block.settings.video_url.type == 'youtube' -%}
                             <iframe
                               src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
@@ -170,12 +164,7 @@
                         {%- else -%}
                           {{
                             block.settings.video
-                            | video_tag:
-                              image_size: '1100x',
-                              autoplay: true,
-                              loop: section.settings.enable_video_looping,
-                              controls: true,
-                              muted: false
+                            | video_tag: image_size: '1100x', autoplay: true, controls: true, muted: false
                           }}
                         {%- endif -%}
                       </template>
@@ -183,7 +172,7 @@
                   {%- endif -%}
 
                   {%- if block.type == 'text' -%}
-                    <div class="testimonials__slide_card_text_wrap">
+                    <div class="testimonials__slide_card_text_wrap" {{ block.shopify_attributes }}>
                       {%- if block.settings.show_review_icons == true -%}
                         <div class="testimonials__slide_stars">
                           {% render 'icon-stars' %}
@@ -208,20 +197,25 @@
                         </p>
                       {% endif %}
                     </div>
-                    <video
-                      playsinline="playsinline"
-                      muted="muted"
-                      autoplay="autoplay"
-                      loop="loop"
-                      class="testimonials__slide_video"
-                      style="z-index: -1;"
-                      preload="metadata"
-                    >
-                      <source
-                        src="{{ block.settings.video.sources[1].url }}"
-                        type="video/mp4"
+                    {% if block.settings.video != blank %}
+                      <video
+                        playsinline="playsinline"
+                        muted="muted"
+                        autoplay="autoplay"
+                        loop="loop"
+                        class="testimonials__slide_video"
+                        style="z-index: -1;"
+                        preload="metadata"
                       >
-                    </video>
+                        <source
+                          src="{{ block.settings.video.sources[1].url }}"
+                          type="video/mp4"
+                        >
+                      </video>
+
+                    {%- else -%}
+                      {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
 
                     <div class="testimonials__slide_video_overlay"></div>
                   {%- endif -%}
@@ -234,6 +228,8 @@
                           | image_url: width: 300
                           | image_tag: sizes: '100px', widths: '100, 200, 300'
                         }}
+                      {%- else -%}
+                        {{ 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {% endif %}
                       {% if block.settings.slide_product_title != blank %}
                         <h4 class="testimonials_slide_card_bottom_text">
@@ -270,7 +266,7 @@
               {% render 'icon-arrow' %}
             </button>
           </div>
-        </slider-component>
+        </slideshow-component>
       </div>
     </div>
   </div>
@@ -289,18 +285,8 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Collections",
-      "label": "t:sections.collection-list.settings.title.label"
-    },
-
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "default": 3,
-      "label": "t:sections.collection-list.settings.columns_desktop.label"
+      "default": "Title",
+      "label": "Title"
     },
     {
       "type": "color_scheme",
@@ -347,26 +333,14 @@
   ],
   "blocks": [
     {
-      "type": "testimonials_video",
-      "name": "testimonials_video",
+      "type": "video",
+      "name": "Video",
       "settings": [
         {
           "type": "inline_richtext",
           "id": "item_title",
-          "default": "Collections",
+          "default": "Title",
           "label": "t:sections.collection-list.settings.title.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_video_looping",
-          "label": "t:sections.video.settings.enable_video_looping.label",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "video_autoplay",
-          "label": "Enable video autoplay",
-          "default": false
         },
         {
           "type": "header",
@@ -412,7 +386,7 @@
         {
           "type": "inline_richtext",
           "id": "slide_product_title",
-          "default": "Testimonials slide product title",
+          "default": "Slide product title",
           "label": "Slide text author"
         }
       ]
@@ -424,20 +398,8 @@
         {
           "type": "inline_richtext",
           "id": "item_title",
-          "default": "Testimonials title",
-          "label": "t:sections.collection-list.settings.title.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_video_looping",
-          "label": "t:sections.video.settings.enable_video_looping.label",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "video_autoplay",
-          "label": "Enable video autoplay",
-          "default": false
+          "default": "Title",
+          "label": "Title"
         },
         {
           "type": "header",
@@ -452,19 +414,19 @@
         {
           "type": "inline_richtext",
           "id": "slide_title",
-          "default": "Testimonials slide title",
+          "default": "Slide title",
           "label": "Slide title"
         },
         {
           "type": "inline_richtext",
           "id": "slide_text",
-          "default": "Testimonials slide text",
+          "default": "Slide text",
           "label": "Slide text"
         },
         {
           "type": "inline_richtext",
           "id": "slide_text_author",
-          "default": "Testimonials slide text author",
+          "default": "Slide text author",
           "label": "Slide text author"
         },
         {
@@ -475,7 +437,7 @@
         {
           "type": "inline_richtext",
           "id": "slide_product_title",
-          "default": "Testimonials slide product title",
+          "default": "Slide product title",
           "label": "Slide text author"
         },
         {
@@ -516,13 +478,13 @@
       "name": "Testimonials",
       "blocks": [
         {
-          "type": "text"
+          "type": "video"
         },
         {
           "type": "text"
         },
         {
-          "type": "text"
+          "type": "video"
         }
       ]
     }

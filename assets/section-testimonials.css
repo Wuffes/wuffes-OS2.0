@@ -4,19 +4,30 @@
   display: flex;
   align-items: center;
   background: #fff;
-  border-top: 1px solid rgb(36, 36, 39);
+  border-top: 1px solid rgb(var(--dl_main_text_color));
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 3;
   transition: 0.3s;
 }
+
+.testimonials__wrap .video-section__media {
+  --ratio-percent: 100%;
+}
+
 .js_slide_card_bottom.active-class {
   bottom: -150px;
   transition: 0.3s;
 }
 .block_video_wrapper {
   position: relative;
+}
+
+.testimonials__desktop_right_block .placeholder-svg {
+  width: 100%;
+  height: auto;
+  border-radius: 2rem;
 }
 
 .testimonials__slide_card_text_wrap {
@@ -33,6 +44,10 @@
 .testimonials__slide_video {
   width: 100%;
   border-radius: 2rem;
+}
+
+.testimonials__container .slider-counter.caption {
+  display: none;
 }
 
 .js_slide_card_bottom {
@@ -94,14 +109,12 @@
 }
 
 .testimonials__slide_card_text_heading {
-  padding-top: 1rem;
   font-size: 1.6rem;
   line-height: 140%;
   color: rgb(0, 0, 0);
 }
 .testimonials__slide_card_text_content {
-  padding-top: 2rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: rgb(0, 0, 0);
 }
 
@@ -116,7 +129,7 @@ span.deferred-media__poster-button {
 }
 
 .testimonials__wrap {
-  padding: 4rem 0 4rem 2rem;
+  padding: 0 0 0 2rem;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -146,7 +159,7 @@ span.deferred-media__poster-button {
 }
 
 .testimonials__wrap .grid.product-grid .grid__item {
-  min-width: 70%;
+  min-width: 75%;
 }
 
 .grid--peek.slider .grid__item:first-of-type {
@@ -159,7 +172,7 @@ span.deferred-media__poster-button {
   gap: 4.6rem;
 }
 
-.testimonials_slider_buttons_desktop {
+.testimonials-slider_buttons_desktop {
   display: flex;
   gap: 4.6rem;
 }
@@ -207,12 +220,22 @@ button.slider-button .icon {
   color: rgb(16, 87, 80);
 }
 
+.testimonials__wrap button.slider-button:hover {
+  color: rgb(16, 87, 80);
+  background: rgb(197, 234, 194);
+}
+.testimonials__wrap button.slider-button--next:hover {
+  .icon.icon-arrow {
+    transform: rotate(0);
+  }
+}
+
 .testimonials__slide_stars svg path {
   fill: rgb(16, 87, 80);
 }
 
 @media screen and (max-width: 767px) {
-  .testimonials_slider_buttons_desktop {
+  .testimonials-slider_buttons_desktop {
     display: none;
   }
 }
@@ -240,6 +263,15 @@ button.slider-button .icon {
     font-size: 1.8rem;
   }
 
+  .testimonials__slide_card_text_heading {
+    padding-top: 1rem;
+  }
+
+  .testimonials__slide_card_text_content {
+    padding-top: 2rem;
+    font-size: 1.6rem;
+  }
+
   .testimonials_slider .slider-buttons {
     display: none;
   }
@@ -253,7 +285,6 @@ button.slider-button .icon {
   }
 
   .testimonials__wrap {
-    padding: 8rem 0;
     align-items: center;
     justify-content: center;
   }

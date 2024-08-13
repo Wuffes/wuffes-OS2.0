@@ -43,12 +43,12 @@
   height: auto;
 }
 
-.gallery-slideshow__control-wrapper {
+.slideshow__control-wrapper {
   display: none;
 }
 
 .gallery-card__image-wrapper .media {
-  aspect-ratio: 1 / 1;
+  padding-bottom: 23rem;
 }
 
 .gallery__heading {

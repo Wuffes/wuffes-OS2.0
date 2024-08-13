@@ -1,5 +1,18 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'section-testimonials-full-width.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
@@ -7,35 +20,36 @@
     class="section-testimonials_full_width collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
+    {{ block.shopify_attributes }}
   >
     <div class="featured-collection__wrap">
       <div class="collection__title featured-collection__title title-wrapper title-wrapper--no-top-margin page-width">
         {%- if section.settings.title != blank -%}
-          <h2 class="testimonials_title inline-richtext">
+          <h2 class="testimonials-title inline-richtext">
             {{ section.settings.title }}
           </h2>
         {%- endif -%}
         {%- if section.settings.sub_title != blank -%}
-          <p class="testimonials_subtitle">
+          <p class="testimonials-subtitle">
             {{ section.settings.sub_title }}
           </p>
         {%- endif -%}
         {%- if section.settings.heading_description != blank -%}
-          <p class="testimonials_heading_description">
+          <p class="testimonials-heading_description">
             {{ section.settings.heading_description }}
           </p>
         {%- endif -%}
       </div>
 
       <slideshow-component
-        class="testimonials_fill_width__slider slider-mobile-gutter page-width-desktop slider-component-desktop scroll-trigger animate--slide-in"
+        class="testimonials-full-width__slider slider-mobile-gutter page-width-desktop slider-component-desktop  animate--slide-in"
         style="display: block;"
       >
         <ul
           id="Slider-{{ section.id }}"
           data-id="{{ section.id }}"
-          class=" testimonials_fill_width__slider_wrapper grid product-grid contains-card contains-card--product grid--1-col-tablet-down slider slider--desktop testimonials_fill_width--slider--desktop slider--tablet grid--peek grid--{{ section.settings.columns_desktop }}-col-desktop "
-          role="list"
+          class=" testimonials-full-width__slider_wrapper grid product-grid contains-card contains-card--product grid--1-col-tablet-down slider slider--desktop testimonials_fill_width--slider--desktop slider--tablet grid--peek grid--{{ section.settings.columns_desktop }}-col-desktop "
+
           aria-label="{{ 'general.slider.name' | t }}"
         >
           {%- for block in section.blocks -%}
@@ -48,10 +62,12 @@
                   {% capture sizes %}(min-width: 990px) calc((1100px-90px)/3), (min-width: 750px) calc((100vw-45px)/2), calc(100vw-60px){% endcapture %}
                   {% capture widths %}300,340,365,600,680,730,900,1020,1095{% endcapture %}
                   {{ block.settings.slide_main_img | image_url: width: 1095 | image_tag: widths: widths, sizes: sizes }}
+                {%- else -%}
+                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
-                {%- if block.settings.steps_per_day != blank -%}
+                {%- if block.settings.video_overlay_text != blank -%}
                   <p class="slide__img_tag">
-                    {{ block.settings.steps_per_day }}
+                    {{ block.settings.video_overlay_text }}
                   </p>
                 {%- endif -%}
                 {%- if block.settings.text_month != blank -%}
@@ -60,14 +76,14 @@
                   </p>
                 {%- endif -%}
               </div>
-              <div class="featured_story__slide_content_wrap">
+              <div class="featured-story__slide_content_wrap">
                 {%- if block.settings.item_title != blank -%}
-                  <p class="slide_content__heading">
+                  <p class="slide-content__heading">
                     {{ block.settings.item_title }}
                   </p>
                 {%- endif -%}
                 {%- if block.settings.description != blank -%}
-                  <p class="slide_content__subheading">
+                  <p class="slide-content__subheading">
                     {{ block.settings.description }}
                   </p>
                 {%- endif -%}
@@ -78,7 +94,7 @@
 
         <div class="slider-buttons testimonials--slider-buttons">
           <div
-            class="testimonials_slider_pagination slider-counter slider-counter--dots"
+            class="testimonials-slider_pagination slider-counter slider-counter--dots"
           >
             <div class="slideshow__control-wrapper">
               {%- for block in section.blocks -%}
@@ -93,7 +109,7 @@
               {%- endfor -%}
             </div>
           </div>
-          <div class="testimonials_navigation">
+          <div class="testimonials-navigation">
             <button
               type="button"
               class="slider-button slider-button--prev testimonials_slider-button--prev"
@@ -145,20 +161,20 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Testimonials title",
-      "label": "Testimonials title"
+      "default": "Title",
+      "label": "Title"
     },
     {
       "type": "inline_richtext",
       "id": "sub_title",
-      "default": "Testimonials subtitle",
-      "label": "Testimonials subtitle"
+      "default": "Subtitle",
+      "label": "Subtitle"
     },
     {
       "type": "inline_richtext",
       "id": "heading_description",
-      "default": "Testimonials description",
-      "label": "Testimonials description"
+      "default": "Description",
+      "label": "Description"
     },
 
     {
@@ -171,6 +187,30 @@
       "label": "t:sections.collection-list.settings.columns_desktop.label"
     },
     {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
@@ -180,8 +220,8 @@
   ],
   "blocks": [
     {
-      "type": "testimonials_slide",
-      "name": "Testimonials slide",
+      "type": "slide",
+      "name": "Slide",
       "settings": [
         {
           "type": "image_picker",
@@ -208,9 +248,9 @@
         },
         {
           "type": "inline_richtext",
-          "id": "steps_per_day",
-          "default": "X steps / per day",
-          "label": "Staps per day"
+          "id": "video_overlay_text",
+          "default": "Video overlay text",
+          "label": "Video overlay text"
         }
       ]
     }
@@ -220,13 +260,13 @@
       "name": "Testimonials Full width",
       "blocks": [
         {
-          "type": "testimonials_slide"
+          "type": "slide"
         },
         {
-          "type": "testimonials_slide"
+          "type": "slide"
         },
         {
-          "type": "testimonials_slide"
+          "type": "slide"
         }
       ]
     }

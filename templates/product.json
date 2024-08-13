@@ -183,9 +183,5 @@
       }
     }
   },
-  "order": [
-    "main",
-    "image-with-text",
-    "related-products"
-  ]
+  "order": ["main", "image-with-text", "related-products"]
 }
