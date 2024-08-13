@@ -1,0 +1,546 @@
+{{ 'section-main-quiz.css' | asset_url | stylesheet_tag }}
+
+{%- assign dog_breeds = false -%}
+
+{% liquid
+  capture quiz_attributes
+    if section.settings.redirect_url
+      echo ' data-redirect-url=' | append: section.settings.redirect_url
+    endif
+
+    if section.settings.redirect_url_pdp_lb
+      echo ' data-redirect-url-pdp-lb=' | append: section.settings.redirect_url_pdp_lb
+    endif
+
+    if section.settings.redirect_url_pdp_sb
+      echo ' data-redirect-url-pdp-sb=' | append: section.settings.redirect_url_pdp_sb
+    endif
+
+    if section.settings.gcloud_url
+      echo ' data-gcloud-url=' | append: section.settings.gcloud_url
+    endif
+
+    if section.settings.default_redirect
+      echo ' data-default-redirect=' | append: section.settings.default_redirect
+    endif
+  endcapture
+%}
+
+<main-quiz class="quiz color-{{ section.settings.color_scheme }} gradient" {{ quiz_attributes }}>
+  <quiz-progress>
+    <div quiz-progress-inner>
+      <p quiz-progress-text>0%</p>
+    </div>
+  </quiz-progress>
+
+  {%- liquid
+    for block in section.blocks
+      if block.settings.name == 'breed'
+        assign dog_breeds = shop.metafields.shop.dog_breed_list.value
+      endif
+
+      render 'quiz-step', block: block, step_index: forloop.index0, dog_breeds: dog_breeds
+    endfor
+  -%}
+
+  <quiz-step quiz-step-index="last">
+    <div class="quiz-step-final">
+      <div>
+        {%- if section.settings.final_step_logo -%}
+          {%- liquid
+            assign widths = '170, 340, 510'
+
+            echo section.settings.final_step_logo | image_url: width: 510 | image_tag: widths: widths, class: 'quiz-step-final__logo'
+          -%}
+        {%- endif -%}
+
+        {%- if section.settings.final_step_heading != blank -%}
+          <div class="quiz-step__heading quiz-step-final__heading">
+            {{- section.settings.final_step_heading | replace: '[dog_name]', '<span dog-name>your dog</span>' -}}
+          </div>
+        {%- endif -%}
+
+        <div class="loading-screen">
+          <div loading-screen-progress></div>
+        </div>
+
+        {%- liquid
+          if section.settings.final_step_image_desktop and section.settings.final_step_image_mobile
+            assign featured_image = section.settings.final_step_image_mobile
+            assign desktop_image = section.settings.final_step_image_desktop
+
+          elsif section.settings.final_step_image_desktop and section.settings.final_step_image_mobile == blank
+            assign featured_image = section.settings.final_step_image_desktop
+
+          elsif section.settings.final_step_image_desktop == blank and section.settings.final_step_image_mobile
+            assign featured_image = section.settings.final_step_image_mobile
+          endif
+        -%}
+
+        <picture>
+          {%- liquid
+            assign widths = '357, 500, 714, 790, 1000, 1071, 1500, 1580, 2370'
+            assign widths_array = widths | split: ','
+            assign sizes = '(max-width: 767px) 357px, (min-width: 768px) 500px, (min-width: 990px) 790'
+          -%}
+
+          {%- if desktop_image != blank -%}
+            <source
+              media="(min-width: 768px)"
+              srcset="
+                {%- for width in widths_array -%}
+                  {{ desktop_image | image_url: width: width }} {{ width }}w{%- if forloop.last == false %},{% endif -%}
+                {%- endfor -%}
+              "
+            >
+          {%- endif -%}
+
+          {{-
+            featured_image
+            | image_url: width: 2370
+            | image_tag: widths: widths, sizes: sizes, class: 'quiz-step-final__image'
+          -}}
+        </picture>
+
+        <div class="quiz-step-contents__bottom-text">
+          {%- if section.settings.final_step_bottom_text -%}
+            {{- section.settings.final_step_bottom_text -}}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="quiz-step-contents__bottom">
+        <div class="quiz-step__trust">
+          {%- liquid
+            assign trust_logo = section.settings.trust_logo
+            assign trust_logo_widths = '74, 92, 148, 184, 222, 276'
+            assign trust_logo_sizes = '(max-width: 767px) 74px, (min-width: 768px) 92px'
+
+            assign star_icons = section.settings.trust_star_icons
+            assign star_icons_widths = '100, 123, 200, 246, 300, 369'
+            assign star_icons_sizes = '(max-width: 767px) 100px, (min-width: 768px) 123px'
+
+            if trust_logo != blank
+              echo trust_logo | image_url: width: 276 | image_tag: widths: trust_logo_widths, sizes: trust_logo_sizes, class: 'quiz-step__trust-logo'
+            endif
+
+            if star_icons != blank
+              echo star_icons | image_url: width: 369 | image_tag: widths: star_icons_widths, sizes: star_icons_sizes, class: 'quiz-step__star-icons'
+            endif
+
+            if section.settings.trust_text
+              echo section.settings.trust_text
+            endif
+          -%}
+        </div>
+      </div>
+    </div>
+  </quiz-step>
+</main-quiz>
+
+<script src="{{ 'main-quiz.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Quiz",
+  "tag": "section",
+  "class": "section__quiz-step",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Trust badge"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_logo",
+      "label": "Trust logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_star_icons",
+      "label": "Trust star icons"
+    },
+    {
+      "type": "richtext",
+      "id": "trust_text",
+      "label": "Text",
+      "default": "<p>TrustScore 4.8 | <strong>1,000+ Reviews</strong></p>"
+    },
+    {
+      "type": "header",
+      "content": "Step settings"
+    },
+    {
+      "type": "text",
+      "id": "prev_btn_text",
+      "label": "Prev button text",
+      "default": "back"
+    },
+    {
+      "type": "header",
+      "content": "Final step"
+    },
+    {
+      "type": "image_picker",
+      "id": "final_step_logo",
+      "label": "Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "final_step_heading",
+      "label": "Heading",
+      "default": "<h1>Add title here</h1>"
+    },
+    {
+      "type": "image_picker",
+      "id": "final_step_image_desktop",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "final_step_image_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "richtext",
+      "id": "final_step_bottom_text",
+      "label": "Bottom text",
+      "default": "<h3>Crafted with love and backed by science</h3>"
+    },
+    {
+      "type": "header",
+      "content": "URLs"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url",
+      "label": "Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url_pdp_lb",
+      "label": "PDP LB Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "redirect_url_pdp_sb",
+      "label": "PDP SB Redirect url"
+    },
+    {
+      "type": "url",
+      "id": "gcloud_url",
+      "label": "Gcloud URL"
+    },
+    {
+      "type": "text",
+      "id": "default_redirect",
+      "label": "Default redirect",
+      "default": "full_price"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Input text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Add title here</h2>"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Input placeholder"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Input name",
+          "default": "name",
+          "info": "Input attribute that gets passed to klaviyo as a property"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_trust_badge",
+          "label": "Show trust badge",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_next_button",
+          "label": "Hide next button",
+          "info": "Automatically goes to next step after input",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "next_btn_text",
+          "label": "Next button text",
+          "default": "CONTINUE"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text"
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "name": "Input number",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Add title here</h2>"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Input placeholder"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Input name",
+          "default": "age",
+          "info": "Input attribute that gets passed to klaviyo as a property"
+        },
+        {
+          "type": "range",
+          "id": "input_num_limit",
+          "label": "Max limit",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "default": 30
+        },
+        {
+          "type": "checkbox",
+          "id": "show_trust_badge",
+          "label": "Show trust badge",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_next_button",
+          "label": "Hide next button",
+          "info": "Automatically goes to next step after input",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "next_btn_text",
+          "label": "Next button text",
+          "default": "CONTINUE"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text"
+        }
+      ]
+    },
+    {
+      "type": "email",
+      "name": "Input email",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h5>Add title here</h5>"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Input placeholder"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Input name",
+          "default": "email",
+          "info": "Input attribute that gets passed to klaviyo as a property"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_trust_badge",
+          "label": "Show trust badge",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_next_button",
+          "label": "Hide next button",
+          "info": "Automatically goes to next step after input",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "next_btn_text",
+          "label": "Next button text",
+          "default": "CONTINUE"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "name": "Radio",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Add title here</h2>"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Input name",
+          "default": "joint-issues",
+          "info": "Input attribute that gets passed to klaviyo as a property"
+        },
+        {
+          "type": "liquid",
+          "id": "label",
+          "label": "Label array",
+          "info": "Separated by comma ie: yes,no"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_trust_badge",
+          "label": "Show trust badge",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_next_button",
+          "label": "Hide next button",
+          "info": "Automatically goes to next step after input",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "next_btn_text",
+          "label": "Next button text",
+          "default": "CONTINUE"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text"
+        }
+      ]
+    },
+    {
+      "type": "radio-icon",
+      "name": "Radio with icon",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h2>Add title here</h2>"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Input name",
+          "default": "weight",
+          "info": "Input attribute that gets passed to klaviyo as a property"
+        },
+        {
+          "type": "liquid",
+          "id": "label",
+          "label": "Label array",
+          "info": "Format: text:icon_name:width. Separate by comma."
+        },
+        {
+          "type": "select",
+          "id": "icon_coloring",
+          "label": "Icon coloring",
+          "options": [
+            {
+              "value": "fill",
+              "label": "Fill"
+            },
+            {
+              "value": "stroke",
+              "label": "Stroke"
+            }
+          ],
+          "default": "fill",
+          "info": "Color manipulation can be either applied as fill or stroke"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_trust_badge",
+          "label": "Show trust badge",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_next_button",
+          "label": "Hide next button",
+          "info": "Automatically goes to next step after input",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "next_btn_text",
+          "label": "Next button text",
+          "default": "CONTINUE"
+        },
+        {
+          "type": "richtext",
+          "id": "footer_text",
+          "label": "Footer text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz step"
+    }
+  ]
+}
+{% endschema %}

@@ -384,7 +384,6 @@ class MenuDrawer extends HTMLElement {
     });
   }
 
-
   onKeyUp(event) {
     if (event.code.toUpperCase() !== 'ESCAPE') return;
 
@@ -437,7 +436,6 @@ class MenuDrawer extends HTMLElement {
   }
 
   closeMenuDrawer(event, elementToFocus = false) {
-
     if (event === undefined) return;
 
     this.mainDetailsToggle.classList.remove('menu-opening');
