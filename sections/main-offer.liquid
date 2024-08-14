@@ -1,0 +1,502 @@
+{{ 'main-offer.css' | asset_url | stylesheet_tag }}
+
+<offer
+  class="color-{{ section.settings.color_scheme }} gradient"
+  style="--accent-color: {{ section.settings.accent_color }};"
+>
+  <div class="offer__container">
+    <div class="col-1">carousel</div>
+
+    <div class="col-2 offer__picker">
+      {%- for block in section.blocks -%}
+        <div
+          class="picker-block scroll-trigger animate--slide-in"
+          data-cascade
+          {{ block.shopify_attributes }}
+        >
+          <div
+            class="picker-block__wrap picker-block__{{ block.type }}"
+            style="
+              --block-padding-top: {{ block.settings.padding_top }}px;
+              --block-padding-bottom: {{ block.settings.padding_bottom }}px;
+            "
+          >
+            {%- if block.type == 'text' -%}
+              <div
+                class="picker-block__text--{{ block.settings.font_size }}"
+              >
+                {{-
+                  block.settings.text
+                  | replace: '[accent]', '<span class="color_accent">'
+                  | replace: '[/accent]', '</span>'
+                -}}
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'trust' -%}
+              {%- if block.settings.image -%}
+                {%- liquid
+                  echo block.settings.image | image_url: width: 123 | image_tag: class: ''
+                -%}
+              {%- endif -%}
+
+              {%- if block.settings.text -%}
+                {{- block.settings.text -}}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'price' -%}
+              <new-price>$20</new-price>
+              <old-price>$41</old-price>
+
+              {%- if block.settings.text -%}
+                <div class="picker-block__price-label">
+                  {{- block.settings.text -}}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'mystery-gift' -%}
+              {%- if block.settings.ribbon_text -%}
+                <div class="mystery-gift__ribbon-text">
+                  {{- block.settings.ribbon_text -}}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.heading -%}
+                <div class="mystery-gift__heading">
+                  {{- block.settings.heading -}}
+                </div>
+              {%- endif -%}
+
+              <div class="mystery-gift__content">
+                <div class="mystery-gift__icon">
+                  {%- render 'icon-mystery-gift' -%}
+                </div>
+
+                <div class="mystery-gift__texts">
+                  <div class="mystery-gift__texts-left">
+                    {%- if block.settings.text_top_left -%}
+                      {{-
+                        block.settings.text_top_left
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+
+                    {%- if block.settings.text_bottom_left -%}
+                      {{-
+                        block.settings.text_bottom_left
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+                  </div>
+
+                  <div class="mystery-gift__texts-right">
+                    {%- if block.settings.text_top_right -%}
+                      {{-
+                        block.settings.text_top_right
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+
+                    {%- if block.settings.text_bottom_right -%}
+                      {{-
+                        block.settings.text_bottom_right
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'popup-trigger' -%}
+              {%- if block.settings.button_text -%}
+                <a
+                  href="#"
+                  class="popup-trigger--{{ block.settings.button_type }} {% if block.settings.button_type == 'button' %}button button-primary{% endif %}"
+                  data-purchase-type="{{ block.settings.target }}"
+                >
+                  {{- block.settings.button_text -}}
+
+                  {%- if block.settings.button_subtext != blank -%}
+                    <div class="popup-trigger__button-subtext">
+                      {%- render 'icon-guard' -%}
+                      {{- block.settings.button_subtext -}}
+                    </div>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'fomo' -%}
+              {{- block.settings.left_text -}}
+
+              <div class="fomo-block__right">
+                {%- if block.settings.right_image -%}
+                  {{-
+                    block.settings.right_image
+                    | image_url: width: 84
+                    | image_tag: class: 'fomo-block__right-image'
+                  -}}
+                {%- endif -%}
+
+                {{- block.settings.right_text -}}
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'divider' -%}
+              <div class="divider-block__line"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</offer>
+
+{% schema %}
+{
+  "name": "Offer page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#2c8274"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add text here</p>"
+        },
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "Font size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "regular",
+              "label": "Regular"
+            }
+          ],
+          "default": "regular"
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add text here</p>"
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Price label text",
+          "default": "<p><strong>Save up to 58% On First Order</strong></p>"
+        }
+      ]
+    },
+    {
+      "type": "mystery-gift",
+      "name": "Mystery gift",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "ribbon_text",
+          "label": "Text",
+          "default": "<p><strong>Order today for a guaranteed Free Gift!</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<p><strong><i>Free Gift With Your Order</i></strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_top_left",
+          "label": "Top left",
+          "default": "<p><strong>Mystery Gift</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_bottom_left",
+          "label": "Bottom left",
+          "default": "<p>While stock lasts!</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_top_right",
+          "label": "Top right",
+          "default": "<p><strong>$19.95</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_bottom_right",
+          "label": "Bottom right",
+          "default": "<p><strong>FREE</strong></p>"
+        }
+      ]
+    },
+    {
+      "type": "popup-trigger",
+      "name": "Popup trigger",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "target",
+          "label": "target",
+          "options": [
+            {
+              "value": "sub",
+              "label": "Sub"
+            },
+            {
+              "value": "onetime",
+              "label": "Onetime"
+            }
+          ],
+          "default": "sub"
+        },
+        {
+          "type": "select",
+          "id": "button_type",
+          "label": "Button type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "GET 58% OFF"
+        },
+        {
+          "type": "text",
+          "id": "button_subtext",
+          "label": "Sub text",
+          "default": "90-day Money Back Guarantee"
+        }
+      ]
+    },
+    {
+      "type": "fomo",
+      "name": "Fomo",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "left_text",
+          "label": "Left text",
+          "default": "<p>Ships in 24 hours</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "right_text",
+          "label": "Right text",
+          "default": "<p><strong>16 orders</strong> at this price remaining</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 25
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

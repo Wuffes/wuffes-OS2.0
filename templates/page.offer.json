@@ -1,0 +1,152 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-offer",
+      "blocks": {
+        "text_NBgrTW": {
+          "type": "text",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "text": "<h1>Meet the [accent]<em>#1 Highest Reviewed[\/accent]<\/em> Hip & Joint Supplement for Dogs*<\/h1>",
+            "font_size": "regular"
+          }
+        },
+        "text_i4xyxJ": {
+          "type": "text",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "text": "<p><em><strong>👉 Subscribe Today and Save<\/strong><\/em><strong> <\/strong>on your First Month’s Shipment<\/p>",
+            "font_size": "small"
+          }
+        },
+        "trust_VMppQj": {
+          "type": "trust",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "image": "shopify:\/\/shop_images\/ratings_star.svg",
+            "text": "<p>Excellent <strong>4.8<\/strong> | Over 1.3k Reviews<\/p>"
+          }
+        },
+        "text_kqxDhQ": {
+          "type": "text",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "text": "<p>Made with scientifically-backed ingredients, our powerful joint chews help decrease inflammation and fight joint pain.<\/p>",
+            "font_size": "regular"
+          }
+        },
+        "price_TNBidy": {
+          "type": "price",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "text": "<p><strong>Save up to 58% On First Order<\/strong><\/p>"
+          }
+        },
+        "mystery_gift_NJVmz3": {
+          "type": "mystery-gift",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "ribbon_text": "<p><strong>Order today for a guaranteed Free Gift!<\/strong><\/p>",
+            "heading": "<p><em><strong>Free Gift With Your Order<\/strong><\/em><\/p>",
+            "text_top_left": "<p><strong>Mystery Gift<\/strong><\/p>",
+            "text_bottom_left": "<p>While stock lasts!<\/p>",
+            "text_top_right": "<p><strong>[line-through]$19.95[\/line-through]<\/strong><\/p>",
+            "text_bottom_right": "<p><strong>FREE<\/strong><\/p>"
+          }
+        },
+        "popup_trigger_GRrK9R": {
+          "type": "popup-trigger",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "target": "sub",
+            "button_type": "button",
+            "button_text": "GET 58% OFF",
+            "button_subtext": "90-DAY MONEY BACK GUARANTEE"
+          }
+        },
+        "fomo_eFNYma": {
+          "type": "fomo",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "left_text": "<p>Ships in 24 hours<\/p>",
+            "right_text": "<p><strong>16 orders<\/strong> at this price remaining<\/p>",
+            "right_image": "shopify:\/\/shop_images\/animated_timer.gif"
+          }
+        },
+        "divider_maEFHK": {
+          "type": "divider",
+          "settings": {
+            "padding_top": 25,
+            "padding_bottom": 25
+          }
+        },
+        "popup_trigger_kp4bdj": {
+          "type": "popup-trigger",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "target": "onetime",
+            "button_type": "link",
+            "button_text": "BUY ONCE - No Discount",
+            "button_subtext": ""
+          }
+        },
+        "text_iaMBcG": {
+          "type": "text",
+          "settings": {
+            "padding_top": 40,
+            "padding_bottom": 0,
+            "text": "<p>We recommend a subscription to give your dog the best chance at long lasting joint health<\/p>",
+            "font_size": "small"
+          }
+        },
+        "divider_fkJgUC": {
+          "type": "divider",
+          "settings": {
+            "padding_top": 25,
+            "padding_bottom": 8
+          }
+        },
+        "text_8w8xGF": {
+          "type": "text",
+          "settings": {
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "text": "<p>Advanced Hip & Joint Support is a groundbreaking blend of powerful ingredients that help support joint and mobility issues. The active ingredients in our formula were hand-picked by pet experts are scientifically-proven to help promote healthier joints and reduce symptoms of existing joint issues, in a little as 3 weeks.<\/p>",
+            "font_size": "small"
+          }
+        }
+      },
+      "block_order": [
+        "text_NBgrTW",
+        "text_i4xyxJ",
+        "trust_VMppQj",
+        "text_kqxDhQ",
+        "price_TNBidy",
+        "mystery_gift_NJVmz3",
+        "popup_trigger_GRrK9R",
+        "fomo_eFNYma",
+        "divider_maEFHK",
+        "popup_trigger_kp4bdj",
+        "text_iaMBcG",
+        "divider_fkJgUC",
+        "text_8w8xGF"
+      ],
+      "settings": {
+        "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
+        "accent_color": "#2c8274"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
