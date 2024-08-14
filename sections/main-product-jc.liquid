@@ -90,19 +90,19 @@
             >
               {% render 'icon-caret' %}
             </button>
-            <div class="slider-counter slider-counter--dots">
-              <div class="slideshow__control-wrapper">
+            <div class="slider-counter slider-counter--dots slider-counter--thumbs">
+              <div class="slideshow__control-wrapper slideshow__control-wrapper-thumbs">
                 {%- for thumb in hero_thumbs_arr -%}
                   <button
-                    class="slider-counter__link slider-counter__link--dots link"
+                    class="slider-counter__link slider-counter__link--dots slider-counter__link--thumbs-dots link"
                     aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                     aria-controls="Slider-{{ section.id }}"
                   >
-                    <div class="dot">
+                    <div class="thumbs-dot">
                       {{
                         thumb
                         | image_url: width: 200
-                        | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__slider_image'
+                        | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__thumbs_image'
                       }}
                     </div>
                   </button>
@@ -150,6 +150,16 @@
           {% endif %}
         </div>
       {% endif %}
+
+      <div class="product-picker_wrapper">
+        <form class="product-picker">
+          {% for variant in product.variants %}
+            {% if variant.metafields.os20.variant_dogsizes_list %}
+            {% endif %}
+            <p>{{ forloop.index }} - {{ variant.metafields.os20.variant_dogsizes_list }}</p>
+          {% endfor %}
+        </form>
+      </div>
     </div>
   </div>
 </section>
