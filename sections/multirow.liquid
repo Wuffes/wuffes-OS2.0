@@ -1,4 +1,5 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'section-multirow.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -42,8 +43,8 @@
   endunless
 -%}
 
-<div class="multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="multirow__inner page-width">
+<div class="multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} {% if section.settings.url_attributes %}url_attributes{% endif %}">
+  <div class="multirow__inner page-width {% if section.settings.img_container %} img-container_mobile{% endif %}">
     {%- for block in section.blocks -%}
       <div
         class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -58,34 +59,54 @@
               {% endif %}
             >
               {%- if block.settings.image != blank -%}
+                {%- assign image_class = '' -%}
+                {%- if block.settings.image_mobile != blank -%}
+                  {%- assign image_class = 'responsive-images' -%}
+                {%- endif -%}
                 {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-                {%- endcapture -%}
+                    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                    (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                  {%- endcapture -%}
                 {{
                   block.settings.image
                   | image_url: width: 1500
-                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500', class: image_class
                 }}
+
               {%- else -%}
                 {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              {%- assign image_mobile_class = '' -%}
+              {%- if block.settings.image_mobile != blank -%}
+                {%- assign image_mobile_class = 'image-with-text__mobile' -%}
+
+                {%- capture sizes -%}
+                    (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                  {%- endcapture -%}
+                {{
+                  block.settings.image_mobile
+                  | image_url: width: 750
+                  | image_tag: sizes: sizes, widths: '165, 360, 535, 750', class: image_mobile_class
+                }}
               {%- endif -%}
             </div>
           </div>
           <div class="image-with-text__text-item grid__item">
-            <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} background-transparent{% endunless %}">
+            <div class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.image_height }} content-container background-transparent">
               {%- if block.settings.caption -%}
-                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium">
+                <p class="image-with-text__text image-with-text__text--caption caption-with-letter-spacing caption-with-letter-spacing--medium multirow-caption">
                   {{ block.settings.caption | escape }}
                 </p>
               {%- endif -%}
               {%- if block.settings.heading -%}
-                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
+                <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte multirow-heading">
                   {{ block.settings.heading }}
                 </h2>
               {%- endif -%}
               {%- if block.settings.text -%}
-                <div class="image-with-text__text rte {{ section.settings.text_style }}">{{ block.settings.text }}</div>
+                <div class="image-with-text__text rte {{ section.settings.text_style }} multirow-descriptioin">
+                  {{ block.settings.text }}
+                </div>
               {%- endif -%}
               {%- if block.settings.button_label != blank -%}
                 <a
@@ -106,6 +127,8 @@
     {%- endfor -%}
   </div>
 </div>
+
+<script src="{{ 'section-multirow.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -159,6 +182,12 @@
       "default": "medium",
       "label": "t:sections.multirow.settings.desktop_image_width.label",
       "info": "t:sections.multirow.settings.desktop_image_width.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "img_container",
+      "default": false,
+      "label": "Remove image container on mobile"
     },
     {
       "type": "select",
@@ -285,6 +314,12 @@
       "default": "scheme-1"
     },
     {
+      "type": "checkbox",
+      "id": "url_attributes",
+      "default": false,
+      "label": "Enable search url attributes"
+    },
+    {
       "type": "color_scheme",
       "id": "row_color_scheme",
       "label": "t:sections.multirow.settings.container_color_scheme.label",
@@ -347,7 +382,12 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.multirow.blocks.row.settings.image.label"
+          "label": "Image desktop"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image mobile"
         },
         {
           "type": "text",

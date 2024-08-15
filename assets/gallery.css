@@ -119,7 +119,7 @@
     margin-left: 1.5rem;
   }
 
-  .media > *:not(.zoom):not(.deferred-media__poster-button) {
+  .gallery-card__image-wrapper .media > *:not(.zoom):not(.deferred-media__poster-button) {
     height: auto;
     border-radius: 1rem;
   }
