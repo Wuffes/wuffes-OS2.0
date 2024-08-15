@@ -1,0 +1,493 @@
+{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'video-section.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+   .testimonials_bg_img {
+    background-image: url( "{{ section.settings.img_bg | image_url: width: 100, crop:'center' }}");
+    background-repeat: repeat;
+    background-size: 10rem;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign video_id = section.settings.video.id | default: section.settings.video_url.id
+  assign video_alt = section.settings.video.alt | default: section.settings.description
+  assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+  assign poster = section.settings.video.preview_image | default: section.settings.cover_image
+
+  if section.settings.video != null
+    assign ratio_diff = section.settings.video.aspect_ratio | minus: poster.aspect_ratio | abs
+    if ratio_diff < 0.01 and ratio_diff > 0
+      assign fix_ratio = true
+    endif
+  endif
+-%}
+
+{%- capture sizes -%}
+  {% if section.settings.full_width -%}
+    100vw
+  {%- else -%}
+  (min-width: 1600px) calc((67vw-60px)* 0.36),
+  (min-width: 1200px) calc((67vw-60px)* 0.44),
+  (min-width: 992px) calc((50vw-30px)* 0.66),
+  (min-width: 768px) calc((50vw-30px)* 0.7),
+  (min-width: 680px) calc((100vw-50px)*0.43),
+  (min-width: 500px) calc((100vw-35px)*0.55),
+  (min-width: 460px) calc((100vw-35px)*0.65), calc((100vw-35px)*0.75)
+  {%- endif %}
+{%- endcapture -%}
+
+<div
+  class="color-{{ section.settings.color_scheme }}   {%- if section.settings.enable_img_bg -%} testimonials_bg_img{%- endif -%}"
+>
+  <div class="container-fluid testimonials__container section-{{ section.id }}-padding ">
+    <div class="testimonials__wrap testimonials_slider_block-video-wrapper">
+      {% if section.settings.title != blank %}
+        <div class="testimonials__desktop_left_block">
+          <h2
+            id="SectionHeading-{{ section.id }}"
+            class="testimonials-title inline-richtext"
+          >
+            {{ section.settings.title }}
+          </h2>
+
+          <div class="testimonials-slider_buttons_desktop">
+            <button
+              type="button"
+              class="prev-button data-slider-button"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+
+            <button
+              type="button"
+              class="next-button data-slider-button"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+          </div>
+        </div>
+      {% endif %}
+      <div class="testimonials__desktop_right_block">
+        <slideshow-component class="testimonials_slider slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <ul
+            id="Slider-{{ section.id }}"
+            data-id="{{ section.id }}"
+            class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--3-col-desktop slider slider--desktop slider--tablet grid--peek"
+            role="list"
+            aria-label="{{ 'general.slider.name' | t }}"
+          >
+            {%- liquid
+              assign columns = section.blocks.size
+              if columns > 3
+                assign columns = 3
+              endif
+            -%}
+            {%- for block in section.blocks -%}
+              <li
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="collection-list__item grid__item slider__slide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <h3>{{ block.settings.item_title }}</h3>
+                <div class="block_video_wrapper">
+                  {%- if block.type == 'video' -%}
+                    <deferred-media
+                      class="video-section__media deferred-media gradient global-media-settings{% if block.settings.full_width %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}{% if block.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      data-media-id="{{ video_id }} "
+                      {{ block.shopify_attributes }}
+                      {% if block.settings.video.preview_image != null %}
+                        style="--ratio-percent: {{ 1 | divided_by: block.settings.video.preview_image.aspect_ratio | times: 100 }}%;"
+                      {% endif %}
+                    >
+                      <button
+                        id="Deferred-Poster-Modal-{{ video_id }}"
+                        class="video-section__poster media deferred-media__poster media--landscape"
+                        type="button"
+                        aria-label="{{ alt }}"
+                      >
+                        {%- if block.settings.video.preview_image != null -%}
+                          {{
+                            block.settings.video.preview_image
+                            | image_url: width: 3840
+                            | image_tag: sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
+                          }}
+                        {%- else -%}
+                          {{ 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                        {%- endif -%}
+                        <span class="deferred-media__poster-button motion-reduce">
+                          {%- render 'icon-play' -%}
+                        </span>
+                      </button>
+                      <template>
+                        {%- if block.settings.video == null and block.settings.video_url != null -%}
+                          {%- if block.settings.video_url.type == 'youtube' -%}
+                            <iframe
+                              src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+                              class="js-youtube"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- else -%}
+                            <iframe
+                              src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+                              class="js-vimeo"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- endif -%}
+                        {%- else -%}
+                          {{
+                            block.settings.video
+                            | video_tag: image_size: '1100x', autoplay: true, controls: true, muted: false
+                          }}
+                        {%- endif -%}
+                      </template>
+                    </deferred-media>
+                  {%- endif -%}
+
+                  {%- if block.type == 'text' -%}
+                    <div class="testimonials-slide_card-text-wrap" {{ block.shopify_attributes }}>
+                      {%- if block.settings.show_review_icons == true -%}
+                        <div class="testimonials__slide-stars">
+                          {% render 'icon-stars' %}
+                        </div>
+                      {%- endif -%}
+
+                      {% if block.settings.slide_title != blank %}
+                        <p class="testimonials-slide_card-text-heading">
+                          {{ block.settings.slide_title }}
+                        </p>
+                      {% endif %}
+
+                      {% if block.settings.slide_text != blank %}
+                        <p class="testimonials-slide_card-text-content">
+                          {{ block.settings.slide_text }}
+                        </p>
+                      {% endif %}
+
+                      {% if block.settings.slide_text_author != blank %}
+                        <p class="testimonials-slide_card-text-name">
+                          {{ block.settings.slide_text_author }}
+                        </p>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.video != blank %}
+                      <video
+                        playsinline="playsinline"
+                        muted="muted"
+                        autoplay="autoplay"
+                        loop="loop"
+                        class="testimonials__slide_video"
+                        style="z-index: -1;"
+                        preload="metadata"
+                      >
+                        <source
+                          src="{{ block.settings.video.sources[1].url }}"
+                          type="video/mp4"
+                        >
+                      </video>
+
+                    {%- else -%}
+                      {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+
+                    <div class="testimonials__slide_video_overlay"></div>
+                  {%- endif -%}
+
+                  <div class="js_slide_card_bottom">
+                    <div class="js_slide_card_bottom_wrap">
+                      {% if block.settings.slide_product_img != blank %}
+                        {{
+                          block.settings.slide_product_img
+                          | image_url: width: 300
+                          | image_tag: sizes: '100px', widths: '100, 200, 300'
+                        }}
+                      {%- else -%}
+                        {{ 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {% endif %}
+                      {% if block.settings.slide_product_title != blank %}
+                        <h4 class="testimonials-slide_card-bottom-text">
+                          {{ block.settings.slide_product_title }}
+                        </h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+          <div class="slider-buttons">
+            <button
+              type="button"
+              class="slider-button slider-button--prev"
+              name="previous"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+            <div class="slider-counter caption">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+              <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            </div>
+            <button
+              type="button"
+              class="slider-button slider-button--next"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-arrow' %}
+            </button>
+          </div>
+        </slideshow-component>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'testimonials.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section testimonials-list",
+  "max_blocks": 15,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Title",
+      "label": "Title"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-3"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_img_bg",
+      "label": "Enable background image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "img_bg",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "item_title",
+          "default": "Title",
+          "label": "t:sections.collection-list.settings.title.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.settings.header__1.content"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.video.settings.video.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.settings.header__2.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.video.settings.paragraph.content"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "t:sections.video.settings.video_url.label",
+          "info": "t:sections.video.settings.video_url.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "t:sections.video.settings.cover_image.label"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "t:sections.video.settings.description.label",
+          "info": "t:sections.video.settings.description.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_product_img",
+          "label": "Product picture"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_product_title",
+          "default": "Slide product title",
+          "label": "Slide text author"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "type": "text",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "item_title",
+          "default": "Title",
+          "label": "Title"
+        },
+        {
+          "type": "header",
+          "content": "Main Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review_icons",
+          "label": "Show icons review",
+          "default": false
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_title",
+          "default": "Slide title",
+          "label": "Slide title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_text",
+          "default": "Slide text",
+          "label": "Slide text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_text_author",
+          "default": "Slide text author",
+          "label": "Slide text author"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_product_img",
+          "label": "Product picture"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "slide_product_title",
+          "default": "Slide product title",
+          "label": "Slide text author"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.settings.header__1.content"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.video.settings.video.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.video.settings.header__2.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.video.settings.paragraph.content"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "t:sections.video.settings.video_url.label",
+          "info": "t:sections.video.settings.video_url.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "t:sections.video.settings.cover_image.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
