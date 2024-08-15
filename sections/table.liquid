@@ -224,23 +224,6 @@
       });
 
       showPage(currentPage);
-
-      {% comment %} document.querySelectorAll('.table-bullet').forEach((bullet) => {
-        bullet.addEventListener('click', function () {
-          document.querySelectorAll('.table-bullet').forEach((b) => b.classList.remove('active'));
-          this.classList.add('active');
-
-          const page = this.getAttribute('data-column');
-
-          document.querySelectorAll('.cell-column:not(.cell-column-0)').forEach((cell) => {
-            cell.style.display = 'none';
-          });
-
-          document.querySelectorAll(`.cell-column-${page}`).forEach((cell) => {
-            cell.style.display = 'table-cell';
-          });
-        });
-      }); {% endcomment %}
     } else {
       document.querySelectorAll('.cell-column:not(.cell-column-0):not(.cell-column-1)').forEach((cell) => {
         cell.style.display = 'table-cell';

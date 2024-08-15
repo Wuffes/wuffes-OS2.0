@@ -1,6 +1,7 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'section-product-main.css' | asset_url | stylesheet_tag }}
 
+<script src="{{ 'section-product-main.js' | asset_url }}" defer="defer"></script>
 <section
   id="MainProduct-jc-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -151,13 +152,84 @@
         </div>
       {% endif %}
 
-      <div class="product-picker_wrapper">
-        <form class="product-picker">
-          {% for variant in product.variants %}
-            {% if variant.metafields.os20.variant_dogsizes_list %}
-            {% endif %}
-            <p>{{ forloop.index }} - {{ variant.metafields.os20.variant_dogsizes_list }}</p>
-          {% endfor %}
+      <div class="picker-wrapper">
+        <form class="picker-form">
+          <div class="picker-dogsizes">
+            {%- assign first_checked_dogsize_index = 1 -%}
+            {% for dogsize in product_picker.dogsizes.value %}
+              {% if dogsize.type == 'link' %}
+                {%- assign first_checked_dogsize_index = first_checked_dogsize_index | plus: 1 -%}
+                <a
+                  class="picker-dogsize_label picker-dogsize_link"
+                  id="js__picker-dogsize_link"
+                  href="{{ dogsize.redirect_url }}"
+                >
+                  {{ dogsize.title }}
+                </a>
+              {% else %}
+                <input
+                  class="picker-dogsize_item picker-dogsize_input"
+                  id="picker-dogsize_{{ forloop.index }}"
+                  type="radio"
+                  name="dog_size"
+                  value="{{ dogsize.value }}"
+                  data-offers-group="picker-dogsize_{{forloop.index}}_offers-group"
+                  {% if forloop.index == first_checked_dogsize_index %}
+                    checked
+                  {% endif %}
+                >
+                <label
+                  class="picker-dogsize_label"
+                  for="picker-dogsize_{{ forloop.index }}"
+                >
+                  {{ dogsize.value }}
+                </label>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="picker-offers">
+            {% for dogsize in product_picker.dogsizes.value %}
+              {%- assign dogsize_index = forloop.index -%}
+              {% unless dogsize.type == 'link' %}
+                <div
+                  class="picker-dogsize_offers-group"
+                  id="picker-dogsize_{{ dogsize_index }}_offers-group"
+                  {% unless dogsize_index == first_checked_dogsize_index %}
+                    style="display: none;"
+                  {% endunless %}
+                >
+                  {% for offer in dogsize.offers_quantities.value %}
+                    <input
+                      class="picker-offer_item picker-offer_input"
+                      id="picker-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
+                      type="radio"
+                      name="dogsize_{{ dogsize_index }}-offer"
+                      value="{{ forloop.index }}"
+                      {% if forloop.index == 2 %}
+                        checked
+                      {% endif %}
+                    >
+                    <label
+                      class="picker-offer_label"
+                      for="picker-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
+                    >
+                      <span class="picker-offer_label-circle"></span>
+
+                      <div class="picker-offer_label-left">
+                        <p>dogsize - {{ dogsize.value }}</p>
+                        <p>offer quantity - {{ offer }}</p>
+                      </div>
+
+                      <div class="picker-offer_label-right">
+                        <span>Save something</span>
+                      </div>
+                    </label>
+                  {% endfor %}
+                </div>
+              {% endunless %}
+            {% endfor %}
+          </div>
         </form>
       </div>
     </div>
@@ -169,6 +241,13 @@
   "name": "Main product",
   "tag": "section",
   "class": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ]
 }
 {% endschema %}

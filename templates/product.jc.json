@@ -1,7 +1,10 @@
 {
   "sections": {
     "top_main": {
-      "type": "main-product-jc"
+      "type": "main-product-jc",
+      "settings": {
+        "color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41"
+      }
     }
   },
   "order": [
