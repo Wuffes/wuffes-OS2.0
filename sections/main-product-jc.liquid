@@ -2,6 +2,19 @@
 {{ 'section-product-main.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'section-product-main.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+
+    .picker-offer_label-savings {
+      background: {{ section.settings.section_color_scheme.settings.background }};
+    }
+
+  }
+{%- endstyle -%}
+
 <section
   id="MainProduct-jc-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -153,6 +166,8 @@
       {% endif %}
 
       <div class="picker-wrapper">
+        {%- assign purchase_options = 'sub, otp' | split: ', ' -%}
+
         <form class="picker-form">
           <div class="picker-dogsizes">
             {%- assign first_checked_dogsize_index = 1 -%}
@@ -171,9 +186,9 @@
                   class="picker-dogsize_item picker-dogsize_input"
                   id="picker-dogsize_{{ forloop.index }}"
                   type="radio"
-                  name="dog_size"
+                  name="picker-dogsize"
+                  data-offers-group="picker-dogsize_{{ forloop.index }}_offers-group"
                   value="{{ dogsize.value }}"
-                  data-offers-group="picker-dogsize_{{forloop.index}}_offers-group"
                   {% if forloop.index == first_checked_dogsize_index %}
                     checked
                   {% endif %}
@@ -188,47 +203,68 @@
             {% endfor %}
           </div>
 
-          <div class="picker-offers">
-            {% for dogsize in product_picker.dogsizes.value %}
-              {%- assign dogsize_index = forloop.index -%}
-              {% unless dogsize.type == 'link' %}
-                <div
-                  class="picker-dogsize_offers-group"
-                  id="picker-dogsize_{{ dogsize_index }}_offers-group"
-                  {% unless dogsize_index == first_checked_dogsize_index %}
-                    style="display: none;"
-                  {% endunless %}
-                >
-                  {% for offer in dogsize.offers_quantities.value %}
-                    <input
-                      class="picker-offer_item picker-offer_input"
-                      id="picker-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
-                      type="radio"
-                      name="dogsize_{{ dogsize_index }}-offer"
-                      value="{{ forloop.index }}"
-                      {% if forloop.index == 2 %}
-                        checked
-                      {% endif %}
-                    >
-                    <label
-                      class="picker-offer_label"
-                      for="picker-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
-                    >
-                      <span class="picker-offer_label-circle"></span>
+          <div
+            class="picker-offers"
+          >
+            {% for purchase_option in purchase_options %}
+              {% for dogsize in product_picker.dogsizes.value %}
+                {%- assign dogsize_index = forloop.index -%}
+                {% unless dogsize.type == 'link' %}
+                  <div
+                    class="picker-dogsize_offers-group"
+                    id="picker-dogsize_{{ dogsize_index }}_offers-group-{{ purchase_option }}"
+                    {% unless dogsize_index == first_checked_dogsize_index %}
+                      style="display: none;"
+                    {% endunless %}
+                  >
+                    {% for offer in dogsize.offers_quantities.value %}
+                      <input
+                        class="picker-offer_item picker-offer_input"
+                        id="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
+                        type="radio"
+                        name="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer"
+                        value="{{ forloop.index }}"
+                        {% if forloop.index == 2 %}
+                          checked
+                        {% endif %}
+                      >
+                      <label
+                        class="picker-offer_label"
+                        for="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
+                      >
+                        <span class="picker-offer_label-circle"></span>
 
-                      <div class="picker-offer_label-left">
-                        <p>dogsize - {{ dogsize.value }}</p>
-                        <p>offer quantity - {{ offer }}</p>
-                      </div>
+                        <div class="picker-offer_label-left">
+                          <p>purchase type - {{ purchase_option }}</p>
+                          <p>dogsize - {{ dogsize.value }}</p>
+                          <p>offer quantity - {{ offer }}</p>
+                        </div>
 
-                      <div class="picker-offer_label-right">
-                        <span>Save something</span>
-                      </div>
-                    </label>
-                  {% endfor %}
-                </div>
-              {% endunless %}
+                        <div class="picker-offer_label-right">
+                          <span class="picker-offer_label-savings">Save something</span>
+                        </div>
+                      </label>
+                    {% endfor %}
+                  </div>
+                {% endunless %}
+              {% endfor %}
             {% endfor %}
+          </div>
+
+          <div class="picker-purchase_type-wrapper">
+            <label class="picker-purchase_type-switch">
+              <input
+                class="picker-purchase_type"
+                id="js__picker-purchase_type"
+                type="checkbox"
+                checked=""
+              >
+              <span class="picker-purchase_type-switcher"></span>
+            </label>
+            <div class="picker-purchase_type-content">
+              <h5>Upgrade + Save More!</h5>
+              <p>Zero commitment, Cancel Anytime</p>
+            </div>
           </div>
         </form>
       </div>
@@ -245,6 +281,12 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     }
