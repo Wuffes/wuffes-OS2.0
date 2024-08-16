@@ -1,7 +1,7 @@
 {{ 'main-offer.css' | asset_url | stylesheet_tag }}
 {{ 'component-offer-picker.css' | asset_url | stylesheet_tag }}
 
-<offer
+<main-offer
   class="color-{{ section.settings.color_scheme }} gradient"
   style="--accent-color: {{ section.settings.accent_color }};"
 >
@@ -117,12 +117,13 @@
 
             {%- if block.type == 'popup-trigger' -%}
               {%- if block.settings.button_text -%}
-                <modal-opener
+                <popup-picker-opener
                   data-modal="#offer-picker--{{ block.settings.target }}"
                 >
                   <button
                     class="popup-trigger--{{ block.settings.button_type }} {% if block.settings.button_type == 'button' %}offer__button button button-primary{% endif %}"
                     data-purchase-type="{{ block.settings.target }}"
+                    offer-popup-trigger
                   >
                     {{- block.settings.button_text -}}
 
@@ -133,7 +134,7 @@
                       </div>
                     {%- endif -%}
                   </button>
-                </modal-opener>
+                </popup-picker-opener>
               {%- endif -%}
             {%- endif -%}
 
@@ -213,10 +214,12 @@
   </div>
 
   {%- liquid
-    render 'offer-picker', offer_type: 'sub', mystery_block: mystery_block, fomo_block: fomo_block, trust_block: trust_block, accent_color: section.settings.accent_color
-    render 'offer-picker', offer_type: 'onetime', mystery_block: mystery_block, fomo_block: fomo_block, trust_block: trust_block, accent_color: section.settings.accent_color
+    render 'offer-picker', offer_type: 'sub'
+    render 'offer-picker', offer_type: 'onetime'
   -%}
-</offer>
+</main-offer>
+
+<script src="{{ 'main-offer.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

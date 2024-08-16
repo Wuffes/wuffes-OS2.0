@@ -558,7 +558,7 @@ class ModalDialog extends HTMLElement {
       });
     } else {
       this.addEventListener('click', (event) => {
-        if (event.target === this && this.dataset.persistOpen === undefined) this.hide();
+        if (event.target === this) this.hide();
       });
     }
   }

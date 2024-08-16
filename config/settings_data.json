@@ -298,7 +298,7 @@
           "text": "{{ shop.brand.colors.secondary[0].foreground }}",
           "button": "{{ shop.brand.colors.primary[0].foreground }}",
           "button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
-          "secondary_button_label": "{{ shop.brand.colors.secondary[0].foreground }}",
+          "secondary_button_label": "#17443d",
           "shadow": "#121212"
         }
       },
@@ -306,10 +306,10 @@
         "settings": {
           "background": "#17443d",
           "background_gradient": "",
-          "text": "#fff",
+          "text": "#ffffff",
           "button": "#c5fa54",
           "button_label": "#121212",
-          "secondary_button_label": "#fff",
+          "secondary_button_label": "#ffffff",
           "shadow": "#17443d"
         }
       }

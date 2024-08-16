@@ -1,7 +1,7 @@
 .offer-picker {
   min-height: 100vh;
   width: 100vw;
-  background: white;
+  background: rgb(255, 255, 255);
   margin: 0 auto;
 
   position: fixed;
@@ -239,11 +239,11 @@
 .form__button--onetime {
   justify-content: center;
 
-  modal-opener {
+  popup-picker-opener {
     width: 15rem;
 
-    > button {
-      background: #f1f1f1;
+    > .form__button-switch {
+      background: rgb(241, 241, 241);
       padding: 0 1.8rem;
       font-size: 1.4rem;
       letter-spacing: 0;

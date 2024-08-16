@@ -6,12 +6,12 @@
   endif
 -%}
 
-<modal-dialog
+<popup-picker
   class="offer-picker color-{{ section.settings.color_scheme }} gradient"
   id="offer-picker--{{ offer_type }}"
-  data-persist-open
-  {% if accent_color %}
-    style="--accent-color: {{ accent_color }}"
+  offer-picker-popup
+  {% if section.settings.accent_color %}
+    style="--accent-color: {{ section.settings.accent_color }}"
   {% endif %}
 >
   <div role="dialog">
@@ -147,12 +147,12 @@
 
         <div class="form__button form__button--{{ offer_type }}">
           {%- if offer_type == 'onetime' -%}
-            <modal-opener data-modal="#offer-picker--sub">
+            <popup-picker-opener data-modal="#offer-picker--sub">
               <button class="form__button-switch button" data-purchase-type="sub">
                 {%- render 'icon-arrow' -%}
                 Swap To Subscription
               </button>
-            </modal-opener>
+            </popup-picker-opener>
           {%- endif -%}
 
           <button class="{% if offer_type == 'sub' %}offer__button{% else %}offer__button--onetime{% endif %} button button-primary">
@@ -194,9 +194,11 @@
           </div>
 
           <div class="form-block__wrap form-block__popup-trigger">
-            <modal-opener data-modal="#offer-picker--onetime">
-              <button class="popup-trigger--link " data-purchase-type="onetime">BUY ONCE - No Discount</button>
-            </modal-opener>
+            <popup-picker-opener data-modal="#offer-picker--onetime">
+              <button class="popup-trigger--link " offer-popup-trigger data-purchase-type="onetime">
+                BUY ONCE - No Discount
+              </button>
+            </popup-picker-opener>
           </div>
 
           {%- if section.settings.onetime_bottom_text -%}
@@ -222,4 +224,4 @@
       </div>
     </div>
   </div>
-</modal-dialog>
+</popup-picker>
