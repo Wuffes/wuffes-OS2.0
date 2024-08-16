@@ -25,9 +25,7 @@
           "type": "trust",
           "settings": {
             "padding_top": 16,
-            "padding_bottom": 0,
-            "image": "shopify:\/\/shop_images\/ratings_star.svg",
-            "text": "<p>Excellent <strong>4.8<\/strong> | Over 1.3k Reviews<\/p>"
+            "padding_bottom": 0
           }
         },
         "text_kqxDhQ": {
@@ -52,12 +50,7 @@
           "settings": {
             "padding_top": 16,
             "padding_bottom": 0,
-            "ribbon_text": "<p><strong>Order today for a guaranteed Free Gift!<\/strong><\/p>",
-            "heading": "<p><em><strong>Free Gift With Your Order<\/strong><\/em><\/p>",
-            "text_top_left": "<p><strong>Mystery Gift<\/strong><\/p>",
-            "text_bottom_left": "<p>While stock lasts!<\/p>",
-            "text_top_right": "<p><strong>[line-through]$19.95[\/line-through]<\/strong><\/p>",
-            "text_bottom_right": "<p><strong>FREE<\/strong><\/p>"
+            "ribbon_text": "<p><strong>Order today for a guaranteed Free Gift!<\/strong><\/p>"
           }
         },
         "popup_trigger_GRrK9R": {
@@ -75,10 +68,19 @@
           "type": "fomo",
           "settings": {
             "padding_top": 16,
+            "padding_bottom": 0
+          }
+        },
+        "timer_6Frhpx": {
+          "type": "timer",
+          "settings": {
+            "padding_top": 16,
             "padding_bottom": 0,
-            "left_text": "<p>Ships in 24 hours<\/p>",
-            "right_text": "<p><strong>16 orders<\/strong> at this price remaining<\/p>",
-            "right_image": "shopify:\/\/shop_images\/animated_timer.gif"
+            "show_block_device": "desktop",
+            "before_left_text": "<p>Order within<\/p><p><strong>[timer]00 : 00 : 00[\/timer]<\/strong><\/p>",
+            "before_right_text": "<p>Ships<\/p><p><strong>Today<\/strong><\/p>",
+            "after_left_text": "<p>Order<\/p><p><strong>Today<\/strong><\/p>",
+            "after_right_text": "<p>Arrives<\/p><p><strong>4 days from now<\/strong><\/p>"
           }
         },
         "divider_maEFHK": {
@@ -134,6 +136,7 @@
         "mystery_gift_NJVmz3",
         "popup_trigger_GRrK9R",
         "fomo_eFNYma",
+        "timer_6Frhpx",
         "divider_maEFHK",
         "popup_trigger_kp4bdj",
         "text_iaMBcG",
@@ -142,7 +145,24 @@
       ],
       "settings": {
         "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
-        "accent_color": "#2c8274"
+        "accent_color": "#2c8274",
+        "product_sb": "advanced-hip-joint-support-for-small-medium-breeds-6",
+        "product_lb": "advanced-hip-joint-support-for-large-breeds-copy",
+        "product_mystery": "mystery-gift-1",
+        "picker_logo": "shopify:\/\/shop_images\/reskin_logo_updated.svg",
+        "button_text": "PROCEED TO CHECKOUT",
+        "mystery_heading": "<p><em><strong>Free Gift With Your Order<\/strong><\/em><\/p>",
+        "mystery_text_top_left": "<p><strong>Mystery Gift<\/strong><\/p>",
+        "mystery_text_bottom_left": "<p>While stock lasts!<\/p>",
+        "mystery_text_top_right": "<p><strong>[line-through]$19.95[\/line-through]<\/strong><\/p>",
+        "mystery_text_bottom_right": "<p><strong>FREE<\/strong><\/p>",
+        "trust_image": "shopify:\/\/shop_images\/ratings_star.svg",
+        "trust_text": "<p>Excellent <strong>4.8<\/strong> | Over 1.3k Reviews<\/p>",
+        "fomo_left_text": "<p>Ships in 24 hours<\/p>",
+        "fomo_right_text": "<p><strong>16 orders<\/strong> at this price remaining<\/p>",
+        "fomo_right_image": "shopify:\/\/shop_images\/animated_timer.gif",
+        "onetime_bottom_text": "<p>We recommend a subscription to give your dog the best chance at long lasting joint health<\/p>",
+        "product_desc": "<p>Advanced Hip & Joint Support is a groundbreaking blend of powerful ingredients that help support joint and mobility issues. The active ingredients in our formula were hand-picked by pet experts are scientifically-proven to help promote healthier joints and reduce symptoms of existing joint issues, in a little as 3 weeks.<\/p>"
       }
     }
   },

@@ -1,0 +1,225 @@
+{%- liquid
+  if offer_type == 'sub'
+    assign label_count = 3
+  else
+    assign label_count = 6
+  endif
+-%}
+
+<modal-dialog
+  class="offer-picker color-{{ section.settings.color_scheme }} gradient"
+  id="offer-picker--{{ offer_type }}"
+  data-persist-open
+  {% if accent_color %}
+    style="--accent-color: {{ accent_color }}"
+  {% endif %}
+>
+  <div role="dialog">
+    <div class="offer-picker__header">
+      {%- liquid
+        assign sizes = '140, 240, 420'
+
+        echo section.settings.picker_logo | image_url: width: 420 | image_tag: sizes: sizes, class: 'picker-header__logo'
+      -%}
+
+      <div class="picker-header__close" id="ModalClose-popup__offer-picker--{{ offer_type }}">
+        {%- render 'icon-close' -%}
+      </div>
+    </div>
+
+    <div class="offer-picker__container">
+      <div class="col-1">
+        {{ offer_type }}
+      </div>
+
+      <div class="col-2 offer-picker__form">
+        <h2>Choose quantity</h2>
+
+        <div class="form__select-wrap">
+          {%- for index in (1..label_count) -%}
+            {%- assign input_name = 'offer_' | append: offer_type -%}
+            {%- assign select_id = input_name | append: '_' | append: forloop.rindex -%}
+
+            <div class="form__select-block">
+              <input
+                class="form__input"
+                data-purchase-type="{{ offer_type }}"
+                name="{{ input_name }}"
+                value="{{ forloop.rindex }}"
+                id="{{ select_id }}"
+                type="radio"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+              >
+
+              <label
+                class="form__label"
+                for="{{ select_id }}"
+              >
+                <div class="label-left">
+                  <span class="label-left__circle"></span>
+
+                  <div class="label-left__texts">
+                    <p>
+                      <strong>
+                        {{ forloop.rindex }}
+                        {{ forloop.rindex | pluralize: 'Tub', 'Tubs' }}
+                      </strong>
+                      | <em>60 Chews</em>
+                    </p>
+
+                    <p class="disabled"><strong>Free Shipping + Free Gift</strong></p>
+                  </div>
+                </div>
+
+                <div class="label-center">
+                  <span><strong>Save $20.73</strong></span>
+                </div>
+
+                <div class="label-right">
+                  <p><strong>$20.74</strong></p>
+                  <p class="disabled">
+                    <strong><s>$41.47</s></strong>
+                  </p>
+                </div>
+              </label>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.mystery_heading -%}
+          <div class="mystery-gift__heading">
+            {{- section.settings.mystery_heading -}}
+          </div>
+        {%- endif -%}
+
+        <div class="mystery-gift__content">
+          <div class="mystery-gift__icon">
+            {%- render 'icon-mystery-gift' -%}
+          </div>
+
+          <div class="mystery-gift__texts">
+            <div class="mystery-gift__texts-left">
+              {%- if section.settings.mystery_text_top_left -%}
+                {{-
+                  section.settings.mystery_text_top_left
+                  | replace: '[line-through]', '<s>'
+                  | replace: '[/line-through]', '</s>'
+                -}}
+              {%- endif -%}
+
+              {%- if section.settings.mystery_text_bottom_left -%}
+                {{-
+                  section.settings.mystery_text_bottom_left
+                  | replace: '[line-through]', '<s>'
+                  | replace: '[/line-through]', '</s>'
+                -}}
+              {%- endif -%}
+            </div>
+
+            <div class="mystery-gift__texts-right">
+              {%- if section.settings.mystery_text_top_right -%}
+                {{-
+                  section.settings.mystery_text_top_right
+                  | replace: '[line-through]', '<s>'
+                  | replace: '[/line-through]', '</s>'
+                -}}
+              {%- endif -%}
+
+              {%- if section.settings.mystery_text_bottom_right -%}
+                {{-
+                  section.settings.mystery_text_bottom_right
+                  | replace: '[line-through]', '<s>'
+                  | replace: '[/line-through]', '</s>'
+                -}}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+
+        {%- if offer_type == 'sub' -%}
+          <div class="form__interval-info">
+            {%- render 'icon-alert' -%}
+            <span class="interval-info__text"><strong>60 Day Supply - Ships Every 60 Days</strong></span>
+          </div>
+        {%- endif -%}
+
+        <div class="form__button form__button--{{ offer_type }}">
+          {%- if offer_type == 'onetime' -%}
+            <modal-opener data-modal="#offer-picker--sub">
+              <button class="form__button-switch button" data-purchase-type="sub">
+                {%- render 'icon-arrow' -%}
+                Swap To Subscription
+              </button>
+            </modal-opener>
+          {%- endif -%}
+
+          <button class="{% if offer_type == 'sub' %}offer__button{% else %}offer__button--onetime{% endif %} button button-primary">
+            <strong>{{- section.settings.button_text -}}</strong>
+          </button>
+        </div>
+
+        <div class="form-block__wrap form-block__fomo">
+          {{- section.settings.fomo_left_text -}}
+
+          <div class="fomo-block__right">
+            {%- if section.settings.fomo_right_image -%}
+              {{-
+                section.settings.fomo_right_image
+                | image_url: width: 84
+                | image_tag: widths: '28, 54, 84', class: 'fomo-block__right-image'
+              -}}
+            {%- endif -%}
+
+            {{- section.settings.fomo_right_text -}}
+          </div>
+        </div>
+
+        <div class="form-block__wrap form-block__trust">
+          {%- if section.settings.trust_image -%}
+            {%- liquid
+              echo section.settings.trust_image | image_url: width: 369 | image_tag: widths: '123, 246, 369', class: 'form-block__trust-image'
+            -%}
+          {%- endif -%}
+
+          {%- if section.settings.trust_text -%}
+            {{- section.settings.trust_text -}}
+          {%- endif -%}
+        </div>
+
+        {%- if offer_type == 'sub' -%}
+          <div class="form-block__wrap form-block__divider">
+            <div class="divider-block__line"></div>
+          </div>
+
+          <div class="form-block__wrap form-block__popup-trigger">
+            <modal-opener data-modal="#offer-picker--onetime">
+              <button class="popup-trigger--link " data-purchase-type="onetime">BUY ONCE - No Discount</button>
+            </modal-opener>
+          </div>
+
+          {%- if section.settings.onetime_bottom_text -%}
+            <div class="form-block__wrap form-block__text">
+              <div class="form-block__text--small">
+                {{- section.settings.onetime_bottom_text -}}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="form-block__wrap form-block__divider">
+            <div class="divider-block__line"></div>
+          </div>
+
+          {%- if section.settings.product_desc -%}
+            <div class="form-block__wrap form-block__text">
+              <div class="form-block__text--small">
+                {{- section.settings.product_desc -}}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</modal-dialog>
