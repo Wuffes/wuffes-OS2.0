@@ -3,6 +3,21 @@
 
 <script src="{{ 'section-product-main.js' | asset_url }}" defer="defer"></script>
 
+{% assign product_picker = product.metafields.os20.product_picker.value %}
+
+{%- comment -%}
+  FIND SELLING PLAN
+{%- endcomment -%}
+{%- liquid
+  for selling_plan_group in product.selling_plan_groups
+    if selling_plan_group.name == product.title
+      assign selling_group = selling_plan_group
+    endif
+  endfor
+
+  assign selling_plans = selling_group.selling_plans
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -35,7 +50,6 @@
   <script>
     console.log({{ product.metafields.os20.product_picker.value | json }})
   </script>
-  {% assign product_picker = product.metafields.os20.product_picker.value %}
   <div class="product-main_wrapper page-width">
     <div class="product-main_left">
       {% if product_picker.custom_title or product_picker.custom_subtitle %}
@@ -213,16 +227,82 @@
                   <div
                     class="picker-dogsize_offers-group"
                     id="picker-dogsize_{{ dogsize_index }}_offers-group-{{ purchase_option }}"
-                    {% unless dogsize_index == first_checked_dogsize_index %}
+                    {% if dogsize_index != first_checked_dogsize_index or purchase_option != 'sub' %}
                       style="display: none;"
-                    {% endunless %}
+                    {% endif %}
                   >
-                    {% for offer in dogsize.offers_quantities.value %}
+                    {% for offer_quantity in dogsize.offers_quantities.value %}
+                      {%- comment -%}
+                        OFFER CALCULATIONS
+                      {%- endcomment -%}
+                      {%- assign daily_dosage = dogsize.daily_dosage -%}
+                      {%- assign interval_unit = dogsize.interval_unit -%}
+                      {%- assign servings_per_package = product_picker.servings_per_package -%}
+                      {%- assign offer_interval_days = offer_quantity
+                        | times: servings_per_package
+                        | divided_by: daily_dosage
+                      -%}
+                      {%- assign offer_interval = offer_interval_days -%}
+                      {%- if interval_unit == 'month' -%}
+                        {%- assign offer_interval = offer_interval_days | divided_by: 30 | round -%}
+                      {%- endif -%}
+
+                      {%- if purchase_option == 'sub' -%}
+                        {%- assign offer_variant = dogsize.sub_variant.value -%}
+                      {%- elsif purchase_option == 'otp' -%}
+                        {%- assign offer_variant = dogsize.otp_variant.value -%}
+                      {%- endif -%}
+                      {%- assign offer_variant_discount_arr = offer_variant.metafields.quantity_discounts.variant.value -%}
+                      {%- assign offer_discount = 0 -%}
+                      {% for discount in offer_variant_discount_arr %}
+                        {%- assign discount_temp = discount[0] | times: 1 -%}
+                        {% if discount_temp == offer_quantity %}
+                          {%- assign offer_discount = discount[1] -%}
+                        {% endif %}
+                        {% if forloop.last and offer_quantity > discount_temp %}
+                          {%- assign offer_discount = discount[1] -%}
+                        {% endif %}
+                      {% endfor %}
+
+                      {%- assign offer_discount_num = offer_discount | remove: '%' | times: 1 -%}
+                      {%- assign offer_price_default = offer_variant.price | times: offer_quantity -%}
+                      {%- assign offer_discount_decimal = offer_discount_num | times: 1.0 | divided_by: 100 -%}
+                      {%- assign offer_discounted_decimal = 1.0 | minus: offer_discount_decimal -%}
+                      {%- assign offer_price_discounted = offer_price_default | times: offer_discounted_decimal -%}
+
+                      {%- if product_picker.price_per == 'day' -%}
+                        {%- assign offer_price_per_num = offer_price_discounted | divided_by: offer_interval_days -%}
+                        {%- assign offer_price_per_text = product_picker.price_per -%}
+                      {%- else -%}
+                        {%- assign offer_price_per_num = offer_price_discounted
+                          | divided_by: offer_quantity
+                          | divided_by: servings_per_package
+                        -%}
+                        {%- assign offer_price_per_text = product_picker.serving_name -%}
+                      {%- endif -%}
+
+                      {% comment %}
+                        FIND SELLING PLAN
+                      {% endcomment %}
+                      {% assign interval_name = offer_interval | append: ' ' | append: interval_unit | downcase %}
+                      {%- for selling_plan in selling_plans -%}
+                        {%- assign selling_plan_name = selling_plan.name | downcase -%}
+                        {%- if selling_plan_name contains interval_name -%}
+                          {%- assign selling_plan_id = selling_plan.id -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
                       <input
                         class="picker-offer_item picker-offer_input"
                         id="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer_{{ forloop.index }}"
                         type="radio"
                         name="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer"
+                        data-purchase-type-="{{ purchase_option }}"
+                        data-dogsize="{{ dogsize.value }}"
+                        {% if purchase_option == 'sub' %}
+                          data-selling-plan="{{ selling_plan_id }}"
+                        {% endif %}
+                        data-discounted-price="{{ offer_price_discounted | money }}"
                         value="{{ forloop.index }}"
                         {% if forloop.index == 2 %}
                           checked
@@ -235,13 +315,17 @@
                         <span class="picker-offer_label-circle"></span>
 
                         <div class="picker-offer_label-left">
-                          <p>purchase type - {{ purchase_option }}</p>
-                          <p>dogsize - {{ dogsize.value }}</p>
-                          <p>offer quantity - {{ offer }}</p>
+                          <p>
+                            {{- offer_interval }}
+                            {{ interval_unit | camelcase }}(s) supply
+                          </p>
+                          {% unless product_picker.price_per == 'none' %}
+                            <p>{{ offer_price_per_num | money }} / {{ offer_price_per_text }}</p>
+                          {% endunless %}
                         </div>
 
                         <div class="picker-offer_label-right">
-                          <span class="picker-offer_label-savings">Save something</span>
+                          <span class="picker-offer_label-savings">Save {{ offer_discount }}</span>
                         </div>
                       </label>
                     {% endfor %}
@@ -266,6 +350,35 @@
               <p>Zero commitment, Cancel Anytime</p>
             </div>
           </div>
+          <button
+            class="button button--primary picker-submit_btn"
+            id="picker-submit_btn"
+          >
+            <p>
+              <span>{{ product_picker.cta_button_text }}</span> —
+              <span id="picker-submit_btn-price_discounted"></span>
+            </p>
+
+            {%- if product_picker.cta_mbg_text -%}
+              <div class="picker-submit_btn-guarantee_wrap">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  class="picker_jc_new__btn_guarantee_icon"
+                >
+                  <path d="M9 16.5C9 16.5 15 13.5 15 9V3.75L9 1.5L3 3.75V9C3 13.5 9 16.5 9 16.5Z" stroke="#FFDEDC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M11.3636 7L8.36364 10L7 8.63636" stroke="#FFDEDC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                <p class="picker-submit_btn-guarantee_text">
+                  {{- product_picker.cta_mbg_text -}}
+                </p>
+              </div>
+            {%- endif -%}
+          </button>
         </form>
       </div>
     </div>

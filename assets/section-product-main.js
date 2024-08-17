@@ -1,6 +1,23 @@
-// Synchronize active offers inputs
 const offersGroups = document.querySelectorAll('.picker-dogsize_offers-group');
+const offersItems = document.querySelectorAll('.picker-offer_input');
+const dogSizeInputs = document.querySelectorAll('.picker-dogsize_input');
+const purchaseTypeInput = document.getElementById('js__picker-purchase_type');
 
+// Update CTA button
+function updateCTA() {
+  let activeOffersGroup = null;
+  offersGroups.forEach((element) => {
+    if (window.getComputedStyle(element).display === 'block') {
+      activeOffersGroup = element;
+      activeOffer = activeOffersGroup.querySelector('.picker-offer_input:checked');
+      activeOfferPrice = activeOffer.getAttribute('data-discounted-price');
+
+      document.getElementById('picker-submit_btn-price_discounted').textContent = activeOfferPrice
+    }
+  });
+}
+
+// Synchronize active offers inputs
 offersGroups.forEach(group => {
   group.addEventListener('change', event => {
     if (event.target.tagName === 'INPUT' && event.target.type === 'radio') {
@@ -41,13 +58,26 @@ function updateOfferGroups() {
   }
 }
 
-const dogSizeInputs = document.querySelectorAll('.picker-dogsize_input');
-const purchaseTypeInput = document.getElementById('js__picker-purchase_type');
+// Update visuals
 dogSizeInputs.forEach(input => {
-  input.addEventListener('change', updateOfferGroups);
+  input.addEventListener('change', function() {
+    updateOfferGroups();
+    updateCTA();
+  });
 });
 
-purchaseTypeInput.addEventListener('change', updateOfferGroups);
+offersItems.forEach(offer => {
+  offer.addEventListener('change', function() {
+    updateCTA();
+  });
+});
 
-document.addEventListener('DOMContentLoaded', updateOfferGroups);
+purchaseTypeInput.addEventListener('change', function() {
+  updateOfferGroups();
+  updateCTA();
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+  updateOfferGroups();
+  updateCTA();
+});
