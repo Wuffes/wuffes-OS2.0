@@ -25,6 +25,10 @@
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{%- if section.settings.product_sku -%}
+  <script src="{{ 'how-to-use-product-grid.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -89,7 +93,7 @@
       </div>
 
       <slideshow-component
-        class="featured-collection__slider slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="featured-collection__slider slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in {% endif %} {%- if section.settings.product_sku -%}how-to-use_product-collection{% endif %}"
       >
         <ul
           id="Slider-{{ section.id }}"
@@ -106,20 +110,41 @@
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
               {% endif %}
+              {% if section.settings.product_sku %}
+                data-sku="{{ product.first_available_variant.sku }}"
+              {% endif %}
             >
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                section_id: section.id,
-                quick_add: section.settings.quick_add,
-                border_color: section.settings.color_scheme.settings.button,
-                hide_price: section.settings.hide_price,
-                show_product_description: section.settings.show_product_description,
-                show_product_benefits: section.settings.show_product_benefits
-              %}
+              {% if section.settings.show_how_to_use_collection %}
+                {% render 'card-product-how-to-use',
+                  how_to_use_collection: section.settings.show_how_to_use_collection,
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  section_id: section.id,
+                  quick_add: section.settings.quick_add,
+                  border_color: section.settings.color_scheme.settings.button,
+                  hide_price: section.settings.hide_price,
+                  show_product_description: section.settings.show_product_description,
+                  show_product_benefits: section.settings.show_product_benefits
+                %}
+
+              {%- else -%}
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  section_id: section.id,
+                  quick_add: section.settings.quick_add,
+                  border_color: section.settings.color_scheme.settings.button,
+                  hide_price: section.settings.hide_price,
+                  show_product_description: section.settings.show_product_description,
+                  show_product_benefits: section.settings.show_product_benefits
+                %}
+              {% endif %}
             </li>
           {%- else -%}
             {%- for i in (1..section.settings.columns_desktop) -%}
@@ -140,32 +165,40 @@
                   endcase
                 %}
                 {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
-                {% render 'card-product',
-                  show_vendor: section.settings.show_vendor,
-                  media_aspect_ratio: section.settings.image_ratio,
-                  image_shape: section.settings.image_shape,
-                  placeholder_image: placeholder_image,
-                  border_color: section.settings.color_scheme.settings.button,
-                  hide_price: section.settings.hide_price
-                %}
+                {% if section.settings.show_how_to_use_collection %}
+                  {% render 'card-product-how-to-use',
+                    how_to_use_collection: section.settings.show_how_to_use_collection,
+                    show_vendor: section.settings.show_vendor,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    placeholder_image: placeholder_image,
+                    border_color: section.settings.color_scheme.settings.button,
+                    hide_price: section.settings.hide_price
+                  %}
+
+                {%- else -%}
+                  {% render 'card-product',
+                    show_vendor: section.settings.show_vendor,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    placeholder_image: placeholder_image,
+                    border_color: section.settings.color_scheme.settings.button,
+                    hide_price: section.settings.hide_price
+                  %}
+                {% endif %}
               </li>
             {%- endfor -%}
           {%- endfor -%}
         </ul>
         {%- if show_mobile_slider or show_desktop_slider -%}
-          <div class="slider-buttons featured-collection--slider-buttons">
-            <button
-              type="button"
-              class="slider-button slider-button--prev featured-collection_slider-button--prev"
-              name="previous"
-              aria-label="{{ 'general.slider.previous_slide' | t }}"
-              aria-controls="Slider-{{ section.id }}"
-            >
-              {% render 'icon-slider-arrow' %}
-            </button>
+          <div class="slider-buttons featured-collection--slider-buttons  {% if section.settings.show_how_to_use_collection %} slider-buttons_how-to-use{%- endif -%}">
             <div
               class="slider-counter slider-counter--dots"
-              style="display: none;"
+              {% if section.settings.show_how_to_use_collection %}
+                style="display: block;"
+              {%- else -%}
+                style="display: none;"
+              {%- endif -%}
             >
               <div class="slideshow__control-wrapper">
                 {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
@@ -180,6 +213,16 @@
                 {%- endfor -%}
               </div>
             </div>
+            <button
+              type="button"
+              class="slider-button slider-button--prev featured-collection_slider-button--prev"
+              name="previous"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+              aria-controls="Slider-{{ section.id }}"
+            >
+              {% render 'icon-slider-arrow' %}
+            </button>
+
             <button
               type="button"
               class="slider-button slider-button--next featured-collection_slider-button--next"
@@ -281,6 +324,18 @@
       "type": "collection",
       "id": "collection",
       "label": "t:sections.featured-collection.settings.collection.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_how_to_use_collection",
+      "label": "Show How to Use Colleciton",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "product_sku",
+      "label": "Add product SKU attribute",
+      "default": false
     },
     {
       "type": "range",
