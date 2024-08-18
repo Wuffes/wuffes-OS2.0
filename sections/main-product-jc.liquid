@@ -18,6 +18,12 @@
   assign selling_plans = selling_group.selling_plans
 -%}
 
+{%- assign dogsizes_count = 0 -%}
+{% for dogsize in product_picker.dogsizes.value %}
+  {%- assign dogsizes_count = dogsizes_count | plus: 1 -%}
+{% endfor %}
+{%- assign dogsizes_target_height = dogsizes_count | times: 44 -%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -27,6 +33,32 @@
       background: {{ section.settings.section_color_scheme.settings.background }};
     }
 
+    .picker-submit_btn {
+      background: {{ section.settings.section_color_scheme.settings.button }};
+      color: {{ section.settings.section_color_scheme.settings.button_label }};
+
+      .picker-submit_btn-guarantee_icon path {
+        stroke: {{ section.settings.section_color_scheme.settings.button_label }};;
+      }
+
+      &:hover {
+        background: {{ section.settings.color_scheme.settings.button }};
+        color: {{ section.settings.color_scheme.settings.button_label }};
+
+        .picker-submit_btn-guarantee_icon path {
+          stroke: {{ section.settings.color_scheme.settings.button_label }};;
+        }
+      }
+    }
+
+    .picker-dogsizes_selector-target {
+      height: {{ dogsizes_target_height }}px;
+    }
+    .picker-dogsizes_selector-target.dogsizes-hidden {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
   }
 {%- endstyle -%}
 
@@ -184,37 +216,51 @@
 
         <form class="picker-form">
           <div class="picker-dogsizes">
-            {%- assign first_checked_dogsize_index = 1 -%}
-            {% for dogsize in product_picker.dogsizes.value %}
-              {% if dogsize.type == 'link' %}
-                {%- assign first_checked_dogsize_index = first_checked_dogsize_index | plus: 1 -%}
-                <a
-                  class="picker-dogsize_label picker-dogsize_link"
-                  id="js__picker-dogsize_link"
-                  href="{{ dogsize.redirect_url }}"
-                >
-                  {{ dogsize.title }}
-                </a>
-              {% else %}
-                <input
-                  class="picker-dogsize_item picker-dogsize_input"
-                  id="picker-dogsize_{{ forloop.index }}"
-                  type="radio"
-                  name="picker-dogsize"
-                  data-offers-group="picker-dogsize_{{ forloop.index }}_offers-group"
-                  value="{{ dogsize.value }}"
-                  {% if forloop.index == first_checked_dogsize_index %}
-                    checked
-                  {% endif %}
-                >
-                <label
-                  class="picker-dogsize_label"
-                  for="picker-dogsize_{{ forloop.index }}"
-                >
-                  {{ dogsize.value }}
-                </label>
-              {% endif %}
-            {% endfor %}
+            <div
+              class="picker-dogsizes_selector-target dogsizes-hidden"
+              id="dogsizes-selector-target"
+            >
+              {%- assign first_checked_dogsize_index = 1 -%}
+              {% for dogsize in product_picker.dogsizes.value %}
+                {% if dogsize.type == 'link' %}
+                  {%- assign first_checked_dogsize_index = first_checked_dogsize_index | plus: 1 -%}
+                  <a
+                    class="picker-dogsize_label picker-dogsize_link"
+                    id="js__picker-dogsize_link"
+                    href="{{ dogsize.redirect_url }}"
+                  >
+                    {{ dogsize.title }}
+                  </a>
+                {% else %}
+                  <input
+                    class="picker-dogsize_item picker-dogsize_input"
+                    id="picker-dogsize_{{ forloop.index }}"
+                    type="radio"
+                    name="picker-dogsize"
+                    data-offers-group="picker-dogsize_{{ forloop.index }}_offers-group"
+                    data-dogsize-title="{{ dogsize.title }}"
+                    value="{{ dogsize.value }}"
+                    {% if forloop.index == first_checked_dogsize_index %}
+                      {%- assign selector_default_dogsize = dogsize.title -%}
+                      checked
+                    {% endif %}
+                  >
+                  <label
+                    class="picker-dogsize_label"
+                    for="picker-dogsize_{{ forloop.index }}"
+                  >
+                    {{ dogsize.title }}
+                  </label>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <span
+              class="picker-dogsizes_selector-trigger"
+              id="dogsizes-selector-trigger"
+            >
+              {{ selector_default_dogsize }}
+            </span>
           </div>
 
           <div
@@ -346,8 +392,8 @@
               <span class="picker-purchase_type-switcher"></span>
             </label>
             <div class="picker-purchase_type-content">
-              <h5>Upgrade + Save More!</h5>
-              <p>Zero commitment, Cancel Anytime</p>
+              <h5>{{ product_picker.purchase_type_title }}</h5>
+              <span>{{ product_picker.purchase_type_subtitle }}</span>
             </div>
           </div>
           <button
@@ -367,7 +413,7 @@
                   height="18"
                   viewBox="0 0 18 18"
                   fill="none"
-                  class="picker_jc_new__btn_guarantee_icon"
+                  class="picker-submit_btn-guarantee_icon"
                 >
                   <path d="M9 16.5C9 16.5 15 13.5 15 9V3.75L9 1.5L3 3.75V9C3 13.5 9 16.5 9 16.5Z" stroke="#FFDEDC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M11.3636 7L8.36364 10L7 8.63636" stroke="#FFDEDC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

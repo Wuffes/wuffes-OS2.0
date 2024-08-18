@@ -7,6 +7,30 @@
   display: none;
 }
 
+@media screen and (min-width: 750px) {
+  .product-main_wrapper {
+    flex-direction: row;
+  }
+
+  .product-main_left {
+    width: 60%;
+    padding: 0 15px;
+  }
+
+  .product-main_right {
+    width: 40%;
+    padding: 0 15px;
+  }
+
+  .product-main_info-mobile {
+    display: none;
+  }
+
+  .product-main_info-desktop {
+    display: block;
+  }
+}
+
 .product-main__slider_image {
   width: 100%;
   height: auto;
@@ -86,8 +110,8 @@
 
 .picker-offer_label {
   height: 75px;
-  margin-bottom: 25px;
-  padding: 0 15px;
+  margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,11 +122,11 @@
 }
 
 .picker-offer_label-circle {
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   display: block;
   position: relative;
-  margin-right: 10px;
+  margin-right: 1rem;
   border: 2px solid rgba(var(--color-foreground), .5);
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -110,23 +134,23 @@
 
 .picker-offer_label-left {
   flex-grow: 1;
-  padding-left: 15px;
+  padding-left: 1.5rem;
 }
 
 .picker-offer_label-savings {
-    line-height: 23px;
+    line-height: 2.3rem;
     border: 1px solid rgb(var(--color-foreground));
-    font-size: 12px;
-    margin-right: 10px;
-    padding: 0 11px;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    padding: 0 1.1rem;
     display: inline-block;
     border-radius: 20px;
 }
 
 .picker-purchase_type-wrapper {
-  height: 75px;
-  margin-bottom: 25px;
-  padding: 0 15px;
+  height: 7.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,8 +162,8 @@
 .picker-purchase_type-switch {
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 24px;
+  width: 4rem;
+  height: 2.4rem;
 }
 
 .picker-purchase_type {
@@ -158,21 +182,19 @@
   background-color: #9f9f9f;
   -webkit-transition: .4s;
   transition: .4s;
-  -webkit-border-radius: 22px;
   border-radius: 22px;
 
-    &:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: #fff;
-      -webkit-transition: .4s;
-      transition: .4s;
-      -webkit-border-radius: 50%;
-      border-radius: 50%;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 1.8rem;
+    width: 1.8rem;
+    left: .3rem;
+    bottom: .3rem;
+    background-color: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
   }
 }
 
@@ -187,16 +209,31 @@
 .picker-purchase_type-content {
   flex-grow: 1;
   padding-left: 15px;
+
+  h5 {
+    font-size: 1.4rem;
+    margin: .5rem;
+  }
+
+  span {
+    font-size: 1.2rem;
+    margin: .5rem;
+  }
 }
 
 .picker-submit_btn {
   width: 100%;
-  height: 76px;
+  height: 7.6rem;
   flex-direction: column;
+  transition: .4s;
 
   p {
-    margin: 5px;
+    margin: .5rem;
   }
+}
+
+.picker-submit_btn-guarantee_icon path {
+  transition: .4s;
 }
 
 .picker-submit_btn-guarantee_wrap {
@@ -204,22 +241,50 @@
   align-items: center;
 }
 
-@media screen and (min-width: 750px) {
-  .product-main_wrapper {
-    flex-direction: row;
-  }
+.picker-submit_btn-guarantee_text {
+  font-size: 1.2rem;
+}
 
-  .product-main_left,
-  .product-main_right {
-    width: 50%;
-    padding: 0 15px;
-  }
-
-  .product-main_info-mobile {
-    display: none;
-  }
-
-  .product-main_info-desktop {
-    display: block;
+@media screen and (min-width: 950px) {
+  .picker-submit_btn-guarantee_text {
+    font-size: 1.4rem;
   }
 }
+
+.picker-dogsizes_selector-trigger {
+  display: block;
+  text-align: center;
+  line-height: 4.4rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.picker-dogsizes {
+  min-height: 42px;
+  height: auto;
+  min-width: 325px;
+  width: 100%;
+  padding: 0 5px;
+  border: 2px solid rgb(var(--color-foreground));
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 2.5rem;
+}
+
+.picker-dogsize_link {
+  text-decoration: none;
+}
+
+.picker-dogsizes_selector-target {
+  opacity: 1;
+  height: 500px;
+  transition: opacity 0.5s ease, height 0.5s ease;
+}
+
+.picker-dogsizes_selector-target.dogsizes-hidden {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+

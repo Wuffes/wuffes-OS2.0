@@ -2,6 +2,8 @@ const offersGroups = document.querySelectorAll('.picker-dogsize_offers-group');
 const offersItems = document.querySelectorAll('.picker-offer_input');
 const dogSizeInputs = document.querySelectorAll('.picker-dogsize_input');
 const purchaseTypeInput = document.getElementById('js__picker-purchase_type');
+const dogSizesTrigger = document.getElementById('dogsizes-selector-trigger');
+const dogsizesTarget = document.getElementById('dogsizes-selector-target');
 
 // Update CTA button
 function updateCTA() {
@@ -58,11 +60,20 @@ function updateOfferGroups() {
   }
 }
 
+function updateDogsizeSelector(dogsize) {
+  let dogsizeText = dogsize.getAttribute('data-dogsize-title');
+
+  dogSizesTrigger.textContent = dogsizeText;
+  dogsizesTarget.classList.add('dogsizes-hidden');
+
+}
+
 // Update visuals
 dogSizeInputs.forEach(input => {
   input.addEventListener('change', function() {
     updateOfferGroups();
     updateCTA();
+    updateDogsizeSelector(input);
   });
 });
 
@@ -80,4 +91,12 @@ purchaseTypeInput.addEventListener('change', function() {
 document.addEventListener('DOMContentLoaded', function() {
   updateOfferGroups();
   updateCTA();
+});
+
+dogSizesTrigger.addEventListener('click', function() {
+  if (dogsizesTarget.classList.contains('dogsizes-hidden')) {
+    dogsizesTarget.classList.remove('dogsizes-hidden');
+  } else {
+    dogsizesTarget.classList.add('dogsizes-hidden');
+  }
 });
