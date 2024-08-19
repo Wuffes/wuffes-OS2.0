@@ -4,6 +4,8 @@ const dogSizeInputs = document.querySelectorAll('.picker-dogsize_input');
 const purchaseTypeInput = document.getElementById('js__picker-purchase_type');
 const dogSizesTrigger = document.getElementById('dogsizes-selector-trigger');
 const dogsizesTarget = document.getElementById('dogsizes-selector-target');
+const productForm = document.getElementById('product-picker-form');
+// const cartDrawerPopup = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
 
 // Update CTA button
 function updateCTA() {
@@ -60,6 +62,54 @@ function updateOfferGroups() {
   }
 }
 
+// Add product to the cart
+function addToCart() {
+  let activeOffersGroup = null;
+  offersGroups.forEach((element) => {
+    if (window.getComputedStyle(element).display === 'block') {
+      activeOffersGroup = element;
+      activeOffer = activeOffersGroup.querySelector('.picker-offer_input:checked');
+      quantity = activeOffer.getAttribute('data-quantity');
+      variantId = activeOffer.getAttribute('data-variant-id')
+      sellingPlan = activeOffer.getAttribute('data-selling-plan')
+      console.log('atc = ' + quantity + ' | ' + variantId);
+
+      var productData = {
+        id: variantId,
+        quantity: quantity,
+      }
+
+      if (sellingPlan !== 'otp') {
+        productData.selling_plan = sellingPlan
+      }
+
+      fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify(productData)
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          } else {
+            // cartDrawerPopup.renderContents(response);
+          }
+          return response.json();
+      })
+      .then(data => {
+          console.log('Product added to cart:', data);
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+    }
+  });
+}
+
+// Custom dogsize selector on mobile
 function updateDogsizeSelector(dogsize) {
   let dogsizeText = dogsize.getAttribute('data-dogsize-title');
 
@@ -73,7 +123,9 @@ dogSizeInputs.forEach(input => {
   input.addEventListener('change', function() {
     updateOfferGroups();
     updateCTA();
-    updateDogsizeSelector(input);
+    if (window.innerWidth < 950) {
+      updateDogsizeSelector(input);
+    }
   });
 });
 
@@ -99,4 +151,10 @@ dogSizesTrigger.addEventListener('click', function() {
   } else {
     dogsizesTarget.classList.add('dogsizes-hidden');
   }
+});
+
+productForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  addToCart();
 });

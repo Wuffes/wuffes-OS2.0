@@ -29,7 +29,8 @@
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
 
-    .picker-offer_label-savings {
+    .picker-offer_label-savings,
+    .benefits-style_squared_with_bg {
       background: {{ section.settings.section_color_scheme.settings.background }};
     }
 
@@ -139,46 +140,80 @@
             {% endfor %}
           </div>
 
-          <div class="slider-buttons">
-            <button
-              type="button"
-              class="slider-button slider-button--prev"
-              name="previous"
-              aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
-              aria-controls="Slider-{{ section.id }}"
-              style="display: none;"
-            >
-              {% render 'icon-caret' %}
-            </button>
-            <div class="slider-counter slider-counter--dots slider-counter--thumbs">
-              <div class="slideshow__control-wrapper slideshow__control-wrapper-thumbs">
-                {%- for thumb in hero_thumbs_arr -%}
-                  <button
-                    class="slider-counter__link slider-counter__link--dots slider-counter__link--thumbs-dots link"
-                    aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-                    aria-controls="Slider-{{ section.id }}"
-                  >
-                    <div class="thumbs-dot">
-                      {{
-                        thumb
-                        | image_url: width: 200
-                        | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__thumbs_image'
-                      }}
-                    </div>
-                  </button>
-                {%- endfor -%}
+          {% comment %}
+            <div class="slider-buttons">
+              <button
+                type="button"
+                class="slider-button slider-button--prev"
+                name="previous"
+                aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+                style="display: none;"
+              >
+                {% render 'icon-caret' %}
+              </button>
+              <div class="slider-counter slider-counter--dots slider-counter--thumbs">
+                <div class="slideshow__control-wrapper slideshow__control-wrapper-thumbs">
+                  {%- for thumb in hero_thumbs_arr -%}
+                    <button
+                      class="slider-counter__link slider-counter__link--dots slider-counter__link--thumbs-dots link"
+                      aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                      aria-controls="Slider-{{ section.id }}"
+                    >
+                      <div class="thumbs-dot">
+                        {{
+                          thumb
+                          | image_url: width: 200
+                          | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__thumbs_image'
+                        }}
+                      </div>
+                    </button>
+                  {%- endfor -%}
+                </div>
               </div>
+              <button
+                type="button"
+                class="slider-button slider-button--next"
+                name="next"
+                aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+                style="display: none;"
+              >
+                {% render 'icon-caret' %}
+              </button>
             </div>
-            <button
-              type="button"
-              class="slider-button slider-button--next"
-              name="next"
-              aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
-              aria-controls="Slider-{{ section.id }}"
-              style="display: none;"
-            >
-              {% render 'icon-caret' %}
-            </button>
+          {% endcomment %}
+        </slideshow-component>
+        <slideshow-component
+          class="slider-mobile-gutter"
+          role="region"
+          aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
+          aria-label="{{ section.settings.accessibility_info | escape }}"
+        >
+          <div
+            class="grid grid--5-col product-thumbs__slider slider slider--everywhere{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            id="Slider-{{ section.id }}"
+            aria-live="polite"
+            aria-atomic="true"
+            data-autoplay="false"
+            data-speed="5"
+          >
+            {%- for thumb in hero_thumbs_arr -%}
+              <div
+                class="slideshow__slide product-main__slide grid__item grid--5-col slider__slide"
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                role="group"
+                aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
+                aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                tabindex="-1"
+              >
+                {{
+                  thumb
+                  | image_url: width: 200
+                  | image_tag: sizes: sizes_thumbs, widths: widths_thumbs, class: 'product-main__thumbs_image'
+                }}
+              </div>
+            {% endfor %}
           </div>
         </slideshow-component>
       {% endif %}
@@ -208,13 +243,66 @@
               {{ product_picker.custom_description }}
             </p>
           {% endif %}
+
+          {% if product_picker.show_reviews == 1 or product_picker.how_it_works_link %}
+            <div class="product-main_hiw-info">
+              {% if product_picker.show_reviews == 1 %}
+                {% render 'okendo-reviews-product-rating-summary', product: product %}
+              {% endif %}
+
+              {% if product_picker.how_it_works_link and product_picker.how_it_works_text %}
+                <a
+                  href="{{ product_picker.how_it_works_link }}"
+                  class="product-main_hiw-link"
+                >
+                  {{- product_picker.how_it_works_text -}}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {%- assign widths_icons = '44, 53, 88, 106, 132, 159' -%}
+          {%- capture sizes_icons -%}
+            (min-width: 750px) 53px, 44px
+          {%- endcapture -%}
+
+          {% if product_picker.benefits_icons %}
+            <div class="product-main_benefits">
+              {% for benefit in product_picker.benefits_icons.value %}
+                <div class="product-main_benefit benefits-style_{{ product_picker.benefits_style }}">
+                  {{
+                    benefit
+                    | image_url: width: 159
+                    | image_tag: sizes: sizes_icons, widths: widths_icons, class: 'product-main_benefit-icon'
+                  }}
+
+                  <div class="product-main_benefit-copy">
+                    {% if product_picker.benefits_titles %}
+                      <h5 class="product-main_benefit-title">
+                        {{ product_picker.benefits_titles.value[forloop.index0] }}
+                      </h5>
+                    {% endif %}
+
+                    {% if product_picker.benefits_texts %}
+                      <p class="product-main_benefit-text">
+                        {{ product_picker.benefits_texts.value[forloop.index0] }}
+                      </p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       {% endif %}
 
       <div class="picker-wrapper">
         {%- assign purchase_options = 'sub, otp' | split: ', ' -%}
 
-        <form class="picker-form">
+        <form
+          class="picker-form"
+          id="product-picker-form"
+        >
           <div class="picker-dogsizes">
             <div
               class="picker-dogsizes_selector-target dogsizes-hidden"
@@ -225,7 +313,7 @@
                 {% if dogsize.type == 'link' %}
                   {%- assign first_checked_dogsize_index = first_checked_dogsize_index | plus: 1 -%}
                   <a
-                    class="picker-dogsize_label picker-dogsize_link"
+                    class="picker-dogsize_label picker-dogsize_link picker-dogsizes_{{ dogsizes_count }}_label"
                     id="js__picker-dogsize_link"
                     href="{{ dogsize.redirect_url }}"
                   >
@@ -246,7 +334,7 @@
                     {% endif %}
                   >
                   <label
-                    class="picker-dogsize_label"
+                    class="picker-dogsize_label picker-dogsizes_{{ dogsizes_count }}_label"
                     for="picker-dogsize_{{ forloop.index }}"
                   >
                     {{ dogsize.title }}
@@ -261,11 +349,13 @@
             >
               {{ selector_default_dogsize }}
             </span>
+            <p class="picker-step_title">Dog size:</p>
           </div>
 
           <div
             class="picker-offers"
           >
+            <p class="picker-step_title">Amount:</p>
             {% for purchase_option in purchase_options %}
               {% for dogsize in product_picker.dogsizes.value %}
                 {%- assign dogsize_index = forloop.index -%}
@@ -299,6 +389,7 @@
                         {%- assign offer_variant = dogsize.otp_variant.value -%}
                       {%- endif -%}
                       {%- assign offer_variant_discount_arr = offer_variant.metafields.quantity_discounts.variant.value -%}
+                      {%- assign offer_variant_id = offer_variant.id -%}
                       {%- assign offer_discount = 0 -%}
                       {% for discount in offer_variant_discount_arr %}
                         {%- assign discount_temp = discount[0] | times: 1 -%}
@@ -345,8 +436,12 @@
                         name="picker-{{ purchase_option }}-dogsize_{{ dogsize_index }}-offer"
                         data-purchase-type-="{{ purchase_option }}"
                         data-dogsize="{{ dogsize.value }}"
+                        data-quantity="{{ offer_quantity }}"
+                        data-variant-id="{{ offer_variant_id }}"
                         {% if purchase_option == 'sub' %}
                           data-selling-plan="{{ selling_plan_id }}"
+                        {% else %}
+                          data-selling-plan="otp"
                         {% endif %}
                         data-discounted-price="{{ offer_price_discounted | money }}"
                         value="{{ forloop.index }}"
@@ -361,12 +456,14 @@
                         <span class="picker-offer_label-circle"></span>
 
                         <div class="picker-offer_label-left">
-                          <p>
+                          <p class="picker-offer_label-text">
                             {{- offer_interval }}
                             {{ interval_unit | camelcase }}(s) supply
                           </p>
                           {% unless product_picker.price_per == 'none' %}
-                            <p>{{ offer_price_per_num | money }} / {{ offer_price_per_text }}</p>
+                            <p class="picker-offer_label-numbers">
+                              {{ offer_price_per_num | money }} / {{ offer_price_per_text }}
+                            </p>
                           {% endunless %}
                         </div>
 
@@ -400,7 +497,7 @@
             class="button button--primary picker-submit_btn"
             id="picker-submit_btn"
           >
-            <p>
+            <p class="picker-submit_btn-text">
               <span>{{ product_picker.cta_button_text }}</span> —
               <span id="picker-submit_btn-price_discounted"></span>
             </p>
@@ -448,6 +545,26 @@
       "id": "section_color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 50
     }
   ]
 }

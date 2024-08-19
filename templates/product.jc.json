@@ -4,7 +4,9 @@
       "type": "main-product-jc",
       "settings": {
         "color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
-        "section_color_scheme": "scheme-3e1ea55f-e3e0-4a1c-b879-3126884afa91"
+        "section_color_scheme": "scheme-3e1ea55f-e3e0-4a1c-b879-3126884afa91",
+        "padding_top": 50,
+        "padding_bottom": 50
       }
     }
   },
