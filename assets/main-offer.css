@@ -358,11 +358,6 @@ old-price {
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px), screen and (min-width: 992px) {
-  /* .mystery-gift__content {
-    height: 7rem;
-    margin-top: 1.6rem;
-  } */
-
   .mystery-gift__icon {
     flex-basis: 10rem;
 
@@ -371,7 +366,8 @@ old-price {
     }
   }
 
-  .mystery-gift__texts-left {
+  .mystery-gift__texts-left,
+  .mystery-gift__texts-right {
     font-size: 1.6rem;
   }
 }
@@ -408,6 +404,10 @@ old-price {
     color: rgb(255, 255, 255);
     border-color: rgb(var(--color-link));
     box-shadow: none;
+  }
+
+  > * {
+    pointer-events: none;
   }
 }
 

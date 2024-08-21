@@ -1,9 +1,19 @@
 {{ 'main-offer.css' | asset_url | stylesheet_tag }}
 {{ 'component-offer-picker.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign product_sb_handle = section.settings.product_sb | default: 'advanced-hip-joint-support-for-small-medium-breeds-6'
+  assign product_lb_handle = section.settings.product_lb | default: 'advanced-hip-joint-support-for-large-breeds-copy'
+  assign product_sb = all_products[product_sb_handle]
+  assign product_lb = all_products[product_lb_handle]
+-%}
+
 <main-offer
   class="color-{{ section.settings.color_scheme }} gradient"
   style="--accent-color: {{ section.settings.accent_color }};"
+  data-version="{{- section.settings.version -}}"
+  data-gift-tag="{{- section.settings.gift_tag -}}"
+  data-product-type="{{  section.settings.product_type | default: 'JC' }}"
 >
   <div class="offer__container">
     <div class="col-1">carousel</div>
@@ -214,8 +224,8 @@
   </div>
 
   {%- liquid
-    render 'offer-picker', offer_type: 'sub'
-    render 'offer-picker', offer_type: 'onetime'
+    render 'offer-picker', offer_type: 'sub', product_sb: product_sb, product_lb: product_lb
+    render 'offer-picker', offer_type: 'onetime', product_sb: product_sb, product_lb: product_lb
   -%}
 </main-offer>
 
@@ -244,6 +254,12 @@
       "content": "Products"
     },
     {
+      "type": "text",
+      "id": "version",
+      "label": "Offer version",
+      "default": "V7"
+    },
+    {
       "type": "product",
       "id": "product_sb",
       "label": "Small breed"
@@ -257,6 +273,49 @@
       "type": "product",
       "id": "product_mystery",
       "label": "Mystery gift"
+    },
+    {
+      "type": "text",
+      "id": "gift_tag",
+      "label": "Gift tag",
+      "default": "SOSS"
+    },
+    {
+      "type": "number",
+      "id": "chews_per_tub_sb",
+      "label": "Chews in small tub",
+      "default": 60
+    },
+    {
+      "type": "number",
+      "id": "chews_per_tub_lb",
+      "label": "Chews in large tub",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "chews_per_day",
+      "label": "Chews per day",
+      "default": "1,2,1,1.5,2",
+      "info": "0-35lbs,36-65lbs,65-100lbs,100-120lbs,Over120lbs"
+    },
+    {
+      "type": "text",
+      "id": "discounts_array_sub",
+      "label": "Discounts array for sub",
+      "default": "50,52,58"
+    },
+    {
+      "type": "text",
+      "id": "product_type",
+      "label": "Product type",
+      "default": "JC"
+    },
+    {
+      "type": "text",
+      "id": "discounts_array_onetime",
+      "label": "Discounts array for onetime",
+      "default": "0,5,10,15,20,25"
     },
     {
       "type": "header",
@@ -276,6 +335,12 @@
       "id": "button_text",
       "label": "Button text",
       "default": "PROCEED TO CHECKOUT"
+    },
+    {
+      "type": "richtext",
+      "id": "picker_promo_text",
+      "label": "Promo text",
+      "default": "<p><strong>Limited Time Only</strong></p>"
     },
     {
       "type": "header",
