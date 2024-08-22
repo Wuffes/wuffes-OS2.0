@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "how_to_use_main_section_VUwMrz": {
+      "type": "how-to-use-main-section",
+      "settings": {
+        "caption": "",
+        "color_scheme": "",
+        "show_products_select": true,
+        "collection": "how-to-use",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": ["main", "how_to_use_main_section_VUwMrz"]
+}

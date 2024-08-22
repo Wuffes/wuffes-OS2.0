@@ -1,0 +1,225 @@
+{{ 'how-to-use-main-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign main_img_widths = '340, 680, 1020, 1360, 1700' -%}
+{%- capture main_img_sizes -%}
+   (min-width: 992px) calc((100vw-15px)/2), calc(100vw-30px)
+{%- endcapture -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="how-to-use_main-section">
+    <div
+      class="how-to-use_main-section-wrapper page-width section-{{ section.id }}-padding gradient"
+    >
+      {%- if section.settings.show_products_select -%}
+        <div class="dynamic-select_wrapper">
+          <div class="dynamic-select">
+            <p class="select-title_wrapper">
+              <span class="dynamic-select-title"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 7.5L10 12.5L15 7.5" stroke="#79716B" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </p>
+
+            <ul></ul>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {% assign collection = section.settings.collection %}
+
+      {%- for product in collection.products -%}
+        {% assign metaobject = product.metafields.custom.products_how_to_use.value %}
+
+        <div class="product-information-button_wrapper">
+          <div
+            class="{% if section.settings.show_products_select %}js-product-information-select {% else %} js-product-information {% endif %} how-to-use__main-section--content-wrapper product-information"
+            data-sku="{{ product.first_available_variant.sku }}"
+          >
+            <div class="how-to-use__main-section--img">
+              <picture>
+                <source
+                  media="(min-width: 768px)"
+                  srcset="{{ metaobject.product_image  | image_url: width: 1239 }}"
+                >
+                {{
+                  metaobject.product_image_mobile
+                  | image_url: width: 1700
+                  | image_tag:
+                    sizes: main_img_sizes,
+                    widths: main_img_widths,
+                    class: 'how-to-use__main-section--img-item'
+                }}
+              </picture>
+            </div>
+            <div class="how-to-use__main-section--content">
+              <h3 class="how-to-use__main-section--content_title">
+                {{ metaobject.title }}
+              </h3>
+              <p class="how-to-use_main-section--content-description">
+                {{ metaobject.subtitle }}
+              </p>
+              <div class="how-to-use__main-section--questions-list js__questions_list_{{ product.metafields.picker.product_type }}">
+                <ul>
+                  {% for question in product.metafields.custom.products_how_to_use.value.list_of_questions.value %}
+                    <li>
+                      <div class="js-questions-list__title questions-list__heading">
+                        <h4 class="questions-list__title">{{ question.title }}</h4>
+                        <div style="width: 2rem;">
+                          {% render 'icon-plus' %}
+                          {% render 'icon-minus' %}
+                        </div>
+                      </div>
+
+                      <div class="js-questions-list__description">
+                        {% if question.description %}
+                          <p class="questions-list__description">
+                            {{ question.description }}
+                          </p>
+                        {% endif %}
+
+                        {% if question.description_picture != blank %}
+                          {% capture sizes %}(min-width: 750px) 320px, 345px{% endcapture %}
+                          {% capture widths %}345,690,1035{% endcapture %}
+                          {{
+                            question.description_picture
+                            | image_url: width: 1035
+                            | image_tag: widths: widths, sizes: sizes, class: 'how-to-use__main-section--img-item'
+                          }}
+                        {% endif %}
+
+                        {%- if question.double_dose_image_desktop
+                          and question.double_dose_image_tablet
+                          and question.double_dose_image_mobile
+                        -%}
+                          <div
+                            class="questions-list__double-dose questions_list_double_dose_{{ product.metafields.picker.product_type }}"
+                            style="display: none;"
+                          >
+                            {% if question.double_dose_description %}
+                              <p class="questions-list__description questions-list__description--dd">
+                                {{- question.double_dose_description -}}
+                              </p>
+                            {% endif %}
+
+                            <picture>
+                              {% capture dd_img_sizes %}(min-width: 1200px) 568px,(min-width: 992px) calc(54vw-32px), calc(100vw-30px){% endcapture %}
+                              {% capture dd_img_widths %}340,461,568,680,922,1020,1136,1383,1704{% endcapture %}
+                              <source
+                                media="(min-width: 992px)"
+                                srcset="{{ question.double_dose_image_desktop  | image_url: width: 1704 }}"
+                              >
+                              <source
+                                media="(min-width: 576px)"
+                                srcset="{{ question.double_dose_image_tablet  | image_url: width: 1383 }}"
+                              >
+                              {{
+                                question.double_dose_image_mobile
+                                | image_url: width: 1020
+                                | image_tag:
+                                  sizes: dd_img_sizes,
+                                  widths: dd_img_widths,
+                                  class: 'how-to-use__main-section--img-item how-to-use__main-section--img-item-dd'
+                              }}
+                            </picture>
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <a href="{{ product.url }}" class="dl__btn_secondary">LEARN MORE</a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'how-to-use-main-section.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "How to Use Custom Section",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "t:sections.collapsible_content.settings.caption.label"
+    },
+
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products_select",
+      "label": "Show products list",
+      "default": false
+    },
+
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.featured-collection.settings.collection.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to Use Custom Section",
+      "settings": {
+        "show_products_select": true,
+        "collection": "how-to-use",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  ]
+}
+{% endschema %}

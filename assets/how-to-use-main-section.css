@@ -1,0 +1,234 @@
+.js-product-information.product-information.active,
+.js-product-information-select.product-information.active {
+  display: block;
+}
+
+.js-product-information.product-information,
+.js-product-information-select.product-information {
+  display: none;
+}
+
+.product-information + .dl__btn_secondary {
+  display: none;
+}
+
+.product-information.active + .dl__btn_secondary {
+  display: block;
+}
+
+.how-to-use__main-section--content-wrapper.active {
+  margin-bottom: 6rem;
+}
+
+.js-product-information.active {
+  margin-top: 6rem;
+}
+
+.how-to-use__main-section--content {
+  margin-top: 3.5rem;
+}
+
+.how-to-use__main-section--content_title {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  color: rgb(23, 68, 61);
+}
+
+.how-to-use_main-section--content-description {
+  margin-top: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 140%;
+}
+
+.how-to-use__main-section--questions-list ul {
+  padding-inline-start: 0;
+}
+
+.how-to-use__main-section--questions-list ul li {
+  list-style: none;
+  padding: 0 0 25px;
+  border-bottom: 1px solid rgb(33, 36, 39);
+}
+
+.questions-list__heading {
+  padding: 25px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.js-questions-list__description {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  font-size: 1.6rem;
+}
+
+.js-questions-list__description.open {
+  padding-bottom: 0.5rem;
+}
+
+.questions-list__description {
+  padding-top: 30px;
+  line-height: 22px;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.questions-list__title {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.how-to-use__main-section--img-item {
+  width: 100%;
+  height: auto;
+}
+
+.questions-list__heading .icon-minus {
+  display: none;
+}
+
+.questions-list__heading:hover {
+  cursor: pointer;
+}
+
+.questions-list__heading.opened .icon-minus {
+  display: block;
+}
+
+.questions-list__heading.opened .icon-plus {
+  display: none;
+}
+
+.product-information-button_wrapper .dl__btn_secondary {
+  margin: 0 auto;
+  max-width: 30rem;
+  font-size: 1.6rem;
+  line-height: 4.4rem;
+  height: 4.4rem;
+  background-color: rgb(23, 68, 61);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4rem;
+}
+
+.dynamic-select_wrapper {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: right;
+}
+
+.dynamic-select {
+  padding: 1rem 1.4rem;
+  border: 0.1rem solid rgb(215, 211, 208);
+  border-radius: 0.8rem;
+  width: 100%;
+  position: relative;
+}
+
+.select-title_wrapper {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-title_wrapper:hover {
+  cursor: pointer;
+}
+
+.dynamic-select-title.active + svg {
+  transform: rotate(180deg);
+}
+
+.dynamic-select-title {
+  font-size: 1.6rem;
+}
+
+.dynamic-select ul {
+  display: none;
+
+  margin-block-start: 1.5rem;
+  margin-block-end: 0;
+
+  padding-inline-start: 0;
+}
+
+.dynamic-select ul.open {
+  display: block;
+}
+
+.dynamic-select:after {
+  content: 'Select Product';
+  position: absolute;
+  top: -2.8rem;
+  left: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.dynamic-select ul li {
+  list-style: none;
+  font-size: 1.6rem;
+}
+
+.dynamic-select ul li:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.dynamic-select ul li + li {
+  margin-top: 1rem;
+}
+
+.js-questions-list__description .how-to-use__main-section--img-item {
+  max-width: 34.5rem;
+}
+
+.js-questions-list__description .how-to-use__main-section--img-item.how-to-use__main-section--img-item-dd {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .how-to-use__main-section--content_title {
+    font-size: 3rem;
+    line-height: 3.8rem;
+  }
+
+  .js-questions-list__description .how-to-use__main-section--img-item {
+    max-width: 32rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .js-product-information.product-information.active,
+  .js-product-information-select.product-information.active {
+    display: flex;
+  }
+
+  .how-to-use__main-section--content-wrapper {
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .how-to-use__main-section--img {
+    width: 50%;
+  }
+
+  .how-to-use__main-section--content {
+    margin-top: 0;
+    flex: 54%;
+  }
+
+  .dynamic-select {
+    width: 50%;
+    padding: 1.4rem;
+  }
+}
