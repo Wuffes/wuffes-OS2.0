@@ -42,7 +42,6 @@ popup-picker[open] {
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: relative;
 }
 
@@ -53,7 +52,7 @@ popup-picker[open] {
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 6px;
+  right: 0.6rem;
   cursor: pointer;
   border: 1px solid rgb(var(--color-link));
   border-radius: 50%;
@@ -155,7 +154,7 @@ popup-picker[open] {
 }
 
 .form__label:hover {
-  box-shadow: 0 0 21px rgb(195, 238, 193);
+  box-shadow: 0 0 2.1rem rgb(195, 238, 193);
 }
 
 .form__label-promo {
@@ -190,7 +189,7 @@ popup-picker[open] {
 
 .form__input:checked + .form__label {
   border-color: rgb(var(--color-link));
-  box-shadow: 0 0 21px rgb(195, 238, 193);
+  box-shadow: 0 0 2.1rem rgb(195, 238, 193);
 
   .label-left__circle {
     border-color: rgb(var(--color-foreground));
@@ -232,15 +231,15 @@ popup-picker[open] {
 
 @media screen and (min-width: 1200px) {
   .label-left__texts {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
 
     .disabled {
-      font-size: 1.4rem;
+      font-size: calc(var(--font-body-scale) * 1.4rem);
     }
   }
 
   .label-right {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }
 
@@ -358,7 +357,7 @@ popup-picker[open] {
 
 @media screen and (min-width: 992px) {
   .offer__button--onetime {
-    font-size: 1.2rem;
+    font-size: calc(var(--font-body-scale) * 1.2rem);
   }
 }
 
@@ -401,7 +400,6 @@ popup-picker[open] {
 .interval-chart {
   width: calc(100% - 3rem);
   max-width: 45rem;
-  min-height: 500px;
   background: rgb(255, 255, 255);
   border-radius: 2rem;
   border: 1px solid rgb(var(--color-foreground));
@@ -415,7 +413,7 @@ popup-picker[open] {
 
 .chart__head {
   padding: 4rem 0 2rem;
-  background: #f1fdf0;
+  background: rgb(241, 253, 240);
   border-bottom: 1px solid rgb(var(--color-foreground));
   text-align: center;
   position: relative;
@@ -468,7 +466,7 @@ popup-picker[open] {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: #f1fdf0;
+  background: rgb(241, 253, 240);
   border: 1px solid rgb(var(--color-foreground));
   position: relative;
   border-radius: 0.8rem;
@@ -609,7 +607,7 @@ popup-picker[open] {
 }
 
 .accordion__input:checked ~ .accordion__content {
-  max-height: 500px;
+  max-height: 50rem;
   opacity: 1;
 }
 
@@ -688,11 +686,11 @@ popup-picker[open] {
 
   .chart__head-texts {
     p {
-      font-size: 1.6rem;
+      font-size: calc(var(--font-body-scale) * 1.6rem);
     }
 
     strong {
-      font-size: 2rem;
+      font-size: calc(var(--font-body-scale) * 2rem);
     }
   }
 
@@ -716,7 +714,7 @@ popup-picker[open] {
   .accordion__title {
     padding-left: 0;
     padding-right: 2.5rem;
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
 
     .icon-chevron {
       right: 0;
@@ -735,11 +733,11 @@ popup-picker[open] {
   }
 
   .chart__guarantee-text {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 
   .chart__guarantee-badge {
-    font-size: 1.4rem;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
   }
 
   .interval-chart__footer {
@@ -754,6 +752,6 @@ popup-picker[open] {
   }
 
   .chart__risk-free__text {
-    font-size: 1.4rem;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
   }
 }

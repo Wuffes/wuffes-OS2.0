@@ -28,7 +28,7 @@ main-offer {
   .offer__container,
   .offer-picker__container {
     display: flex;
-    gap: 30px;
+    gap: 3rem;
   }
 }
 
@@ -102,7 +102,7 @@ main-offer {
 @media screen and (min-width: 576px) {
   .form-block__text--regular {
     h1 {
-      font-size: 3.3rem;
+      font-size: calc(var(--font-heading-scale) * 3.3rem);
     }
   }
 }
@@ -110,7 +110,7 @@ main-offer {
 @media screen and (min-width: 576px) and (max-width: 767px), screen and (min-width: 992px) {
   .form-block__text--small {
     p {
-      font-size: 1.6rem;
+      font-size: calc(var(--font-body-scale) * 1.6rem);
     }
   }
 }
@@ -118,7 +118,7 @@ main-offer {
 @media screen and (min-width: 1200px) {
   .form-block__text--regular {
     h1 {
-      font-size: 4rem;
+      font-size: calc(var(--font-heading-scale) * 4rem);
     }
   }
 }
@@ -154,7 +154,7 @@ main-offer {
     gap: 1.2rem;
 
     p {
-      font-size: 1.4rem;
+      font-size: calc(var(--font-body-scale) * 1.4rem);
     }
   }
 }
@@ -164,7 +164,7 @@ main-offer {
     gap: 2.3rem;
 
     p {
-      font-size: 1.6rem;
+      font-size: calc(var(--font-body-scale) * 1.6rem);
     }
   }
 }
@@ -203,12 +203,12 @@ old-price {
 
 @media screen and (min-width: 576px) and (max-width: 767px), screen and (min-width: 992px) {
   .form-block__price {
-    font-size: 3rem;
+    font-size: calc(var(--font-body-scale) * 3rem);
   }
 
   .form-block__price-label {
     padding: 0.8rem 0.9rem;
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
     border-radius: 0.8rem;
   }
 }
@@ -306,7 +306,7 @@ old-price {
   color: rgb(var(--color-link));
 
   .icon {
-    width: 40px;
+    width: 4rem;
     height: auto;
   }
 }
@@ -368,13 +368,13 @@ old-price {
 
   .mystery-gift__texts-left,
   .mystery-gift__texts-right {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .mystery-gift__heading {
-    font-size: 1.4rem;
+    font-size: calc(var(--font-heading-scale) * 1.4rem);
   }
 }
 
@@ -445,7 +445,7 @@ old-price {
   }
 
   .popup-trigger--link {
-    font-size: 2rem;
+    font-size: calc(var(--font-body-scale) * 2rem);
   }
 }
 
@@ -472,7 +472,7 @@ old-price {
 
 @media screen and (min-width: 1200px) {
   .form-block__fomo {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
   }
 }
 
@@ -481,7 +481,7 @@ old-price {
   justify-content: space-between;
   align-items: center;
   padding: 1.6rem 2rem;
-  background: #f1fdf0;
+  background: rgb(241, 253, 240);
   border: 1px solid rgb(var(--color-foreground));
   border-radius: 0.8rem;
 }

@@ -105,7 +105,9 @@ class OfferPicker extends ModalDialog {
     this.setInputs();
     this.setEventListeners();
 
-    this.dataset.offerType === 'sub' && this.main.hasJointIssues === 'yes' ? this.initIntervalChart() : null;
+    if (this.dataset.offerType === 'sub') {
+      this.main.hasJointIssues === 'yes' ? this.initIntervalChart() : this.setSupplyLastsText();
+    }
   }
 
   setEventListeners() {
@@ -116,6 +118,20 @@ class OfferPicker extends ModalDialog {
     this.querySelectorAll('[checkout]').forEach((button) =>
       button.addEventListener('click', this.onCheckOut.bind(this))
     );
+  }
+
+  setSupplyLastsText() {
+    const form = this.querySelector('[picker-form]');
+    const selectedInput = form.querySelector('input:checked');
+    const quantity = +selectedInput.value;
+    const chewsPerTub = +selectedInput.dataset.chewsPerTub * quantity;
+    const chewsPerDay = +selectedInput.dataset.chewsPerDay;
+
+    const supplyEl = this.querySelectorAll('supply');
+
+    supplyEl.forEach((el) => {
+      el.textContent = Math.round(chewsPerTub / chewsPerDay);
+    });
   }
 
   initIntervalChart() {
@@ -175,7 +191,9 @@ class OfferPicker extends ModalDialog {
   }
 
   onFormChange() {
-    this.dataset.offerType === 'sub' && this.main.hasJointIssues === 'yes' ? this.showIntervalChartLists() : null;
+    if (this.dataset.offerType === 'sub') {
+      this.main.hasJointIssues === 'yes' ? this.showIntervalChartLists() : this.setSupplyLastsText();
+    }
   }
 
   getNextShippingDate(initialDate, interval) {
