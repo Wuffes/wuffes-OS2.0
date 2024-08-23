@@ -133,6 +133,14 @@ popup-picker[open] {
   display: none;
 }
 
+.form__input:disabled + .form__label {
+  opacity: 0.5;
+
+  .label-left__texts > .disabled {
+    color: rgb(255, 0, 0);
+  }
+}
+
 .form__label {
   height: 7rem;
   display: flex;
@@ -144,6 +152,10 @@ popup-picker[open] {
   cursor: pointer;
   border-radius: 1rem;
   position: relative;
+}
+
+.form__label:hover {
+  box-shadow: 0 0 21px rgb(195, 238, 193);
 }
 
 .form__label-promo {
@@ -178,6 +190,7 @@ popup-picker[open] {
 
 .form__input:checked + .form__label {
   border-color: rgb(var(--color-link));
+  box-shadow: 0 0 21px rgb(195, 238, 193);
 
   .label-left__circle {
     border-color: rgb(var(--color-foreground));

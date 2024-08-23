@@ -20,6 +20,8 @@
 
   assign mystery_gift_handle = section.settings.product_mystery
   assign product_mystery_gift = all_products[mystery_gift_handle].first_available_variant.id
+
+  assign is_oos_disabled = section.settings.disable_oos_inputs
 -%}
 
 <popup-picker
@@ -53,7 +55,9 @@
           <h2>Choose quantity</h2>
 
           {%- for dogsize in dogsizes -%}
-            {%- assign dogsize_index = forloop.index -%}
+            {%- assign disabled_picker_handle = 'os-2-0-offer-disabled-picker-' | append: dogsize -%}
+            {%- assign disabled_picker = shop.metaobjects.os_2_0_offer_disabled_picker[disabled_picker_handle] -%}
+            {%- assign disabled_picker_array = disabled_picker.is_disabled | remove: '[' | remove: ']' | split: ',' -%}
 
             {%- liquid
               case (dogsize)
@@ -109,6 +113,11 @@
                 {%- liquid
                   assign input_name = 'offer_' | append: offer_type
                   assign select_id = input_name | append: '_' | append: forloop.rindex
+                  assign input_disabled = false
+
+                  if offer_type == 'sub' and disabled_picker_array[forloop.index0] == '1' and is_oos_disabled
+                    assign input_disabled = true
+                  endif
 
                   if offer_type == 'sub'
                     assign supply_lasts = chew_per_tub | times: forloop.rindex | round | append: ' Chews'
@@ -155,6 +164,10 @@
                     elsif offer_type == 'onetime'
                       echo 'data-variant-id-onetime="' | append: variant_id_onetime | append: '"'
                     endif
+
+                    if input_disabled
+                      echo ' disabled '
+                    endif
                   endcapture
                 -%}
 
@@ -165,9 +178,11 @@
                     type="radio"
                     value="{{ forloop.rindex }}"
                     id="{{- select_id | append: '__' | append: dogsize -}}"
-                    {% if dogsize_index == 1 and forloop.first %}
-                      checked
-                    {% endif %}
+                    {% comment %}
+                      {% if dogsize_index == 1 and forloop.first %}
+                        checked
+                      {% endif %}
+                    {% endcomment %}
                     {{ input_attributes }}
                   >
 
@@ -193,7 +208,13 @@
                           | <em>{{ supply_lasts }}</em>
                         </p>
 
-                        <p class="disabled"><strong>Free Shipping + Free Gift</strong></p>
+                        <div class="disabled">
+                          {%- if input_disabled -%}
+                            {{- section.settings.out_of_stock -}}
+                          {%- else -%}
+                            {{- section.settings.available_stock -}}
+                          {%- endif -%}
+                        </div>
                       </div>
                     </div>
 
@@ -206,12 +227,21 @@
                     </div>
 
                     <div class="label-right">
-                      <p>
+                      <p
+                        {% if offer_type == 'sub' and forloop.last %}
+                          least-price-new
+                        {% endif %}
+                      >
                         <strong>{{- new_price | money -}}</strong>
                       </p>
 
                       {%- unless discount_percentage <= 0 -%}
-                        <p class="disabled">
+                        <p
+                          class="disabled"
+                          {% if offer_type == 'sub' and forloop.last %}
+                            least-price-old
+                          {% endif %}
+                        >
                           <strong
                             ><s>{{- old_price | money -}}</s></strong
                           >

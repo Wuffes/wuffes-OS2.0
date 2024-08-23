@@ -12,6 +12,52 @@ class MainOffer extends HTMLElement {
 
   onInit() {
     this.clearCart();
+
+    this.setTimerBlock();
+  }
+
+  setTimerBlock() {
+    const today = new Date();
+    const targetTime = new Date(today);
+    const timerBeforeNoon = this.querySelector('[timer-before-noon]');
+    const timerAfterNoon = this.querySelector('[timer-after-noon]');
+    const timerEl = this.querySelector('timer');
+
+    targetTime.setUTCHours(12, 0, 0, 0);
+
+    if (today.getUTCHours() <= 12) {
+      targetTime.setUTCDate(targetTime.getUTCDate() + 1);
+
+      timerAfterNoon.removeAttribute('is-shown');
+      timerBeforeNoon.setAttribute('is-shown', '');
+
+      const timerInterval = setInterval(startTimer, 1000);
+      startTimer();
+    } else {
+      timerBeforeNoon.removeAttribute('is-shown');
+      timerAfterNoon.setAttribute('is-shown', '');
+    }
+
+    function startTimer() {
+      const now = new Date();
+      const diff = targetTime.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        timerEl.textContent = '00 : 00 : 00';
+        clearInterval(timerInterval);
+        return;
+      }
+
+      let hours = Math.floor(diff / (1000 * 60 * 60));
+      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      timerEl.textContent = `${hours} : ${minutes} : ${seconds}`;
+    }
   }
 
   getQuizEntries() {
@@ -224,14 +270,29 @@ class OfferPicker extends ModalDialog {
     const allPickerInputs = this.querySelectorAll('[data-dogsize]');
     const selectedPickerInput =
       this.querySelector(`[data-dogsize="${this.main.dogWeight}"]`) || this.querySelector('[data-dogsize="0-35lbs"]');
+    const activeInput = selectedPickerInput.querySelector('input:not([disabled])');
 
-    if (selectedPickerInput) {
-      selectedPickerInput.querySelector('input').checked = true;
-    }
+    activeInput ? (activeInput.checked = true) : null;
 
     allPickerInputs.forEach((input) => {
       if (input !== selectedPickerInput) input.remove();
     });
+
+    this.dataset.offerType === 'sub' ? this.displayLeastValuePrice() : null;
+  }
+
+  displayLeastValuePrice() {
+    const newPriceEl = document.querySelector('[least-price-new]');
+    const oldPriceEl = document.querySelector('[least-price-old]');
+    const displayNewPriceEl = document.querySelector('new-price');
+    const displayOldPriceEl = document.querySelector('old-price');
+
+    if (newPriceEl && oldPriceEl && displayNewPriceEl && displayOldPriceEl) {
+      const formatPrice = (el) => el.textContent.trim().split('.')[0];
+
+      displayNewPriceEl.textContent = formatPrice(newPriceEl);
+      displayOldPriceEl.textContent = formatPrice(oldPriceEl);
+    }
   }
 }
 
