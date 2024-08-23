@@ -1,0 +1,129 @@
+<modal-dialog
+  class="popup-interval-chart"
+  id="interval-chart"
+>
+  <div class="interval-chart" role="dialog">
+    <div class="chart__head">
+      <div class="chart__close" id="ModalClose-interval-chart">
+        {%- render 'icon-close-small' -%}
+      </div>
+
+      {%- if section.settings.interval_chart_heading != blank -%}
+        <div class="chart__head-texts">
+          {{- section.settings.interval_chart_heading -}}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="interval-chart__body">
+      <div class="chart__body-col">
+        <div class="chart__box">
+          {%- if section.settings.interval_chart_vertical -%}
+            {{- section.settings.interval_chart_vertical -}}
+          {%- endif -%}
+        </div>
+
+        {%- for dogsize in dogsizes -%}
+          {%- assign chart_content_handle = 'offer-double-dose-chart-' | append: dogsize -%}
+          {%- assign chart_content = shop.metaobjects.offer_double_dose_chart[chart_content_handle] -%}
+
+          {%- if chart_content -%}
+            <div class="chart__bullet-wrap chart__bullet-wrap--{{- dogsize -}}">
+              {%- for index in (1..3) -%}
+                <div class="chart__bullet-inner chart__bullet-inner--{{- dogsize -}}--{{- forloop.index -}}">
+                  {%- assign list_handle = 'bullet_texts_' | append: index -%}
+                  {%- assign interval_gap_handle = 'interval_date_gap_' | append: index -%}
+
+                  {%- assign lists = chart_content[list_handle]
+                    | remove: '['
+                    | remove: ']'
+                    | remove: '"'
+                    | split: ','
+                  -%}
+
+                  {%- assign interval_gap = chart_content[interval_gap_handle]
+                    | remove: '['
+                    | remove: ']'
+                    | split: ','
+                  -%}
+
+                  {%- for list in lists -%}
+                    <div class="chart__bullet-block {% if lists.size == 2 %}chart__bullet-block--wide{% endif %}">
+                      <span class="bullet-block__circle"></span>
+                      <div class="bullet-block__texts-wrap">
+                        <p class="bullet-block__text" interval-date>
+                          <strong>Ships: Today</strong>
+                        </p>
+                        <p class="bullet-block__text" data-interval-shift="{{ interval_gap[forloop.index0] }}">
+                          {{- list -}}
+                        </p>
+                      </div>
+                    </div>
+                  {%- endfor -%}
+
+                  <div class="chart__bullet-line {% if lists.size == 2 %}chart__bullet-line--wide{% endif %}"></div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="chart__body-col">
+        <div class="chart__accordion">
+          <input class="accordion__input" type="checkbox" id="accordion_1">
+          <label for="accordion_1" class="accordion__title">
+            {{- section.settings.accordion_title_1 -}}
+            {%- render 'icon-chevron' -%}
+          </label>
+
+          <div class="accordion__content">
+            {{- section.settings.accordion_content_1 -}}
+          </div>
+        </div>
+
+        <div class="chart__accordion">
+          <input class="accordion__input" type="checkbox" id="accordion_2">
+          <label for="accordion_2" class="accordion__title">
+            {{- section.settings.accordion_title_2 -}}
+            {%- render 'icon-chevron' -%}
+          </label>
+
+          <div class="accordion__content">
+            {{- section.settings.accordion_content_2 -}}
+          </div>
+        </div>
+
+        <div class="chart__guarantee">
+          {%- if section.settings.guarantee_text != blank -%}
+            <p class="chart__guarantee-text">
+              <strong>{{- section.settings.guarantee_text -}}</strong>
+            </p>
+          {%- endif -%}
+
+          {%- if section.settings.guarantee_badge != blank -%}
+            <div class="chart__guarantee-badge">
+              <p>
+                <strong>{{- section.settings.guarantee_badge -}}</strong>
+              </p>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="interval-chart__footer">
+      <div class="chart__risk-free">
+        {%- liquid
+          assign sizes = '53, 106, 159,'
+          echo section.settings.risk_free_image | image_url: width: 159 | image_tag: sizes: sizes, class: 'chart__risk-free__image'
+        -%}
+        {%- if section.settings.risk_free_text != blank -%}
+          <div class="chart__risk-free__text">
+            {{- section.settings.risk_free_text -}}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</modal-dialog>

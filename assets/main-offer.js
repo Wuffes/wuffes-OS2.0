@@ -2,12 +2,16 @@ class MainOffer extends HTMLElement {
   constructor() {
     super();
 
-    const quizEntries = this.getQuizEntries();
+    document.addEventListener('DOMContentLoaded', this.onInit.bind(this));
 
-    this.clearCart();
+    const quizEntries = this.getQuizEntries();
     this.dogWeight = quizEntries['weight'] ?? '0-35lbs';
     this.hasJointIssues = quizEntries['joint-issues'] ?? 'no';
     this.tubType = this.getTubSize(this.dogWeight);
+  }
+
+  onInit() {
+    this.clearCart();
   }
 
   getQuizEntries() {
@@ -54,18 +58,91 @@ class OfferPicker extends ModalDialog {
     this.main = document.querySelector('main-offer');
     this.setInputs();
     this.setEventListeners();
+
+    this.dataset.offerType === 'sub' && this.main.hasJointIssues === 'yes' ? this.initIntervalChart() : null;
   }
 
   setEventListeners() {
-    this.querySelectorAll('form').forEach((form) => form.addEventListener('change', this.onFormChange.bind(this)));
+    this.querySelectorAll('[picker-form]').forEach((form) =>
+      form.addEventListener('change', this.onFormChange.bind(this))
+    );
 
     this.querySelectorAll('[checkout]').forEach((button) =>
       button.addEventListener('click', this.onCheckOut.bind(this))
     );
   }
 
+  initIntervalChart() {
+    const intervalChartTrigger = document.querySelector('[interval-info]');
+    const intervalChartModal = document.querySelector(intervalChartTrigger.dataset.modal);
+    const intervalChartBtn = intervalChartTrigger.querySelector('button');
+
+    const intervalChartBulletLists = intervalChartModal.querySelectorAll(
+      `.chart__bullet-wrap:not(.chart__bullet-wrap--${this.main.dogWeight})`
+    );
+
+    intervalChartBtn.setAttribute('rehab', true);
+
+    intervalChartBulletLists.forEach((bulletList) => {
+      bulletList.remove();
+    });
+
+    this.showIntervalChartLists();
+  }
+
+  showIntervalChartLists() {
+    const form = this.querySelector('[picker-form]');
+    const selectedInput = form.querySelector('input:checked');
+    const selectedInputValue = selectedInput.value;
+
+    const allBulletTexts = document.querySelectorAll('.chart__bullet-inner');
+    const activeBulletText = document.querySelector(
+      `.chart__bullet-inner--${this.main.dogWeight}--${selectedInputValue}`
+    );
+
+    let initialDate = new Date();
+
+    activeBulletText.querySelectorAll('[interval-date]').forEach((el) => {
+      const intervalShiftEL = el.nextElementSibling;
+      const nextIntervalBlock = el.closest('.chart__bullet-block')?.nextElementSibling;
+      let intervalShift = +intervalShiftEL.dataset.intervalShift;
+
+      let shippingDateObj = {};
+      let shippingDateFormatted = 'Today';
+
+      if (nextIntervalBlock?.classList.contains('chart__bullet-block')) {
+        let nextIntervalShiftEL = nextIntervalBlock.querySelector('[interval-date]');
+
+        shippingDateObj = this.getNextShippingDate(initialDate, intervalShift);
+        shippingDateFormatted = shippingDateObj.nextShippingDateFormatted;
+        initialDate = shippingDateObj.nextShippingDate;
+
+        nextIntervalShiftEL.innerHTML = `<strong>Ships: ${shippingDateFormatted}</strong>`;
+      }
+    });
+
+    allBulletTexts.forEach((list) => {
+      list.removeAttribute('active');
+    });
+
+    activeBulletText.setAttribute('active', '');
+  }
+
   onFormChange() {
-    console.log('form change');
+    this.dataset.offerType === 'sub' && this.main.hasJointIssues === 'yes' ? this.showIntervalChartLists() : null;
+  }
+
+  getNextShippingDate(initialDate, interval) {
+    const nextShippingDate = new Date(initialDate);
+    nextShippingDate.setDate(nextShippingDate.getDate() + interval);
+
+    const month = nextShippingDate.getMonth() + 1;
+    const day = nextShippingDate.getDate();
+
+    return {
+      nextShippingDate,
+      nextShippingDateFormatted: `${month}/${day}`,
+    };
   }
 
   onCheckOut(event) {
@@ -86,7 +163,7 @@ class OfferPicker extends ModalDialog {
   }
 
   getProductData(event) {
-    const form = event.target.closest('form');
+    const form = event.target.closest('[picker-form]');
     const selectedInput = form.querySelector('input:checked');
     const purchaseType = selectedInput.dataset.purchaseType;
     const sellingPlan = selectedInput.dataset.sellingPlan;
@@ -149,7 +226,6 @@ class OfferPicker extends ModalDialog {
       this.querySelector(`[data-dogsize="${this.main.dogWeight}"]`) || this.querySelector('[data-dogsize="0-35lbs"]');
 
     if (selectedPickerInput) {
-      selectedPickerInput.style.display = 'flex';
       selectedPickerInput.querySelector('input').checked = true;
     }
 

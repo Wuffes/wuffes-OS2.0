@@ -146,16 +146,22 @@
       "settings": {
         "color_scheme": "scheme-41fca582-cce1-4737-8930-c52b4cde91f3",
         "accent_color": "#2c8274",
+        "version": "V7",
         "product_sb": "advanced-hip-joint-support-for-small-medium-breeds-6",
         "product_lb": "advanced-hip-joint-support-for-large-breeds-copy",
-        "product_sb_dogsizes": "0-35lbs,36-65lbs",
-        "product_lb_dogsizes": "66-100lbs,100-120lbs,Over120lbs",
+        "product_mystery": "mystery-gift-1",
+        "gift_tag": "SOSS",
         "chews_per_tub_sb": 60,
         "chews_per_tub_lb": 30,
         "chews_per_day": "1,2,1,1.5,2",
-        "product_mystery": "mystery-gift-1",
+        "discounts_array_sub": "50,52,58",
+        "product_type": "JC",
+        "discounts_array_onetime": "0,5,10,15,20,25",
+        "sub_interval_info_prev": "60 Day Supply - Ships Every 60 Days",
+        "sub_interval_info_rehab": "Learn about Automatic Refills",
         "picker_logo": "shopify:\/\/shop_images\/reskin_logo_updated.svg",
         "button_text": "PROCEED TO CHECKOUT",
+        "picker_promo_text": "<p><strong>Limited Time Only<\/strong><\/p>",
         "mystery_heading": "<p><em><strong>Free Gift With Your Order<\/strong><\/em><\/p>",
         "mystery_text_top_left": "<p><strong>Mystery Gift<\/strong><\/p>",
         "mystery_text_bottom_left": "<p>While stock lasts!<\/p>",
@@ -167,7 +173,9 @@
         "fomo_right_text": "<p><strong>16 orders<\/strong> at this price remaining<\/p>",
         "fomo_right_image": "shopify:\/\/shop_images\/animated_timer.gif",
         "onetime_bottom_text": "<p>We recommend a subscription to give your dog the best chance at long lasting joint health<\/p>",
-        "product_desc": "<p>Advanced Hip & Joint Support is a groundbreaking blend of powerful ingredients that help support joint and mobility issues. The active ingredients in our formula were hand-picked by pet experts are scientifically-proven to help promote healthier joints and reduce symptoms of existing joint issues, in a little as 3 weeks.<\/p>"
+        "product_desc": "<p>Advanced Hip & Joint Support is a groundbreaking blend of powerful ingredients that help support joint and mobility issues. The active ingredients in our formula were hand-picked by pet experts are scientifically-proven to help promote healthier joints and reduce symptoms of existing joint issues, in a little as 3 weeks.<\/p>",
+        "risk_free_image": "shopify:\/\/shop_images\/fpv7_guarantee_badge_rebrand.svg",
+        "risk_free_text": "<p><strong>Double dosing is risk free and covered by our 90 day money back guarantee<\/strong><\/p><p><strong>Email us, call us, or edit with a single click.<\/strong><\/p>"
       }
     }
   },
