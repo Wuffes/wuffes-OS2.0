@@ -17,46 +17,43 @@ class MainOffer extends HTMLElement {
   }
 
   setTimerBlock() {
-    const today = new Date();
-    const targetTime = new Date(today);
     const timerBeforeNoon = this.querySelector('[timer-before-noon]');
     const timerAfterNoon = this.querySelector('[timer-after-noon]');
     const timerEl = this.querySelector('timer');
 
-    targetTime.setUTCHours(12, 0, 0, 0);
+    const now = new Date();
 
-    if (today.getUTCHours() <= 12) {
-      targetTime.setUTCDate(targetTime.getUTCDate() + 1);
-
-      timerAfterNoon.removeAttribute('is-shown');
-      timerBeforeNoon.setAttribute('is-shown', '');
-
-      const timerInterval = setInterval(startTimer, 1000);
-      startTimer();
-    } else {
+    if (now.getUTCHours() >= 12) {
       timerBeforeNoon.removeAttribute('is-shown');
       timerAfterNoon.setAttribute('is-shown', '');
+    } else {
+      timerAfterNoon.removeAttribute('is-shown');
+      timerBeforeNoon.setAttribute('is-shown', '');
+      startCountdown();
     }
 
-    function startTimer() {
+    function startCountdown() {
       const now = new Date();
-      const diff = targetTime.getTime() - now.getTime();
+      const targetUTCDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 12, 0, 0, 0));
+      const timeDifference = targetUTCDate - now;
 
-      if (diff <= 0) {
+      if (timeDifference <= 0) {
         timerEl.textContent = '00 : 00 : 00';
-        clearInterval(timerInterval);
         return;
       }
 
-      let hours = Math.floor(diff / (1000 * 60 * 60));
-      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      hours = hours < 10 ? '0' + hours : hours;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-
+      const { hours, minutes, seconds } = getTimeComponents(timeDifference);
       timerEl.textContent = `${hours} : ${minutes} : ${seconds}`;
+
+      requestAnimationFrame(startCountdown);
+    }
+
+    function getTimeComponents(timeDifference) {
+      const hours = String(Math.floor((timeDifference / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      const minutes = String(Math.floor((timeDifference / (1000 * 60)) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((timeDifference / 1000) % 60)).padStart(2, '0');
+
+      return { hours, minutes, seconds };
     }
   }
 
