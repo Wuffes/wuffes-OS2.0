@@ -46,11 +46,20 @@
     </div>
 
     <div class="offer-picker__container">
-      <div class="col-1">
-        {{ offer_type }}
+      <div class="col col__carousel offer-picker__carousel">
+        {%- assign carousel_contents_picker_sb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-picker-sb'] -%}
+        {%- assign carousel_contents_picker_lb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-picker-lb'] -%}
+
+        <div class="offer-carousel__wrap" dogsize-type="SB">
+          {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_picker_sb -%}
+        </div>
+
+        <div class="offer-carousel__wrap" dogsize-type="LB">
+          {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_picker_lb -%}
+        </div>
       </div>
 
-      <div class="col-2 offer-picker__form">
+      <div class="col col__form offer-picker__form">
         <div class="form" picker-form>
           <h2>Choose quantity</h2>
 

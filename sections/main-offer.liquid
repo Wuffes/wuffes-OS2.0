@@ -1,5 +1,6 @@
 {{ 'main-offer.css' | asset_url | stylesheet_tag }}
 {{ 'component-offer-picker.css' | asset_url | stylesheet_tag }}
+{{ 'component-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign product_sb_handle = section.settings.product_sb | default: 'advanced-hip-joint-support-for-small-medium-breeds-6'
@@ -16,9 +17,20 @@
   data-product-type="{{  section.settings.product_type | default: 'JC' }}"
 >
   <div class="offer__container">
-    <div class="col-1">carousel</div>
+    <div class="col col__carousel">
+      {%- assign carousel_contents_sb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-main-sb'] -%}
+      {%- assign carousel_contents_lb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-main-lb'] -%}
 
-    <div class="col-2 offer__form">
+      <div class="offer-carousel__wrap" dogsize-type="SB">
+        {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_sb -%}
+      </div>
+
+      <div class="offer-carousel__wrap" dogsize-type="LB">
+        {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_lb -%}
+      </div>
+    </div>
+
+    <div class="col col__form">
       {%- for block in section.blocks -%}
         <div
           class="form-block scroll-trigger animate--slide-in"
@@ -229,6 +241,7 @@
   -%}
 </main-offer>
 
+<script src="{{ 'carousel.js' | asset_url }}" defer></script>
 <script src="{{ 'main-offer.js' | asset_url }}" defer></script>
 
 {% schema %}

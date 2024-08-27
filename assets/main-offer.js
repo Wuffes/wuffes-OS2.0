@@ -14,6 +14,15 @@ class MainOffer extends HTMLElement {
     this.clearCart();
 
     this.setTimerBlock();
+    this.showCarousels();
+  }
+
+  showCarousels() {
+    const allCarousels = document.querySelectorAll('.offer-carousel__wrap');
+
+    allCarousels.forEach((carousel) =>
+      carousel.getAttribute('dogsize-type') === this.tubType ? carousel.setAttribute('shown', '') : carousel.remove()
+    );
   }
 
   setTimerBlock() {

@@ -1,0 +1,57 @@
+{%- assign slides = content.slides.value -%}
+
+{%- if slides -%}
+  <carousel-container
+    data-slides-per-view="1"
+    data-space-between="15"
+    carousel
+  >
+    <div class="carousel-main">
+      <div class="carousel-wrap">
+        <div class="carousel-track">
+          {%- for slide in slides -%}
+            <div class="carousel-slide">
+              {%- liquid
+                assign widths = '500, 1000, 1500'
+                assign loading = 'eager'
+
+                unless forloop.first
+                  assign loading = 'lazy'
+                endunless
+
+                echo slide | image_url: width: 1500 | image_tag: widths: widths, class: 'carousel-slide__image', loading: loading
+              -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <button class="carousel-nav carousel-prev">
+        {%- render 'icon-arrow' -%}
+      </button>
+
+      <button class="carousel-nav carousel-next">
+        {%- render 'icon-arrow' -%}
+      </button>
+    </div>
+
+    {%- if thumbnails -%}
+      <div class="carousel-thumbnails">
+        {%- for slide in slides -%}
+          <div class="thumbnail">
+            {%- liquid
+              assign sizes = '100, 200, 300'
+              assign loading = 'eager'
+
+              unless forloop.first
+                assign loading = 'lazy'
+              endunless
+
+              echo slide | image_url: width: 300 | image_tag: sizes: sizes, class: 'carousel-slide__thumb-image', loading: loading
+            -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </carousel-container>
+{%- endif -%}

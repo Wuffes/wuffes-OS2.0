@@ -29,6 +29,43 @@ popup-picker {
   .disabled {
     opacity: 0.5;
   }
+
+  .carousel-slide__image {
+    border-radius: 0.8rem;
+  }
+
+  .carousel-thumbnails {
+    display: none;
+  }
+
+  .carousel-nav {
+    background: rgb(255, 255, 255);
+    border-color: rgb(var(--color-foreground));
+  }
+
+  .carousel-slide__thumb-image {
+    border-radius: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  popup-picker {
+    .col__carousel {
+      padding: 0 15px;
+    }
+
+    .carousel-thumbnails {
+      display: flex;
+    }
+
+    .carousel-prev {
+      left: -1.5rem;
+    }
+
+    .carousel-next {
+      right: -1.5rem;
+    }
+  }
 }
 
 popup-picker[open] {
@@ -90,7 +127,7 @@ popup-picker[open] {
 }
 
 .offer-picker__form {
-  padding-top: 3rem;
+  padding-top: 1.5rem;
 
   .form-block__trust,
   .form-block__popup-trigger {

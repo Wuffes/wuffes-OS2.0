@@ -1,0 +1,151 @@
+carousel-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.5rem;
+  margin: auto;
+  position: relative;
+}
+
+carousel-container[vertical] {
+  flex-direction: row;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+
+  .carousel-main {
+    order: 1;
+    width: 100%;
+  }
+
+  .carousel-thumbnails {
+    order: 0;
+    margin-top: 0;
+    flex-direction: column;
+    max-height: 0;
+  }
+
+  .thumbnail {
+    min-width: 6.5rem;
+  }
+}
+
+.carousel-main {
+  cursor: grab;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  cursor: grab;
+  transition: transform 0.3s ease-out;
+}
+
+.carousel-track:hover {
+  cursor: grab;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  user-select: none;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnail {
+  min-width: 14%;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail img {
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+  height: auto;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.thumbnail.active {
+  opacity: 1;
+
+  img {
+    border: 1px solid rgb(var(--color-link));
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .thumbnail {
+    min-width: 9rem;
+  }
+}
+
+.carousel-nav {
+  width: 3.3rem;
+  height: 3.3rem;
+  position: absolute;
+  padding: 0;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  background: rgba(241, 253, 240);
+  border: 2px solid rgb(var(--color-link));
+  color: rgb(var(--color-link));
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  touch-action: manipulation;
+
+  .icon-arrow {
+    width: auto;
+    height: 1.3rem;
+  }
+}
+
+.carousel-prev {
+  left: 0;
+
+  .icon-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+.carousel-next {
+  right: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .carousel-nav {
+    width: 4rem;
+    height: 4rem;
+
+    .icon-arrow {
+      height: 1.5rem;
+    }
+  }
+}
