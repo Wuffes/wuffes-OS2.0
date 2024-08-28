@@ -1,3 +1,13 @@
+{% comment %}
+  Renders offer-interval-chart popup for rehab picker.
+  Accepts:
+    - dogsizes: {array} dpgsize titles
+
+  Usage:
+  {% assign dogsizes = '0-35lbs,36-65lbs,65-100lbs,100-120lbs,Over120lbs' | split: ',' %}
+  {%- render 'offer-interval-chart', dogsizes: dogsizes -%}
+{% endcomment %}
+
 <modal-dialog
   class="popup-interval-chart"
   id="interval-chart"

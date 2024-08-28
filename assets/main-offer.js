@@ -219,6 +219,11 @@ class OfferPicker extends ModalDialog {
     event.preventDefault();
 
     const productData = this.getProductData(event);
+    const buttonText = event.target.querySelector('strong');
+    const spinner = event.target.querySelector('.loading__spinner');
+
+    spinner.classList.remove('hidden');
+    buttonText.classList.add('hidden');
 
     fetch('/cart/add.js', {
       method: 'POST',

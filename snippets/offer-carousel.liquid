@@ -1,10 +1,20 @@
+{% comment %}
+  Renders offer-carousel on main-offer page.
+  Accepts:
+    - thumbnails: {boolean} if we want to generate thumbnails
+    - content: {object} lists of images' file names ie: files/image_file_name.png
+
+  Usage:
+  {% assign content = 'files/image_file_name_1.png,files/image_file_name_2.png' | split: ',' %}
+  {%- render 'offer-carousel', thumbnails: true, content: content -%}
+{% endcomment %}
+
 {%- assign slides = content.slides.value -%}
 
 {%- if slides -%}
   <carousel-container
     data-slides-per-view="1"
     data-space-between="15"
-    carousel
   >
     <div class="carousel-main">
       <div class="carousel-wrap">

@@ -1,3 +1,14 @@
+{% comment %}
+  Renders offer-picker popup.
+  Accepts:
+    - offer_type: 'sub || onetime': {string} what offer should be shown
+    - product_sb: {object} small breed product object
+    - product_lb: {object} large breed product object
+
+  Usage:
+  {% render 'offer-picker', offer_type: 'sub', product_sb: product, product_lb: product %}
+{% endcomment %}
+
 {%- liquid
   if offer_type == 'sub'
     assign label_count = 3
@@ -344,6 +355,10 @@
               class="{% if offer_type == 'sub' %}offer__button{% else %}offer__button--onetime{% endif %} button button-primary"
             >
               <strong>{{- section.settings.button_text -}}</strong>
+
+              <div spinner>
+                {%- render 'loading-spinner' -%}
+              </div>
             </button>
           </div>
 

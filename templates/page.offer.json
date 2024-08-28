@@ -164,7 +164,7 @@
         "picker_promo_text": "<p><strong>Limited Time Only<\/strong><\/p>",
         "available_stock": "<p><strong>Free Shipping + Free Gift<\/strong><\/p>",
         "out_of_stock": "<p><strong>Out of stock<\/strong><\/p>",
-        "disable_oos_inputs": true,
+        "disable_oos_inputs": false,
         "mystery_heading": "<p><em><strong>Free Gift With Your Order<\/strong><\/em><\/p>",
         "mystery_text_top_left": "<p><strong>Mystery Gift<\/strong><\/p>",
         "mystery_text_bottom_left": "<p>While stock lasts!<\/p>",
