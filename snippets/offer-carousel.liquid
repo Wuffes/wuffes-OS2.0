@@ -22,14 +22,15 @@
           {%- for slide in slides -%}
             <div class="carousel-slide">
               {%- liquid
-                assign widths = '500, 1000, 1500'
+                assign widths = '315, 495, 635, 945, 990, 1270, 1485, 1905'
+                assign sizes = '(max-width: 767px) calc(91.5vw - 30px), (min-width: 768px) calc((100vw / 2)  - 90px), (min-width: 992px) 495px, (min-width: 1200px) 635px'
                 assign loading = 'eager'
 
                 unless forloop.first
                   assign loading = 'lazy'
                 endunless
 
-                echo slide | image_url: width: 1500 | image_tag: widths: widths, class: 'carousel-slide__image', loading: loading
+                echo slide | image_url: width: 1905 | image_tag: widths: widths, sizes: sizes, class: 'carousel-slide__image', loading: loading
               -%}
             </div>
           {%- endfor -%}
@@ -50,14 +51,15 @@
         {%- for slide in slides -%}
           <div class="thumbnail">
             {%- liquid
-              assign sizes = '100, 200, 300'
+              assign widths = '57, 91, 124, 203, 279'
+              assign sizes = '(max-width: 767px) calc((100vw - 105px) / 6), (min-width: 768px) calc((50vw - 135px) / 6), (min-width: 992px) 69px, (min-width: 1200px) 93px'
               assign loading = 'eager'
 
               unless forloop.first
                 assign loading = 'lazy'
               endunless
 
-              echo slide | image_url: width: 300 | image_tag: sizes: sizes, class: 'carousel-slide__thumb-image', loading: loading
+              echo slide | image_url: width: 300 | image_tag: sizes: sizes, widths: widths, class: 'carousel-slide__thumb-image', loading: loading
             -%}
           </div>
         {%- endfor -%}
