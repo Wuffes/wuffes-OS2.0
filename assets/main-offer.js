@@ -135,6 +135,10 @@ class OfferPicker extends ModalDialog {
 
     const supplyEl = this.querySelectorAll('supply');
 
+    console.log(chewsPerTub / chewsPerDay);
+
+    console.log(supplyEl);
+
     supplyEl.forEach((el) => {
       el.textContent = Math.round(chewsPerTub / chewsPerDay);
     });

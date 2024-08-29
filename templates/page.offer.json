@@ -157,7 +157,7 @@
         "discounts_array_sub": "50,52,58",
         "product_type": "JC",
         "discounts_array_onetime": "0,5,10,15,20,25",
-        "sub_interval_info_prev": "60 Day Supply - Ships Every 60 Days",
+        "sub_interval_info_prev": "<supply>60<\/supply> Day Supply - Ships Every <supply>60<\/supply> Days",
         "sub_interval_info_rehab": "Learn about Automatic Refills",
         "picker_logo": "shopify:\/\/shop_images\/reskin_logo_updated.svg",
         "button_text": "PROCEED TO CHECKOUT",

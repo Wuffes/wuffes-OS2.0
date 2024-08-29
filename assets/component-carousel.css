@@ -75,8 +75,6 @@ carousel-container[vertical] .thumbnail {
 .thumbnail {
   flex: 0 0 calc((100% - 8rem) / 6);
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 .thumbnail img {
@@ -85,10 +83,6 @@ carousel-container[vertical] .thumbnail {
   height: auto;
   -webkit-user-drag: none;
   pointer-events: none;
-}
-
-.thumbnail.active {
-  opacity: 1;
 }
 
 .thumbnail.active img {

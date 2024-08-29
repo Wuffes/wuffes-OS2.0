@@ -73,7 +73,7 @@ main-quiz {
   width: 100%;
   min-height: calc(100vh - 5rem);
   display: block;
-  padding: 0 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 quiz-step {
@@ -188,6 +188,7 @@ quiz-step {
   pointer-events: auto;
   cursor: pointer;
   border-radius: 0.8rem;
+  transition: all 0.2s ease-in;
 
   &[disabled] {
     opacity: 0.5;
@@ -215,7 +216,8 @@ quiz-step {
   stroke: rgb(var(--color-button));
 }
 
-.quiz-step__input:checked + .quiz-step__radio-label {
+.quiz-step__input:checked + .quiz-step__radio-label,
+.quiz-step__radio-label:hover {
   background: rgb(var(--color-button));
   color: rgb(var(--color-button-text));
 
@@ -655,19 +657,19 @@ quiz-back {
     }
 
     h2 {
-      font-size: calc(var(--font-heading-scale) * 3.4rem);
-    }
-
-    h3 {
       font-size: calc(var(--font-heading-scale) * 3.2rem);
     }
 
-    h4 {
+    h3 {
       font-size: calc(var(--font-heading-scale) * 3rem);
     }
 
-    h5 {
+    h4 {
       font-size: calc(var(--font-heading-scale) * 2.8rem);
+    }
+
+    h5 {
+      font-size: calc(var(--font-heading-scale) * 2.4rem);
     }
 
     h6 {

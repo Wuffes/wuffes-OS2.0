@@ -45,10 +45,7 @@ popup-picker {
 
   .carousel-thumbnails {
     display: none;
-  }
-
-  .carousel-thumbnails .thumbnail {
-    flex: 0 0 calc((100% - 5rem) / 6);
+    gap: 1.5rem;
   }
 
   .carousel-nav {
