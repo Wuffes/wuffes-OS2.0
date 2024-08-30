@@ -190,6 +190,50 @@
   text-align: left;
 }
 
+.card.how-to-use_card-wrapper {
+  background-color: transparent;
+}
+
+.section-featured-collection .how-to-use_card-wrapper .card__heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.section-featured-collection .how-to-use_card-wrapper .card-information__collection {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.how-to-use_card-wrapper .card-information__bottom {
+  margin-top: 1rem;
+}
+
+.how-to-use_card-wrapper .card-information__button {
+  display: flex;
+  margin: 0 auto;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 34rem;
+  font-size: 1.4rem;
+}
+
+.how-to-use_card-wrapper .card-information__bottom svg {
+  width: 2rem;
+}
+
+.card.collection_border {
+  border: none;
+}
+
+.card__information.how-to-use_card-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 @media screen and (min-width: 990px) {
   .grid--6-col-desktop .card__content quick-add-bulk .quantity {
     width: auto;
@@ -268,6 +312,10 @@
     padding-bottom: 1.7rem;
     padding-top: 1.7rem;
   }
+}
+
+.how-to-use_card-wrapper .card-information__button {
+  min-width: 30rem;
 }
 
 .card__badge {

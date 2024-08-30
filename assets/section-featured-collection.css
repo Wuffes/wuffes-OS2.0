@@ -6,6 +6,40 @@
 .featured-collection__title {
   text-align: center;
 }
+.section-featured-collection .featured-collection--slider-buttons.slider-buttons_how-to-use {
+  justify-content: end;
+  width: 100%;
+}
+
+.slider-buttons_how-to-use .slider-counter--dots {
+  position: absolute;
+  left: 1.5rem;
+}
+
+.slider-buttons_how-to-use .slideshow__control-wrapper {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.slider-buttons_how-to-use .slider-counter__link {
+  padding: 0;
+  width: 0.8rem;
+  height: 0.8rem;
+
+  border-radius: 0.4rem;
+  background-color: rgb(202, 202, 191);
+
+  transition: all 0.2s ease-in-out;
+}
+
+.slider-buttons_how-to-use .dot {
+  display: none;
+}
+
+.slider-buttons_how-to-use .slider-counter__link.slider-counter__link--active {
+  width: 2.6rem;
+  background-color: rgb(23, 68, 61);
+}
 
 @media screen and (min-width: 990px) {
   .card-decription {
@@ -33,7 +67,7 @@
 
   .card-decription {
     font-size: 12px;
-    padding-top: .7rem;
+    padding-top: 0.7rem;
     margin-bottom: 0;
   }
 
@@ -49,7 +83,7 @@
   }
 
   .featured-collection_slider-button--next svg {
-      transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 }
 
@@ -63,7 +97,6 @@
 
 @media screen and (min-width: 990px) {
   .section-featured-collection {
-
     .featured-collection--slider--desktop .slider__slide:first-child {
       margin-left: 0 !important;
     }
@@ -82,10 +115,10 @@
 
 @media screen and (min-width: 1400px) {
   .section-featured-collection .featured-collection--slider-buttons {
-      left: -3.5rem;
-      right: -3.5rem;
-      z-index: -1;
-    }
+    left: -3.5rem;
+    right: -3.5rem;
+    z-index: -1;
+  }
 }
 
 .card-benefits {
@@ -115,7 +148,7 @@
 
 .card-benefits__text {
   font-size: 14px;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .card-information__collection {
@@ -142,5 +175,3 @@
   font-weight: 700;
   margin: 1.2rem 0;
 }
-
-
