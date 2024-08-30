@@ -1,0 +1,434 @@
+{% comment %}
+  Renders offer-picker popup.
+  Accepts:
+    - offer_type: 'sub || onetime': {string} what offer should be shown
+    - product_sb: {object} small breed product object
+    - product_lb: {object} large breed product object
+
+  Usage:
+  {% render 'offer-picker', offer_type: 'sub', product_sb: product, product_lb: product %}
+{% endcomment %}
+
+{%- liquid
+  if offer_type == 'sub'
+    assign label_count = 3
+  else
+    assign label_count = 6
+  endif
+
+  assign small_sizes = '0-35lbs,36-65lbs'
+  assign large_sizes = '65-100lbs,100-120lbs,Over120lbs'
+
+  assign dogsize_array = small_sizes | append: ',' | append: large_sizes
+  assign dogsizes = dogsize_array | split: ','
+
+  assign chews_per_day_array = section.settings.chews_per_day | split: ','
+  assign chews_per_tub_sb = section.settings.chews_per_tub_sb | default: 60
+  assign chews_per_tub_lb = section.settings.chews_per_tub_lb | default: 30
+
+  assign discounts_array_sub = section.settings.discounts_array_sub | split: ','
+  assign discounts_array_onetime = section.settings.discounts_array_onetime | split: ','
+
+  assign mystery_gift_handle = section.settings.product_mystery
+  assign product_mystery_gift = all_products[mystery_gift_handle].first_available_variant.id
+
+  assign is_oos_disabled = section.settings.disable_oos_inputs
+-%}
+
+<popup-picker
+  class="color-{{ section.settings.color_scheme }} gradient"
+  id="offer-picker--{{ offer_type }}"
+  data-offer-type="{{ offer_type }}"
+  {% if section.settings.accent_color %}
+    style="--accent-color: {{ section.settings.accent_color }}"
+  {% endif %}
+>
+  <div role="dialog">
+    <div class="offer-picker__header">
+      {%- liquid
+        assign sizes = '140, 240, 420'
+
+        echo section.settings.picker_logo | image_url: width: 420 | image_tag: sizes: sizes, class: 'picker-header__logo'
+      -%}
+
+      <div class="picker-header__close" id="ModalClose-popup__offer-picker--{{ offer_type }}">
+        {%- render 'icon-close' -%}
+      </div>
+    </div>
+
+    <div class="offer-picker__container">
+      <div class="col col__carousel offer-picker__carousel">
+        {%- assign carousel_contents_picker_sb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-picker-sb'] -%}
+        {%- assign carousel_contents_picker_lb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-picker-lb'] -%}
+
+        <div class="offer-carousel__wrap" dogsize-type="SB">
+          {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_picker_sb -%}
+        </div>
+
+        <div class="offer-carousel__wrap" dogsize-type="LB">
+          {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_picker_lb -%}
+        </div>
+      </div>
+
+      <div class="col col__form offer-picker__form">
+        <div class="form" picker-form>
+          <h2>Choose quantity</h2>
+
+          {%- for dogsize in dogsizes -%}
+            {%- assign disabled_picker_handle = 'os-2-0-offer-disabled-picker-' | append: dogsize -%}
+            {%- assign disabled_picker = shop.metaobjects.os_2_0_offer_disabled_picker[disabled_picker_handle] -%}
+            {%- assign disabled_picker_array = disabled_picker.is_disabled | remove: '[' | remove: ']' | split: ',' -%}
+
+            {%- liquid
+              case (dogsize)
+                when '0-35lbs':
+                  assign chew_per_day = chews_per_day_array[0]
+                when '36-65lbs':
+                  assign chew_per_day = chews_per_day_array[1]
+                when '65-100lbs':
+                  assign chew_per_day = chews_per_day_array[2]
+                when '100-120lbs':
+                  assign chew_per_day = chews_per_day_array[3]
+                when 'Over120lbs':
+                  assign chew_per_day = chews_per_day_array[4]
+                else
+                  assign chew_per_day = chews_per_day_array[0]
+              endcase
+
+              if small_sizes contains dogsize
+                assign product = product_sb
+                assign chew_per_tub = chews_per_tub_sb
+              elsif large_sizes contains dogsize
+                assign product = product_lb
+                assign chew_per_tub = chews_per_tub_lb
+              endif
+
+              if offer_type == 'sub'
+                for variant in product.variants
+                  assign curr_variant_title = variant.title | split: '|' | first | replace: ' ', ''
+
+                  if curr_variant_title contains dogsize
+                    if variant.title contains 'preventative'
+                      assign variant_id_prev = variant.id
+                    endif
+
+                    if variant.title contains 'rehabilitation'
+                      assign variant_id_rehab = variant.id
+                    endif
+                  endif
+                endfor
+              elsif offer_type == 'onetime'
+                for variant in product.variants
+                  if variant.title == 'onetime'
+                    assign variant_id_onetime = variant.id
+                  endif
+                endfor
+              endif
+            -%}
+            <div
+              class="form__select-wrap"
+              data-dogsize="{{- dogsize -}}"
+            >
+              {%- for index in (1..label_count) -%}
+                {%- liquid
+                  assign input_name = 'offer_' | append: offer_type
+                  assign select_id = input_name | append: '_' | append: forloop.rindex
+                  assign input_disabled = false
+
+                  if offer_type == 'sub' and disabled_picker_array[forloop.index0] == '1' and is_oos_disabled
+                    assign input_disabled = true
+                  endif
+
+                  if offer_type == 'sub'
+                    assign supply_lasts = chew_per_tub | times: forloop.rindex | round | append: ' Chews'
+                    assign discounts_array = discounts_array_sub
+                  elsif offer_type == 'onetime'
+                    assign supply_lasts = chew_per_tub | divided_by: chew_per_day | times: forloop.rindex | round | append: ' Day Supply'
+                    assign discounts_array = discounts_array_onetime
+                  endif
+
+                  assign discount_percentage = discounts_array[forloop.rindex0] | times: 1
+                  assign old_price = product.price | times: forloop.rindex
+                  assign discount_amount = old_price | times: discount_percentage | divided_by: 100
+                  assign new_price = old_price | minus: discount_amount
+
+                  assign shipping_interval = chew_per_tub | divided_by: chew_per_day | times: forloop.rindex | round: 0 | append: ' Days'
+
+                  for selling_plan_group in product.selling_plan_groups
+                    if selling_plan_group.name == product.title
+                      assign selling_group = selling_plan_group
+                    endif
+                  endfor
+
+                  assign selling_plans = selling_group.selling_plans
+                  assign selling_plan_name = 'Delivery every ' | append: shipping_interval
+
+                  for selling_plan in selling_plans
+                    if selling_plan.name contains selling_plan_name
+                      assign selling_plan_id = selling_plan.id
+                    endif
+                  endfor
+
+                  capture input_attributes
+                    echo 'data-purchase-type="' | append: offer_type | append: '"'
+                    echo 'data-interval="' | append: shipping_interval | append: '"'
+                    echo 'data-mystery-gift="' | append: product_mystery_gift | append: '"'
+                    echo 'data-discount="' | append: discount_percentage | append: '"'
+                    echo 'data-chews-per-day="' | append: chew_per_day | append: '"'
+                    echo 'data-chews-per-tub="' | append: chew_per_tub | append: '"'
+
+                    if offer_type == 'sub'
+                      echo 'data-variant-id-prev="' | append: variant_id_prev | append: '"'
+                      echo 'data-variant-id-rehab="' | append: variant_id_rehab | append: '"'
+                      echo 'data-selling-plan="' | append: selling_plan_id | append: '"'
+                    elsif offer_type == 'onetime'
+                      echo 'data-variant-id-onetime="' | append: variant_id_onetime | append: '"'
+                    endif
+
+                    if input_disabled
+                      echo ' disabled '
+                    endif
+                  endcapture
+                -%}
+
+                <div class="form__select-block">
+                  <input
+                    class="form__input"
+                    name="{{ input_name }}"
+                    type="radio"
+                    value="{{ forloop.rindex }}"
+                    id="{{- select_id | append: '__' | append: dogsize -}}"
+                    {% comment %}
+                      {% if dogsize_index == 1 and forloop.first %}
+                        checked
+                      {% endif %}
+                    {% endcomment %}
+                    {{ input_attributes }}
+                  >
+
+                  <label
+                    class="form__label"
+                    for="{{- select_id | append: '__' | append: dogsize -}}"
+                  >
+                    {%- if forloop.first and section.settings.picker_promo_text != blank and offer_type == 'sub' -%}
+                      <div class="form__label-promo">
+                        {{- section.settings.picker_promo_text -}}
+                      </div>
+                    {%- endif -%}
+
+                    <div class="label-left">
+                      <span class="label-left__circle"></span>
+
+                      <div class="label-left__texts">
+                        <p>
+                          <strong>
+                            {{ forloop.rindex }}
+                            {{ forloop.rindex | pluralize: 'Tub', 'Tubs' }}
+                          </strong>
+                          | <em>{{ supply_lasts }}</em>
+                        </p>
+
+                        <div class="disabled">
+                          {%- if input_disabled -%}
+                            {{- section.settings.out_of_stock -}}
+                          {%- else -%}
+                            {{- section.settings.available_stock -}}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="label-center">
+                      {%- unless discount_percentage <= 0 -%}
+                        <span
+                          ><strong>Save {{ discount_amount | money }}</strong></span
+                        >
+                      {%- endunless -%}
+                    </div>
+
+                    <div class="label-right">
+                      <p
+                        {% if offer_type == 'sub' and forloop.last %}
+                          least-price-new
+                        {% endif %}
+                      >
+                        <strong>{{- new_price | money -}}</strong>
+                      </p>
+
+                      {%- unless discount_percentage <= 0 -%}
+                        <p
+                          class="disabled"
+                          {% if offer_type == 'sub' and forloop.last %}
+                            least-price-old
+                          {% endif %}
+                        >
+                          <strong
+                            ><s>{{- old_price | money -}}</s></strong
+                          >
+                        </p>
+                      {%- endunless -%}
+                    </div>
+                  </label>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+
+          {%- if section.settings.mystery_heading -%}
+            <div class="mystery-gift__heading">
+              {{- section.settings.mystery_heading -}}
+            </div>
+          {%- endif -%}
+
+          <div class="mystery-gift__content">
+            <div class="mystery-gift__icon">
+              {%- render 'icon-mystery-gift' -%}
+            </div>
+
+            <div class="mystery-gift__texts">
+              <div class="mystery-gift__texts-left">
+                {%- if section.settings.mystery_text_top_left -%}
+                  {{-
+                    section.settings.mystery_text_top_left
+                    | replace: '[line-through]', '<s>'
+                    | replace: '[/line-through]', '</s>'
+                  -}}
+                {%- endif -%}
+
+                {%- if section.settings.mystery_text_bottom_left -%}
+                  {{-
+                    section.settings.mystery_text_bottom_left
+                    | replace: '[line-through]', '<s>'
+                    | replace: '[/line-through]', '</s>'
+                  -}}
+                {%- endif -%}
+              </div>
+
+              <div class="mystery-gift__texts-right">
+                {%- if section.settings.mystery_text_top_right -%}
+                  {{-
+                    section.settings.mystery_text_top_right
+                    | replace: '[line-through]', '<s>'
+                    | replace: '[/line-through]', '</s>'
+                  -}}
+                {%- endif -%}
+
+                {%- if section.settings.mystery_text_bottom_right -%}
+                  {{-
+                    section.settings.mystery_text_bottom_right
+                    | replace: '[line-through]', '<s>'
+                    | replace: '[/line-through]', '</s>'
+                  -}}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+
+          {%- if offer_type == 'sub' -%}
+            <modal-opener interval-info data-modal="#interval-chart">
+              <button class="form__interval-info">
+                {%- render 'icon-alert' -%}
+                <span class="interval-info__text interval-info__text--prev"
+                  ><strong>
+                    {{- section.settings.sub_interval_info_prev -}}
+                  </strong></span
+                >
+                <span class="interval-info__text interval-info__text--rehab"
+                  ><strong>{{- section.settings.sub_interval_info_rehab -}}</strong></span
+                >
+              </button>
+            </modal-opener>
+          {%- endif -%}
+
+          <div class="form__button form__button--{{ offer_type }}">
+            {%- if offer_type == 'onetime' -%}
+              <popup-picker-opener data-modal="#offer-picker--sub">
+                <button class="form__button-switch button" data-purchase-type="sub">
+                  {%- render 'icon-arrow' -%}
+                  Swap To Subscription
+                </button>
+              </popup-picker-opener>
+            {%- endif -%}
+
+            <button
+              checkout
+              class="{% if offer_type == 'sub' %}offer__button{% else %}offer__button--onetime{% endif %} button button-primary"
+            >
+              <strong>{{- section.settings.button_text -}}</strong>
+
+              <div spinner>
+                {%- render 'loading-spinner' -%}
+              </div>
+            </button>
+          </div>
+
+          <div class="form-block__wrap form-block__fomo">
+            {{- section.settings.fomo_left_text -}}
+
+            <div class="fomo-block__right">
+              {%- if section.settings.fomo_right_image -%}
+                {{-
+                  section.settings.fomo_right_image
+                  | image_url: width: 84
+                  | image_tag: widths: '28, 54, 84', class: 'fomo-block__right-image'
+                -}}
+              {%- endif -%}
+
+              {{- section.settings.fomo_right_text -}}
+            </div>
+          </div>
+
+          <div class="form-block__wrap form-block__trust">
+            {%- if section.settings.trust_image -%}
+              {%- liquid
+                echo section.settings.trust_image | image_url: width: 369 | image_tag: widths: '123, 246, 369', class: 'form-block__trust-image'
+              -%}
+            {%- endif -%}
+
+            {%- if section.settings.trust_text -%}
+              {{- section.settings.trust_text -}}
+            {%- endif -%}
+          </div>
+
+          {%- if offer_type == 'sub' -%}
+            <div class="form-block__wrap form-block__divider">
+              <div class="divider-block__line"></div>
+            </div>
+
+            <div class="form-block__wrap form-block__popup-trigger">
+              <popup-picker-opener data-modal="#offer-picker--onetime">
+                <button class="popup-trigger--link " offer-popup-trigger data-purchase-type="onetime">
+                  BUY ONCE - No Discount
+                </button>
+              </popup-picker-opener>
+            </div>
+
+            {%- if section.settings.onetime_bottom_text -%}
+              <div class="form-block__wrap form-block__text">
+                <div class="form-block__text--small">
+                  {{- section.settings.onetime_bottom_text -}}
+                </div>
+              </div>
+            {%- endif -%}
+
+            <div class="form-block__wrap form-block__divider">
+              <div class="divider-block__line"></div>
+            </div>
+
+            {%- if section.settings.product_desc -%}
+              <div class="form-block__wrap form-block__text">
+                <div class="form-block__text--small">
+                  {{- section.settings.product_desc -}}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</popup-picker>
+
+{%- if offer_type == 'sub' -%}
+  {%- render 'offer-interval-chart', dogsizes: dogsizes -%}
+{%- endif -%}

@@ -1,0 +1,884 @@
+{{ 'main-offer.css' | asset_url | stylesheet_tag }}
+{{ 'component-offer-picker.css' | asset_url | stylesheet_tag }}
+{{ 'component-carousel.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign product_sb_handle = section.settings.product_sb | default: 'advanced-hip-joint-support-for-small-medium-breeds-6'
+  assign product_lb_handle = section.settings.product_lb | default: 'advanced-hip-joint-support-for-large-breeds-copy'
+  assign product_sb = all_products[product_sb_handle]
+  assign product_lb = all_products[product_lb_handle]
+-%}
+
+<main-offer
+  class="color-{{ section.settings.color_scheme }} gradient"
+  style="--accent-color: {{ section.settings.accent_color }};"
+  data-version="{{- section.settings.version -}}"
+  data-gift-tag="{{- section.settings.gift_tag -}}"
+  data-product-type="{{  section.settings.product_type | default: 'JC' }}"
+>
+  <div class="offer__container">
+    <div class="col col__carousel">
+      {%- assign carousel_contents_sb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-main-sb'] -%}
+      {%- assign carousel_contents_lb = shop.metaobjects.os_2_0_carousel['os-2-0-carousel-offer-main-lb'] -%}
+
+      <div class="offer-carousel__wrap" dogsize-type="SB">
+        {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_sb -%}
+      </div>
+
+      <div class="offer-carousel__wrap" dogsize-type="LB">
+        {%- render 'offer-carousel', thumbnails: true, content: carousel_contents_lb -%}
+      </div>
+    </div>
+
+    <div class="col col__form">
+      {%- for block in section.blocks -%}
+        <div
+          class="form-block scroll-trigger animate--slide-in"
+          data-cascade
+          {{ block.shopify_attributes }}
+        >
+          <div
+            class="form-block__wrap form-block__{{ block.type }}"
+            style="--block-padding-top: {{- block.settings.padding_top -}}px; --block-padding-bottom: {{- block.settings.padding_bottom -}}px;"
+            {% if block.settings.show_block_device %}
+              show-on="{{ block.settings.show_block_device }}"
+            {% endif %}
+          >
+            {%- if block.type == 'text' -%}
+              <div
+                class="form-block__text--{{ block.settings.font_size }}"
+              >
+                {{-
+                  block.settings.text
+                  | replace: '[accent]', '<span class="color_accent">'
+                  | replace: '[/accent]', '</span>'
+                -}}
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'trust' -%}
+              {%- if section.settings.trust_image -%}
+                {%- liquid
+                  echo section.settings.trust_image | image_url: width: 369 | image_tag: widths: '123, 246, 369', class: 'form-block__trust-image'
+                -%}
+              {%- endif -%}
+
+              {%- if section.settings.trust_text -%}
+                {{- section.settings.trust_text -}}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'price' -%}
+              <new-price>$20</new-price>
+              <old-price>$41</old-price>
+
+              {%- if block.settings.text -%}
+                <div class="form-block__price-label">
+                  {{- block.settings.text -}}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'mystery-gift' -%}
+              {%- if block.settings.ribbon_text -%}
+                <div class="mystery-gift__ribbon-text">
+                  {{- block.settings.ribbon_text -}}
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.mystery_heading -%}
+                <div class="mystery-gift__heading">
+                  {{- section.settings.mystery_heading -}}
+                </div>
+              {%- endif -%}
+
+              <div class="mystery-gift__content">
+                <div class="mystery-gift__icon">
+                  {%- render 'icon-mystery-gift' -%}
+                </div>
+
+                <div class="mystery-gift__texts">
+                  <div class="mystery-gift__texts-left">
+                    {%- if section.settings.mystery_text_top_left -%}
+                      {{-
+                        section.settings.mystery_text_top_left
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+
+                    {%- if section.settings.mystery_text_bottom_left -%}
+                      {{-
+                        section.settings.mystery_text_bottom_left
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+                  </div>
+
+                  <div class="mystery-gift__texts-right">
+                    {%- if section.settings.mystery_text_top_right -%}
+                      {{-
+                        section.settings.mystery_text_top_right
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+
+                    {%- if section.settings.mystery_text_bottom_right -%}
+                      {{-
+                        section.settings.mystery_text_bottom_right
+                        | replace: '[line-through]', '<s>'
+                        | replace: '[/line-through]', '</s>'
+                      -}}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'popup-trigger' -%}
+              {%- if block.settings.button_text -%}
+                <popup-picker-opener
+                  data-modal="#offer-picker--{{ block.settings.target }}"
+                >
+                  <button
+                    class="popup-trigger--{{ block.settings.button_type }} {% if block.settings.button_type == 'button' %}offer__button button button-primary{% endif %}"
+                    data-purchase-type="{{ block.settings.target }}"
+                    offer-popup-trigger
+                  >
+                    {{- block.settings.button_text -}}
+
+                    {%- if block.settings.button_subtext != blank -%}
+                      <div class="popup-trigger__button-subtext">
+                        {%- render 'icon-guard' -%}
+                        {{- block.settings.button_subtext -}}
+                      </div>
+                    {%- endif -%}
+                  </button>
+                </popup-picker-opener>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.type == 'fomo' -%}
+              {{- section.settings.fomo_left_text -}}
+
+              <div class="fomo-block__right">
+                {%- if section.settings.fomo_right_image -%}
+                  {{-
+                    section.settings.fomo_right_image
+                    | image_url: width: 84
+                    | image_tag: widths: '28, 54, 84', class: 'fomo-block__right-image'
+                  -}}
+                {%- endif -%}
+
+                {{- section.settings.fomo_right_text -}}
+              </div>
+            {%- endif -%}
+
+            {%- if block.type == 'divider' -%}
+              <div class="divider-block__line"></div>
+            {%- endif -%}
+
+            {%- if block.type == 'timer' -%}
+              <div class="timer-block__row" timer-before-noon is-shown>
+                <div class="timer-block__col">
+                  {%- render 'icon-clock' -%}
+
+                  <div class="timer-block__col-text">
+                    {{-
+                      block.settings.before_left_text
+                      | replace: '[timer]', '<timer>'
+                      | replace: '[/timer]', '</timer>'
+                    -}}
+                  </div>
+                </div>
+
+                <div class="timer-block__col-icon">
+                  {%- render 'icon-long-arrow' -%}
+                </div>
+
+                <div class="timer-block__col">
+                  {%- render 'icon-shipped' -%}
+
+                  <div class="timer-block__col-text">
+                    {{- block.settings.before_right_text -}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="timer-block__row" timer-after-noon>
+                <div class="timer-block__col">
+                  {%- render 'icon-clock' -%}
+
+                  <div class="timer-block__col-text">
+                    {{- block.settings.after_left_text -}}
+                  </div>
+                </div>
+
+                <div class="timer-block__col-icon">
+                  {%- render 'icon-long-arrow' -%}
+                </div>
+
+                <div class="timer-block__col">
+                  {%- render 'icon-calendar' -%}
+
+                  <div class="timer-block__col-text">
+                    {{- block.settings.after_right_text -}}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- liquid
+    render 'offer-picker', offer_type: 'sub', product_sb: product_sb, product_lb: product_lb
+    render 'offer-picker', offer_type: 'onetime', product_sb: product_sb, product_lb: product_lb
+  -%}
+</main-offer>
+
+<script src="{{ 'carousel.js' | asset_url }}" defer></script>
+<script src="{{ 'main-offer.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Offer page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#2c8274"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "text",
+      "id": "version",
+      "label": "Offer version",
+      "default": "V7"
+    },
+    {
+      "type": "product",
+      "id": "product_sb",
+      "label": "Small breed"
+    },
+    {
+      "type": "product",
+      "id": "product_lb",
+      "label": "Large breed"
+    },
+    {
+      "type": "product",
+      "id": "product_mystery",
+      "label": "Mystery gift"
+    },
+    {
+      "type": "text",
+      "id": "gift_tag",
+      "label": "Gift tag",
+      "default": "SOSS"
+    },
+    {
+      "type": "number",
+      "id": "chews_per_tub_sb",
+      "label": "Chews in small tub",
+      "default": 60
+    },
+    {
+      "type": "number",
+      "id": "chews_per_tub_lb",
+      "label": "Chews in large tub",
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "chews_per_day",
+      "label": "Chews per day",
+      "default": "1,2,1,1.5,2",
+      "info": "0-35lbs,36-65lbs,65-100lbs,100-120lbs,Over120lbs"
+    },
+    {
+      "type": "text",
+      "id": "discounts_array_sub",
+      "label": "Discounts array for sub",
+      "default": "50,52,58"
+    },
+    {
+      "type": "text",
+      "id": "product_type",
+      "label": "Product type",
+      "default": "JC"
+    },
+    {
+      "type": "text",
+      "id": "discounts_array_onetime",
+      "label": "Discounts array for onetime",
+      "default": "0,5,10,15,20,25"
+    },
+    {
+      "type": "text",
+      "id": "sub_interval_info_prev",
+      "label": "Interval info - preventative",
+      "default": "<supply>60</supply> Day Supply - Ships Every <supply>60</supply> Days",
+      "info": "Wrap dynamic values in <supply></supply>"
+    },
+    {
+      "type": "text",
+      "id": "sub_interval_info_rehab",
+      "label": "Interval info - rehabilitation",
+      "default": "Learn about Automatic Refills"
+    },
+    {
+      "type": "header",
+      "content": "Popup picker"
+    },
+    {
+      "type": "image_picker",
+      "id": "picker_logo",
+      "label": "Picker logo"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "PROCEED TO CHECKOUT"
+    },
+    {
+      "type": "richtext",
+      "id": "picker_promo_text",
+      "label": "Promo text",
+      "default": "<p><strong>Limited Time Only</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "available_stock",
+      "label": "Available stock text",
+      "default": "<p><strong>Free Shipping + Free Gift</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "out_of_stock",
+      "label": "Out of stock text",
+      "default": "<p><strong>Out of stock</strong></p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_oos_inputs",
+      "label": "Disable OOS inputs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mystery gift"
+    },
+    {
+      "type": "richtext",
+      "id": "mystery_heading",
+      "label": "Heading",
+      "default": "<p><strong><i>Free Gift With Your Order</i></strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mystery_text_top_left",
+      "label": "Top left",
+      "default": "<p><strong>Mystery Gift</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mystery_text_bottom_left",
+      "label": "Bottom left",
+      "default": "<p>While stock lasts!</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mystery_text_top_right",
+      "label": "Top right",
+      "default": "<p><strong>$19.95</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mystery_text_bottom_right",
+      "label": "Bottom right",
+      "default": "<p><strong>FREE</strong></p>"
+    },
+    {
+      "type": "header",
+      "content": "Trust"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "trust_text",
+      "label": "Text",
+      "default": "<p>Excellent <strong>4.8<strong> | Over 1.3k Reviews<p>"
+    },
+    {
+      "type": "header",
+      "content": "Fomo"
+    },
+    {
+      "type": "richtext",
+      "id": "fomo_left_text",
+      "label": "Left text",
+      "default": "<p>Ships in 24 hours</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "fomo_right_text",
+      "label": "Right text",
+      "default": "<p><strong>16 orders</strong> at this price remaining</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "fomo_right_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Picker"
+    },
+    {
+      "type": "richtext",
+      "id": "onetime_bottom_text",
+      "label": "Bottom text",
+      "default": "<p>We recommend a subscription to give your dog the best chance at long lasting joint health</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "product_desc",
+      "label": "Product description",
+      "default": "<p>Advanced Hip & Joint Support is a groundbreaking blend of powerful ingredients that help support joint and mobility issues. The active ingredients in our formula were hand-picked by pet experts are scientifically-proven to help promote healthier joints and reduce symptoms of existing joint issues, in a little as 3 weeks.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Interval chart"
+    },
+    {
+      "type": "richtext",
+      "id": "interval_chart_heading",
+      "label": "Heading",
+      "default": "<p><strong>Automatic Refills</strong></p><p>Easy to manage - Pause or skip with a single click</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "interval_chart_vertical",
+      "label": "Vertical text",
+      "default": "<p>30 Day Double Dose Period</p>"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_1",
+      "label": "Accordion 1 title",
+      "default": "Why do I need to double dose?"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_1",
+      "label": "Accordion 1 content",
+      "default": "<p>Because your dog is already suffering from joint issues, it's important to double dose for the first 30 days to accelerate their path to joint improvement.</p><p><strong>94% of people who double-dose reported they saw noticeable results in as little as 3 weeks</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_2",
+      "label": "Accordion 2 title",
+      "default": "Why is shipping at random intervals"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_2",
+      "label": "Accordion 1 content",
+      "default": "<p>Because you have to double dose, we've simplified your delivery schedule to make sure you have exactly what you need, when you need it. During the 30 day double dose period, you'll receive extra shipments to accommodate your need to give your dog twice the regular dosage. After this 30 day double dose period, your shipments will return to regular intervals.</p>"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee text",
+      "default": "90 Day Money Back Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_badge",
+      "label": "Guarantee badge",
+      "default": "Limited Time Only"
+    },
+    {
+      "type": "image_picker",
+      "id": "risk_free_image",
+      "label": "Risk free image"
+    },
+    {
+      "type": "richtext",
+      "id": "risk_free_text",
+      "label": "Risk free text",
+      "default": "<p><strong>Double dosing is risk free and covered by our 90 day money back guarantee</strong></p><p><strong>Email us, call us, or edit with a single click.</strong></p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add text here</p>"
+        },
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "Font size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "regular",
+              "label": "Regular"
+            }
+          ],
+          "default": "regular"
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Price label text",
+          "default": "<p><strong>Save up to 58% On First Order</strong></p>"
+        }
+      ]
+    },
+    {
+      "type": "mystery-gift",
+      "name": "Mystery gift",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "richtext",
+          "id": "ribbon_text",
+          "label": "Text",
+          "default": "<p><strong>Order today for a guaranteed Free Gift!</strong></p>"
+        }
+      ]
+    },
+    {
+      "type": "popup-trigger",
+      "name": "Popup trigger",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "target",
+          "label": "target",
+          "options": [
+            {
+              "value": "sub",
+              "label": "Sub"
+            },
+            {
+              "value": "onetime",
+              "label": "Onetime"
+            }
+          ],
+          "default": "sub"
+        },
+        {
+          "type": "select",
+          "id": "button_type",
+          "label": "Button type",
+          "options": [
+            {
+              "value": "button",
+              "label": "Button"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            }
+          ],
+          "default": "button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "GET 58% OFF"
+        },
+        {
+          "type": "text",
+          "id": "button_subtext",
+          "label": "Sub text",
+          "default": "90-day Money Back Guarantee"
+        }
+      ]
+    },
+    {
+      "type": "fomo",
+      "name": "Fomo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 25
+        }
+      ]
+    },
+    {
+      "type": "timer",
+      "name": "Timer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding top",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "show_block_device",
+          "label": "Show on",
+          "options": [
+            {
+              "value": "mobile",
+              "label": "Mobile only"
+            },
+            {
+              "value": "desktop",
+              "label": "Desktop only"
+            },
+            {
+              "value": "both",
+              "label": "Both"
+            }
+          ],
+          "default": "both"
+        },
+        {
+          "type": "header",
+          "content": "Before noon"
+        },
+        {
+          "type": "richtext",
+          "id": "before_left_text",
+          "label": "Left text",
+          "default": "<p>Order within</p><p><strong>[timer]</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "before_right_text",
+          "label": "Right text",
+          "default": "<p>Ships</p><p><strong>Today</strong></p>"
+        },
+        {
+          "type": "header",
+          "content": "After noon"
+        },
+        {
+          "type": "richtext",
+          "id": "after_left_text",
+          "label": "Left text",
+          "default": "<p>Order</p><p><strong>Today</strong></p>"
+        },
+        {
+          "type": "richtext",
+          "id": "after_right_text",
+          "label": "Right text",
+          "default": "<p>Arrives</p><p><strong>4 days from now</strong></p>"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

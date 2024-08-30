@@ -1,21 +1,164 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "step": {
+    "main_quiz_GXBWM3": {
       "type": "main-quiz",
+      "blocks": {
+        "text_ybprJJ": {
+          "type": "text",
+          "settings": {
+            "heading": "<h2>What is your dog's name?<\/h2>",
+            "placeholder": "Pet name",
+            "name": "name",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "number_EKTnm3": {
+          "type": "number",
+          "settings": {
+            "heading": "<h2>How old is [dog_name]?<\/h2>",
+            "placeholder": "Age",
+            "name": "age",
+            "input_num_limit": 30,
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "text_JgTG4R": {
+          "type": "text",
+          "settings": {
+            "heading": "<h2>What breed is [dog_name]?<\/h2>",
+            "placeholder": "Start Typing Here",
+            "name": "breed",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_icon_3NnYBJ": {
+          "type": "radio-icon",
+          "settings": {
+            "heading": "<h2>How much does [dog_name] weigh?<\/h2>",
+            "name": "weight",
+            "label": "0-35 lbs:icon-dog-size-1:60,\n36-65 lbs:icon-dog-size-2:60,\n65-100 lbs:icon-dog-size-3:50,\n100-120 lbs:icon-dog-size-4:50,\nOver 120 lbs:icon-dog-size-5:50",
+            "icon_coloring": "fill",
+            "show_trust_badge": true,
+            "hide_next_button": true,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_icon_r7DG6D": {
+          "type": "radio-icon",
+          "settings": {
+            "heading": "<h2>What is [dog_name]'s body type?<\/h2>",
+            "name": "body-type",
+            "label": "Underweight:icon-dog-body-type-1:60,\nSlightly Underweight:icon-dog-body-type-2:60,\nJust Right:icon-dog-body-type-3:60,\nSlightly Overweight:icon-dog-body-type-4:60,\nOverweight:icon-dog-body-type-5:60",
+            "icon_coloring": "stroke",
+            "show_trust_badge": true,
+            "hide_next_button": true,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_w6Ndbr": {
+          "type": "radio",
+          "settings": {
+            "heading": "<h2>Does [dog_name] have joint issues?<\/h2>",
+            "name": "joint-issues",
+            "label": "Yes,No",
+            "show_trust_badge": true,
+            "hide_next_button": true,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_wyhG7C": {
+          "type": "radio",
+          "settings": {
+            "heading": "<h2>Rate [dog_name]’s ability to climb up or down objects such as stairs, into a car, etc.<\/h2>",
+            "name": "rate-climb",
+            "label": "No Problem,Mild Difficulty,Moderate Difficulty,Severe Difficulty,Impossible",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_9jFjaF": {
+          "type": "radio",
+          "settings": {
+            "heading": "<h2>Rate [dog_name]’s ability to jump on or off a couch or bed.<\/h2>",
+            "name": "rate-jump",
+            "label": "No Problem,Mild Difficulty,Moderate Difficulty,Severe Difficulty,Impossible",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "radio_DNnDyh": {
+          "type": "radio",
+          "settings": {
+            "heading": "<h2>Rate [dog_name]'s ability to get up from lying down first thing in the morning.<\/h2>",
+            "name": "rate-get-up",
+            "label": "No Problem,Mild Difficulty,Moderate Difficulty,Severe Difficulty,Impossible",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "CONTINUE",
+            "footer_text": ""
+          }
+        },
+        "email_gQRwnq": {
+          "type": "email",
+          "settings": {
+            "heading": "<h4>One more step...<\/h4><p>We’re excited to share [dog_name]'s personalized joint health assessment!<\/p><p>To receive <strong>50% off<\/strong>  your joint improvement plan, just drop your email below.<\/p>",
+            "placeholder": "Email",
+            "name": "email",
+            "show_trust_badge": true,
+            "hide_next_button": false,
+            "next_btn_text": "SEE MY PERSONALIZED RESULTS",
+            "footer_text": "<p><em>By submitting this form and signing up for marketing communication, you consent to receive marketing text or email messages (e.g. promos, cart reminders) from Wuffes at the contact information provided, including messages sent by autodialer. Consent is not a condition of purchase. Msg & data rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link (where available). <\/em><a href=\"\/policies\/privacy-policy\" title=\"Privacy Policy\"><em>Privacy Policy<\/em><\/a><em> & <\/em><a href=\"\/policies\/terms-of-service\" title=\"Terms of Service\"><em>Terms<\/em><\/a><em>.<\/em><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_ybprJJ",
+        "number_EKTnm3",
+        "text_JgTG4R",
+        "radio_icon_3NnYBJ",
+        "radio_icon_r7DG6D",
+        "radio_w6Ndbr",
+        "radio_wyhG7C",
+        "radio_9jFjaF",
+        "radio_DNnDyh",
+        "email_gQRwnq"
+      ],
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "color_scheme": "scheme-989906f4-7cf6-4d01-96e7-7176b0732c41",
+        "trust_logo": "shopify:\/\/shop_images\/trustpilot.svg",
+        "trust_star_icons": "shopify:\/\/shop_images\/ratings_star.svg",
+        "trust_text": "<p>TrustScore 4.8 | <strong>1,000+ Reviews<\/strong><\/p>",
+        "prev_btn_text": "back",
+        "final_step_logo": "shopify:\/\/shop_images\/reskin_logo_updated.svg",
+        "final_step_heading": "<h2>Calculating [dog_name]'s results<\/h2>",
+        "final_step_image_desktop": "shopify:\/\/shop_images\/full_price_quiz_step_10_desktop.png",
+        "final_step_image_mobile": "shopify:\/\/shop_images\/full_price_quiz_step_10_mobile.png",
+        "final_step_bottom_text": "<h3>Crafted with love and backed by science<\/h3>",
+        "redirect_url": "https:\/\/wuffes.com\/pages\/jointchew-offer",
+        "redirect_url_pdp_lb": "https:\/\/wuffes.com\/products\/advanced-hip-joint-support-for-large-breeds",
+        "redirect_url_pdp_sb": "https:\/\/wuffes.com\/products\/advanced-hip-joint-support-for-small-medium-breeds",
+        "gcloud_url": "https:\/\/us-central1-smooth-transit-417811.cloudfunctions.net\/shopify-customer-query-func",
+        "default_redirect": "full_price"
       }
     }
   },
-  "order": ["step"]
+  "order": [
+    "main_quiz_GXBWM3"
+  ]
 }
